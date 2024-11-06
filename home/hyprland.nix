@@ -44,7 +44,10 @@
       "2, monitor:DP-2"
     ];
 
-    windowrulev2 = [ "float, class:(Rofi)" ];
+    windowrulev2 = [
+      "float, class:(Rofi)"
+      "stayfocused, class:(Rofi)"
+    ];
 
     exec-once = [
       "[workspace 1 silent] firefox"
@@ -67,6 +70,12 @@
       shadow_render_power = 3;
       "col.shadow" = "$accent";
       "col.shadow_inactive" = "0xff$baseAlpha";
+
+      blur = {
+        noise = 0;
+        size = 4;
+        passes = 3;
+      };
     };
 
     animations = {
@@ -99,6 +108,7 @@
 
   cursor {
     no_hardware_cursors = true
+    # allow_dumb_copy = true
   }
   '';
 }
