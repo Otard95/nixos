@@ -12,6 +12,8 @@
     };
 
     catppuccin.url = "github:catppuccin/nix";
+
+    zen-browser.url = "github:ch4og/zen-browser-flake";
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... } @ inputs:
@@ -53,7 +55,7 @@
       system = system;
       modules = [
         inputs.catppuccin.nixosModules.catppuccin
-        ./configuration.nix
+	./hosts/terra/configuration.nix
 	./modules/bootloader.nix
 	./modules/gc.nix
 	./modules/theme.nix

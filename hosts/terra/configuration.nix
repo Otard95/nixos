@@ -79,7 +79,7 @@
   };
   environment.sessionVariables = {
     # If cursor becomes invisible
-    WLR_NO_HARDWARE_CURSORS = "1";
+    # WLR_NO_HARDWARE_CURSORS = "1";
     # Hint electron apps to use wayland
     NIXOS_OZONE_WL = "1";
   };
@@ -119,6 +119,7 @@
     ripgrep
     tmux
     firefox
+    inputs.zen-browser.packages."${system}".default
     gcc
     nodejs
     unzip
