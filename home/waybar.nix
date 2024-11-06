@@ -15,7 +15,7 @@
         "margin-right" = 15;
         "modules-left" = ["hyprland/workspaces" "hyprland/submap"];
         "modules-center" = ["clock#time" "custom/separator" "clock#week" "custom/separator_dot" "clock#month" "custom/separator" "clock#calendar"];
-        "modules-right" = [ "network" "group/misc" "custom/logout_menu" ];
+        "modules-right" = [ "network" "pulseaudio" "group/misc" "custom/logout_menu" ];
 
         # Modules Config
         "hyprland/workspaces" = {
@@ -134,6 +134,38 @@
             "max-length" = 35;
             # "on-click" = "fish -c wifi_toggle";
             # "on-click-right" = "iwgtk";
+        };
+
+        "pulseaudio" = {
+          "states" = {
+            "high" = 89;
+            "upper-medium" = 69;
+            "medium" = 49;
+            "lower-medium" = 29;
+            "low" = 9;
+          };
+          "tooltip-format" = "{desc}";
+          "format" = "{icon} {volume}% {format_source}";
+          "format-bluetooth" = "{icon} {volume}% {format_source}";
+          "format-bluetooth-muted" = "󰝟 {volume}% {format_source}";
+          "format-muted" = "󰝟 {volume}% {format_source}";
+          "format-source" = "󰍬 {volume}%";
+          "format-source-muted" = "󰍭 {volume}%";
+          "format-icons" = {
+            "headphone" = "󰋋";
+            "hands-free" = "";
+            "headset" = "󰋎";
+            "phone" = "󰄜";
+            "portable" = "󰦧";
+            "car" = "󰄋";
+            "speaker" = "󰓃";
+            "hdmi" = "󰡁";
+            "hifi" = "󰋌";
+            "default" = [ "󰕿" "󰖀" "󰕾" ];
+          };
+          "scroll-step" = 1;
+          "on-click" = "pavucontrol";
+          # "ignored-sinks" = ["Easy Effects Sink"]
         };
 
         "group/misc" = {
@@ -374,6 +406,49 @@
       color: @teal;
     }
 
+    #pulseaudio {
+      background-color: alpha(@surface1, 0.7);
+      border-radius: 15px;
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-left: 2px;
+      margin-right: 6px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    #pulseaudio.bluetooth {
+      color: @sapphire;
+    }
+
+    #pulseaudio.muted {
+      color: @surface2;
+    }
+
+    #pulseaudio {
+      color: @text;
+    }
+
+    #pulseaudio.low {
+      color: @overlay0;
+    }
+
+    #pulseaudio.lower-medium {
+      color: @overlay1;
+    }
+
+    #pulseaudio.medium {
+      color: @overlay2;
+    }
+
+    #pulseaudio.upper-medium {
+      color: @subtext0;
+    }
+
+    #pulseaudio.high {
+      color: @subtext1;
+    }
+
     #idle_inhibitor {
       margin-left: 2px;
       margin-right: 8px;
@@ -527,38 +602,6 @@
 
     #backlight.high {
       color: @text;
-    }
-
-    #pulseaudio.bluetooth {
-      color: @sapphire;
-    }
-
-    #pulseaudio.muted {
-      color: @surface2;
-    }
-
-    #pulseaudio {
-      color: @text;
-    }
-
-    #pulseaudio.low {
-      color: @overlay0;
-    }
-
-    #pulseaudio.lower-medium {
-      color: @overlay1;
-    }
-
-    #pulseaudio.medium {
-      color: @overlay2;
-    }
-
-    #pulseaudio.upper-medium {
-      color: @subtext0;
-    }
-
-    #pulseaudio.high {
-      color: @subtext1;
     }
 
     #systemd-failed-units {
