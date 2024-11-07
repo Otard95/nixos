@@ -59,27 +59,7 @@
     enable = true;
   };
 
-  # Desktop Environment
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-  environment.sessionVariables = {
-    # If cursor becomes invisible
-    # WLR_NO_HARDWARE_CURSORS = "1";
-    # Hint electron apps to use wayland
-    NIXOS_OZONE_WL = "1";
-  };
-  security = {
-    rtkit.enable = true;
-    polkit.enable = true;
-  };
   services = {
-    displayManager.sddm = {
-      enable = false;
-      # package = pkgs-stable.sddm;
-      wayland.enable = true;
-    };
     pipewire = {
       enable = true;
       alsa.enable = true;
