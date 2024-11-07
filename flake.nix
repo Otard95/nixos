@@ -56,8 +56,7 @@
       modules = [
         inputs.catppuccin.nixosModules.catppuccin
 	./hosts/terra/configuration.nix
-	./modules/bootloader.nix
-	./modules/gc.nix
+	./modules
 	./modules/theme.nix
         home-manager.nixosModules.home-manager
         {

@@ -9,7 +9,7 @@
       "$mod, RETURN, exec, kitty"
       "$mod+SHIFT, Q, killactive"
       "$mod, M, exit"
-      "$mod, D, exec, rofi -modi drun,run -show drun"
+      "$mod, D, exec, rofi -show drun"
       "$mod, F, togglefloating"
       "$mod, E, togglesplit"
       "$mod, W, togglegroup"
@@ -50,7 +50,7 @@
     ];
 
     exec-once = [
-      "[workspace 1 silent] firefox"
+      "[workspace 1 silent] zen"
       "[workspace 2 silent] kitty"
     ];
 
