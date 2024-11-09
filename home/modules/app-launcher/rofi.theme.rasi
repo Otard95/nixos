@@ -68,6 +68,7 @@ mainbox {
 imagebox {
     padding:                     20px;
     background-color:            transparent;
+    background-image:            url("./splash-images/spacegirl.jpg", height);
     orientation:                 vertical;
     children:                    [ "inputbar", "dummy", "mode-switcher" ];
 }

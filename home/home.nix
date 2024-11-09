@@ -73,7 +73,6 @@ in
     neovim = (import ./nvim.nix { inherit pkgs; });
     tmux = (import ./tmux.nix { inherit pkgs; });
     waybar = (import ./waybar.nix { inherit pkgs; });
-    rofi = (import ./rofi.nix { inherit pkgs; });
     fzf = (import ./fzf.nix { inherit pkgs; });
   };
 
