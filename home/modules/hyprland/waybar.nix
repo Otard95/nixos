@@ -299,14 +299,18 @@ in {
 
           # Modules Config
           "hyprland/window" = {
-            "format" = "{title}";
+            "format" = "{class} {title}";
             "max-length" = 50;
+            "separate-outputs" = true;
+            "rewrite" = {
+              "zen-alpha (.*)" = "  $1";
+              "kitty (.*)" = "  [$1]";
+            };
           };
 
           "hyprland/language" = {
             "format-en" = "🇺🇸 ENG (US)";
             "format-no" = "🇳🇴 NO";
-            "on-click" = "hyprctl switchxkblayout next";
           };
 
           "keyboard-state" = {
@@ -361,7 +365,7 @@ in {
         window.bottom_bar .modules-left {
           background-color: alpha(@surface1, 0.7);
           border-radius: 0 15 0 0;
-          padding-left: 20;
+          padding-left: 10;
           padding-right: 20;
         }
 
@@ -447,7 +451,7 @@ in {
           border-radius: 15 15 0 0;
           padding-left: 20;
           padding-right: 20;
-          margin-top: 5;
+          min-height: 26px
         }
 
         window.bottom_bar .modules-right {
@@ -456,6 +460,7 @@ in {
           padding-left: 20;
           padding-right: 20;
           margin-top: 5;
+          min-height: 26px
         }
 
         #language {
