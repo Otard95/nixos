@@ -26,10 +26,10 @@ in {
   ];
 
   config = lib.mkIf enable {
-    modules.desktopEnvironment.hyprland.enable = 
-      cfg.windowManager == "hyprland";
+    modules.desktopEnvironment.hyprland.enable =
+      lib.mkDefault (cfg.windowManager == "hyprland");
 
     modules.desktopEnvironment.sddm.enable =
-      cfg.displayManager == "sddm";
+      lib.mkDefault (cfg.displayManager == "sddm");
   };
 }
