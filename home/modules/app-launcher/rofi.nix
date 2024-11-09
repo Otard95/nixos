@@ -33,7 +33,7 @@ in {
         display-filebrowser = "FILES";
         display-window = "WINDOW";
         drun-display-format = "{name}";
-        window-format = "{w}; · {c} · {t}";
+        window-format = "{w} · {c} · {t}";
       };
 
       theme = ./rofi.theme.rasi;

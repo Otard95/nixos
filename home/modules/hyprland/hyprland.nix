@@ -19,6 +19,7 @@ in {
           "$mod+SHIFT, Q, killactive"
           "$mod, M, exit"
           "$mod, D, exec, rofi -show drun"
+          "ALT, TAB, exec, rofi -show window"
           "$mod, F, togglefloating"
           "$mod, E, togglesplit"
           "$mod, W, togglegroup"
@@ -109,7 +110,7 @@ in {
 
         input = {
           kb_layout = "us,no";
-          kb_options = "grp:alt_shift_toggle";
+          kb_options = "grp:alt_space_toggle";
           repeat_rate = 45;
           repeat_delay = 180;
         };

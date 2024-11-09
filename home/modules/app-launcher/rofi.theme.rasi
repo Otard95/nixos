@@ -164,24 +164,24 @@ element normal.normal {
     text-color:                  inherit;
 }
 element normal.urgent {
-    background-color:            @urgent;
-    text-color:                  @text;
+    background-color:            @maroon;
+    text-color:                  @crust;
 }
 element normal.active {
-    background-color:            @active;
-    text-color:                  @text;
+    background-color:            @green;
+    text-color:                  @crust;
 }
 element selected.normal {
     background-color:            @teal;
     text-color:                  @crust;
 }
 element selected.urgent {
-    background-color:            @urgent;
-    text-color:                  @text;
+    background-color:            @maroon;
+    text-color:                  @crust;
 }
 element selected.active {
-    background-color:            @urgent;
-    text-color:                  @text;
+    background-color:            @maroon;
+    text-color:                  @crust;
 }
 element-icon {
     background-color:            transparent;
