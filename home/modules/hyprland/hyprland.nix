@@ -7,6 +7,9 @@ in {
   options.modules.hyprland.wm.enable = lib.mkEnableOption "hyprland configuration";
 
   config = lib.mkIf enable {
+    home.packages = with pkgs; [
+      hyprcursor
+    ];
 
     wayland.windowManager.hyprland = {
       enable = true;

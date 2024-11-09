@@ -25,9 +25,7 @@ in
   home.username = "otard";
   home.homeDirectory = "/home/otard";
 
-  imports = [
-    ./modules
-  ];
+  imports = [ ./modules ];
 
   catppuccin = {
     enable = true;
@@ -68,10 +66,6 @@ in
   ];
 
   programs = {
-    bash = (import ./bash.nix { inherit pkgs; });
-    kitty = (import ./kitty.nix { inherit pkgs; });
     neovim = (import ./nvim.nix { inherit pkgs; });
-    tmux = (import ./tmux.nix { inherit pkgs; });
-    fzf = (import ./fzf.nix { inherit pkgs; });
   };
 }
