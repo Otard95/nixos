@@ -20,6 +20,8 @@ in {
       enable = true;
 
       settings = {
+        ipc = false;
+
         preload = "~/.config/hypr/background-images/falling_into_infinity.png";
 
         wallpaper = ", ~/.config/hypr/background-images/falling_into_infinity.png";
