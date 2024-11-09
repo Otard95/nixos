@@ -79,7 +79,6 @@
     dunst
     libnotify
     swww
-    rofi-wayland
     git
     fzf
     jq
