@@ -72,7 +72,6 @@ in
     kitty = (import ./kitty.nix { inherit pkgs; });
     neovim = (import ./nvim.nix { inherit pkgs; });
     tmux = (import ./tmux.nix { inherit pkgs; });
-    waybar = (import ./waybar.nix { inherit pkgs; });
     fzf = (import ./fzf.nix { inherit pkgs; });
   };
 

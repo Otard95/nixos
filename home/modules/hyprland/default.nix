@@ -9,11 +9,13 @@ in {
   imports = [
     ./hyprland.nix
     ./hyprpaper.nix
+    ./waybar.nix
   ];
 
   config = lib.mkIf enable {
     modules.hyprland.wm.enable = lib.mkDefault true;
     modules.hyprland.hyprpaper.enable = lib.mkDefault true;
+    modules.hyprland.waybar.enable = lib.mkDefault true;
   };
 
 }

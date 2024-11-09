@@ -75,7 +75,6 @@
     neovim
     kitty
     hyprcursor
-    waybar
     dunst
     libnotify
     swww
