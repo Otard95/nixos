@@ -74,6 +74,4 @@ in
     tmux = (import ./tmux.nix { inherit pkgs; });
     fzf = (import ./fzf.nix { inherit pkgs; });
   };
-
-  # wayland.windowManager.hyprland = (import ./hyprland { inherit pkgs; });
 }

@@ -451,7 +451,7 @@ in {
           border-radius: 15 15 0 0;
           padding-left: 20;
           padding-right: 20;
-          min-height: 26px
+          min-height: 22px
         }
 
         window.bottom_bar .modules-right {
@@ -460,7 +460,7 @@ in {
           padding-left: 20;
           padding-right: 20;
           margin-top: 5;
-          min-height: 26px
+          min-height: 22px
         }
 
         #language {
