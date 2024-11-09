@@ -6,4 +6,9 @@
     ll = "ls -lah";
     ".." = "cd ..";
   };
+
+  historyControl = [
+    "erasedups"
+    "ignoredups"
+  ];
 }
