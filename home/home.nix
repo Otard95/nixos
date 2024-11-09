@@ -25,6 +25,10 @@ in
   home.username = "otard";
   home.homeDirectory = "/home/otard";
 
+  imports = [
+    ./modules
+  ];
+
   catppuccin = {
     enable = true;
     inherit (theme) flavor accent;
@@ -57,7 +61,7 @@ in
     "gtk-4.0/gtk.css".source = "${gtk4Dir}/gtk.css";
     "gtk-4.0/gtk-dark.css".source = "${gtk4Dir}/gtk-dark.css";
 
-    nvim.source = mkOutOfStoreSymlink "/home/otard/.dotfiles/config/nvim";
+    nvim.source = mkOutOfStoreSymlink "/etc/nixos/.config/nvim";
   };
 
   home.packages = with pkgs; [
@@ -73,5 +77,5 @@ in
     fzf = (import ./fzf.nix { inherit pkgs; });
   };
 
-  wayland.windowManager.hyprland = (import ./hyprland.nix { inherit pkgs; });
+  # wayland.windowManager.hyprland = (import ./hyprland { inherit pkgs; });
 }

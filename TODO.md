@@ -1,0 +1,12 @@
+ - DM
+   - waybar bottom
+     - cpu, ram, disk
+     - ?? middle
+     - keyboard
+   - nvim
+   - modularize
+   
+- System
+  - modularize
+    - rest of configuration.nix
+    - packages/programs/apps
