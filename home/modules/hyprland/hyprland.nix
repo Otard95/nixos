@@ -88,6 +88,10 @@ in {
           };
         };
 
+        layerrule = [
+          "blur, rofi"
+        ];
+
         animations = {
           enabled = true;
 
