@@ -1,0 +1,170 @@
+snippet imp "import"
+	import ${2:name} from '${1:module}';
+
+snippet dest "destructuring"
+	const { ${2:prop} } = ${1:object};
+
+snippet fun function
+	function ${1:name}(${2:args}): ${3:void} {
+		${0:// body...}
+	}
+
+snippet ano "anonymous function"
+	(${1:args}): ${2:void} => ${3:/* body */}
+
+snippet arr "anonymous arrow function"
+	() => ${3:/* body */}
+
+snippet int "interface"
+	interface ${1:Name} {
+		${2}: ${3:never};
+		${0}
+	}
+
+snippet inte "interface extends"
+	interface ${1:Name} extends ${2:Base}
+		${3}: ${4:never};
+		${0}
+	}
+
+snippet intp "interface property"
+	${1:property}: ${2:never};
+
+snippet intm "interface method"
+	${1:method}(${2:args}): ${3:never};
+
+snippet intc "interface constructor"
+	new(${1:args}): ${2:never};
+
+snippet inti "interface index"
+	[${1:index}]: ${2:never};
+
+snippet cla "ts class"
+	class ${1} {
+		constructor(${2}) {
+			${0}
+		}
+	}
+snippet clae "ts class extends"
+	class ${1} extends ${2} {
+		constructor() {
+			${0}
+		}
+	}
+
+snippet pub "public method"
+	public ${1:method}(${2:args}): ${3:never} {
+		${0:// body...}
+	}
+
+snippet pri "private method"
+	private ${1:method}(${2:args}): ${3:never} {
+		${0:// body...}
+	}
+
+snippet pro "protected method"
+	protected ${1:method}(${2:args}): ${3:never} {
+		${0:// body...}
+	}
+
+snippet asy "async method"
+	async ${1:method}(${2:args}): ${3:never} {
+		${0:// body...}
+	}
+
+snippet sta "static method"
+	static ${1:method}(${2:args}): ${3:never} {
+		${0:// body...}
+	}
+
+snippet get "getter"
+	get ${1:property}(): ${2:never} {
+		${0:// body...}
+	}
+
+snippet set "setter"
+	set ${1:property}(${2:value}): ${3:void} {
+		${0:// body...}
+	}
+
+snippet gqltest "Boiler plate for a GraphQL integration test"
+	import { faker } from '@faker-js/faker';
+	import gql from 'graphql-tag';
+	import { print } from 'graphql/index';
+	import { http, HttpResponse } from 'msw';
+	import request from 'supertest';
+
+	import { mockUserInContext } from '@internal/common-utils/lib/testing/mockUserInContext';
+	import { getTestSuccessDartResponse } from '@internal/testing-utils/lib/getTestDartResponse';
+	// import { initializeUnleashMock } from '@internal/testing-utils/lib/mockUnleash';
+	import { initializeMsw } from '@internal/testing-utils/lib/testHttpInterceptor';
+
+	import { initializeTestServer } from '@/utils/test/initializeTestServer';
+
+	const query = gql\`
+		$0query FOO_BAR(\$input: FooBarInput!) {
+			fooBar(input: \$input) {
+				# fields...
+			}
+		}
+	\`;
+
+	describe('fooBar', () => {
+		// const { setMockUnleashFlag } = initializeUnleashMock();
+		const server = initializeMsw();
+		const apolloServer = initializeTestServer();
+
+		it('should ...', async () => {
+			// given
+			// setMockUnleashFlag('some-feature-flag', true);
+			mockUserInContext({
+				user: {
+					id: \`\${faker.number.int()}\`,
+					operatingAsId: faker.number.int(),
+				},
+			});
+
+			server.use(mockResponse());
+
+			// when
+			const res = await request(\`localhost:\${apolloServer.Port}\`)
+				.post(apolloServer.Path)
+				.send({
+					variables: {},
+					query: print(query),
+				});
+
+			// then
+			expect(res.body).toEqual({
+				data: {},
+			});
+		});
+	});
+
+	function mockResponse() {
+		const payload = {};
+		return http.get(\`https://example.com/api/foo/bar\`, () => {
+			return HttpResponse.json(getTestSuccessDartResponse(payload));
+		});
+	}
+
+snippet gqlschema "Boiler plate for a GraphQL schema module"
+	import gql from 'graphql-tag';
+
+	import { resolveDataSource } from '@internal/common-utils';
+	import type { Resolvable } from '@internal/types-utility';
+
+	import { Resolvers } from '@/generated/graphql';
+	import { Context } from '@/index';
+
+	export const typeDef = gql\`
+		extend type Query {
+		}
+		extend type Mutation {
+		}
+	\`;
+
+	export const resolver: Resolvers<Context> = {
+		Query: {},
+		Mutation: {},
+	};
