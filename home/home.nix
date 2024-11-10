@@ -59,13 +59,8 @@ in
     "gtk-4.0/gtk.css".source = "${gtk4Dir}/gtk.css";
     "gtk-4.0/gtk-dark.css".source = "${gtk4Dir}/gtk-dark.css";
 
-    # nvim.source = mkOutOfStoreSymlink "/etc/nixos/.config/nvim";
   };
 
   home.packages = with pkgs; [
   ];
-
-  programs = {
-    # neovim = (import ./nvim.nix { inherit pkgs; });
-  };
 }
