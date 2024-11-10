@@ -1,4 +1,4 @@
-{ pkgs, theme, capFirst, ... }:
+{ pkgs, theme, ... }:
 {
   # Enable Theme
   # environment.variables.GTK_THEME = "catppuccin-${theme.flavor}-${theme.accent}-${theme.size}";

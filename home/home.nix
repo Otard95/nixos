@@ -1,4 +1,4 @@
-{ config, pkgs, theme, capFirst, ...}:
+{ config, pkgs, theme, ...}:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
   gtkThemePackage = pkgs.catppuccin-gtk.override {

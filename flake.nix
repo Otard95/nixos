@@ -47,15 +47,13 @@
       size = "standard";
       tweaks = [];
     };
-
-    capFirst = str: (nixpkgs.lib.toUpper (nixpkgs.lib.substring 0 1 str) + nixpkgs.lib.substring 1 (-1) str);
   in {
 
     pkgs-stable = nixpkgs-stable.legacyPackages.${system};
 
     nixosConfigurations.terra = nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit pkgs pkgs-stable theme capFirst inputs;
+        inherit pkgs pkgs-stable theme inputs;
         meta = { hostname = "terra"; };
       };
       system = system;
@@ -77,7 +75,7 @@
               nixvim.homeManagerModules.nixvim
             ];
           };
-          home-manager.extraSpecialArgs = { inherit theme capFirst inputs; };
+          home-manager.extraSpecialArgs = { inherit theme inputs; };
         }
       ];
     };
