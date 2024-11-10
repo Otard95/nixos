@@ -22,10 +22,8 @@
     zen-browser.url = "github:ch4og/zen-browser-flake";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nixvim, catppuccin, ... } @ inputs:
+  outputs = { nixpkgs, nixpkgs-stable, home-manager, nixvim, catppuccin, ... } @ inputs:
   let
-    inherit (self) outputs;
-
     system = "x86_64-linux";
 
     pkgs = import nixpkgs {
