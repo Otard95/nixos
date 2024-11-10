@@ -1,3 +1,0 @@
-return {
-  { 'codeindulgence/vim-tig'}
-}
