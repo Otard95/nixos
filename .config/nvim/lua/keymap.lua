@@ -61,6 +61,6 @@ vim.keymap.set('n', '<leader>bo', ':BufOnly<CR>', {})
 vim.keymap.set('n', '<leader>cr', 'Reference<CR>', {})
 vim.keymap.set('v', '<leader>cr', 'Reference<CR>', {})
 
---" Resizing
+-- Resizing
 vim.keymap.set('n', '<leader>>', ':vertical resize +4<CR>', {})
 vim.keymap.set('n', '<leader><', ':vertical resize -4<CR>', {})

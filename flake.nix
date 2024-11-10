@@ -11,12 +11,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Nixvim
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     catppuccin.url = "github:catppuccin/nix";
 
     zen-browser.url = "github:ch4og/zen-browser-flake";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... } @ inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nixvim, catppuccin, ... } @ inputs:
   let
     inherit (self) outputs;
 
@@ -54,20 +60,23 @@
       };
       system = system;
       modules = [
-        inputs.catppuccin.nixosModules.catppuccin
-	./hosts/terra/configuration.nix
-	./modules
-	./modules/theme.nix
+        catppuccin.nixosModules.catppuccin
+        nixvim.nixosModules.nixvim
+        ./hosts/terra/configuration.nix
+        ./modules
+        ./modules/theme.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "bak";
           home-manager.users.otard = {
-	    imports = [
-	      ./home/home.nix
-              inputs.catppuccin.homeManagerModules.catppuccin
-	    ];
-	  };
+            imports = [
+              ./home/home.nix
+              catppuccin.homeManagerModules.catppuccin
+              nixvim.homeManagerModules.nixvim
+            ];
+          };
           home-manager.extraSpecialArgs = { inherit theme capFirst inputs; };
         }
       ];
@@ -79,7 +88,8 @@
 
       modules = [
         ./home.nix
-        inputs.catppuccin.homeManagerModules.catppuccin
+        catppuccin.homeManagerModules.catppuccin
+        nixvim.homeManagerModules.nixvim
       ];
     };
 

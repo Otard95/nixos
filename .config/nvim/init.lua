@@ -1,8 +1,1 @@
-require 'additional-filetypes'
-require 'set'
-require 'lang-specific-set'
-require 'keymap'
-require 'commands'
-require 'plugins'
-require 'presentation'
-require 'large-file-performance'
+/nix/store/ypcfb7xc7h8k6h2rrv0yxk3kjx592qjw-home-manager-files/.config/nvim/init.lua
