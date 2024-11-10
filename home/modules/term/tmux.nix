@@ -22,7 +22,7 @@ in {
       tmux
     ];
 
-    programs.tmux = {
+    programs.tmux = { # TODO: port rest of old config, bar settings, etc.
       enable = true;
 
       aggressiveResize = true;
