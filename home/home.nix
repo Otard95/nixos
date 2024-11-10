@@ -1,6 +1,5 @@
-{ config, pkgs, theme, ...}:
+{ pkgs, theme, ...}:
 let
-  inherit (config.lib.file) mkOutOfStoreSymlink;
 in
 {
   # This value determines the Home Manager release that your
