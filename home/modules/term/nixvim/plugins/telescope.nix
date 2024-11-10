@@ -1,7 +1,11 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   nixvim = config.lib.nixvim;
 in {
+  home.packages = with pkgs; [
+    ripgrep
+  ];
+
   programs.nixvim.keymaps = [
     {
       mode = "n";
