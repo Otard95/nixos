@@ -79,7 +79,6 @@
     inputs.zen-browser.packages."${system}".default
     pkgs-stable.pavucontrol
 
-    neovim
     git
 
     gcc
