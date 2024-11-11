@@ -36,5 +36,6 @@ in {
     modules.system.sound.enable = lib.mkDefault true;
 
     modules.packages.notification.enable = lib.mkDefault true;
+    modules.packages.apps.enable = lib.mkDefault true;
   };
 }
