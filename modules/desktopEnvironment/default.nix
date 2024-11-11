@@ -34,5 +34,7 @@ in {
 
     modules.system.graphics.enable = lib.mkDefault true;
     modules.system.sound.enable = lib.mkDefault true;
+
+    modules.packages.notification.enable = lib.mkDefault true;
   };
 }
