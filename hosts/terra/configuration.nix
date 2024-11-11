@@ -35,6 +35,12 @@
     # packages = with pkgs; [];
   };
 
+  # Modules
+  modules.packages.apps.discord.enable = true;
+  modules.packages.apps.wooting.enable = true;
+  modules.packages.apps.matrix.enable = true;
+  modules.packages.apps.firefox.enable = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   # environment.systemPackages = with pkgs; [ ];
