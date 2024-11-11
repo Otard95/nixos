@@ -60,7 +60,6 @@
         nixvim.nixosModules.nixvim
         ./hosts/terra/configuration.nix
         ./modules
-        ./modules/theme.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

@@ -2,6 +2,7 @@
 {
 
   imports = [
+    ./theme.nix
     ./system
     ./desktopEnvironment
     ./packages
