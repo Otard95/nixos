@@ -1,12 +1,10 @@
  - DM
-   - waybar bottom
-     - cpu, ram, disk
-     - ?? middle
-     - keyboard
+   - Work on waybar
+     - Maybe no bottom bar?
+     - Less text?
    - nvim
-   - modularize
-   
+     - last todos and plugins
+
 - System
-  - modularize
-    - rest of configuration.nix
-    - packages/programs/apps
+  - Install apps for home
+  - Prep apps etc. for work
