@@ -35,17 +35,9 @@
     packages = with pkgs; [];
   };
 
-  # Graphics
-  hardware.graphics = {
+  # Bluetooth
+  hardware.bluetooth = {
     enable = true;
-  };
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    # powerManagement = true;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   # Sound
@@ -53,12 +45,6 @@
     enable = false;
     extraModules = [ pkgs.pulseaudio-modules-bt ];
   };
-
-  # Bluetooth
-  hardware.bluetooth = {
-    enable = true;
-  };
-
   services = {
     pipewire = {
       enable = true;

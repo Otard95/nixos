@@ -31,5 +31,7 @@ in {
 
     modules.desktopEnvironment.sddm.enable =
       lib.mkDefault (cfg.displayManager == "sddm");
+
+    modules.system.graphics.enable = lib.mkDefault true;
   };
 }

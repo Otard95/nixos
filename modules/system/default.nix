@@ -9,6 +9,7 @@ in {
   imports = [
     ./gc.nix
     ./i18n.nix
+    ./graphics.nix
   ];
 
   config = lib.mkIf enable {
