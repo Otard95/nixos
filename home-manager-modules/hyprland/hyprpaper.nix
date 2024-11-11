@@ -10,7 +10,7 @@ in {
 
   config = lib.mkIf enable {
     xdg.configFile."hypr/background-images".source =
-      mkOutOfStoreSymlink "/etc/nixos/home/modules/hyprland/background-images";
+      mkOutOfStoreSymlink "/etc/nixos/home-manager-modules/hyprland/background-images";
 
     home.packages = with pkgs; [
       hyprpaper

@@ -10,7 +10,7 @@ in {
 
   config = lib.mkIf enable {
     xdg.configFile."rofi/splash-images".source =
-      mkOutOfStoreSymlink "/etc/nixos/home/modules/app-launcher/splash-images";
+      mkOutOfStoreSymlink "/etc/nixos/home-manager-modules/app-launcher/splash-images";
 
     home.packages = with pkgs; [
       rofi-wayland

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let
   cfg = config.modules.packages.apps.zen-browser;
   enable = cfg.enable;

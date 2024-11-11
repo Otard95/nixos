@@ -58,8 +58,8 @@
       modules = [
         catppuccin.nixosModules.catppuccin
         nixvim.nixosModules.nixvim
-        ./hosts/terra/configuration.nix
         ./modules
+        ./hosts/terra/configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -67,7 +67,8 @@
           home-manager.backupFileExtension = "bak";
           home-manager.users.otard = {
             imports = [
-              ./home/home.nix
+              ./home-manager-modules
+              ./hosts/terra/home.nix
               catppuccin.homeManagerModules.catppuccin
               nixvim.homeManagerModules.nixvim
             ];

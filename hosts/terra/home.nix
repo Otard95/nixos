@@ -1,6 +1,4 @@
-{ pkgs, theme, ...}:
-let
-in
+{ theme, ...}:
 {
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -18,14 +16,11 @@ in
   home.username = "otard";
   home.homeDirectory = "/home/otard";
 
-  imports = [ ./modules ];
-
   catppuccin = {
     enable = true;
     inherit (theme) flavor accent;
     pointerCursor.enable = true;
   };
 
-  home.packages = with pkgs; [
-  ];
+  # home.packages = with pkgs; [ ];
 }

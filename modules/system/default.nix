@@ -12,6 +12,7 @@ in {
     ./graphics.nix
     ./sound.nix
     ./bluetooth.nix
+    ./fonts.nix
   ];
 
   config = lib.mkIf enable {
