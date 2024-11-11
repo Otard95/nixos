@@ -33,5 +33,6 @@ in {
       lib.mkDefault (cfg.displayManager == "sddm");
 
     modules.system.graphics.enable = lib.mkDefault true;
+    modules.system.sound.enable = lib.mkDefault true;
   };
 }

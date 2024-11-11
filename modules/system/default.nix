@@ -10,6 +10,7 @@ in {
     ./gc.nix
     ./i18n.nix
     ./graphics.nix
+    ./sound.nix
   ];
 
   config = lib.mkIf enable {
