@@ -11,10 +11,12 @@ in {
     ./i18n.nix
     ./graphics.nix
     ./sound.nix
+    ./bluetooth.nix
   ];
 
   config = lib.mkIf enable {
     modules.system.gc.enable = lib.mkDefault true;
     modules.system.i18n.enable = lib.mkDefault true;
+    modules.system.bluetooth.enable = lib.mkDefault true;
   };
 }
