@@ -23,5 +23,13 @@ in {
       rtkit.enable = true;
       polkit.enable = true;
     };
+    xdg.portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+      config = {
+        common.default = ["hyprland"];
+        hyprland.default = ["hyprland"];
+      };
+    };
   };
 }
