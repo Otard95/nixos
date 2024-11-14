@@ -19,10 +19,12 @@ in {
       # Hint electron apps to use wayland
       NIXOS_OZONE_WL = "1";
     };
+    # TODO: Move to own module???
     security = {
       rtkit.enable = true;
       polkit.enable = true;
     };
+    # TODO: Move to home??? Or own module???
     xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;
@@ -31,5 +33,7 @@ in {
         hyprland.default = ["hyprland"];
       };
     };
+    # TODO: Make option in sound module?
+    services.pipewire.wireplumber.enable = true;
   };
 }
