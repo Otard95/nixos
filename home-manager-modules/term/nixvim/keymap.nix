@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 let
   nixvim = config.lib.nixvim;
 in {
