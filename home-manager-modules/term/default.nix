@@ -20,10 +20,10 @@ in {
     modules.term.bash.enable = lib.mkDefault true;
     modules.term.fzf.enable = lib.mkDefault true;
     modules.term.kitty.enable = lib.mkDefault true;
-    modules.term.nixvim.enable = lib.mkDefault true;
     modules.term.starship.enable = lib.mkDefault true;
     modules.term.tmux.enable = lib.mkDefault true;
     modules.term.useful-commands.enable = lib.mkDefault true;
+    modules.nixvim.enable = lib.mkDefault true;
   };
 
 }

@@ -1,13 +1,21 @@
-{ ... }:
-{
-  programs.nixvim.plugins.dap = {
-    enable = true;
+{ config, lib, ... }:
+let
+  cfg = config.modules.nixvim.plugins.dap;
+  enable = cfg.enable;
+in {
+  options.modules.nixvim.plugins.dap.enable =
+    lib.mkEnableOption "dap plugin";
 
-    extensions = {
-      dap-ui.enable = true;
-      dap-virtual-text.enable = true;
+  config = lib.mkIf enable {
+    programs.nixvim.plugins.dap = {
+      enable = true;
+
+      extensions = {
+        dap-ui.enable = true;
+        dap-virtual-text.enable = true;
+      };
+
+      # TODO: Adapters and configurations
     };
-
-    # TODO: Adapters and configurations
   };
 }

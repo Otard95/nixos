@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.modules.term.nixvim;
+  cfg = config.modules.nixvim;
   enable = cfg.enable;
 in {
 
-  options.modules.term.nixvim.enable = lib.mkEnableOption "nixvim configuration";
+  options.modules.nixvim.enable = lib.mkEnableOption "nixvim configuration";
 
   imports = [
     ./opts.nix
@@ -27,13 +27,6 @@ in {
         settings = {
           flavour = "frappe";
           transparent_background = true;
-          integrations = {
-            # cmp = true;
-            gitsigns = true;
-            # notify = false;
-            nvimtree = true;
-            treesitter = true;
-          };
           term_colors = true;
         };
       };
@@ -43,6 +36,8 @@ in {
         providers.wl-copy.enable = true;
       };
     };
+
+    modules.nixvim.plugins.enable = lib.mkDefault true;
   };
 
 }
