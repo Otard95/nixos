@@ -58,6 +58,7 @@
       modules = [
         catppuccin.nixosModules.catppuccin
         nixvim.nixosModules.nixvim
+        ./nixvim
         ./modules
         ./hosts/terra/configuration.nix
         home-manager.nixosModules.home-manager
@@ -67,10 +68,11 @@
           home-manager.backupFileExtension = "bak";
           home-manager.users.otard = {
             imports = [
-              ./home-manager-modules
-              ./hosts/terra/home.nix
               catppuccin.homeManagerModules.catppuccin
               nixvim.homeManagerModules.nixvim
+              ./nixvim
+              ./home-manager-modules
+              ./hosts/terra/home.nix
             ];
           };
           home-manager.extraSpecialArgs = { inherit theme inputs; };
@@ -83,9 +85,9 @@
       extraSpecialArgs = { inherit pkgs-stable inputs; };
 
       modules = [
-        ./home.nix
         catppuccin.homeManagerModules.catppuccin
         nixvim.homeManagerModules.nixvim
+        ./home.nix
       ];
     };
 

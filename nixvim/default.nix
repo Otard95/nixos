@@ -14,10 +14,6 @@ in {
   ];
 
   config = lib.mkIf enable {
-    home.packages = with pkgs; [
-      wl-clipboard
-    ];
-
     programs.nixvim = {
       enable = true;
       defaultEditor = true;
@@ -39,5 +35,4 @@ in {
 
     modules.nixvim.plugins.enable = lib.mkDefault true;
   };
-
 }

@@ -36,6 +36,7 @@
   };
 
   # Modules
+  modules.nixvim.enable = true;
   modules.packages.apps.discord.enable = true;
   modules.packages.apps.wooting.enable = true;
   modules.packages.apps.matrix.enable = true;

@@ -10,7 +10,6 @@ in {
     ./bash.nix
     ./fzf.nix
     ./kitty.nix
-    ./nixvim
     ./starship.nix
     ./tmux.nix
     ./useful-commands.nix
@@ -23,7 +22,6 @@ in {
     modules.term.starship.enable = lib.mkDefault true;
     modules.term.tmux.enable = lib.mkDefault true;
     modules.term.useful-commands.enable = lib.mkDefault true;
-    modules.nixvim.enable = lib.mkDefault true;
   };
 
 }

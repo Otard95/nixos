@@ -9,40 +9,41 @@ in {
     lib.mkEnableOption "telescope plugin";
 
   config = lib.mkIf enable {
-    home.packages = with pkgs; [
-      ripgrep
-    ];
+    programs.nixvim = {
+      extraPackages = with pkgs; [
+        ripgrep
+      ];
 
-    programs.nixvim.keymaps = [
-      {
-        mode = "n";
-        key = "<leader>FF";
-        action = nixvim.mkRaw ''
-          function()
-            require('telescope.builtin').find_files {
-              hidden = true,
-              no_ignore = true,
-              no_ignore_parent = true
-            }
-          end
-        '';
-        options = { silent = true; };
-      }
-      {
-        mode = "n";
-        key = "<leader>FR";
-        action = nixvim.mkRaw ''
-          function()
-            require('telescope.builtin').live_grep  {
-              additional_args = { '--hidden', '-u' }
-            }
-          end
-        '';
-        options = { silent = true; };
-      }
-    ];
+      keymaps = [
+        {
+          mode = "n";
+          key = "<leader>FF";
+          action = nixvim.mkRaw ''
+            function()
+              require('telescope.builtin').find_files {
+                hidden = true,
+                no_ignore = true,
+                no_ignore_parent = true
+              }
+            end
+          '';
+          options = { silent = true; };
+        }
+        {
+          mode = "n";
+          key = "<leader>FR";
+          action = nixvim.mkRaw ''
+            function()
+              require('telescope.builtin').live_grep  {
+                additional_args = { '--hidden', '-u' }
+              }
+            end
+          '';
+          options = { silent = true; };
+        }
+      ];
 
-    programs.nixvim.plugins.telescope = {
+      plugins.telescope = {
       enable = true;
 
       extensions.ui-select = {
@@ -72,7 +73,7 @@ in {
                 "+"
                 "require('telescope.actions').open_qflist"
               ]);
-              "<C-o>" = nixvim.mkRaw (lib.concatStrings [
+            "<C-o>" = nixvim.mkRaw (lib.concatStrings [
                 "require('telescope.actions').send_to_qflist"
                 "+"
                 "require('telescope.actions').open_qflist"
@@ -86,7 +87,7 @@ in {
               ]);
             };
           };
-          # vimgrep_arguments = ripgrep_argsuments;
+            # vimgrep_arguments = ripgrep_argsuments;
           preview = {
             filesize_limit = 0.5;
             filetype_hook = nixvim.mkRaw ''
@@ -97,6 +98,7 @@ in {
                 )
               end
             '';
+            };
           };
         };
       };
