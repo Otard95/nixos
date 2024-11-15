@@ -4,6 +4,7 @@
      - Less text?
    - nvim
      - last todos and plugins
+   - Git config
 
 - System
   - Install apps for home
