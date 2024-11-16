@@ -95,6 +95,8 @@ in {
 
         layerrule = [
           "blur, rofi"
+          "blur, notifications"
+          "ignorezero, notifications"
         ];
 
         animations = {

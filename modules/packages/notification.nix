@@ -8,7 +8,7 @@ in {
 
   config = lib.mkIf enable {
     environment.systemPackages = with pkgs; [
-      dunst
+      mako
       libnotify
     ];
   };
