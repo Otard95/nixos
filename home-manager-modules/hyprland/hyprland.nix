@@ -60,6 +60,7 @@ in {
         windowrulev2 = [
           "float, class:(Rofi)"
           "stayfocused, class:(Rofi)"
+          "opacity 0.95,class:(zen-alpha)"
         ];
 
         exec-once = [
@@ -90,6 +91,7 @@ in {
             noise = 0;
             size = 2;
             passes = 3;
+            ignore_opacity = true;
           };
         };
 
