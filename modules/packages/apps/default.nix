@@ -10,6 +10,7 @@ in {
     ./firefox.nix
     ./zen-browser.nix
     ./pavucontrol.nix
+    ./thunar.nix
     ./wooting.nix
     ./discord.nix
     ./matrix.nix
@@ -17,8 +18,11 @@ in {
   ];
 
   config = lib.mkIf enable {
-    modules.packages.apps.zen-browser.enable = lib.mkDefault true;
-    modules.packages.apps.pavucontrol.enable = lib.mkDefault true;
-    modules.packages.apps.yubikey.enable = lib.mkDefault true;
+    modules.packages.apps = {
+      zen-browser.enable = lib.mkDefault true;
+      pavucontrol.enable = lib.mkDefault true;
+      yubikey.enable = lib.mkDefault true;
+      thunar.enable = lib.mkDefault true;
+    };
   };
 }
