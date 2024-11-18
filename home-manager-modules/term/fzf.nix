@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, theme, ... }:
 let
   cfg = config.modules.term.fzf;
   enable = cfg.enable;
@@ -14,6 +14,10 @@ in {
     programs.fzf = {
       enable = true;
       tmux.enableShellIntegration = true;
+
+      catppuccin.enable = true;
+      catppuccin.flavor = theme.flavor;
+      catppuccin.accent = theme.accent;
     };
   };
 
