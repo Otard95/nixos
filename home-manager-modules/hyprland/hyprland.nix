@@ -50,6 +50,10 @@ in {
           )
           10)
         );
+        bindm = [
+          "$mod, mouse:272, movewindow"
+          "$mod, mouse:273, resizewindow"
+        ];
 
         monitor = [
           "DP-4, 2560x1440, 0x0, 1"
