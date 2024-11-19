@@ -32,6 +32,10 @@ in {
           "$mod, H, movefocus, l"
           "$mod, K, movefocus, u"
           "$mod, J, movefocus, d"
+          "$mod+SHIFT, L, movewindow, r"
+          "$mod+SHIFT, H, movewindow, l"
+          "$mod+SHIFT, K, movewindow, u"
+          "$mod+SHIFT, J, movewindow, d"
         ] ++ (
           builtins.concatLists (builtins.genList (
             x: let
