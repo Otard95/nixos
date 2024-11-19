@@ -2,6 +2,7 @@
 let
   cfg = config.modules.nixvim.plugins.lsp;
   enable = cfg.enable;
+
   nixvim = config.lib.nixvim;
 in {
   options.modules.nixvim.plugins.lsp.enable =

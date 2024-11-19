@@ -19,12 +19,14 @@ in {
   imports = [
     ./barbecue.nix
     ./cloak.nix
+    ./cmp.nix
     ./colorize.nix
     ./dap.nix
     ./git.nix
     ./harpoon.nix
     ./lsp.nix
     ./lualine.nix
+    ./luasnip.nix
     ./markdown.nix
     ./nvim-tree.nix
     ./oil.nix
@@ -38,8 +40,6 @@ in {
     # TODO: obsidian - work only?
     # TODO: linediff
     # TODO: nvim-rest
-    # TODO: snippets
-    # TODO: cmp?
     # TODO: fidget
   ];
 
@@ -71,9 +71,11 @@ in {
       })
       (lib.mkIf (presetInt > 1) {
         barbecue.enable = lib.mkDefault true;
+        cmp.enable = lib.mkDefault true;
         colorize.enable = lib.mkDefault true;
         lsp.enable = lib.mkDefault true;
         lualine.enable = lib.mkDefault true;
+        luasnip.enable = lib.mkDefault true;
         markdown.enable = lib.mkDefault true;
         treesitter.enable = lib.mkDefault true;
         trouble.enable = lib.mkDefault true;
