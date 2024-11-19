@@ -36,11 +36,15 @@
   };
 
   # Modules
-  modules.nixvim.enable = true;
-  modules.packages.apps.discord.enable = true;
-  modules.packages.apps.wooting.enable = true;
-  modules.packages.apps.matrix.enable = true;
-  modules.packages.apps.firefox.enable = true;
+  modules = {
+    nixvim.enable = true;
+    packages.apps = {
+      discord.enable = true;
+      wooting.enable = true;
+      matrix.enable = true;
+      firefox.enable = true;
+    };
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

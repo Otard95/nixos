@@ -10,11 +10,13 @@
     ./qt.nix
   ];
 
-  modules.hyprland.enable = lib.mkDefault true;
-  modules.app-launcher.enable = lib.mkDefault true;
-  modules.term.enable = lib.mkDefault true;
-  modules.nixvim.enable = lib.mkDefault true;
-  modules.mako.enable = lib.mkDefault true;
-  modules.gtk.enable = lib.mkDefault true;
-  modules.qt.enable = lib.mkDefault true;
+  modules = {
+    hyprland.enable = lib.mkDefault true;
+    app-launcher.enable = lib.mkDefault true;
+    term.enable = lib.mkDefault true;
+    nixvim.enable = lib.mkDefault true;
+    mako.enable = lib.mkDefault true;
+    gtk.enable = lib.mkDefault true;
+    qt.enable = lib.mkDefault true;
+  };
 }
