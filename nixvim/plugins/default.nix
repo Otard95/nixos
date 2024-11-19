@@ -22,6 +22,7 @@ in {
     ./cmp.nix
     ./colorize.nix
     ./dap.nix
+    ./fidget.nix
     ./git.nix
     ./harpoon.nix
     ./lsp.nix
@@ -73,6 +74,7 @@ in {
         barbecue.enable = lib.mkDefault true;
         cmp.enable = lib.mkDefault true;
         colorize.enable = lib.mkDefault true;
+        fidget.enable = lib.mkDefault true;
         lsp.enable = lib.mkDefault true;
         lualine.enable = lib.mkDefault true;
         luasnip.enable = lib.mkDefault true;
