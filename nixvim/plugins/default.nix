@@ -41,7 +41,6 @@ in {
     # TODO: obsidian - work only?
     # TODO: linediff
     # TODO: nvim-rest
-    # TODO: fidget
   ];
 
   config = let
