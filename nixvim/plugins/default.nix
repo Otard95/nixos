@@ -31,6 +31,7 @@ in {
     ./markdown.nix
     ./nvim-tree.nix
     ./oil.nix
+    ./rest.nix
     ./telescope.nix
     ./text-manipulation.nix
     ./tmux-navigator.nix
@@ -83,6 +84,7 @@ in {
       })
       (lib.mkIf (presetInt > 2) {
         dap.enable = lib.mkDefault true;
+        rest.enable = lib.mkDefault true;
       })
     ];
   };
