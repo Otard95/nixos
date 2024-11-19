@@ -1,0 +1,15 @@
+snippet module "module template"
+	{ config, lib, ... }:
+	let
+	  cfg = config.modules.${2:path}.${1:name};
+	  enable = cfg.enable;
+	in {
+	  options.modules.${2:path}.${1:name}.enable =
+	    lib.mkEnableOption "${1:name} plugin";
+
+	  config = lib.mkIf enable {
+	    ${3}.${1:name} = {
+	      enable = true;
+	    };
+	  };
+	}
