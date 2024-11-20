@@ -26,7 +26,7 @@ in {
           "margin-left" = 15;
           "margin-right" = 15;
           "modules-left" = ["hyprland/workspaces" "hyprland/submap"];
-          "modules-center" = ["clock#time" "custom/separator" "clock#week" "custom/separator_dot" "clock#month" "custom/separator" "clock#calendar"];
+          "modules-center" = ["clock#time" "custom/separator_dot" "clock#week" "custom/separator_dot" "clock#calendar"];
           "modules-right" = [ "network" "pulseaudio" "group/misc" "custom/logout_menu" ];
 
           # Modules Config
@@ -62,9 +62,8 @@ in {
           };
 
           "clock#time" = {
-            "format" = "{:%H:%M %Ez}";
-            # "locale" = "en_US.UTF-8";
-            # "timezones" = [ "Europe/Kyiv" "America/New_York" ];
+            "format" = "{:%H:%M}";
+            "tooltip" = false;
           };
 
           "custom/separator" = {
@@ -79,14 +78,16 @@ in {
 
           "clock#week" = {
             "format" = "{:%a}";
+            "tooltip" = false;
           };
 
           "clock#month" = {
-            "format" = "{:%h}";
+            "format" = "{:%d :%h}";
+            "tooltip" = false;
           };
 
           "clock#calendar" = {
-            "format" = "{:%D}";
+            "format" = "{:%d :%h}";
             "tooltip-format" = "<tt><small>{calendar}</small></tt>";
             "actions" = {
               "on-click-right" = "mode";
@@ -111,8 +112,6 @@ in {
             "format" = "{:%I:%M %p %Ez | %a • %h | %F}";
             "format-alt" = "{:%I:%M %p}";
             "tooltip-format" = "<tt><small>{calendar}</small></tt>";
-            # "locale" = "en_US.UTF-8";
-            # "timezones" = [ "Europe/Kyiv" "America/New_York" ];
             "actions" = {
               "on-click-right" = "mode";
             };
