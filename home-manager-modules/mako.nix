@@ -22,6 +22,9 @@ in {
       extraConfig = ''
         []
         on-button-middle=dismiss-all
+
+        [mode=do-not-disturb]
+        invisible=1
       '';
     };
   };

@@ -184,7 +184,7 @@ in {
             "orientation" = "horizontal";
             "modules" = [
               "privacy"
-              # "custom/dunst"
+              "custom/mako"
               "idle_inhibitor"
             ];
           };
@@ -199,12 +199,17 @@ in {
             ];
           };
 
-          # "custom/dunst" = {
-          #     "return-type" = "json";
-          #     "exec" = "fish -c dunst_pause";
-          #     "on-click" = "dunstctl set-paused toggle";
-          #     "restart-interval" = 1;
-          # };
+          "custom/mako" = {
+            "return-type" = "json";
+            "exec" = ./scripts/mako-widget;
+            "format" = "{icon}";
+            "format-icons" = {
+              "enabled" = "󰂚";
+              "disabled" = "󰂛";
+            };
+            "on-click" = "makoctl mode -t do-not-disturb";
+            "interval" = "once";
+          };
 
           "idle_inhibitor" = {
             "format" = "{icon}";
@@ -212,8 +217,8 @@ in {
               "activated" = "󰛐";
               "deactivated" = "󰛑";
             };
-            "tooltip-format-activated" = "idle-inhibitor <span color='#a6da95'>on</span>";
-            "tooltip-format-deactivated" = "idle-inhibitor <span color='#ee99a0'>off</span>";
+            "tooltip-format-activated" = "Idle Inhibitor <span color='#a6da95'>on</span>";
+            "tooltip-format-deactivated" = "Idle Inhibitor <span color='#ee99a0'>off</span>";
             "start-activated" = true;
           };
 
@@ -636,11 +641,11 @@ in {
           color: @subtext0;
         }
 
-        #custom-dunst.off {
+        #custom-mako.inactive {
           color: @subtext0;
         }
 
-        #custom-dunst {
+        #custom-mako {
           margin-right: 2;
         }
 
