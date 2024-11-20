@@ -25,9 +25,9 @@ in {
           "margin-top" = 10;
           "margin-left" = 15;
           "margin-right" = 15;
-          "modules-left" = ["hyprland/workspaces" "hyprland/submap"];
+          "modules-left" = ["hyprland/workspaces" "hyprland/submap" "hyprland/window"];
           "modules-center" = ["clock#time" "custom/separator_dot" "clock#week" "custom/separator_dot" "clock#calendar"];
-          "modules-right" = [ "network" "pulseaudio" "group/misc" "custom/logout_menu" ];
+          "modules-right" = [ "network" "pulseaudio" "group/keyoard" "group/hardware" "group/misc" "custom/logout_menu" ];
 
           # Modules Config
           "hyprland/workspaces" = {
@@ -59,6 +59,13 @@ in {
           "hyprland/submap" = {
             "format" = "<span color='#a6da95'>Mode:</span> {}";
             "tooltip" = false;
+          };
+
+          "hyprland/window" = {
+            "format" = "{title}";
+            "max-length" = 30;
+            "separate-outputs" = true;
+            "icon" = true;
           };
 
           "clock#time" = {
@@ -179,6 +186,90 @@ in {
             # "ignored-sinks" = ["Easy Effects Sink"]
           };
 
+          "group/keyoard" = {
+            "orientation" = "horizontal";
+            "modules" = [
+              "hyprland/language"
+              "keyboard-state"
+            ];
+          };
+
+          "hyprland/language" = {
+            "format" = "  {}";
+            "format-en" = "US";
+            "format-no" = "NO";
+          };
+
+          "keyboard-state" = {
+            "capslock" = true;
+            # "numlock" = true;
+            "format" = "{icon}";
+            "format-icons" = {
+              "locked" = "󰌎";
+              "unlocked" = " ";
+            };
+          };
+
+          "group/hardware" = {
+            "orientation" = "horizontal";
+            "modules" = [
+              "cpu"
+              "memory"
+              "disk"
+              "temperature"
+            ];
+          };
+
+          "cpu" = {
+            "format" = " ";
+            "states" = {
+              "high" = 90;
+              "upper-medium" = 70;
+              "medium" = 50;
+              "lower-medium" = 30;
+              "low" = 10;
+            };
+            "on-click" = "kitty btop";
+            # "on-click-right" = "wezterm start btm";
+          };
+
+          "memory" = {
+            "format" = " ";
+            "tooltip-format" = "Main: ({used} GiB/{total} GiB)({percentage}%), available {avail} GiB\nSwap: ({swapUsed} GiB/{swapTotal} GiB)({swapPercentage}%), available {swapAvail} GiB";
+            "states" = {
+              "high" = 90;
+              "upper-medium" = 70;
+              "medium" = 50;
+              "lower-medium" = 30;
+              "low" = 10;
+            };
+            "on-click" = "kitty btop";
+            # "on-click-right" = "wezterm start btm";
+          };
+
+          "disk" = {
+            "format" = "󰋊 ";
+            "tooltip-format" = "({used}/{total})({percentage_used}%) in '{path}', available {free}({percentage_free}%)";
+            "states" = {
+              "high" = 90;
+              "upper-medium" = 70;
+              "medium" = 50;
+              "lower-medium" = 30;
+              "low" = 10;
+            };
+            "on-click" = "kitty btop";
+            # "on-click-right" = "wezterm start btm";
+          };
+
+          "temperature" = {
+            "tooltip" = false;
+            "thermal-zone" = 8;
+            "critical-threshold" = 80;
+            "format" = "{icon} {temperatureC}󰔄";
+            "format-critical" = "🔥 {icon}{temperatureC}󰔄";
+            "format-icons" = [ "" "" "" "" "" ];
+          };
+
           "group/misc" = {
             "orientation" = "horizontal";
             "modules" = [
@@ -228,105 +319,6 @@ in {
             # "on-click" = "fish -c wlogout_uniqe"; # TODO: Port this
           };
         }
-
-        # Bottom Bar Config
-        {
-          # Main Config
-          "name" = "bottom_bar";
-          "layer" = "top"; # Waybar at top layer
-          "position" = "bottom"; # Waybar position (top|bottom|left|right)
-          "height" = 26; # Waybar height (to be removed for auto height)
-          "spacing" = 4; # Gaps between modules (4px)
-          "modules-left" = ["group/hardware"];
-          "modules-center" = ["hyprland/window"];
-          "modules-right" = ["keyboard-state" "hyprland/language"];
-
-          "group/hardware" = {
-            "orientation" = "horizontal";
-            "modules" = [
-              "cpu"
-              "memory"
-              "disk"
-              "temperature"
-            ];
-          };
-
-          "cpu" = {
-            "format" = "󰻠 {usage}%";
-            "states" = {
-              "high" = 90;
-              "upper-medium" = 70;
-              "medium" = 50;
-              "lower-medium" = 30;
-              "low" = 10;
-            };
-            "on-click" = "kitty btop";
-            # "on-click-right" = "wezterm start btm";
-          };
-
-          "memory" = {
-            "format" = " {percentage}%";
-            "tooltip-format" = "Main: ({used} GiB/{total} GiB)({percentage}%), available {avail} GiB\nSwap: ({swapUsed} GiB/{swapTotal} GiB)({swapPercentage}%), available {swapAvail} GiB";
-            "states" = {
-              "high" = 90;
-              "upper-medium" = 70;
-              "medium" = 50;
-              "lower-medium" = 30;
-              "low" = 10;
-            };
-            "on-click" = "kitty btop";
-            # "on-click-right" = "wezterm start btm";
-          };
-
-          "disk" = {
-            "format" = "󰋊 {percentage_used}%";
-            "tooltip-format" = "({used}/{total})({percentage_used}%) in '{path}', available {free}({percentage_free}%)";
-            "states" = {
-              "high" = 90;
-              "upper-medium" = 70;
-              "medium" = 50;
-              "lower-medium" = 30;
-              "low" = 10;
-            };
-            "on-click" = "kitty btop";
-            # "on-click-right" = "wezterm start btm";
-          };
-
-          "temperature" = {
-            "tooltip" = false;
-            "thermal-zone" = 8;
-            "critical-threshold" = 80;
-            "format" = "{icon} {temperatureC}󰔄";
-            "format-critical" = "🔥 {icon}{temperatureC}󰔄";
-            "format-icons" = [ "" "" "" "" "" ];
-          };
-
-          # Modules Config
-          "hyprland/window" = {
-            "format" = "{class} {title}";
-            "max-length" = 50;
-            "separate-outputs" = true;
-            "rewrite" = {
-              "zen-alpha (.*)" = "  $1";
-              "kitty (.*)" = "  [$1]";
-            };
-          };
-
-          "hyprland/language" = {
-            "format-en" = "🇺🇸 ENG (US)";
-            "format-no" = "🇳🇴 NO";
-          };
-
-          "keyboard-state" = {
-            "capslock" = true;
-            # "numlock" = true;
-            "format" = "{name} {icon}";
-            "format-icons" = {
-              "locked" = "";
-              "unlocked" = "";
-            };
-          };
-        }
       ];
 
       style = ''
@@ -362,123 +354,6 @@ in {
           font-family: MesloLGM Nerd Font;
         }
 
-        window.bottom_bar#waybar {
-          background: none;
-        }
-
-        window.bottom_bar .modules-left {
-          background-color: alpha(@surface1, 0.7);
-          border-radius: 0 15 0 0;
-          padding-left: 10;
-          padding-right: 20;
-        }
-
-        #hardware label {
-          margin-left: 10px;
-        }
-
-        #cpu {
-          color: @sapphire;
-        }
-
-        #cpu.low {
-          color: @rosewater;
-        }
-
-        #cpu.lower-medium {
-          color: @yellow;
-        }
-
-        #cpu.medium {
-          color: @peach;
-        }
-
-        #cpu.upper-medium {
-          color: @maroon;
-        }
-
-        #cpu.high {
-          color: @red;
-        }
-
-        #memory {
-          color: @sapphire;
-        }
-
-        #memory.low {
-          color: @rosewater;
-        }
-
-        #memory.lower-medium {
-          color: @yellow;
-        }
-
-        #memory.medium {
-          color: @peach;
-        }
-
-        #memory.upper-medium {
-          color: @maroon;
-        }
-
-        #memory.high {
-          color: @red;
-        }
-
-        #disk {
-          color: @sapphire;
-        }
-
-        #disk.low {
-          color: @rosewater;
-        }
-
-        #disk.lower-medium {
-          color: @yellow;
-        }
-
-        #disk.medium {
-          color: @peach;
-        }
-
-        #disk.upper-medium {
-          color: @maroon;
-        }
-
-        #disk.high {
-          color: @red;
-        }
-
-        window.bottom_bar .modules-center {
-          background-color: alpha(@surface1, 0.7);
-          color: @green;
-          border-radius: 15 15 0 0;
-          padding-left: 20;
-          padding-right: 20;
-          min-height: 22px
-        }
-
-        window.bottom_bar .modules-right {
-          background-color: alpha(@surface1, 0.7);
-          border-radius: 15 0 0 0;
-          padding-left: 20;
-          padding-right: 20;
-          margin-top: 5;
-          min-height: 22px
-        }
-
-        #language {
-          padding-left: 15;
-        }
-
-        #keyboard-state label.locked {
-          color: @yellow;
-        }
-
-        #keyboard-state label {
-          color: @subtext0;
-        }
-
         window.top_bar#waybar {
           background: none;
         }
@@ -508,6 +383,14 @@ in {
 
         #workspaces button.active {
           color: @peach;
+        }
+
+        #window {
+          margin-left: 15px;
+          padding-left: 15px;
+          padding-right: 15px;
+          background-color: alpha(@base, 0.7);
+          border-radius: 36px;
         }
 
         #submap {
@@ -629,6 +512,117 @@ in {
 
         #pulseaudio.high {
           color: @subtext1;
+        }
+
+        #keyoard {
+          background-color: alpha(@surface1, 0.7);
+          border-radius: 15px;
+          padding-left: 5px;
+          padding-right: 5px;
+          margin-left: 2px;
+          margin-right: 6px;
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
+
+        #language {
+          padding-left: 10px;
+          padding-right: 5px;
+        }
+
+        #keyboard-state label.locked {
+          color: @yellow;
+        }
+
+        #keyboard-state label {
+          color: @subtext0;
+        }
+
+        #hardware {
+          background-color: alpha(@surface1, 0.7);
+          border-radius: 15;
+          padding-left: 10;
+          padding-right: 10;
+          margin-left: 2;
+          margin-right: 2;
+          margin-top: 5;
+          margin-bottom: 5;
+        }
+
+        #hardware label {
+          margin-left: 10px;
+        }
+
+        #cpu {
+          color: @sapphire;
+        }
+
+        #cpu.low {
+          color: @rosewater;
+        }
+
+        #cpu.lower-medium {
+          color: @yellow;
+        }
+
+        #cpu.medium {
+          color: @peach;
+        }
+
+        #cpu.upper-medium {
+          color: @maroon;
+        }
+
+        #cpu.high {
+          color: @red;
+        }
+
+        #memory {
+          color: @sapphire;
+        }
+
+        #memory.low {
+          color: @rosewater;
+        }
+
+        #memory.lower-medium {
+          color: @yellow;
+        }
+
+        #memory.medium {
+          color: @peach;
+        }
+
+        #memory.upper-medium {
+          color: @maroon;
+        }
+
+        #memory.high {
+          color: @red;
+        }
+
+        #disk {
+          color: @sapphire;
+        }
+
+        #disk.low {
+          color: @rosewater;
+        }
+
+        #disk.lower-medium {
+          color: @yellow;
+        }
+
+        #disk.medium {
+          color: @peach;
+        }
+
+        #disk.upper-medium {
+          color: @maroon;
+        }
+
+        #disk.high {
+          color: @red;
         }
 
         #idle_inhibitor {
