@@ -134,13 +134,13 @@ in {
 
           "network" = {
             "format" = "󰤭";
-            "format-wifi" = "{icon}({signalStrength}%){essid}";
+            "format-wifi" = "{icon}";
             "format-icons" = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
             "format-disconnected" = "󰤫 Disconnected";
             "tooltip-format" = "wifi <span color='#ee99a0'>off</span>";
             "tooltip-format-wifi" = "SSID: {essid}({signalStrength}%), {frequency} MHz\nInterface: {ifname}\nIP: {ipaddr}\nGW: {gwaddr}\n\n<span color='#a6da95'>{bandwidthUpBits}</span>\t<span color='#ee99a0'>{bandwidthDownBits}</span>\t<span color='#c6a0f6'>󰹹{bandwidthTotalBits}</span>";
             "tooltip-format-disconnected" = "<span color='#ed8796'>disconnected</span>";
-            "format-ethernet" = "󰈁 {ipaddr}/{cidr}";
+            "format-ethernet" = "󰈁";
             "format-linked" = "󰈁 {ifname} (No IP)";
             "tooltip-format-ethernet" = "Interface: {ifname}\nIP: {ipaddr}\nGW: {gwaddr}\nNetmask: {netmask}\nCIDR: {cidr}\n\n<span color='#a6da95'>{bandwidthUpBits}</span>\t<span color='#ee99a0'>{bandwidthDownBits}</span>\t<span color='#c6a0f6'>󰹹{bandwidthTotalBits}</span>";
             "max-length" = 35;
