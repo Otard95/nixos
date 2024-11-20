@@ -82,12 +82,12 @@ in {
           };
 
           "clock#month" = {
-            "format" = "{:%d :%h}";
+            "format" = "{:%h}";
             "tooltip" = false;
           };
 
           "clock#calendar" = {
-            "format" = "{:%d :%h}";
+            "format" = "{:%d %h}";
             "tooltip-format" = "<tt><small>{calendar}</small></tt>";
             "actions" = {
               "on-click-right" = "mode";
