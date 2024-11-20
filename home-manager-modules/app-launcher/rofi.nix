@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, theme, ... }:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
 
@@ -22,7 +22,7 @@ in {
 
       package = pkgs.rofi-wayland;
 
-      font = "MesloLGM Nerd Font";
+      font = theme.font.regular;
 
       extraConfig = {
         modi = "drun,run,filebrowser,window";

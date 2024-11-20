@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, theme, ... }:
 let
   cfg = config.modules.system.fonts;
   enable = cfg.enable;
@@ -14,8 +14,20 @@ in {
   };
 
   config = lib.mkIf enable {
-    fonts.packages = with pkgs; [
-      (nerdfonts.override { fonts = cfg.nerdfonts; })
-    ];
+    fonts = {
+      enableDefaultPackages = true;
+      fontDir.enable = true;
+      packages = with pkgs; [
+        (nerdfonts.override { fonts = cfg.nerdfonts; })
+      ];
+
+      fontconfig = {
+        defaultFonts = {
+          serif = [ theme.font.regular ];
+          sansSerif = [ theme.font.regular ];
+          monospace = [ theme.font.mono ];
+        };
+      };
+    };
   };
 }

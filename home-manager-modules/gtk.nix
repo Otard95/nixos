@@ -30,7 +30,7 @@ in {
         package = pkgs.catppuccin-papirus-folders.override { inherit (theme) accent flavor; };
       };
       font = {
-        name = "MesloLGM Nerd Font";
+        name = theme.font.regular;
         size = 10;
       };
     };

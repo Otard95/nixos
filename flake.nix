@@ -44,6 +44,10 @@
       accent = "teal";
       size = "standard";
       tweaks = [];
+      font = {
+        regular = "MesloLGM Nerd Font";
+        mono = "MesloLGMDZ Nerd Font Mono";
+      };
     };
   in {
 

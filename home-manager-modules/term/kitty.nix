@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, theme, ... }:
 let
   cfg = config.modules.term.kitty;
   enable = cfg.enable;
@@ -14,7 +14,7 @@ in {
     programs.kitty = {
       enable = true;
 
-      font.name = "MesloLGMDZ Nerd Font Mono";
+      font.name = theme.font.mono;
       themeFile = "Catppuccin-Frappe";
 
       settings = {
