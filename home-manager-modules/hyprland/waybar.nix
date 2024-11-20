@@ -52,7 +52,7 @@ in {
             };
             "show-special" = true;
             "persistent-workspaces" = {
-              "*" = 10;
+              "*" = 5;
             };
           };
 
