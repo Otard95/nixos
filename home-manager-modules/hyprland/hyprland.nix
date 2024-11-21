@@ -56,13 +56,21 @@ in {
         ];
 
         monitor = [
-          "DP-4, 2560x1440, 0x0, 1"
-          "DP-2, 2560x1440, 2560x0, 1"
+          "DP-1, 2560x1440, 0x0, 1"
+          "DP-3, 2560x1440, 2560x0, 1"
         ];
 
         workspace = [
-          "1, monitor:DP-4"
-          "2, monitor:DP-2"
+          "1, monitor:DP-1"
+          "2, monitor:DP-1"
+          "3, monitor:DP-1"
+          "4, monitor:DP-1"
+          "5, monitor:DP-1"
+          "6, monitor:DP-3"
+          "7, monitor:DP-3"
+          "8, monitor:DP-3"
+          "9, monitor:DP-3"
+          "10, monitor:DP-3"
         ];
 
         windowrulev2 = [
@@ -75,7 +83,7 @@ in {
           "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" # https://gist.github.com/brunoanc/2dea6ddf6974ba4e5d26c3139ffb7580#editing-the-configuration-file
           "hyprpaper"
           "[workspace 1 silent] zen"
-          "[workspace 2 silent] kitty"
+          "[workspace 6 silent] kitty"
         ];
 
         exec = [ "pkill waybar; sleep 0.5 && waybar" ];

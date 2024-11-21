@@ -23,6 +23,9 @@ in {
       enable = true;
     };
 
+    services.xserver.videoDrivers = lib.mkIf (cfg.manufacturer == "nvidia") [
+      "nvidia"
+    ];
     hardware.nvidia = lib.mkIf (cfg.manufacturer == "nvidia") {
       modesetting.enable = true;
       # powerManagement = true;
