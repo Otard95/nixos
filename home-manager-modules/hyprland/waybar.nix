@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, theme, ... }:
 let
   cfg = config.modules.hyprland.waybar;
   enable = cfg.enable;
@@ -316,7 +316,7 @@ in {
             "return-type" = "json";
             "exec" = "echo '{ \"text\":\"󰐥\", \"tooltip\": \"logout menu\" }'";
             "interval" = "once";
-            # "on-click" = "fish -c wlogout_uniqe"; # TODO: Port this
+            "on-click" = "/home/otard/.config/power-menu.sh";
           };
         }
       ];

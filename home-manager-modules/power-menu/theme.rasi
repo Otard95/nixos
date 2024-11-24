@@ -1,0 +1,176 @@
+/**
+ *
+ * Author : Aditya Shakya (adi1090x)
+ * Github : @adi1090x
+ * 
+ * Rofi Theme File
+ * Rofi Version: 1.7.3
+ **/
+
+/*****----- Configuration -----*****/
+configuration {
+  show-icons:                 false;
+}
+
+/*****----- Global Properties -----*****/
+* {
+  font:                        "TEXT_FONT";
+  background:                  #131D1F;
+  background-alt:              #183A43;
+  foreground:                  #FFFFFF;
+  selected:                    #649094;
+  active:                      #E9CC9D;
+  urgent:                      #FEA861;
+
+  rosewater: #f2d5cf;
+  flamingo: #eebebe;
+  pink: #f4b8e4;
+  mauve: #ca9ee6;
+  red: #e78284;
+  maroon: #ea999c;
+  peach: #ef9f76;
+  yellow: #e5c890;
+  green: #a6d189;
+  teal: #81c8be;
+  sky: #99d1db;
+  sapphire: #85c1dc;
+  blue: #8caaee;
+  lavender: #babbf1;
+  text: #c6d0f5;
+  subtext1: #b5bfe2;
+  subtext0: #a5adce;
+  overlay2: #949cbb;
+  overlay1: #838ba7;
+  overlay0: #737994;
+  surface2: #626880;
+  surface1: #51576d;
+  surface0: #414559;
+  base: #303446;
+  mantle: #292c3c;
+  crust: #232634;
+
+  baseAlpha: #303446aa;
+}
+
+/*
+USE_BUTTONS=YES
+*/
+
+/*****----- Main Window -----*****/
+window {
+  transparency:                "real";
+  location:                    center;
+  anchor:                      center;
+  fullscreen:                  false;
+  width:                       800px;
+  x-offset:                    0px;
+  y-offset:                    0px;
+
+  padding:                     0px;
+  border:                      0px solid;
+  border-radius:               10px;
+  border-color:                @selected;
+  cursor:                      "default";
+  background-color:            @baseAlpha;
+}
+
+/*****----- Main Box -----*****/
+mainbox {
+  background-color:            transparent;
+  orientation:                 horizontal;
+  children:                    [ "imagebox", "listview" ];
+}
+
+/*****----- Imagebox -----*****/
+imagebox {
+  spacing:                     0px;
+  padding:                     30px;
+  background-color:            transparent;
+  background-image:            url("~/.config/rofi/images/e.jpg", width);
+  children:                    [ "inputbar", "dummy", "message" ];
+}
+
+/*****----- User -----*****/
+userimage {
+  margin:                      0px 0px;
+  border:                      10px;
+  border-radius:               10px;
+  border-color:                @overlay0;
+  background-color:            transparent;
+  background-image:            url("~/.config/rofi/images/e.jpg", height);
+}
+
+/*****----- Inputbar -----*****/
+inputbar {
+  padding:                     15px;
+  border-radius:               10px;
+  background-color:            @maroon;
+  text-color:                  @crust;
+  children:                    [ "dummy", "prompt", "dummy"];
+}
+
+dummy {
+  background-color:            transparent;
+}
+
+prompt {
+  background-color:            inherit;
+  text-color:                  inherit;
+}
+
+/*****----- Message -----*****/
+message {
+  enabled:                     true;
+  margin:                      0px;
+  padding:                     15px;
+  border-radius:               10px;
+  background-color:            @teal;
+  text-color:                  @crust;
+}
+textbox {
+  background-color:            inherit;
+  text-color:                  inherit;
+  vertical-align:              0.5;
+  horizontal-align:            0.5;
+}
+
+/*****----- Listview -----*****/
+listview {
+  enabled:                     true;
+  columns:                     3;
+  lines:                       2;
+  cycle:                       true;
+  dynamic:                     true;
+  scrollbar:                   false;
+  layout:                      vertical;
+  reverse:                     false;
+  fixed-height:                true;
+  fixed-columns:               true;
+  
+  spacing:                     30px;
+  margin:                      30px;
+  background-color:            transparent;
+  cursor:                      "default";
+}
+
+/*****----- Elements -----*****/
+element {
+  enabled:                     true;
+  padding:                     18px 10px;
+  border-radius:               20px;
+  background-color:            @overlay0;
+  text-color:                  @text;
+  cursor:                      pointer;
+}
+element-text {
+  font:                        "TEXT_ICONS 32";
+  background-color:            transparent;
+  text-color:                  inherit;
+  cursor:                      inherit;
+  vertical-align:              0.5;
+  horizontal-align:            0.5;
+}
+element selected.normal {
+  background-color:            @teal;
+  text-color:                  @crust;
+}

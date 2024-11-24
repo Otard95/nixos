@@ -4,6 +4,7 @@
   imports = [
     ./hyprland
     ./app-launcher
+    ./power-menu
     ./term
     ./mako.nix
     ./gtk.nix
@@ -13,6 +14,7 @@
   modules = {
     hyprland.enable = lib.mkDefault true;
     app-launcher.enable = lib.mkDefault true;
+    power-menu.enable = lib.mkDefault true;
     term.enable = lib.mkDefault true;
     nixvim.enable = lib.mkDefault true;
     mako.enable = lib.mkDefault true;
