@@ -321,7 +321,10 @@ in {
         }
       ];
 
-      style = ''
+      style = builtins.replaceStrings
+        [ "TEXT_FONT"        "TEXT_ICONS" ]
+        [ theme.font.regular theme.font.icons ]
+        ''
         @define-color rosewater #f2d5cf;
         @define-color flamingo #eebebe;
         @define-color pink #f4b8e4;
@@ -351,7 +354,7 @@ in {
 
         * {
           border: none;
-          font-family: MesloLGM Nerd Font;
+          font-family: TEXT_FONT;
         }
 
         window.top_bar#waybar {

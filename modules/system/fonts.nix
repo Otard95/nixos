@@ -4,28 +4,22 @@ let
   enable = cfg.enable;
 in {
 
-  options.modules.system.fonts = {
-    enable = lib.mkEnableOption "fonts";
-    nerdfonts = lib.mkOption {
-      description = "Which nerdfonts to install";
-      default = [ "Meslo" ];
-      type = lib.types.listOf lib.types.singleLineStr;
-    };
-  };
+  options.modules.system.fonts.enable = lib.mkEnableOption "fonts";
 
   config = lib.mkIf enable {
     fonts = {
       enableDefaultPackages = true;
       fontDir.enable = true;
       packages = with pkgs; [
-        (nerdfonts.override { fonts = cfg.nerdfonts; })
+        meslo-lg
+        (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
       ];
 
       fontconfig = {
         defaultFonts = {
-          serif = [ theme.font.regular ];
-          sansSerif = [ theme.font.regular ];
-          monospace = [ theme.font.mono ];
+          serif = [ theme.font.regular theme.font.icons ];
+          sansSerif = [ theme.font.regular theme.font.icons ];
+          monospace = [ theme.font.mono theme.font.icons ];
         };
       };
     };

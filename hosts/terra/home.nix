@@ -22,5 +22,14 @@
     pointerCursor.enable = true;
   };
 
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      serif = [ theme.font.regular theme.font.icons ];
+      sansSerif = [ theme.font.regular theme.font.icons ];
+      monospace = [ theme.font.mono theme.font.icons ];
+    };
+  };
+
   # home.packages = with pkgs; [ ];
 }
