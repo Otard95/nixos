@@ -1,7 +1,5 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (config.lib.file) mkOutOfStoreSymlink;
-
   cfg = config.modules.hyprland.hyprpaper;
   enable = cfg.enable;
 in {
@@ -9,8 +7,7 @@ in {
   options.modules.hyprland.hyprpaper.enable = lib.mkEnableOption "hyprpaper configuration";
 
   config = lib.mkIf enable {
-    xdg.configFile."hypr/background-images".source =
-      mkOutOfStoreSymlink "/etc/nixos/home-manager-modules/hyprland/background-images";
+    xdg.configFile."hypr/background-images".source = ./background-images;
 
     home.packages = with pkgs; [
       hyprpaper

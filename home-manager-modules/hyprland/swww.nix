@@ -1,7 +1,5 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (config.lib.file) mkOutOfStoreSymlink;
-
   cfg = config.modules.hyprland.swww;
   enable = cfg.enable;
 in {
@@ -9,8 +7,7 @@ in {
   options.modules.hyprland.swww.enable = lib.mkEnableOption "swww configuration";
 
   config = lib.mkIf enable {
-    xdg.configFile."hypr/background-images".source =
-      mkOutOfStoreSymlink "/etc/nixos/home-manager-modules/hyprland/background-images";
+    xdg.configFile."hypr/background-images".source = ./background-images;
 
     home.packages = with pkgs; [
       swww

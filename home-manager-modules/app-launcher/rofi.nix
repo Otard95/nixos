@@ -1,7 +1,5 @@
 { config, lib, pkgs, theme, ... }:
 let
-  inherit (config.lib.file) mkOutOfStoreSymlink;
-
   cfg = config.modules.app-launcher.rofi;
   enable = cfg.enable;
 in {
@@ -9,8 +7,7 @@ in {
   options.modules.app-launcher.rofi.enable = lib.mkEnableOption "rofi";
 
   config = lib.mkIf enable {
-    xdg.configFile."rofi/splash-images".source =
-      mkOutOfStoreSymlink "/etc/nixos/home-manager-modules/app-launcher/splash-images";
+    xdg.configFile."rofi/splash-images".source = ./splash-images;
 
     home.packages = with pkgs; [
       rofi-wayland
