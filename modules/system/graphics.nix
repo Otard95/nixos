@@ -19,19 +19,21 @@ in {
 
   config = lib.mkIf enable {
     # Graphics
-    hardware.graphics = {
-      enable = true;
+    hardware = {
+      graphics = {
+        enable = true;
+      };
+      nvidia = lib.mkIf (cfg.manufacturer == "nvidia") {
+        modesetting.enable = true;
+        powerManagement.enable = true;
+        open = false;
+        nvidiaSettings = true;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+      };
     };
-
     services.xserver.videoDrivers = lib.mkIf (cfg.manufacturer == "nvidia") [
       "nvidia"
     ];
-    hardware.nvidia = lib.mkIf (cfg.manufacturer == "nvidia") {
-      modesetting.enable = true;
-      # powerManagement = true;
-      open = false;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
+    boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
   };
 }
