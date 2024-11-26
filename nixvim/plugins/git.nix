@@ -2,6 +2,8 @@
 let
   cfg = config.modules.nixvim.plugins.git;
   enable = cfg.enable;
+
+  nixvim = config.lib.nixvim;
 in {
   options.modules.nixvim.plugins.git.enable =
     lib.mkEnableOption "git plugins";
@@ -23,37 +25,37 @@ in {
         [ "n" "<leader>gl" ":Git log<CR>"     {} ]
       ];
 
-      # autoCmd = [
-      #   {
-      #     event = "FileType";
-      #     pattern = "fugitive";
-      #     callback = nixvim.mkRaw ''
-      #       function(e)
-      #         local opts = { buffer = e.buf, silent = true }
+      autoCmd = [
+        {
+          event = "FileType";
+          pattern = "fugitive";
+          callback = nixvim.mkRaw ''
+            function(e)
+              local opts = { buffer = e.buf, silent = true }
 
-      #         vim.keymap.set('n', '<leader>gp', ':Git push<CR>', opts)
-      #         vim.keymap.set('n', '<leader>gP', ':Git push -u origin HEAD<CR>', opts)
-      #         vim.keymap.set('n', '<leader>gu', ':Git pull<CR>', opts)
-      #         vim.keymap.set('n', '<leader>gb', ':Git branch<CR>', opts)
+              vim.keymap.set('n', '<leader>gp', ':Git push<CR>', opts)
+              vim.keymap.set('n', '<leader>gP', ':Git push -u origin HEAD<CR>', opts)
+              vim.keymap.set('n', '<leader>gu', ':Git pull<CR>', opts)
+              vim.keymap.set('n', '<leader>gb', ':Git branch<CR>', opts)
 
-      #         # TODO: fix branch creation
-      #         # vim.keymap.set('n', '<leader>ba', create_branch, opts)
-      #       end
-      #     '';
-      #   }
-      #   # TODO: Port this
-      #   # vim.api.nvim_create_autocmd('FileType', {
-      #   #   pattern = 'git',
-      #   #   callback = function(e)
-      #   #     local opts = { buffer = e.buf, silent = true }
+              -- TODO: fix branch creation
+              -- vim.keymap.set('n', '<leader>ba', create_branch, opts)
+            end
+          '';
+        }
+        # TODO: Port this
+        # vim.api.nvim_create_autocmd('FileType', {
+        #   pattern = 'git',
+        #   callback = function(e)
+        #     local opts = { buffer = e.buf, silent = true }
 
-      #   #     vim.keymap.set('n', '<C-r>', reload_branch_list, opts)
-      #   #     vim.keymap.set('n', '<leader>a', fn.flow(create_branch, reload_branch_list), opts)
-      #   #     vim.keymap.set('n', '<leader>dd', fn.flow(delete_branch_under_cursor, reload_branch_list), opts)
-      #   #     vim.keymap.set('n', '<leader>mm', merge_branch_under_cursor, opts)
-      #   #   end,
-      #   # })
-      # ];
+        #     vim.keymap.set('n', '<C-r>', reload_branch_list, opts)
+        #     vim.keymap.set('n', '<leader>a', fn.flow(create_branch, reload_branch_list), opts)
+        #     vim.keymap.set('n', '<leader>dd', fn.flow(delete_branch_under_cursor, reload_branch_list), opts)
+        #     vim.keymap.set('n', '<leader>mm', merge_branch_under_cursor, opts)
+        #   end,
+        # })
+      ];
 
       colorschemes.catppuccin.settings.integrations.gitsigns = true;
       plugins = {
