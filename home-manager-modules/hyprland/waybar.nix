@@ -195,7 +195,7 @@ in {
           };
 
           "hyprland/language" = {
-            "format" = "  {}";
+            "format" = " {}";
             "format-en" = "US";
             "format-no" = "NO";
           };
@@ -553,7 +553,8 @@ in {
         }
 
         #hardware label {
-          margin-left: 10px;
+          margin-left: 5px;
+          margin-right: 2px;
         }
 
         #cpu {
@@ -628,9 +629,13 @@ in {
           color: @red;
         }
 
-        #idle_inhibitor {
+        #misc {
           margin-left: 2px;
-          margin-right: 8px;
+          margin-right: 2px;
+        }
+        #misc label {
+          margin-left: 2px;
+          margin-right: 2px;
         }
 
         #idle_inhibitor.deactivated {
@@ -639,10 +644,6 @@ in {
 
         #custom-mako.inactive {
           color: @subtext0;
-        }
-
-        #custom-mako {
-          margin-right: 2;
         }
 
         #custom-logout_menu {
@@ -654,7 +655,6 @@ in {
           margin-top: 5px;
           margin-bottom: 5px;
         }
-
 
         #temperature {
           color: @green;
