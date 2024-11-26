@@ -12,6 +12,7 @@ in {
     ./firefox.nix
     ./zen-browser.nix
     ./pavucontrol.nix
+    ./signal.nix
     ./thunar.nix
     ./wooting.nix
     ./discord.nix
@@ -25,6 +26,7 @@ in {
       blueman.enable = lib.mkDefault config.modules.system.bluetooth.enable;
       zen-browser.enable = lib.mkDefault true;
       pavucontrol.enable = lib.mkDefault true;
+      signal.enable = lib.mkDefault true;
       yubikey.enable = lib.mkDefault true;
       thunar.enable = lib.mkDefault true;
     };

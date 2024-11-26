@@ -9,7 +9,6 @@
 
 - System
   - Install apps for home
-    - signal
     - affinity apps
     - screenshot
     - kde connect
