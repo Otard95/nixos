@@ -9,7 +9,9 @@ in {
   config = lib.mkIf enable {
     hardware.pulseaudio = {
       enable = false;
-      extraModules = [ pkgs.pulseaudio-modules-bt ];
+      extraModules = lib.mkIf config.modules.system.bluetooth.enable [
+        pkgs.pulseaudio-modules-bt
+      ];
     };
     services.pipewire = {
       enable = true;

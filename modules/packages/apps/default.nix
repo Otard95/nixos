@@ -8,6 +8,7 @@ in {
 
   imports = [
     ./bitwarden.nix
+    ./blueman.nix
     ./firefox.nix
     ./zen-browser.nix
     ./pavucontrol.nix
@@ -21,6 +22,7 @@ in {
   config = lib.mkIf enable {
     modules.packages.apps = {
       bitwarden.enable = lib.mkDefault true;
+      blueman.enable = lib.mkDefault config.modules.system.bluetooth.enable;
       zen-browser.enable = lib.mkDefault true;
       pavucontrol.enable = lib.mkDefault true;
       yubikey.enable = lib.mkDefault true;

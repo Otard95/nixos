@@ -38,6 +38,7 @@
   # Modules
   modules = {
     nixvim.enable = true;
+    system.bluetooth.enable = false;
     packages.apps = {
       discord.enable = true;
       wooting.enable = true;

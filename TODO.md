@@ -9,7 +9,6 @@
 
 - System
   - Install apps for home
-    - bluetooth manager GUI (blueman)
     - signal
     - affinity apps
     - screenshot
