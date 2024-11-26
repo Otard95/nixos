@@ -7,6 +7,7 @@ in {
   options.modules.packages.apps.enable = lib.mkEnableOption "apps";
 
   imports = [
+    ./bitwarden.nix
     ./firefox.nix
     ./zen-browser.nix
     ./pavucontrol.nix
@@ -19,6 +20,7 @@ in {
 
   config = lib.mkIf enable {
     modules.packages.apps = {
+      bitwarden.enable = lib.mkDefault true;
       zen-browser.enable = lib.mkDefault true;
       pavucontrol.enable = lib.mkDefault true;
       yubikey.enable = lib.mkDefault true;

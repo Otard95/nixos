@@ -10,7 +10,6 @@
 - System
   - Install apps for home
     - btop
-    - bitwarden
     - bluetooth manager GUI (blueman)
     - signal
     - affinity apps
