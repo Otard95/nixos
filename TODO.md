@@ -5,7 +5,23 @@
    - nvim
      - last todos and plugins
    - Git config
+   - media controls
 
 - System
   - Install apps for home
+    - bitwarden
+    - bluetooth manager GUI (blueman)
+    - signal
+    - affinity apps
+    - screenshot
+    - kde connect
+    - media player
+    - image viewer
   - Prep apps etc. for work
+    - slack
+    - clickup
+    - 1Password
+    - appgate
+    - breaktimer
+    - btop
+    - dbeaver
