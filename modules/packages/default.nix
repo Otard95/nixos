@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.modules.packages;
   enable = cfg.enable;
@@ -7,6 +7,7 @@ in {
   options.modules.packages.enable = lib.mkEnableOption "packages";
 
   imports = [
+    ./btop.nix
     ./notification.nix
     ./apps
   ];
@@ -31,8 +32,8 @@ in {
       ];
     };
 
-    # List packages installed in system profile. To search, run:
-    # $ nix search wget
-    environment.systemPackages = with pkgs; [];
+    modules.packages = {
+      btop.enable = lib.mkDefault true;
+    };
   };
 }
