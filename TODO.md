@@ -9,6 +9,7 @@
 
 - System
   - Install apps for home
+    - btop
     - bitwarden
     - bluetooth manager GUI (blueman)
     - signal
@@ -23,5 +24,5 @@
     - 1Password
     - appgate
     - breaktimer
-    - btop
     - dbeaver
+    - docker
