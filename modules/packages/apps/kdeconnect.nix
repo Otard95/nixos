@@ -1,9 +1,9 @@
 { config, lib, ... }:
 let
-  cfg = config.modules.programs.apps.kdeconnect;
+  cfg = config.modules.packages.apps.kdeconnect;
   enable = cfg.enable;
 in {
-  options.modules.programs.apps.kdeconnect.enable =
+  options.modules.packages.apps.kdeconnect.enable =
     lib.mkEnableOption "kdeconnect";
 
   config = lib.mkIf enable {
