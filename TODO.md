@@ -11,7 +11,6 @@
     - affinity apps
     - screenshot
     - media player
-    - image viewer
   - Prep apps etc. for work
     - slack
     - clickup

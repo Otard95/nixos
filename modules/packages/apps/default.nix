@@ -12,6 +12,7 @@ in {
     ./discord.nix
     ./firefox.nix
     ./kdeconnect.nix
+    ./loupe.nix
     ./matrix.nix
     ./pavucontrol.nix
     ./signal.nix
@@ -25,6 +26,7 @@ in {
     modules.packages.apps = {
       bitwarden.enable = lib.mkDefault true;
       blueman.enable = lib.mkDefault config.modules.system.bluetooth.enable;
+      loupe.enable = lib.mkDefault true;
       pavucontrol.enable = lib.mkDefault true;
       signal.enable = lib.mkDefault true;
       thunar.enable = lib.mkDefault true;
