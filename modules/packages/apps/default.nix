@@ -11,6 +11,7 @@ in {
     ./blueman.nix
     ./discord.nix
     ./firefox.nix
+    ./grimblast.nix
     ./kdeconnect.nix
     ./loupe.nix
     ./matrix.nix
@@ -27,6 +28,7 @@ in {
     modules.packages.apps = {
       bitwarden.enable = lib.mkDefault true;
       blueman.enable = lib.mkDefault config.modules.system.bluetooth.enable;
+      grimblast.enable = lib.mkDefault config.modules.desktopEnvironment.hyprland.enable;
       loupe.enable = lib.mkDefault true;
       mpv.enable = lib.mkDefault true;
       pavucontrol.enable = lib.mkDefault true;
