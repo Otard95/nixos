@@ -10,7 +10,6 @@
   - Install apps for home
     - affinity apps
     - screenshot
-    - kde connect
     - media player
     - image viewer
   - Prep apps etc. for work
