@@ -36,6 +36,10 @@ in {
           "$mod+SHIFT, H, movewindow, l"
           "$mod+SHIFT, K, movewindow, u"
           "$mod+SHIFT, J, movewindow, d"
+          # Screenshot
+          "$mod+SHIFT, S, exec, grimblast copy area"
+          "$mod+ALT, S, exec, grimblast copy active"
+          "$mod+CTRL, S, exec, grimblast copy output"
         ] ++ (
           builtins.concatLists (builtins.genList (
             x: let
@@ -53,6 +57,10 @@ in {
         bindm = [
           "$mod, mouse:272, movewindow"
           "$mod, mouse:273, resizewindow"
+        ];
+
+        env = [
+          "SLURP_ARGS, -d -b 16897a44 -c 04d6c8 -B 0e999e22"
         ];
 
         monitor = [

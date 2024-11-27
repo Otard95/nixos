@@ -1,4 +1,6 @@
  - DM
+   - Hyprland
+     - keybinds
    - Work on waybar
      - Less text?
    - nvim
