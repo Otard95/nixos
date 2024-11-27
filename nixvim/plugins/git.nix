@@ -43,7 +43,7 @@ in {
             end
           '';
         }
-        # TODO: Port this
+        # TODO: Port this - functions??
         # vim.api.nvim_create_autocmd('FileType', {
         #   pattern = 'git',
         #   callback = function(e)
