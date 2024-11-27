@@ -10,7 +10,6 @@
   - Install apps for home
     - affinity apps
     - screenshot
-    - media player
   - Prep apps etc. for work
     - slack
     - clickup
