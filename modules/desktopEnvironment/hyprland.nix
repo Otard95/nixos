@@ -9,9 +9,12 @@ in {
   };
 
   config = lib.mkIf enable {
-    programs.hyprland = {
-      enable = true;
-      xwayland.enable = true;
+    programs = {
+      hyprland = {
+        enable = true;
+        xwayland.enable = true;
+      };
+      hyprlock.enable = true;
     };
     environment.sessionVariables = {
       # If cursor becomes invisible

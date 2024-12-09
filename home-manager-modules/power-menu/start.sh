@@ -108,8 +108,8 @@ case ${chosen} in
         betterlockscreen -l
       elif [[ -x '/usr/bin/i3lock' ]]; then
         i3lock
-      # elif [[ -x '/usr/bin/i3lock' ]]; then
-      #   i3lock # TODO: Figure out hyprlock
+      elif which hyprlock ; then
+        hyprlock
       fi
         ;;
     $suspend)
