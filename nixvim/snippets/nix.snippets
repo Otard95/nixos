@@ -5,7 +5,7 @@ snippet module "module template"
 	  enable = cfg.enable;
 	in {
 	  options.modules.${2:path}.${1:name}.enable =
-	    lib.mkEnableOption "${1:name} plugin";
+	    lib.mkEnableOption "${1:name}";
 
 	  config = lib.mkIf enable {
 	    ${3}.${1:name} = {
