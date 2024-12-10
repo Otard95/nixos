@@ -13,10 +13,13 @@ in {
         pkgs.pulseaudio-modules-bt
       ];
     };
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      pulse.enable = true;
+    services = {
+      playerctld.enable = true;
+      pipewire = {
+        enable = true;
+        alsa.enable = true;
+        pulse.enable = true;
+      };
     };
   };
 }

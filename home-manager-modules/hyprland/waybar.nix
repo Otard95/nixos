@@ -26,8 +26,8 @@ in {
           "margin-left" = 15;
           "margin-right" = 15;
           "modules-left" = ["hyprland/workspaces" "hyprland/submap" "hyprland/window"];
-          "modules-center" = ["clock#time" "custom/separator_dot" "clock#week" "custom/separator_dot" "clock#calendar"];
-          "modules-right" = [ "network" "pulseaudio" "group/keyoard" "group/hardware" "group/misc" "custom/logout_menu" ];
+          "modules-center" = ["group/media"];
+          "modules-right" = [ "network" "pulseaudio" "group/keyoard" "group/hardware" "group/misc" "clock#time" "custom/logout_menu" ];
 
           # Modules Config
           "hyprland/workspaces" = {
@@ -68,9 +68,61 @@ in {
             "icon" = true;
           };
 
+          "group/media" = {
+            "orientation" = "horizontal";
+            "modules" = [
+              "custom/prev-track"
+              "mpris"
+              "custom/next-track"
+            ];
+          };
+          "custom/prev-track" = {
+            format = "󰒮";
+            tooltip = false;
+            on-click = "playerctl next";
+            on-click-right = "playerctl position 5-";
+            on-scroll-up = "playerctl position 1-";
+            on-scroll-down = "playerctl position 1+";
+          };
+          "custom/next-track" = {
+            format = "󰒭";
+            tooltip = false;
+            on-click = "playerctl previous";
+            on-click-right = "playerctl position 5+";
+            on-scroll-up = "playerctl position 1+";
+            on-scroll-down = "playerctl position 1-";
+          };
+          "mpris" = {
+            "format" = "{status_icon}";
+            "status-icons" = {
+              "playing" = "⏸";
+              "paused" = "▶";
+              "stopped" = "⏹";
+            };
+            on-scroll-up = "playerctl position 1+";
+            on-scroll-down = "playerctl position 1-";
+          };
+
           "clock#time" = {
             "format" = "{:%H:%M}";
-            "tooltip" = false;
+            "tooltip-format" = "<tt><small>{calendar}</small></tt>";
+            "actions" = {
+              "on-click-right" = "mode";
+            };
+            "calendar" = {
+              "mode"           = "month";
+              "mode-mon-col"   = 3;
+              "weeks-pos"      = "right";
+              "on-scroll"      = 1;
+              "on-click-right" = "mode";
+              "format" = {
+                "months" =     "<span color='#f4dbd6'><b>{}</b></span>";
+                "days" =       "<span color='#cad3f5'><b>{}</b></span>";
+                "weeks" =      "<span color='#c6a0f6'><b>W{}</b></span>";
+                "weekdays" =   "<span color='#a6da95'><b>{}</b></span>";
+                "today" =      "<span color='#8bd5ca'><b><u>{}</u></b></span>";
+              };
+            };
           };
 
           "custom/separator" = {
@@ -408,38 +460,33 @@ in {
         }
 
         window.top_bar .modules-center {
-          font-weight: bold;
-          background-color: alpha(@surface1, 0.7);
-          color: @peach;
-          border-radius: 15;
-          padding-left: 20;
-          padding-right: 20;
-          margin-top: 5;
-          margin-bottom: 5;
+          margin-right: 15px;
+          background-color: alpha(@base, 0.7);
+          border-radius: 36px;
+          padding-left: 6px;
+          padding-right: 6px;
         }
 
-        #custom-separator {
-          color: @green;
+        #media label {
+          background-color: @surface0;
         }
 
-        #custom-separator_dot {
-          color: @green;
+        #mpris {
+          border-radius: 20px;
+          margin: 3px 0px;
+          padding: 0 11px;
         }
 
-        #clock.time {
-          color: @flamingo;
+        #custom-next-track {
+          margin: 5px 2px;
+          border-radius: 15px;
+          padding: 0 10px;
         }
 
-        #clock.week {
-          color: @sapphire;
-        }
-
-        #clock.month {
-          color: @sapphire;
-        }
-
-        #clock.calendar {
-          color: @mauve;
+        #custom-prev-track {
+          margin: 5px 2px;
+          border-radius: 15px;
+          padding: 0 10px;
         }
 
         window.top_bar .modules-right {
@@ -644,6 +691,17 @@ in {
 
         #custom-mako.inactive {
           color: @subtext0;
+        }
+
+        #clock.time {
+          background-color: alpha(@surface1, 0.7);
+          border-radius: 15;
+          padding-left: 10;
+          padding-right: 10;
+          margin-left: 2;
+          margin-right: 2;
+          margin-top: 5;
+          margin-bottom: 5;
         }
 
         #custom-logout_menu {
