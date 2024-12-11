@@ -19,6 +19,7 @@ in {
     ./mpv.nix
     ./pavucontrol.nix
     ./signal.nix
+    ./slack.nix
     ./thunar.nix
     ./wooting.nix
     ./yubikey.nix

@@ -6,6 +6,7 @@
       docker.enable = true;
       apps = {
         matrix.enable = true;
+        slack.enable = true;
       };
     };
   };
