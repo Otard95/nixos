@@ -7,6 +7,9 @@ in {
     lib.mkEnableOption "_1password";
 
   config = lib.mkIf enable {
-    environment.systemPackages = with pkgs; [ _1password-gui ];
+    programs._1password-gui = {
+      enable = true;
+      polkitPolicyOwners = [ "otard" ];
+    };
   };
 }
