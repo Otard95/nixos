@@ -12,6 +12,7 @@ in {
     ./bitwarden.nix
     ./blueman.nix
     ./clickup.nix
+    ./dbeaver.nix
     ./discord.nix
     ./firefox.nix
     ./flameshot.nix
