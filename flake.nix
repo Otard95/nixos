@@ -19,7 +19,7 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
-    zen-browser.url = "github:ch4og/zen-browser-flake";
+    zen-browser.url = "github:omarcresp/zen-browser-flake";
   };
 
   outputs = { nixpkgs, nixpkgs-stable, home-manager, nixvim, catppuccin, ... } @ inputs:
