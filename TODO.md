@@ -11,9 +11,4 @@
   - Install apps for home
     - affinity apps
   - Prep apps etc. for work
-    - slack
-    - clickup
-    - 1Password
-    - appgate
     - breaktimer
-    - dbeaver
