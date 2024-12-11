@@ -9,6 +9,7 @@ in {
   imports = [
     ./bitwarden.nix
     ./blueman.nix
+    ./clickup.nix
     ./discord.nix
     ./firefox.nix
     ./flameshot.nix
