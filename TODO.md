@@ -2,7 +2,6 @@
    - Hyprland
      - keybinds
    - Work on waybar
-     - Less text?
    - nvim
      - last todos and plugins
    - Git config
