@@ -9,6 +9,7 @@ in {
   imports = [
     ./btop.nix
     ./notification.nix
+    ./docker.nix
     ./apps
   ];
 

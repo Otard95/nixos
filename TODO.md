@@ -17,4 +17,3 @@
     - appgate
     - breaktimer
     - dbeaver
-    - docker
