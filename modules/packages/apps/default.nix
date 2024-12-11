@@ -7,6 +7,7 @@ in {
   options.modules.packages.apps.enable = lib.mkEnableOption "apps";
 
   imports = [
+    ./1password.nix
     ./bitwarden.nix
     ./blueman.nix
     ./clickup.nix
