@@ -17,11 +17,13 @@ in {
     description = "Select a DM to use";
     type = lib.types.enum [
       "sddm"
+      "ly"
     ];
   };
 
   imports = [
     ./hyprland.nix
+    ./ly.nix
     ./sddm.nix
   ];
 
@@ -31,6 +33,8 @@ in {
 
     modules.desktopEnvironment.sddm.enable =
       lib.mkDefault (cfg.displayManager == "sddm");
+    modules.desktopEnvironment.ly.enable =
+      lib.mkDefault (cfg.displayManager == "ly");
 
     modules.system.graphics.enable = lib.mkDefault true;
     modules.system.sound.enable = lib.mkDefault true;
