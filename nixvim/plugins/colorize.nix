@@ -7,12 +7,10 @@ in {
     lib.mkEnableOption "colorize plugin";
 
   config = lib.mkIf enable {
-    programs.nixvim.plugins.nvim-colorizer = {
+    programs.nixvim.plugins.colorizer = {
       enable = true;
 
-      fileTypes = [
-        { language = "markdown"; names = false; }
-      ];
+      settings.filetypes.markdown.names = false;
     };
   };
 }

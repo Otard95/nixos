@@ -115,11 +115,13 @@ in {
         decoration = {
           rounding = 10;
 
-          drop_shadow = true;
-          shadow_range = 8;
-          shadow_render_power = 3;
-          "col.shadow" = "$accent";
-          "col.shadow_inactive" = "0xff$baseAlpha";
+          shadow =  {
+            enabled = true;
+            range = 8;
+            render_power = 3;
+            color = "$accent";
+            color_inactive = "0xff$baseAlpha";
+          };
 
           blur = {
             noise = 0;

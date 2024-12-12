@@ -12,7 +12,7 @@ in {
       fontDir.enable = true;
       packages = with pkgs; [
         meslo-lg
-        (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+        nerd-fonts.symbols-only
       ];
 
       fontconfig = {
