@@ -26,7 +26,7 @@ in {
           "margin-left" = 15;
           "margin-right" = 15;
           "modules-left" = ["hyprland/workspaces" "hyprland/submap" "hyprland/window"];
-          "modules-center" = ["group/media"];
+          # "modules-center" = ["group/media"];
           "modules-right" = [ "network" "pulseaudio" "group/keyoard" "group/hardware" "group/misc" "clock#time" "custom/logout_menu" ];
 
           # Modules Config
@@ -459,6 +459,7 @@ in {
           margin-bottom: 5;
         }
 
+/*
         window.top_bar .modules-center {
           margin-right: 15px;
           background-color: alpha(@base, 0.7);
@@ -466,6 +467,7 @@ in {
           padding-left: 6px;
           padding-right: 6px;
         }
+*/
 
         #media label {
           background-color: @surface0;
