@@ -66,6 +66,7 @@
         ./nixvim
         ./modules
         ./hosts/terra/configuration.nix
+
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -82,17 +83,6 @@
           };
           home-manager.extraSpecialArgs = { inherit theme inputs; };
         }
-      ];
-    };
-
-    homeConfigurations.otard = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      extraSpecialArgs = { inherit pkgs-stable inputs; };
-
-      modules = [
-        catppuccin.homeManagerModules.catppuccin
-        nixvim.homeManagerModules.nixvim
-        ./home.nix
       ];
     };
 
