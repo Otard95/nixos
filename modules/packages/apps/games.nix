@@ -20,15 +20,17 @@ in {
     # ];
 
     environment.systemPackages = with pkgs; [
-      lutris
-      # (lutris.override {
-      #   extraLibraries =  pkgs: [
-      #     # List library dependencies here
-      #   ];
-      #   extraPkgs = pkgs: [
-      #    # List package dependencies here
-      #  ];
-      # })
+      # lutris
+      (lutris.override {
+        extraLibraries =  pkgs: [
+          # List library dependencies here
+          dxvk
+        ];
+        extraPkgs = pkgs: [
+          # List package dependencies here
+          dxvk
+        ];
+      })
     ];
 
   };
