@@ -42,8 +42,9 @@
     system.bluetooth.enable = false;
     packages.apps = {
       discord.enable = true;
-      wooting.enable = true;
+      games.enable = true;
       matrix.enable = true;
+      wooting.enable = true;
     };
   };
 

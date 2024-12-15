@@ -16,6 +16,7 @@ in {
     ./discord.nix
     ./firefox.nix
     ./flameshot.nix
+    ./games.nix
     ./grimblast.nix
     ./kdeconnect.nix
     ./loupe.nix

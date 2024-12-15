@@ -24,6 +24,7 @@ in {
           "$mod, D, exec, rofi -show drun"
           "ALT, TAB, exec, rofi -show window"
           "$mod, F, togglefloating"
+          "$mod+SHIFT, F, fullscreen, 0"
           "$mod, E, togglesplit"
           "$mod, W, togglegroup"
           "$mod+ALT, E, changegroupactive, f"
@@ -110,6 +111,11 @@ in {
           gaps_in = 5;
           gaps_out = 15;
           border_size = 0;
+        };
+
+        render = {
+          explicit_sync = 0;
+          explicit_sync_kms = 0;
         };
 
         decoration = {
