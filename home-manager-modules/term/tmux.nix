@@ -39,6 +39,7 @@ in {
         yank
         sensible
         vim-tmux-navigator
+        t-smart-tmux-session-manager
       ];
 
       extraConfig = ''
