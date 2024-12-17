@@ -4,7 +4,14 @@ let
   enable = cfg.enable;
 in {
 
-  options.modules.app-launcher.rofi.enable = lib.mkEnableOption "rofi";
+  options.modules.app-launcher.rofi = {
+    enable = lib.mkEnableOption "rofi";
+    splash-image = lib.mkOption {
+      description = "The splash-image to use";
+      default = "./splash-images/spacegirl.jpg";
+      type = lib.types.singleLineStr;
+    };
+  }
 
   config = lib.mkIf enable {
     xdg.configFile."rofi/splash-images".source = ./splash-images;
@@ -106,7 +113,11 @@ in {
         imagebox = {
           padding = mkLiteral "20px";
           background-color = mkLiteral "transparent";
-          background-image = mkLiteral ''url("./splash-images/spacegirl.jpg", height)'';
+          background-image = mkLiteral (lib.strings.concatStrings [
+            ''url("''
+            cfg.splash-image
+            ''", height)''
+          ]);
           orientation = mkLiteral "vertical";
           children = mkLiteral ''[ "inputbar", "dummy", "mode-switcher" ]'';
         };

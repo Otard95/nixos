@@ -4,7 +4,14 @@ let
   enable = cfg.enable;
 in {
 
-  options.modules.power-menu.rofi.enable = lib.mkEnableOption "rofi";
+  options.modules.power-menu.rofi = {
+    enable = lib.mkEnableOption "rofi";
+    splash-image = lib.mkOption {
+      description = "The splash-image to use";
+      default = ./splash-images/lynnette_space_suit_20240205_04_by_kai_artworks_dgu3229-pre.jpg;
+      type = lib.types.path;
+    };
+  };
 
   config = lib.mkIf enable {
     home.packages = with pkgs; [
