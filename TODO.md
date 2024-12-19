@@ -2,10 +2,10 @@
    - Hyprland
      - keybinds
    - Work on waybar
+     - submap styling
    - nvim
      - last todos and plugins
    - Git config
-   - media controls
 
 - System
   - Install apps for home
