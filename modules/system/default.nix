@@ -7,12 +7,13 @@ in {
   options.modules.system.enable = lib.mkEnableOption "system modules";
 
   imports = [
-    ./gc.nix
-    ./i18n.nix
-    ./graphics.nix
-    ./sound.nix
     ./bluetooth.nix
+    ./fingerprint.nix
     ./fonts.nix
+    ./gc.nix
+    ./graphics.nix
+    ./i18n.nix
+    ./sound.nix
   ];
 
   config = lib.mkIf enable {
