@@ -19,11 +19,16 @@ in {
           }
         ];
 
+        fingerprint = {
+          enabled = true;
+        };
+
         input-field = [
           {
             size = "300, 45";
             position = "0, -80";
             dots_center = true;
+            dots_fade_time = 80;
             fade_on_empty = false;
             font_color = "rgb(198, 208, 245)";
             inner_color = "rgb(65, 69, 89)";
