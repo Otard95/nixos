@@ -35,6 +35,10 @@
     hyprland.hyprpaper.bg-image = "~/.config/hypr/background-images/forrest-lake-train.png";
     app-launcher.rofi.splash-image.path = "./splash-images/bridge-forrest-fog.jpg";
     power-menu.rofi.splash-image.path = ../../home-manager-modules/power-menu/splash-images/bridge-forrest-fog.jpg;
+    term.git.user = {
+      name = "Stian Myklebostad";
+      email = "stian.myklebostad@schibsted.com";
+    };
   };
 
   # home.packages = with pkgs; [ ];
