@@ -59,7 +59,7 @@ in {
 
       colorschemes.catppuccin.settings.integrations.gitsigns = true;
       plugins = {
-        fugitive.enable = true; # TODO: Should we just assume git is installed?
+        fugitive.enable = true;
 
         gitsigns = {
           enable = true;
