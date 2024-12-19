@@ -19,9 +19,9 @@ in {
         format = lib.concatStrings [
         "[](surface0)"
         "[    ](bg:surface0 fg:text)"
-        "[](bg:blue fg:surface0)"
+        "[](bg:teal fg:surface0)"
         "$directory"
-        "[](fg:blue bg:surface1)"
+        "[](fg:teal bg:surface1)"
         "$git_branch"
         "$git_status"
         "[](fg:surface1)"
@@ -38,7 +38,7 @@ in {
         ];
 
         directory = {
-          style = "fg:crust bg:blue";
+          style = "fg:crust bg:teal";
           format = "[ $path ]($style)";
           truncation_length = 6;
           truncation_symbol = "/";
@@ -53,30 +53,30 @@ in {
         git_branch = {
           symbol = "";
           style = "bg:surface1";
-          format = "[[ $symbol $branch ](fg:blue bg:surface1)]($style)";
+          format = "[[ $symbol $branch ](fg:teal bg:surface1)]($style)";
         };
 
         git_status = {
           style = "bg:surface1";
-          format = "[[($all_status$ahead_behind )](fg:blue bg:surface1)]($style)";
+          format = "[[($all_status$ahead_behind )](fg:teal bg:surface1)]($style)";
         };
 
         nodejs = {
           symbol = "";
           style = "bg:surface1";
-          format = "[[ $symbol ($version) ](fg:blue bg:surface1)]($style)";
+          format = "[[ $symbol ($version) ](fg:teal bg:surface1)]($style)";
         };
 
         rust = {
           symbol = "";
           style = "bg:surface1";
-          format = "[[ $symbol ($version) ](fg:blue bg:surface1)]($style)";
+          format = "[[ $symbol ($version) ](fg:teal bg:surface1)]($style)";
         };
 
         php = {
           symbol = "";
           style = "bg:surface1";
-          format = "[[ $symbol ($version) ](fg:blue bg:surface1)]($style)";
+          format = "[[ $symbol ($version) ](fg:teal bg:surface1)]($style)";
         };
 
         time = {
