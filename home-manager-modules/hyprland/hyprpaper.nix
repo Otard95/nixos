@@ -9,7 +9,7 @@ in {
     bg-image = lib.mkOption {
       description = "Path to the backround image to use";
       default = "~/.config/hypr/background-images/falling_into_infinity.png";
-      type = lib.types.string;
+      type = lib.types.str;
     };
   };
 
