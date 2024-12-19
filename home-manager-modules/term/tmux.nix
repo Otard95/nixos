@@ -1,16 +1,5 @@
 { config, lib, pkgs, ... }:
 let
-  # catppuccin = pkgs.tmuxPlugins.mkTmuxPlugin {
-  #   pluginName = "catppuccin";
-  #   version = "unstable-2023-01-06";
-  #   src = pkgs.fetchFromGitHub {
-  #     owner = "dreamsofcode-io";
-  #     repo = "catppuccin-tmux";
-  #     rev = "main";
-  #     sha256 = "sha256-FJHM6LJkiAwxaLd5pnAoF3a7AE1ZqHWoCpUJE0ncCA8=";
-  #   };
-  # };
-
   cfg = config.modules.term.tmux;
   enable = cfg.enable;
 in {
@@ -22,6 +11,12 @@ in {
       tmux
     ];
 
+    home.file.".local/bin/t".source =
+      "${pkgs.tmuxPlugins.t-smart-tmux-session-manager}/share/tmux-plugins/t-smart-tmux-session-manager/bin/t";
+    programs.bash.shellAliases = {
+      t = "~/.local/bin/t";
+    };
+
     programs.tmux = { # TODO: port rest of old config, bar settings, etc.
       enable = true;
 
@@ -29,13 +24,19 @@ in {
         enable = true;
         flavor = "frappe";
         extraConfig = ''
-          set -g status-left ""
           set -g @catppuccin_window_status_style "rounded"
           # set -g @catppuccin_window_status_style "custom"
-          # set -g @catppuccin_window_left_separator "#[fg=#{@_ctp_status_bg},bg=#{@thm_bg}]#[bg=#{@_ctp_status_bg}]"
-          # set -g @catppuccin_window_right_separator "#[fg=#{@_ctp_status_bg,bg=#{@thm_bg}}] #[none]"
+          # set -g @catppuccin_window_left_separator ""
+          # set -g @catppuccin_window_right_separator " "
           # set -g @catppuccin_window_middle_separator " "
-          # set -g @catppuccin_status_background "#{@thm_bg}"
+          set -g @catppuccin_status_background "#{@thm_bg}"
+          set -g @catppuccin_window_current_number_color "#{@thm_teal}"
+
+          set -g status-left ""
+          set -g status-left-length 100
+
+          set -g status-right ""
+          set -ag status-right "#{E:@catppuccin_status_session}"
         '';
       };
 
@@ -75,6 +76,10 @@ in {
         bind C-l send-keys C-l
       '';
     };
+    xdg.configFile."tmux/tmux.conf".text = lib.mkOrder 600 ''
+        set -g @t-fzf-prompt '  '
+        set -g @t-bind "j"
+    '';
   };
 
 }
