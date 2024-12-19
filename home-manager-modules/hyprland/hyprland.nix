@@ -84,7 +84,9 @@ in {
         ];
 
         windowrulev2 = [
-          "float, class:(Rofi), title:(File Operation Progress)"
+          "float, class:(Rofi)"
+          "float, initialTitle:(^File Operation Progress$)"
+          "size 500 200, initialTitle:(^File Operation Progress$)"
           "stayfocused, class:(Rofi)"
           "opacity 0.95,class:(zen-alpha)"
         ];
@@ -118,7 +120,7 @@ in {
             range = 8;
             render_power = 3;
             color = "$accent";
-            color_inactive = "0xff$baseAlpha";
+            color_inactive = "0xff$mantleAlpha";
           };
 
           blur = {
