@@ -17,7 +17,7 @@ in {
       t = "~/.local/bin/t";
     };
 
-    programs.tmux = { # TODO: port rest of old config, bar settings, etc.
+    programs.tmux = {
       enable = true;
 
       catppuccin = {
@@ -73,6 +73,26 @@ in {
 
         bind 0 next-layout
 
+        bind C-l send-keys C-l
+
+        # Resize panes using prefix + hjkl
+        bind -r C-j resize-pane -D 5
+        bind -r C-k resize-pane -U 5
+        bind -r C-l resize-pane -R 6
+        bind -r C-h resize-pane -L 5
+
+        # Toggle maximized pane
+        bind -r m resize-pane -Z
+
+        # Create sesson with command and name(same as command)
+        bind X command-prompt -p "Command:" "new-session -s '%1' '%1'"
+
+        # Copy mode with vim bindings
+        bind-key -T copy-mode-vi 'v' send -X begin-selection # start selecting text with "v"
+        bind-key -T copy-mode-vi 'y' send -X copy-selection # copy text with "y"
+        unbind -T copy-mode-vi MouseDragEnd1Pane # don't exit copy mode after dragging with mouse
+
+        # Use C-l to clear the screen since we use 'christoomey/vim-tmux-navigator'
         bind C-l send-keys C-l
       '';
     };
