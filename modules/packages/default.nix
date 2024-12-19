@@ -30,6 +30,7 @@ in {
         { pull = { rebase = true; }; }
         { checkout = { defaultRemote = "origin"; }; }
         { rerere = { enable = true; }; }
+        { core = { sshCommand = "ssh -i /home/otard/.ssh/id_ed25519"; }; }
       ];
     };
 
