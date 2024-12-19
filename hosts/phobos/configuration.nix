@@ -1,8 +1,8 @@
-#nixpkgs-unstable Edit this configuration file to define what should be installed on
+# Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ meta, ... }:
+{ config, pkgs, meta, ... }:
 
 {
   imports =
@@ -14,6 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 5;
+  boot.initrd.luks.devices."luks-d92c3033-d16d-4ada-a92e-59ce038c5acb".device = "/dev/disk/by-uuid/d92c3033-d16d-4ada-a92e-59ce038c5acb";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -38,19 +39,16 @@
   # Modules
   modules = {
     nixvim.enable = true;
-    system.bluetooth.enable = false;
-    packages.apps = {
-      discord.enable = true;
-      games.enable = true;
-      matrix.enable = true;
-      wooting.enable = true;
+    packages = {
+      docker.enable = true;
+      apps = {
+        _1password.enable = true;
+        appgate.enable = true;
+        clickup.enable = true;
+        dbeaver.enable = true;
+        slack.enable = true;
+      };
     };
-  };
-
-  # TODO: move to module
-  hardware.logitech.wireless = {
-    enable = true;
-    enableGraphical = true;
   };
 
   # List packages installed in system profile. To search, run:
@@ -82,6 +80,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 
 }

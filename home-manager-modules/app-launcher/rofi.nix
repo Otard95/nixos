@@ -6,12 +6,24 @@ in {
 
   options.modules.app-launcher.rofi = {
     enable = lib.mkEnableOption "rofi";
-    splash-image = lib.mkOption {
-      description = "The splash-image to use";
-      default = "./splash-images/spacegirl.jpg";
-      type = lib.types.singleLineStr;
+    splash-image = {
+      path = lib.mkOption {
+        description = "The splash-image to use";
+        default = "./splash-images/spacegirl.jpg";
+        type = lib.types.singleLineStr;
+      };
+      scale = lib.mkOption {
+        description = "The scaling logic for the image, where scale is: none, both, width, height";
+        default = "height";
+        type = lib.types.enum [
+          "height"
+          "width"
+          "both"
+          "none"
+        ];
+      };
     };
-  }
+  };
 
   config = lib.mkIf enable {
     xdg.configFile."rofi/splash-images".source = ./splash-images;
@@ -115,8 +127,10 @@ in {
           background-color = mkLiteral "transparent";
           background-image = mkLiteral (lib.strings.concatStrings [
             ''url("''
-            cfg.splash-image
-            ''", height)''
+            cfg.splash-image.path
+            ''", ''
+            cfg.splash-image.scale
+            '')''
           ]);
           orientation = mkLiteral "vertical";
           children = mkLiteral ''[ "inputbar", "dummy", "mode-switcher" ]'';

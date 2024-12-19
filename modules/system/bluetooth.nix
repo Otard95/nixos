@@ -8,5 +8,6 @@ in {
 
   config = lib.mkIf enable {
     hardware.bluetooth.enable = true;
+    services.blueman.enable = true;
   };
 }

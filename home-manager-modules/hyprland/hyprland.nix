@@ -4,7 +4,14 @@ let
   enable = cfg.enable;
 in {
 
-  options.modules.hyprland.wm.enable = lib.mkEnableOption "hyprland configuration";
+  options.modules.hyprland.wm = {
+    enable = lib.mkEnableOption "hyprland configuration";
+    disable-sync = lib.mkOption {
+      description = "Disable explicit_sync. Games may require this";
+      default = false;
+      type = lib.types.bool;
+    };
+  };
 
   config = lib.mkIf enable {
     home.packages = with pkgs; [
@@ -20,7 +27,8 @@ in {
         bind = [
           "$mod, RETURN, exec, kitty"
           "$mod+SHIFT, Q, killactive"
-          "$mod, M, exit"
+          "$mod+SHIFT+CTRL, M, exit"
+          "$mod+SHIFT, P, exec, ~/.config/power-menu.sh"
           "$mod, D, exec, rofi -show drun"
           "ALT, TAB, exec, rofi -show window"
           "$mod, F, togglefloating"
@@ -72,37 +80,21 @@ in {
 
         env = [
           "SLURP_ARGS, -d -b 16897a44 -c 04d6c8 -B 0e999e22"
-        ];
-
-        monitor = [
-          "DP-1, 2560x1440, 0x0, 1"
-          "DP-3, 2560x1440, 2560x0, 1"
-        ];
-
-        workspace = [
-          "1, monitor:DP-1"
-          "2, monitor:DP-1"
-          "3, monitor:DP-1"
-          "4, monitor:DP-1"
-          "5, monitor:DP-1"
-          "6, monitor:DP-3"
-          "7, monitor:DP-3"
-          "8, monitor:DP-3"
-          "9, monitor:DP-3"
-          "10, monitor:DP-3"
+          "HYPRCURSOR_SIZE,16"
         ];
 
         windowrulev2 = [
-          "float, class:(Rofi)"
+          "float, class:(Rofi), title:(File Operation Progress)"
           "stayfocused, class:(Rofi)"
           "opacity 0.95,class:(zen-alpha)"
         ];
 
         exec-once = [
-          "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" # https://gist.github.com/brunoanc/2dea6ddf6974ba4e5d26c3139ffb7580#editing-the-configuration-file
+          # https://gist.github.com/brunoanc/2dea6ddf6974ba4e5d26c3139ffb7580#editing-the-configuration-file
+          "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           "hyprpaper"
           "[workspace 1 silent] zen"
-          "[workspace 6 silent] kitty"
+          "[workspace 2 silent] kitty"
         ];
 
         exec = [ "pkill waybar; sleep 0.5 && waybar" ];
@@ -113,7 +105,7 @@ in {
           border_size = 0;
         };
 
-        render = {
+        render = lib.mkIf cfg.disable-sync {
           explicit_sync = 0;
           explicit_sync_kms = 0;
         };
@@ -166,8 +158,20 @@ in {
         };
       };
 
-      # Nvidia
       extraConfig = ''
+      # Notification binds
+      bindr = $mod, N, submap, notifications
+      submap = notifications
+
+      bindr = $mod, C, exec, makoctl dismiss
+      bindr = $mod, A, exec, makoctl invoke
+      bindr = $mod, H, exec, makoctl restore
+
+      # Exit notification submap
+      bindr = $mod, N, submap, reset
+      submap = reset
+
+      # Nvidia
       env = LIBVA_DRIVER_NAME,nvidia
       env = XDG_SESSION_TYPE,wayland
       env = GBM_BACKEND,nvidia-drm

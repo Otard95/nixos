@@ -54,36 +54,70 @@
 
     pkgs-stable = nixpkgs-stable.legacyPackages.${system};
 
-    nixosConfigurations.terra = nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit pkgs pkgs-stable theme inputs;
-        meta = { hostname = "terra"; };
-      };
-      system = system;
-      modules = [
-        catppuccin.nixosModules.catppuccin
-        nixvim.nixosModules.nixvim
-        ./nixvim
-        ./modules
-        ./hosts/terra/configuration.nix
+    nixosConfigurations = {
+      terra = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit pkgs pkgs-stable theme inputs;
+          meta = { hostname = "terra"; };
+        };
+        system = system;
+        modules = [
+          catppuccin.nixosModules.catppuccin
+          nixvim.nixosModules.nixvim
+          ./nixvim
+          ./modules
+          ./hosts/terra/configuration.nix
 
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "bak";
-          home-manager.users.otard = {
-            imports = [
-              catppuccin.homeManagerModules.catppuccin
-              nixvim.homeManagerModules.nixvim
-              ./nixvim
-              ./home-manager-modules
-              ./hosts/terra/home.nix
-            ];
-          };
-          home-manager.extraSpecialArgs = { inherit theme inputs; };
-        }
-      ];
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "bak";
+            home-manager.users.otard = {
+              imports = [
+                catppuccin.homeManagerModules.catppuccin
+                nixvim.homeManagerModules.nixvim
+                ./nixvim
+                ./home-manager-modules
+                ./hosts/terra/home.nix
+              ];
+            };
+            home-manager.extraSpecialArgs = { inherit theme inputs; };
+          }
+        ];
+      };
+
+      phobos = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit pkgs pkgs-stable theme inputs;
+          meta = { hostname = "phobos"; };
+        };
+        system = system;
+        modules = [
+          catppuccin.nixosModules.catppuccin
+          nixvim.nixosModules.nixvim
+          ./nixvim
+          ./modules
+          ./hosts/phobos/configuration.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "bak";
+            home-manager.users.otard = {
+              imports = [
+                catppuccin.homeManagerModules.catppuccin
+                nixvim.homeManagerModules.nixvim
+                ./nixvim
+                ./home-manager-modules
+                ./hosts/phobos/home.nix
+              ];
+            };
+            home-manager.extraSpecialArgs = { inherit theme inputs; };
+          }
+        ];
+      };
     };
 
   };

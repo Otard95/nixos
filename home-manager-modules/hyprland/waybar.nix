@@ -27,7 +27,7 @@ in {
           "margin-right" = 15;
           "modules-left" = ["hyprland/workspaces" "hyprland/submap" "hyprland/window"];
           # "modules-center" = ["group/media"];
-          "modules-right" = [ "network" "pulseaudio" "group/keyoard" "group/hardware" "group/misc" "clock#time" "custom/logout_menu" ];
+          "modules-right" = [ "network" "pulseaudio" "group/keyoard" "battery" "group/hardware" "group/misc" "clock#time" "custom/logout_menu" ];
 
           # Modules Config
           "hyprland/workspaces" = {
@@ -51,9 +51,9 @@ in {
               "empty" = "";
             };
             "show-special" = true;
-            "persistent-workspaces" = {
-              "*" = 5;
-            };
+            # "persistent-workspaces" = {
+            #   "*" = 3;
+            # };
           };
 
           "hyprland/submap" = {
@@ -216,8 +216,8 @@ in {
             };
             "tooltip-format" = "{desc}";
             "format" = "{icon} {volume}% {format_source}";
-            "format-bluetooth" = "{icon} {volume}% {format_source}";
-            "format-bluetooth-muted" = "󰝟 {volume}% {format_source}";
+            "format-bluetooth" = " {icon} {volume}% {format_source}";
+            "format-bluetooth-muted" = " 󰝟 {volume}% {format_source}";
             "format-muted" = "󰝟 {volume}% {format_source}";
             "format-source" = "󰍬 {volume}%";
             "format-source-muted" = "󰍭 {volume}%";
@@ -260,6 +260,12 @@ in {
               "locked" = "󰌎";
               "unlocked" = " ";
             };
+          };
+
+          "battery" = {
+            "format" = "{icon} {capacity}%";
+            "format-charging" = "󱐋 {capacity}%";
+            "format-icons" = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
           };
 
           "group/hardware" = {
@@ -725,6 +731,15 @@ in {
         }
 
         #battery {
+          background-color: alpha(@surface1, 0.7);
+          border-radius: 15;
+          padding-left: 10;
+          padding-right: 10;
+          margin-left: 2;
+          margin-right: 2;
+          margin-top: 5;
+          margin-bottom: 5;
+
           color: @teal;
         }
 

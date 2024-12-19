@@ -13,6 +13,8 @@ in {
       enable = true;
 
       settings = {
+        completion.completeopt = "menu,menuone,noinsert";
+        preselect = nixvim.mkRaw "cmp.PreselectMode.None";
         mapping = {
           "<Tab>" = "cmp.mapping.confirm({ select = true })";
           "<C-Space>" = "cmp.mapping.complete()";

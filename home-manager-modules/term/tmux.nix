@@ -25,6 +25,20 @@ in {
     programs.tmux = { # TODO: port rest of old config, bar settings, etc.
       enable = true;
 
+      catppuccin = {
+        enable = true;
+        flavor = "frappe";
+        extraConfig = ''
+          set -g status-left ""
+          set -g @catppuccin_window_status_style "rounded"
+          # set -g @catppuccin_window_status_style "custom"
+          # set -g @catppuccin_window_left_separator "#[fg=#{@_ctp_status_bg},bg=#{@thm_bg}]#[bg=#{@_ctp_status_bg}]"
+          # set -g @catppuccin_window_right_separator "#[fg=#{@_ctp_status_bg,bg=#{@thm_bg}}] #[none]"
+          # set -g @catppuccin_window_middle_separator " "
+          # set -g @catppuccin_status_background "#{@thm_bg}"
+        '';
+      };
+
       aggressiveResize = true;
       baseIndex = 1;
       disableConfirmationPrompt = true;

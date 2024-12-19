@@ -10,6 +10,7 @@ in {
     ./hyprland.nix
     ./hyprpaper.nix
     ./hyprlock.nix
+    ./kanshi.nix
     ./swww.nix
     ./waybar.nix
   ];
@@ -19,6 +20,7 @@ in {
       wm.enable = lib.mkDefault true;
       hyprpaper.enable = lib.mkDefault true;
       hyprlock.enable = lib.mkDefault true;
+      kanshi.enable = lib.mkDefault true;
       # swww.enable = lib.mkDefault true;
       waybar.enable = lib.mkDefault true;
     };
