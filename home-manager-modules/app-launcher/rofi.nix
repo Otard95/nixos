@@ -48,7 +48,7 @@ in {
         display-run = "RUN";
         display-filebrowser = "FILES";
         display-window = "WINDOW";
-        drun-display-format = "{name}";
+        drun-display-format = "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
         window-format = "{w} · {c} · {t}";
       };
 
