@@ -157,10 +157,6 @@ in {
           kb_options = "grp:alt_space_toggle";
           repeat_rate = 45;
           repeat_delay = 180;
-
-          touchpad = {
-            scroll_factor = 0.5;
-          };
         };
       };
 
