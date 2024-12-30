@@ -41,7 +41,7 @@
     nixvim.enable = true;
     system = {
       fingerprint.enable = true;
-      battery_monitor.enable = true;
+      battery-monitor.enable = true;
     };
     packages = {
       docker.enable = true;

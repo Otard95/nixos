@@ -6,16 +6,16 @@
 # safer approach because the battery might not send discharging events.
 
 let
-  cfg = config.modules.system.battery_monitor;
+  cfg = config.modules.system.battery-monitor;
   enable = cfg.enable;
 in {
-  options.modules.system.battery_monitor = {
-    enable = lib.mkEnableOption "battery_monitor";
+  options.modules.system.battery-monitor = {
+    enable = lib.mkEnableOption "battery-monitor";
   };
 
   config = lib.mkIf enable {
     # Regularly check battery status
-    systemd.user.services.battery_monitor = {
+    systemd.user.services.battery-monitor = {
       wants = [ "display-manager.service" ];
       wantedBy = [ "graphical-session.target" ];
       script = ''
