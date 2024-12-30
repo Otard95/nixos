@@ -8,6 +8,7 @@ in {
 
   imports = [
     ./bash.nix
+    ./btop.nix
     ./fzf.nix
     ./git.nix
     ./kitty.nix
@@ -17,13 +18,16 @@ in {
   ];
 
   config = lib.mkIf enable {
-    modules.term.bash.enable = lib.mkDefault true;
-    modules.term.fzf.enable = lib.mkDefault true;
-    modules.term.git.enable = lib.mkDefault true;
-    modules.term.kitty.enable = lib.mkDefault true;
-    modules.term.starship.enable = lib.mkDefault true;
-    modules.term.tmux.enable = lib.mkDefault true;
-    modules.term.useful-commands.enable = lib.mkDefault true;
+    modules.term = {
+      bash.enable = lib.mkDefault true;
+      btop.enable = lib.mkDefault true;
+      fzf.enable = lib.mkDefault true;
+      git.enable = lib.mkDefault true;
+      kitty.enable = lib.mkDefault true;
+      starship.enable = lib.mkDefault true;
+      tmux.enable = lib.mkDefault true;
+      useful-commands.enable = lib.mkDefault true;
+    };
   };
 
 }
