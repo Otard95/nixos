@@ -9,6 +9,7 @@ in {
   imports = [
     ./bash.nix
     ./btop.nix
+    ./fastfetch.nix
     ./fzf.nix
     ./git.nix
     ./kitty.nix
@@ -21,6 +22,7 @@ in {
     modules.term = {
       bash.enable = lib.mkDefault true;
       btop.enable = lib.mkDefault true;
+      fastfetch.enable = lib.mkDefault true;
       fzf.enable = lib.mkDefault true;
       git.enable = lib.mkDefault true;
       kitty.enable = lib.mkDefault true;
