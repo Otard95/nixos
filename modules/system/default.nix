@@ -7,6 +7,7 @@ in {
   options.modules.system.enable = lib.mkEnableOption "system modules";
 
   imports = [
+    ./battery_monitor.nix
     ./bluetooth.nix
     ./fingerprint.nix
     ./fonts.nix
