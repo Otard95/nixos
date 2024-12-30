@@ -17,6 +17,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    quickemu = {
+      url = "github:quickemu-project/quickemu";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+
     catppuccin.url = "github:catppuccin/nix";
 
     zen-browser.url = "github:omarcresp/zen-browser-flake";

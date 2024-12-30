@@ -9,6 +9,7 @@ in {
   imports = [
     ./btop.nix
     ./notification.nix
+    ./quickemu.nix
     ./docker.nix
     ./apps
   ];
@@ -36,6 +37,7 @@ in {
 
     modules.packages = {
       btop.enable = lib.mkDefault true;
+      quickemu.enable = lib.mkDefault true;
     };
   };
 }
