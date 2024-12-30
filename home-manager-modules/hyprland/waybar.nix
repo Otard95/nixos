@@ -541,7 +541,7 @@ in {
         }
 
         #pulseaudio.bluetooth {
-          color: @sapphire;
+          color: @teal;
         }
 
         #pulseaudio.muted {
@@ -613,23 +613,23 @@ in {
         }
 
         #cpu {
-          color: @sapphire;
+          color: @teal;
         }
 
         #cpu.low {
-          color: @rosewater;
+          color: @blue;
         }
 
         #cpu.lower-medium {
-          color: @yellow;
+          color: @rosewater;
         }
 
         #cpu.medium {
-          color: @peach;
+          color: @yellow;
         }
 
         #cpu.upper-medium {
-          color: @maroon;
+          color: @peach;
         }
 
         #cpu.high {
@@ -637,23 +637,23 @@ in {
         }
 
         #memory {
-          color: @sapphire;
+          color: @teal;
         }
 
         #memory.low {
-          color: @rosewater;
+          color: @blue;
         }
 
         #memory.lower-medium {
-          color: @yellow;
+          color: @rosewater;
         }
 
         #memory.medium {
-          color: @peach;
+          color: @yellow;
         }
 
         #memory.upper-medium {
-          color: @maroon;
+          color: @peach;
         }
 
         #memory.high {
@@ -661,23 +661,23 @@ in {
         }
 
         #disk {
-          color: @sapphire;
+          color: @teal;
         }
 
         #disk.low {
-          color: @rosewater;
+          color: @blue;
         }
 
         #disk.lower-medium {
-          color: @yellow;
+          color: @rosewater;
         }
 
         #disk.medium {
-          color: @peach;
+          color: @yellow;
         }
 
         #disk.upper-medium {
-          color: @maroon;
+          color: @peach;
         }
 
         #disk.high {
