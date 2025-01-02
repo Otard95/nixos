@@ -73,11 +73,12 @@ in {
                 "+"
                 "require('telescope.actions').open_qflist"
               ]);
-            "<C-o>" = nixvim.mkRaw (lib.concatStrings [
+              "<C-o>" = nixvim.mkRaw (lib.concatStrings [
                 "require('telescope.actions').send_to_qflist"
                 "+"
                 "require('telescope.actions').open_qflist"
               ]);
+              "dd" = nixvim.mkRaw "require('telescope.actions').delete_buffer";
             };
             i = {
               "<C-o>" = nixvim.mkRaw (lib.concatStrings [
