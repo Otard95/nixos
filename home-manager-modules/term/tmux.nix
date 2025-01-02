@@ -13,8 +13,14 @@ in {
 
     home.file.".local/bin/t".source =
       "${pkgs.tmuxPlugins.t-smart-tmux-session-manager}/share/tmux-plugins/t-smart-tmux-session-manager/bin/t";
-    programs.bash.shellAliases = {
-      t = "~/.local/bin/t";
+    programs.bash = {
+      shellAliases = {
+        t = "~/.local/bin/t";
+      };
+      bashrcExtra = ''
+        tx() { tmux new-session -s $1 $1; }
+        export -f tx
+      '';
     };
 
     programs.tmux = {
