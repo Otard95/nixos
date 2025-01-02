@@ -31,5 +31,7 @@
     };
   };
 
+  modules.hyprland.wm.disable-sync = true;
+
   # home.packages = with pkgs; [ ];
 }
