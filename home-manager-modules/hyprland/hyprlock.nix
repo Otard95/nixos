@@ -1,4 +1,4 @@
-{ config, lib, theme, ... }:
+{ config, lib, theme, sources, ... }:
 let
   cfg = config.modules.hyprland.hyprlock;
   enable = cfg.enable;
@@ -13,7 +13,8 @@ in {
       settings = {
         background = [
           {
-            path = "~/.config/hypr/background-images/falling_into_infinity.png";
+            # TODO: Make this an option
+            path = "${sources.images.background.falling-into-infinity}";
             blur_passes = 3;
             blur_size = 8;
           }

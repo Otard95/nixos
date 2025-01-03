@@ -1,4 +1,4 @@
-{ config, lib, pkgs, theme, ... }:
+{ config, lib, pkgs, theme, sources, ... }:
 let
   cfg = config.modules.app-launcher.rofi;
   enable = cfg.enable;
@@ -9,8 +9,8 @@ in {
     splash-image = {
       path = lib.mkOption {
         description = "The splash-image to use";
-        default = "./splash-images/spacegirl.jpg";
-        type = lib.types.singleLineStr;
+        default = sources.images.splash.spacegirl;
+        type = lib.types.path;
       };
       scale = lib.mkOption {
         description = "The scaling logic for the image, where scale is: none, both, width, height";
@@ -26,12 +26,6 @@ in {
   };
 
   config = lib.mkIf enable {
-    xdg.configFile."rofi/splash-images".source = ./splash-images;
-
-    home.packages = with pkgs; [
-      rofi-wayland
-    ];
-
     programs.rofi = {
       enable = true;
       catppuccin.enable = false;
@@ -125,13 +119,7 @@ in {
         imagebox = {
           padding = mkLiteral "20px";
           background-color = mkLiteral "transparent";
-          background-image = mkLiteral (lib.strings.concatStrings [
-            ''url("''
-            cfg.splash-image.path
-            ''", ''
-            cfg.splash-image.scale
-            '')''
-          ]);
+          background-image = mkLiteral ''url("${cfg.splash-image.path}", ${cfg.splash-image.scale})'';
           orientation = mkLiteral "vertical";
           children = mkLiteral ''[ "inputbar", "dummy", "mode-switcher" ]'';
         };

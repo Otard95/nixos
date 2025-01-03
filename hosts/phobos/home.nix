@@ -1,4 +1,4 @@
-{ theme, ...}:
+{ theme, sources, ...}:
 {
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -32,9 +32,9 @@
   };
 
   modules = {
-    hyprland.hyprpaper.bg-image = "~/.config/hypr/background-images/forrest-lake-train.png";
-    app-launcher.rofi.splash-image.path = "./splash-images/bridge-forrest-fog.jpg";
-    power-menu.rofi.splash-image.path = ../../home-manager-modules/power-menu/splash-images/bridge-forrest-fog.jpg;
+    hyprland.hyprpaper.bg-image = sources.images.background.forrest-lake-train;
+    app-launcher.rofi.splash-image.path = sources.images.splash.bridge-forrest-fog;
+    power-menu.rofi.splash-image.path = sources.images.splash.bridge-forrest-fog;
     term.git.user = {
       name = "Stian Myklebostad";
       email = "stian.myklebostad@schibsted.com";

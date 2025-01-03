@@ -56,9 +56,9 @@
         icons = "Symbols Nerd Font";
       };
     };
-  in {
 
-    pkgs-stable = nixpkgs-stable.legacyPackages.${system};
+    sources = import ./sources;
+  in {
 
     nixosConfigurations = {
       terra = nixpkgs.lib.nixosSystem {
@@ -79,6 +79,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "bak";
+            home-manager.extraSpecialArgs = { inherit theme inputs sources; };
             home-manager.users.otard = {
               imports = [
                 catppuccin.homeManagerModules.catppuccin
@@ -88,7 +89,6 @@
                 ./hosts/terra/home.nix
               ];
             };
-            home-manager.extraSpecialArgs = { inherit theme inputs; };
           }
         ];
       };
@@ -111,6 +111,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "bak";
+            home-manager.extraSpecialArgs = { inherit theme inputs sources; };
             home-manager.users.otard = {
               imports = [
                 catppuccin.homeManagerModules.catppuccin
@@ -120,7 +121,6 @@
                 ./hosts/phobos/home.nix
               ];
             };
-            home-manager.extraSpecialArgs = { inherit theme inputs; };
           }
         ];
       };

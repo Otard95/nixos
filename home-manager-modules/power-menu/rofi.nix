@@ -1,4 +1,4 @@
-{ config, lib, pkgs, theme, ... }:
+{ config, lib, pkgs, theme, sources, ... }:
 let
   cfg = config.modules.power-menu.rofi;
   enable = cfg.enable;
@@ -9,7 +9,7 @@ in {
     splash-image = {
       path = lib.mkOption {
         description = "The splash-image to use";
-        default = ./splash-images/lynnette_space_suit_20240205_04_by_kai_artworks_dgu3229-pre.jpg;
+        default = sources.images.splash.lynnette-space-suit;
         type = lib.types.path;
       };
       scale = lib.mkOption {
