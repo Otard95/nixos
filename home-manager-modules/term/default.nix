@@ -16,6 +16,7 @@ in {
     ./starship.nix
     ./tmux.nix
     ./useful-commands.nix
+    ./zoxide.nix
   ];
 
   config = lib.mkIf enable {

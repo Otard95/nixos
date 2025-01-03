@@ -7,9 +7,8 @@ in {
   options.modules.term.tmux.enable = lib.mkEnableOption "tmux configuration";
 
   config = lib.mkIf enable {
-    home.packages = with pkgs; [
-      tmux
-    ];
+
+    modules.term.zoxide.enable = lib.mkDefault true;
 
     home.file.".local/bin/t".source =
       "${pkgs.tmuxPlugins.t-smart-tmux-session-manager}/share/tmux-plugins/t-smart-tmux-session-manager/bin/t";
@@ -106,6 +105,7 @@ in {
         set -g @t-fzf-prompt '  '
         set -g @t-bind "j"
     '';
+
   };
 
 }

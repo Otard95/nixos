@@ -40,7 +40,11 @@ in {
         st = ''status'';
         br = ''branch'';
         hist = ''log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short'';
-        sta = ''"git subtree add --prefix ../$1 $1 #"'';
+        sta = lib.concatStrings (
+          [ "!git branch $1 ; git subtree add --prefix ../$1 $1" ]
+          ++ lib.optional config.modules.term.zoxide.enable " && zoxide add ../$1"
+          ++ [ " #" ]
+        );
         stu = ''subtree pull --prefix'';
         stp = ''subtree push --prefix'';
       };
