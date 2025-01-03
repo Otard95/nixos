@@ -87,7 +87,9 @@ in {
 
         windowrulev2 = [
           "float, class:(Rofi)"
-          "float, initialTitle:(^File Operation Progress$)"
+          "float,        initialTitle:(^Picture-in-Picture$)"
+          "size 500 200, initialTitle:(^Picture-in-Picture$)"
+          "float,        initialTitle:(^File Operation Progress$)"
           "size 500 200, initialTitle:(^File Operation Progress$)"
           "stayfocused, class:(Rofi)"
           "opacity 0.95,class:(zen-alpha)"
