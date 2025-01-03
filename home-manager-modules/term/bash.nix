@@ -13,12 +13,23 @@ in {
       shellAliases = {
         ll = "ls -lah";
         ".." = "cd ..";
+        vi = "nvim";
       };
 
       historyControl = [
-        "erasedups"
-        "ignoredups"
+        "ignoreboth"
       ];
+
+      bashrcExtra = ''
+        # Secrets
+        if [ -d ~/.secret ]; then
+          for file in $(ls -a ~/.secret); do
+            if [[ -f ~/.secret/$file ]] && [[ -n "''${file##*ignore*}" ]]; then
+              source ~/.secret/$file
+            fi
+          done
+        fi
+      '';
     };
   };
 
