@@ -31,7 +31,10 @@
     };
   };
 
-  modules.hyprland.wm.disable-sync = true;
+  modules = {
+    hyprland.wm.disable-sync = true;
+    nixvim.enable = true;
+  };
 
   # home.packages = with pkgs; [ ];
 }

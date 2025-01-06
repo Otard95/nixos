@@ -39,6 +39,10 @@
       name = "Stian Myklebostad";
       email = "stian.myklebostad@schibsted.com";
     };
+    nixvim = {
+      enable = true;
+      plugins.preset = "all";
+    };
   };
 
   # home.packages = with pkgs; [ ];
