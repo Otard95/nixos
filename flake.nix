@@ -92,7 +92,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "bak";
-            home-manager.extraSpecialArgs = { inherit theme inputs sources; };
+            home-manager.extraSpecialArgs = { inherit pkgs pkgs-stable theme inputs sources; };
             home-manager.users.otard = {
               imports = [
                 catppuccin.homeManagerModules.catppuccin
@@ -124,7 +124,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "bak";
-            home-manager.extraSpecialArgs = { inherit theme inputs sources; };
+            home-manager.extraSpecialArgs = { inherit pkgs pkgs-stable theme inputs sources; };
             home-manager.users.otard = {
               imports = [
                 catppuccin.homeManagerModules.catppuccin
