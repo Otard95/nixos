@@ -7,6 +7,10 @@ in {
     lib.mkEnableOption "appgate";
 
   config = lib.mkIf enable {
+
     programs.appgate-sdp.enable = true;
+
+    modules.packages.apps.kwallet.enable = lib.mkDefault true;
+
   };
 }

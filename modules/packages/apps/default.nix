@@ -20,6 +20,7 @@ in {
     ./grimblast.nix
     ./kanshi.nix
     ./kdeconnect.nix
+    ./kwallet.nix
     ./loupe.nix
     ./matrix.nix
     ./mpv.nix
