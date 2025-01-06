@@ -12,6 +12,7 @@ in {
     ./fastfetch.nix
     ./fzf.nix
     ./git.nix
+    ./k9s.nix
     ./kitty.nix
     ./starship.nix
     ./tmux.nix

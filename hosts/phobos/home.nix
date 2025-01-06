@@ -35,9 +35,12 @@
     hyprland.hyprpaper.bg-image = sources.images.background.forrest-lake-train;
     app-launcher.rofi.splash-image.path = sources.images.splash.bridge-forrest-fog;
     power-menu.rofi.splash-image.path = sources.images.splash.bridge-forrest-fog;
-    term.git.user = {
-      name = "Stian Myklebostad";
-      email = "stian.myklebostad@schibsted.com";
+    term = {
+      git.user = {
+        name = "Stian Myklebostad";
+        email = "stian.myklebostad@schibsted.com";
+      };
+      k9s.enable = true;
     };
     nixvim = {
       enable = true;
