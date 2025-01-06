@@ -1,4 +1,4 @@
-{ config, lib, pkgs, theme, ... }:
+{ config, lib, theme, ... }:
 let
   cfg = config.modules.term.kitty;
   enable = cfg.enable;
@@ -7,9 +7,6 @@ in {
   options.modules.term.kitty.enable = lib.mkEnableOption "kitty configuration";
 
   config = lib.mkIf enable {
-    home.packages = with pkgs; [
-      kitty
-    ];
 
     programs.kitty = {
       enable = true;
@@ -80,6 +77,7 @@ in {
         "kitty_mod+p>y" = "no_op";
       };
     };
+
   };
 
 }
