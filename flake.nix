@@ -34,6 +34,19 @@
 
     pkgs = import nixpkgs {
       inherit system;
+      overlays = [
+        (final: prev: {
+          appgate-sdp = prev.appgate-sdp.overrideAttrs (_: {
+            pname = "appgate-sdp";
+            version = "6.3.0";
+
+            src = pkgs.fetchurl {
+              url = "https://bin.appgate-sdp.com/6.3/client/appgate-sdp_6.3.0_amd64.deb";
+              sha256 = "sha256-573uHhY0Rh1waWfiXH1KDLdpYxMthjjAE/+70Hw4OuM=";
+            };
+          });
+        })
+      ];
       config = {
         allowUnfree = true;
       };
