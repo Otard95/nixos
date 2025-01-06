@@ -88,7 +88,7 @@ in {
         windowrulev2 = [
           "float, class:(Rofi)"
           "float,        initialTitle:(^Picture-in-Picture$)"
-          "size 500 200, initialTitle:(^Picture-in-Picture$)"
+          "size 944 530, initialTitle:(^Picture-in-Picture$)"
           "float,        initialTitle:(^File Operation Progress$)"
           "size 500 200, initialTitle:(^File Operation Progress$)"
           "stayfocused, class:(Rofi)"
@@ -99,6 +99,7 @@ in {
           # https://gist.github.com/brunoanc/2dea6ddf6974ba4e5d26c3139ffb7580#editing-the-configuration-file
           "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           "hyprpaper"
+          "kanshi"
           "[workspace 1 silent] zen"
           "[workspace 2 silent] kitty"
         ];
