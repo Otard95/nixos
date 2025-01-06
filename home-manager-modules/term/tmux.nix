@@ -63,6 +63,8 @@ in {
       ];
 
       extraConfig = ''
+        set-option -g detach-on-destroy off
+
         set -g status-position top
 
         # keybindings
