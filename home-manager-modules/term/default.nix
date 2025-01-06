@@ -7,6 +7,7 @@ in {
   options.modules.term.enable = lib.mkEnableOption "terminal configuration";
 
   imports = [
+    ./aws.nix
     ./bash.nix
     ./btop.nix
     ./fastfetch.nix

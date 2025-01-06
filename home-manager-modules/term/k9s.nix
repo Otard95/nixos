@@ -7,6 +7,9 @@ in {
     lib.mkEnableOption "k9s";
 
   config = lib.mkIf enable {
+
+    modules.term.aws.enable = lib.mkDefault true;
+
     programs.k9s = {
       enable = true;
 
@@ -16,5 +19,6 @@ in {
         transparent = true;
       };
     };
+
   };
 }
