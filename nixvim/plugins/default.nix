@@ -21,6 +21,7 @@ in {
     ./cloak.nix
     ./cmp.nix
     ./colorize.nix
+    ./dadbod.nix
     ./dap.nix
     ./fidget.nix
     ./git.nix
@@ -38,7 +39,6 @@ in {
     ./treesitter.nix
     ./trouble.nix
     ./undotree.nix
-    # TODO: dadbod
     # TODO: obsidian - work only?
     # TODO: linediff
   ];
@@ -82,6 +82,7 @@ in {
         trouble.enable = lib.mkDefault true;
       })
       (lib.mkIf (presetInt > 2) {
+        dadbod.enable = lib.mkDefault true;
         dap.enable = lib.mkDefault true;
         rest.enable = lib.mkDefault true;
       })
