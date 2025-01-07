@@ -18,7 +18,6 @@ in {
     ./flameshot.nix
     ./games.nix
     ./grimblast.nix
-    ./kanshi.nix
     ./kdeconnect.nix
     ./kwallet.nix
     ./loupe.nix
@@ -39,7 +38,6 @@ in {
       blueman.enable = lib.mkDefault config.modules.system.bluetooth.enable;
       flameshot.enable = lib.mkDefault (!config.modules.desktopEnvironment.hyprland.enable);
       grimblast.enable = lib.mkDefault config.modules.desktopEnvironment.hyprland.enable;
-      kanshi.enable = lib.mkDefault config.modules.desktopEnvironment.hyprland.enable;
       loupe.enable = lib.mkDefault true;
       mpv.enable = lib.mkDefault true;
       pavucontrol.enable = lib.mkDefault true;
