@@ -21,6 +21,8 @@ in {
       ];
 
       bashrcExtra = ''
+        set -o vi
+
         # Secrets
         if [ -d ~/.secret ]; then
           for file in $(ls -a ~/.secret); do
