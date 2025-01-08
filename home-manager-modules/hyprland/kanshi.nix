@@ -16,10 +16,7 @@ in {
         {
           profile = {
             name = "undocked";
-            exec = [
-              "${./scripts/kanshi-undocked.sh}"
-              "pkill hyprpaper ; sleep 0.5 && hyprpaper &"
-            ];
+            exec = [ "${./scripts/kanshi-undocked.sh}" ];
             outputs = [
               { criteria = "eDP-1"; mode = "2560x1600"; scale = 1.0; }
             ];
@@ -28,10 +25,7 @@ in {
         {
           profile = {
             name = "docked";
-            exec = [
-              "${./scripts/kanshi-docked.sh}"
-              "pkill hyprpaper ; sleep 0.5 && hyprpaper &"
-            ];
+            exec = [ "${./scripts/kanshi-docked.sh}" ];
             outputs = [
               { criteria = "eDP-1"; mode = "2560x1600"; position = "4000,1920"; scale = 1.0; }
               { criteria = "DP-3"; mode = "2560x1440"; position = "4000,480"; }
