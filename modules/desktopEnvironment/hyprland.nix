@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.modules.desktopEnvironment.hyprland;
   enable = cfg.enable;
@@ -9,6 +9,7 @@ in {
   };
 
   config = lib.mkIf enable {
+
     programs = {
       hyprland = {
         enable = true;
@@ -16,17 +17,20 @@ in {
       };
       hyprlock.enable = true;
     };
+
     environment.sessionVariables = {
       # If cursor becomes invisible
       # WLR_NO_HARDWARE_CURSORS = "1";
       # Hint electron apps to use wayland
       NIXOS_OZONE_WL = "1";
     };
+
     # TODO: Move to own module???
     security = {
       rtkit.enable = true;
       polkit.enable = true;
     };
+
     # TODO: Move to home??? Or own module???
     xdg.portal = {
       enable = true;
@@ -36,7 +40,24 @@ in {
         hyprland.default = ["hyprland"];
       };
     };
+
     # TODO: Make option in sound module?
     services.pipewire.wireplumber.enable = true;
+
+    systemd.user.services.hyprpolkitagent = {
+      description = "hyprpolkitagent";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+
   };
+
 }
