@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.11";
+    # nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.05";
 
     # Home Manager
     home-manager = {
@@ -22,28 +22,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-
     catppuccin.url = "github:catppuccin/nix";
 
     zen-browser.url = "github:omarcresp/zen-browser-flake";
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, home-manager, nixvim, catppuccin, ... } @ inputs:
+  outputs = { nixpkgs, home-manager, nixvim, catppuccin, ... } @ inputs:
   let
     system = "x86_64-linux";
-
-    pkgs = import nixpkgs {
-      inherit system;
-      config = {
-        allowUnfree = true;
-      };
-    };
-    pkgs-stable = import nixpkgs-stable {
-      inherit system;
-      config = {
-        allowUnfree = true;
-      };
-    };
 
     theme = {
       flavor = "frappe";
@@ -63,7 +49,7 @@
     nixosConfigurations = {
       terra = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit pkgs pkgs-stable theme inputs;
+          inherit theme inputs;
           meta = { hostname = "terra"; };
         };
         system = system;
@@ -79,7 +65,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "bak";
-            home-manager.extraSpecialArgs = { inherit pkgs pkgs-stable theme inputs sources; };
+            home-manager.extraSpecialArgs = { inherit theme inputs sources; };
             home-manager.users.otard = {
               imports = [
                 catppuccin.homeManagerModules.catppuccin
@@ -95,7 +81,7 @@
 
       phobos = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit pkgs pkgs-stable theme inputs;
+          inherit theme inputs;
           meta = { hostname = "phobos"; };
         };
         system = system;
@@ -111,7 +97,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "bak";
-            home-manager.extraSpecialArgs = { inherit pkgs pkgs-stable theme inputs sources; };
+            home-manager.extraSpecialArgs = { inherit theme inputs sources; };
             home-manager.users.otard = {
               imports = [
                 catppuccin.homeManagerModules.catppuccin

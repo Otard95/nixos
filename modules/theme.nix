@@ -4,9 +4,9 @@
   nixpkgs.config.packageOverrides = pkgs: {
     colloid-icon-theme = pkgs.colloid-icon-theme.override { colorVariants = [ theme.accent ]; };
     catppuccin-gtk = pkgs.catppuccin-gtk.override {
-      accents = [ theme.flavor ]; # You can specify multiple accents here to output multiple themes 
-      variant = theme.accent;
       size = theme.size;
+      variant = theme.flavor;
+      accents = [ theme.accent ]; # You can specify multiple accents here to output multiple themes 
     };
   };
 

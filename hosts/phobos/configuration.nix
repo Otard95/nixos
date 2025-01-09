@@ -28,6 +28,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.otard = {
     isNormalUser = true;
