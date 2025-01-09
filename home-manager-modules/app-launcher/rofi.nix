@@ -26,9 +26,11 @@ in {
   };
 
   config = lib.mkIf enable {
+
+    catppuccin.rofi.enable = false;
+
     programs.rofi = {
       enable = true;
-      catppuccin.enable = false;
 
       package = pkgs.rofi-wayland;
 

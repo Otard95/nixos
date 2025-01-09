@@ -1,9 +1,5 @@
 { pkgs, theme, ... }:
 {
-  # Enable Theme
-  # environment.variables.GTK_THEME = "catppuccin-${theme.flavor}-${theme.accent}-${theme.size}";
-  console.catppuccin.enable = true;
-
   # Override packages
   nixpkgs.config.packageOverrides = pkgs: {
     colloid-icon-theme = pkgs.colloid-icon-theme.override { colorVariants = [ theme.accent ]; };
@@ -18,6 +14,8 @@
     enable = true;
     flavor = theme.flavor;
     accent = theme.accent;
+
+    tty.enable = true;
   };
 
   environment.systemPackages = with pkgs; [

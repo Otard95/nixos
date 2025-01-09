@@ -11,13 +11,15 @@ in {
       fzf
     ];
 
+    catppuccin.fzf = {
+      enable = true;
+      flavor = theme.flavor;
+      accent = theme.accent;
+    };
+
     programs.fzf = {
       enable = true;
       tmux.enableShellIntegration = true;
-
-      catppuccin.enable = true;
-      catppuccin.flavor = theme.flavor;
-      catppuccin.accent = theme.accent;
     };
   };
 

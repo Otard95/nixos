@@ -10,15 +10,13 @@ in {
 
     modules.term.aws.enable = lib.mkDefault true;
 
-    programs.k9s = {
+    catppuccin.k9s = {
       enable = true;
-
-      catppuccin = {
-        enable = true;
-        flavor = theme.flavor;
-        transparent = true;
-      };
+      flavor = theme.flavor;
+      transparent = true;
     };
+
+    programs.k9s.enable = true;
 
   };
 }

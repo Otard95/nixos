@@ -7,11 +7,15 @@ in {
   options.modules.mako.enable = lib.mkEnableOption "mako";
 
   config = lib.mkIf enable {
+
+    catppuccin.mako = {
+      enable = true;
+      flavor = theme.flavor;
+      accent = theme.accent;
+    };
+
     services.mako = {
       enable = true;
-      catppuccin.enable = true;
-      catppuccin.flavor = theme.flavor;
-      catppuccin.accent = theme.accent;
 
       width = 400;
       borderSize = 2;
@@ -27,5 +31,7 @@ in {
         invisible=1
       '';
     };
+
   };
+
 }

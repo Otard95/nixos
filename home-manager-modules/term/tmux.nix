@@ -22,13 +22,10 @@ in {
       '';
     };
 
-    programs.tmux = {
+    catppuccin.tmux = {
       enable = true;
-
-      catppuccin = {
-        enable = true;
-        flavor = "frappe";
-        extraConfig = ''
+      flavor = "frappe";
+      extraConfig = ''
           set -g @catppuccin_window_status_style "rounded"
           # set -g @catppuccin_window_status_style "custom"
           # set -g @catppuccin_window_left_separator ""
@@ -42,8 +39,11 @@ in {
 
           set -g status-right ""
           set -ag status-right "#{E:@catppuccin_status_session}"
-        '';
-      };
+      '';
+    };
+
+    programs.tmux = {
+      enable = true;
 
       aggressiveResize = true;
       baseIndex = 1;

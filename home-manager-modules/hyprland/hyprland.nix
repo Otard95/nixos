@@ -18,9 +18,10 @@ in {
       hyprcursor
     ];
 
+    catppuccin.hyprland.enable = true;
+
     wayland.windowManager.hyprland = {
       enable = true;
-      catppuccin.enable = true;
 
       settings = {
         "$mod" = "SUPER";

@@ -11,9 +11,10 @@ in {
       starship
     ];
 
+    catppuccin.starship.enable = true;
+
     programs.starship = {
       enable = true;
-      catppuccin.enable = true;
 
       settings = {
         format = lib.concatStrings [

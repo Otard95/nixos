@@ -19,7 +19,7 @@
   catppuccin = {
     enable = true;
     inherit (theme) flavor accent;
-    pointerCursor.enable = true;
+    cursors.enable = true;
   };
 
   fonts.fontconfig = {

@@ -11,14 +11,14 @@ in {
       btop
     ];
 
+    catppuccin.btop = {
+      enable = true;
+      flavor = theme.flavor;
+    };
+
     programs.btop = {
 
       enable = true;
-
-      catppuccin = {
-        enable = true;
-        flavor = theme.flavor;
-      };
 
       settings = {
         vim_keys = true;
