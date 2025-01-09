@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.modules.nixvim.plugins.rest;
   enable = cfg.enable;
@@ -9,7 +9,11 @@ in {
     lib.mkEnableOption "rest plugin";
 
   config = lib.mkIf enable {
+
     programs.nixvim = {
+
+      extraPackages = with pkgs; [ jq ];
+
       autoCmd = [
         {
           event = "FileType";
@@ -31,6 +35,8 @@ in {
         enable = true;
         enableTelescope = true;
       };
+
     };
+
   };
 }
