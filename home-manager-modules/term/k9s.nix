@@ -1,4 +1,4 @@
-{ config, lib, theme, ... }:
+{ config, lib, pkgs, theme, ... }:
 let
   cfg = config.modules.term.k9s;
   enable = cfg.enable;
@@ -17,6 +17,8 @@ in {
     };
 
     programs.k9s.enable = true;
+
+    home.packages = with pkgs; [ aws-mfa ];
 
   };
 }
