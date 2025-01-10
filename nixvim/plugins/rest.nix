@@ -29,6 +29,13 @@ in {
             end
           '';
         }
+        {
+          event = "FileType";
+          pattern = [ "json" ];
+          callback = nixvim.mkRaw ''
+            function(ev) vim.bo.formatprg = "jq" end
+          '';
+        }
       ];
 
       plugins.rest = {
