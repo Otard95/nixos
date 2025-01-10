@@ -27,6 +27,7 @@ in {
           "<leader>vca" = "code_action";
           "<leader>vrr" = "references";
           "<leader>vrn" = "rename";
+          "<C-f>" = "format";
         };
         keymaps.extra = [
           { key = "<C-h>"; action = nixvim.mkRaw "vim.lsp.buf.signature_help"; mode = "i"; }
