@@ -1,4 +1,4 @@
-{ theme, sources, ...}:
+{ lib, theme, sources, ...}:
 {
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -21,6 +21,13 @@
     inherit (theme) flavor accent;
     cursors.enable = true;
   };
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    hyprcursor.enable = true;
+    size = 16;
+  };
+  home.sessionVariables.HYPRCURSOR_SIZE = lib.mkForce 24;
 
   fonts.fontconfig = {
     enable = true;

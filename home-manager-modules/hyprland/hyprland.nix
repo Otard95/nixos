@@ -83,7 +83,6 @@ in {
 
         env = [
           "SLURP_ARGS, -d -b 16897a44 -c 04d6c8 -B 0e999e22"
-          "HYPRCURSOR_SIZE,16"
         ];
 
         windowrulev2 = [
