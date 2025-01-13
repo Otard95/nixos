@@ -415,22 +415,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1734649271,
-        "narHash": "sha256-4EVBRhOjMDuGtMaofAIqzJbg4Ql7Ai0PSeuVZTHjyKQ=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixvim": {
       "inputs": {
         "devshell": "devshell",
@@ -589,18 +573,20 @@
     },
     "zen-browser": {
       "inputs": {
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1736220319,
-        "narHash": "sha256-Ijr+g72NUJC3Ie2ShHl30ikEDRlTFlwxDcWck2cpafY=",
-        "owner": "omarcresp",
+        "lastModified": 1736741158,
+        "narHash": "sha256-xppWQ/mW1Fq9EfqfWZh/jFenKfIxJCNzFECDD6qu3Fg=",
+        "owner": "youwen5",
         "repo": "zen-browser-flake",
-        "rev": "a3b267de620c393d66959bce6657dd5f884e47de",
+        "rev": "b93c577a65e434054f40647f5b1abe5d9e84cc7b",
         "type": "github"
       },
       "original": {
-        "owner": "omarcresp",
+        "owner": "youwen5",
         "repo": "zen-browser-flake",
         "type": "github"
       }
