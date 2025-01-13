@@ -27,7 +27,6 @@ in {
     modules.term = {
       bash.enable = lib.mkDefault true;
       btop.enable = lib.mkDefault true;
-      direnv.enable = lib.mkDefault true;
       fastfetch.enable = lib.mkDefault true;
       fzf.enable = lib.mkDefault true;
       git.enable = lib.mkDefault true;
