@@ -18,7 +18,7 @@ in {
     };
     displayLocale = lib.mkOption {
       description = "The displayLocale overrides the default locale for things like numeric values, time and date, monetary values, etc.";
-      default = "nb_NO.UTF-8";
+      default = "en_US.UTF-8";
       type = lib.types.singleLineStr;
     };
   };

@@ -31,6 +31,7 @@ in {
     ./luasnip.nix
     ./markdown.nix
     ./nvim-tree.nix
+    ./obsidian.nix
     ./oil.nix
     ./rest.nix
     ./telescope.nix
@@ -85,6 +86,7 @@ in {
         dadbod.enable = lib.mkDefault true;
         dap.enable = lib.mkDefault true;
         rest.enable = lib.mkDefault true;
+        obsidian.enable = lib.mkDefault true;
       })
     ];
   };
