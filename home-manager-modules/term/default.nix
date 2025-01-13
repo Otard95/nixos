@@ -13,6 +13,7 @@ in {
     ./direnv.nix
     ./fastfetch.nix
     ./fzf.nix
+    ./gh.nix
     ./git.nix
     ./k9s.nix
     ./kitty.nix

@@ -44,6 +44,7 @@
     power-menu.rofi.splash-image.path = sources.images.splash.bridge-forrest-fog;
     term = {
       direnv.enable = true;
+      gh.enable = true;
       git.user = {
         name = "Stian Myklebostad";
         email = "stian.myklebostad@schibsted.com";
