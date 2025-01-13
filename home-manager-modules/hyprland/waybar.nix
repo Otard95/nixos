@@ -104,10 +104,14 @@ in {
           };
 
           "clock#time" = {
+            "locale" = "nb_NO.utf8";
             "format" = "{:%H:%M}";
             "tooltip-format" = "<tt><small>{calendar}</small></tt>";
             "actions" = {
-              "on-click-right" = "mode";
+              "on-click-right"  = "mode";
+              "on-scroll-up"    = "shift_up";
+              "on-scroll-down"  = "shift_down";
+              "on-click-middle" = "shift_reset";
             };
             "calendar" = {
               "mode"           = "month";

@@ -28,18 +28,27 @@ in {
     time.timeZone = cfg.timeZone;
 
     # Select internationalisation properties.
-    i18n.defaultLocale = cfg.defaultLocale;
+    i18n = {
+      supportedLocales = [
+        "C.UTF-8/UTF-8"
+        "en_US.UTF-8/UTF-8"
+        "nb_NO.UTF-8/UTF-8"
+      ];
+      defaultLocale = cfg.defaultLocale;
 
-    i18n.extraLocaleSettings = {
-      LC_ADDRESS = cfg.displayLocale;
-      LC_IDENTIFICATION = cfg.displayLocale;
-      LC_MEASUREMENT = cfg.displayLocale;
-      LC_MONETARY = cfg.displayLocale;
-      LC_NAME = cfg.displayLocale;
-      LC_NUMERIC = cfg.displayLocale;
-      LC_PAPER = cfg.displayLocale;
-      LC_TELEPHONE = cfg.displayLocale;
-      LC_TIME = cfg.displayLocale;
+      extraLocaleSettings = {
+        LC_ADDRESS = cfg.displayLocale;
+        LC_IDENTIFICATION = cfg.displayLocale;
+        LC_MEASUREMENT = cfg.displayLocale;
+        LC_MONETARY = cfg.displayLocale;
+        LC_NAME = cfg.displayLocale;
+        LC_NUMERIC = cfg.displayLocale;
+        LC_PAPER = cfg.displayLocale;
+        LC_TELEPHONE = cfg.displayLocale;
+        LC_TIME = cfg.displayLocale;
+      };
     };
+
   };
+
 }
