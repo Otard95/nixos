@@ -48,6 +48,7 @@
         email = "stian.myklebostad@schibsted.com";
       };
       k9s.enable = true;
+      thefuck.enable = true;
     };
     nixvim = {
       enable = true;

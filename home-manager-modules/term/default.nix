@@ -17,6 +17,7 @@ in {
     ./k9s.nix
     ./kitty.nix
     ./starship.nix
+    ./thefuck.nix
     ./tmux.nix
     ./useful-commands.nix
     ./zoxide.nix
