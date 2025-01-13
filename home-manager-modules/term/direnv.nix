@@ -12,6 +12,8 @@ in {
       enable = true;
       nix-direnv.enable = true;
 
+      silent = true;
+
       stdlib = ''
         # Example: export_alias zz "ls -la"
         export_alias() {
