@@ -24,6 +24,8 @@ in {
       };
 
       keybindings = {
+        # kitty shell
+        "kitty_mod+escape" = "no_op";
         # new_os_window
         "kitty_mod+n" = "no_op";
         # close_window
