@@ -13,7 +13,6 @@ in {
       shellAliases = {
         ll = "ls -lah";
         ".." = "cd ..";
-        vi = "nvim";
       };
 
       historyControl = [

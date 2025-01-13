@@ -14,7 +14,9 @@ in {
   ];
 
   config = lib.mkIf enable {
+
     programs.nixvim = {
+
       enable = true;
       package = pkgs.neovim-unwrapped.overrideAttrs  (_: {
         pname = "neovim-unwrapped";
@@ -27,6 +29,12 @@ in {
           hash = "sha256-OsHIacgorYnB/dPbzl1b6rYUzQdhTtsJYLsFLJxregk=";
         };
       });
+
+      # Enable lazy loading provider
+      # plugins.lz-n.enable = true;
+
+      viAlias = true;
+      vimAlias = true;
 
       defaultEditor = true;
       colorschemes.catppuccin = {
