@@ -39,9 +39,10 @@
   };
 
   modules = {
-    hyprland.hyprpaper.bg-image = sources.images.background.forrest-lake-train;
+    hyprland.hyprpaper.bg-image         = sources.images.background.forrest-lake-train;
+    hyprland.hyprlock.bg-image          = sources.images.background.mountain-lake-sunrise;
     app-launcher.rofi.splash-image.path = sources.images.splash.bridge-forrest-fog;
-    power-menu.rofi.splash-image.path = sources.images.splash.bridge-forrest-fog;
+    power-menu.rofi.splash-image.path   = sources.images.splash.bridge-forrest-fog;
     term = {
       direnv.enable = true;
       gh.enable = true;

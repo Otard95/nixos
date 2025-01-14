@@ -3,8 +3,15 @@ let
   cfg = config.modules.hyprland.hyprlock;
   enable = cfg.enable;
 in {
-  options.modules.hyprland.hyprlock.enable =
-    lib.mkEnableOption "hyprlock";
+  options.modules.hyprland.hyprlock = {
+    enable = lib.mkEnableOption "hyprlock";
+
+    bg-image = lib.mkOption {
+      description = "Path to the backround image to use";
+      default = sources.images.backround.falling-into-infinity;
+      type = lib.types.path;
+    };
+  };
 
   config = lib.mkIf enable {
     programs.hyprlock = {
@@ -13,8 +20,7 @@ in {
       settings = {
         background = [
           {
-            # TODO: Make this an option
-            path = "${sources.images.background.falling-into-infinity}";
+            path = "${cfg.bg-image}";
             blur_passes = 3;
             blur_size = 8;
           }
