@@ -45,6 +45,13 @@
     system = {
       fingerprint.enable = true;
       battery-monitor.enable = true;
+      graphics = {
+        prime = {
+          enable = true;
+          intelBusId = "PCI:0:2:0";
+          nvidiaBusId = "PCI:1:0:0";
+        };
+      };
     };
     packages = {
       docker.enable = true;
