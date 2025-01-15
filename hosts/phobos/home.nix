@@ -32,9 +32,11 @@
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      serif = [ theme.font.regular theme.font.icons ];
-      sansSerif = [ theme.font.regular theme.font.icons ];
-      monospace = [ theme.font.mono theme.font.icons ];
+      serif = [ theme.font.regular.default theme.font.icons ] ++
+        theme.font.regular.extra;
+      sansSerif = [ theme.font.regular.default theme.font.icons ] ++
+        theme.font.regular.extra;
+      monospace = [ theme.font.mono.default theme.font.icons ];
     };
   };
 

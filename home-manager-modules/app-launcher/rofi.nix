@@ -34,7 +34,7 @@ in {
 
       package = pkgs.rofi-wayland;
 
-      font = theme.font.regular;
+      font = theme.font.regular.default;
 
       extraConfig = {
         modi = "drun,run,filebrowser,window";
@@ -53,7 +53,7 @@ in {
       in {
         ## /*****----- Global Properties -----*****/
         "*" = {
-          font = builtins.concatStringsSep " " [ theme.font.regular "10" ];
+          font = builtins.concatStringsSep " " [ theme.font.regular.default "10" ];
           background = mkLiteral "#131D1F";
           background-alt = mkLiteral "#183A43";
           foreground = mkLiteral "#FFFFFF";

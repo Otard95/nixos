@@ -34,8 +34,8 @@ in {
       themeTempl = builtins.readFile ./theme.rasi;
 
       themeFile = builtins.replaceStrings
-        [ "TEXT_FONT"        "TEXT_ICONS"     "SPLASH_SCALE" ]
-        [ theme.font.regular theme.font.icons cfg.splash-image.scale ]
+        [ "TEXT_FONT"                "TEXT_ICONS"     "SPLASH_SCALE" ]
+        [ theme.font.regular.default theme.font.icons cfg.splash-image.scale ]
         themeTempl;
     in {
       "rofi/power-menu/theme.rasi".text = themeFile;

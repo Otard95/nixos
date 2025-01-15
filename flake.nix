@@ -40,8 +40,14 @@
       size = "standard";
       tweaks = [];
       font = {
-        regular = "MesloLGM";
-        mono = "MesloLGMDZ Mono";
+        regular = {
+          default = "Meslo LG M";
+          extra = [ "Noto Sans CJK JP" ];
+        };
+        mono = {
+          default = "Meslo LG M DZ";
+          extra = [ "Noto Sans CJK JP" ];
+        };
         icons = "Symbols Nerd Font";
       };
     };

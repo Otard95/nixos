@@ -30,7 +30,7 @@ in {
         package = pkgs.catppuccin-papirus-folders.override { inherit (theme) accent flavor; };
       };
       font = {
-        name = theme.font.regular;
+        name = theme.font.regular.default;
         size = 10;
       };
     };

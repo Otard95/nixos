@@ -384,8 +384,8 @@ in {
       ];
 
       style = builtins.replaceStrings
-        [ "TEXT_FONT"        "TEXT_ICONS" ]
-        [ theme.font.regular theme.font.icons ]
+        [ "TEXT_FONT"                "TEXT_ICONS" ]
+        [ theme.font.regular.default theme.font.icons ]
         ''
         @define-color rosewater #f2d5cf;
         @define-color flamingo #eebebe;

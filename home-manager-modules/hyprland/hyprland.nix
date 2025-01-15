@@ -87,12 +87,13 @@ in {
 
         windowrulev2 = [
           "float, class:(Rofi)"
+          "float, class:(zen), title:(Extension)"
           "float,        initialTitle:(^Picture-in-Picture$)"
           "size 944 530, initialTitle:(^Picture-in-Picture$)"
           "float,        initialTitle:(^File Operation Progress$)"
           "size 500 200, initialTitle:(^File Operation Progress$)"
           "stayfocused, class:(Rofi)"
-          "opacity 0.95,class:(zen-alpha)"
+          "opacity 0.95,class:(zen)"
         ];
 
         exec-once = [
@@ -171,7 +172,7 @@ in {
       submap = notifications
 
       bindr = $mod, C, exec, makoctl dismiss
-      bindr = $mod, A, exec, makoctl invoke
+      bindr = $mod, A, exec, makoctl invoke && makoctl dismiss
       bindr = $mod, H, exec, makoctl restore
 
       # Exit notification submap

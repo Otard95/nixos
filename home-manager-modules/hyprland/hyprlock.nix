@@ -52,7 +52,7 @@ in {
 
         label = [
           {
-            font_family = theme.font.regular;
+            font_family = theme.font.regular.default;
             font_size = 64;
             halign = "center";
             valign = "center";

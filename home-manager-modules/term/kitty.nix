@@ -11,7 +11,7 @@ in {
     programs.kitty = {
       enable = true;
 
-      font.name = theme.font.mono;
+      font.name = theme.font.mono.default;
       themeFile = "Catppuccin-Frappe";
 
       settings = {
