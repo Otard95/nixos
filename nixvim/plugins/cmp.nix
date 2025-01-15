@@ -15,12 +15,20 @@ in {
       settings = {
         completion.completeopt = "menu,menuone,noinsert";
         preselect = nixvim.mkRaw "cmp.PreselectMode.None";
-        mapping = {
-          "<Tab>" = "cmp.mapping.confirm({ select = true })";
-          "<C-Space>" = "cmp.mapping.complete()";
-          "<C-u>" = "cmp.mapping.scroll_docs(-4)";
-          "<C-d>" = "cmp.mapping.scroll_docs(4)";
-        };
+        # mapping = {
+        #   "<Tab>" = "cmp.mapping.confirm({ select = true })";
+        #   "<C-Space>" = "cmp.mapping.complete()";
+        #   "<C-u>" = "cmp.mapping.scroll_docs(-4)";
+        #   "<C-d>" = "cmp.mapping.scroll_docs(4)";
+        # };
+        mapping = nixvim.mkRaw ''
+          cmp.mapping.preset.insert({
+            ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+            ['<C-d>'] = cmp.mapping.scroll_docs(4),
+          })
+        '';
         sources = [
           { name = "path"; }
           { name = "nvim_lsp"; }
