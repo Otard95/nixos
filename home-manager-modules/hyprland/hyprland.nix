@@ -47,9 +47,9 @@ in {
           "$mod+SHIFT, K, movewindow, u"
           "$mod+SHIFT, J, movewindow, d"
           # Screenshot
-          "$mod+SHIFT, S, exec, grimblast copy area"
-          "$mod+ALT, S, exec, grimblast copy active"
-          "$mod+CTRL, S, exec, grimblast copy output"
+          "$mod+SHIFT, S, exec, grimblast edit area"
+          "$mod+ALT, S, exec, grimblast edit active"
+          "$mod+CTRL, S, exec, grimblast edit output"
         ] ++ (
           builtins.concatLists (builtins.genList (
             x: let
@@ -83,6 +83,7 @@ in {
 
         env = [
           "SLURP_ARGS, -d -b 16897a44 -c 04d6c8 -B 0e999e22"
+          "GRIMBLAST_EDITOR, pinta"
         ];
 
         windowrulev2 = [
