@@ -17,6 +17,7 @@ in {
     services.mako = {
       enable = true;
 
+      sort = "+time";
       width = 400;
       borderSize = 2;
       borderRadius = 10;
