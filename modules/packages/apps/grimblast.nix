@@ -6,6 +6,6 @@ in {
   options.modules.packages.apps.grimblast.enable = lib.mkEnableOption "grimblast";
 
   config = lib.mkIf enable {
-    environment.systemPackages = with pkgs; [ grimblast sly kdePackages.kquickimageedit image-roll pinta ];
+    environment.systemPackages = with pkgs; [ grimblast pinta ];
   };
 }
