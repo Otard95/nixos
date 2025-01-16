@@ -18,6 +18,12 @@
     tty.enable = true;
   };
 
+  qt = {
+    enable = true;
+    platformTheme = "qt5ct";
+    style = "kvantum";
+  };
+
   environment.systemPackages = with pkgs; [
     numix-icon-theme-circle
     colloid-icon-theme
