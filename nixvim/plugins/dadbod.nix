@@ -10,6 +10,7 @@ in {
     programs.nixvim = {
       extraPackages = with pkgs; [
         mariadb
+        redis
       ];
       plugins = {
         vim-dadbod.enable = true;
