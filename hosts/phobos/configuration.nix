@@ -60,6 +60,7 @@
         appgate.enable = true;
         clickup.enable = true;
         dbeaver.enable = true;
+        kdeconnect.enable = true;
         slack.enable = true;
       };
     };
