@@ -8,7 +8,7 @@ in {
 
     bg-image = lib.mkOption {
       description = "Path to the backround image to use";
-      default = sources.images.backround.falling-into-infinity;
+      default = sources.images.background.falling-into-infinity;
       type = lib.types.path;
     };
   };
