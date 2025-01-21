@@ -226,16 +226,16 @@ in {
             "format-source" = "󰍬 {volume}%";
             "format-source-muted" = "󰍭 {volume}%";
             "format-icons" = {
-              "headphone" = "󰋋";
+              "headphone"  = "󰋋";
               "hands-free" = "";
-              "headset" = "󰋎";
-              "phone" = "󰄜";
-              "portable" = "󰦧";
-              "car" = "󰄋";
-              "speaker" = "󰓃";
-              "hdmi" = "󰡁";
-              "hifi" = "󰋌";
-              "default" = [ "󰕿" "󰖀" "󰕾" ];
+              "headset"    = "󰋎";
+              "phone"      = "󰄜";
+              "portable"   = "󰦧";
+              "car"        = "󰄋";
+              "speaker"    = "󰓃";
+              "hdmi"       = "󰡁";
+              "hifi"       = "󰋌";
+              "default"    = [ "󰕿" "󰖀" "󰕾" ];
             };
             "scroll-step" = 1;
             "on-click" = "pavucontrol";
@@ -245,9 +245,22 @@ in {
           "group/keyoard" = {
             "orientation" = "horizontal";
             "modules" = [
-              "hyprland/language"
+              # "hyprland/language"
+              "custom/fcitx5"
               "keyboard-state"
             ];
+          };
+
+          "custom/fcitx5" = {
+            "exec" = ''echo "{\"alt\":\"$(fcitx5-remote -n)\"}"'';
+            "return-type" = "json";
+            "interval" = 1;
+            "format" = " {icon}󠀁";
+            "format-icons" = {
+              "keyboard-us" = "US";
+              "keyboard-no" = "NO";
+              "mozc"        = "JP";
+            };
           };
 
           "hyprland/language" = {
@@ -585,6 +598,11 @@ in {
           margin-right: 6px;
           margin-top: 5px;
           margin-bottom: 5px;
+        }
+
+        #custom-fcitx5 {
+          padding-left: 10px;
+          padding-right: 5px;
         }
 
         #language {

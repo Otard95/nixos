@@ -161,7 +161,7 @@ in {
 
         input = {
           kb_layout = "us,no";
-          kb_options = "grp:alt_space_toggle";
+          # kb_options = "grp:alt_space_toggle";
           repeat_rate = 45;
           repeat_delay = 180;
         };
