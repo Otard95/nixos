@@ -32,7 +32,8 @@ in {
           "$mod+SHIFT, P, exec, ~/.config/power-menu.sh"
           "$mod, D, exec, rofi -show drun"
           "ALT, TAB, exec, rofi -show window"
-          "$mod, F, togglefloating"
+          "$mod+SHIFT, SPACE, togglefloating"
+          "$mod, SPACE, cyclenext, floating"
           "$mod+SHIFT, F, fullscreen, 0"
           "$mod, E, togglesplit"
           "$mod, W, togglegroup"
@@ -178,6 +179,7 @@ in {
 
       # Exit notification submap
       bindr = $mod, N, submap, reset
+      bindr = , catchall, submap, reset
       submap = reset
 
       # Nvidia

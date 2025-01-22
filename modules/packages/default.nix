@@ -7,11 +7,11 @@ in {
   options.modules.packages.enable = lib.mkEnableOption "packages";
 
   imports = [
+    ./apps
     ./btop.nix
     ./notification.nix
     ./quickemu.nix
     ./docker.nix
-    ./apps
   ];
 
   config = lib.mkIf enable {
