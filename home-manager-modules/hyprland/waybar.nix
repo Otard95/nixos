@@ -27,7 +27,7 @@ in {
           "margin-right" = 15;
           "modules-left" = ["hyprland/workspaces" "hyprland/submap" "hyprland/window"];
           # "modules-center" = ["group/media"];
-          "modules-right" = [ "network" "pulseaudio" "group/keyoard" "battery" "group/hardware" "group/misc" "clock#time" "custom/logout_menu" ];
+          "modules-right" = [ "network" "pulseaudio" "backlight" "group/keyoard" "battery" "group/hardware" "group/misc" "clock#time" "custom/logout_menu" ];
 
           # Modules Config
           "hyprland/workspaces" = {
@@ -240,6 +240,17 @@ in {
             "scroll-step" = 1;
             "on-click" = "pavucontrol";
             # "ignored-sinks" = ["Easy Effects Sink"]
+          };
+
+          "backlight" = {
+            "format" = "☀ {percent}%";
+            "states" = {
+              "low" = 20;
+              "lower-medium" = 35;
+              "medium" = 50;
+              "upper-medium" = 65;
+              "high" = 80;
+            };
           };
 
           "group/keyoard" = {
@@ -786,6 +797,15 @@ in {
         }
 
         #backlight {
+          background-color: alpha(@surface1, 0.7);
+          border-radius: 15;
+          padding-left: 10;
+          padding-right: 10;
+          margin-left: 2;
+          margin-right: 2;
+          margin-top: 5;
+          margin-bottom: 5;
+
           color: @overlay0;
         }
 
