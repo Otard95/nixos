@@ -22,16 +22,17 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
+      systemd.enable = false;
 
       settings = {
         "$mod" = "SUPER";
         bind = [
-          "$mod, RETURN, exec, kitty"
+          "$mod, RETURN, exec, uwsm app -- kitty"
           "$mod+SHIFT, Q, killactive"
-          "$mod+SHIFT+CTRL, M, exit"
-          "$mod+SHIFT, P, exec, ~/.config/power-menu.sh"
-          "$mod, D, exec, rofi -show drun"
-          "ALT, TAB, exec, rofi -show window"
+          "$mod+SHIFT+CTRL, M, exec, uwsm stop"
+          "$mod+SHIFT, P, exec, uwsm app -- ~/.config/power-menu.sh"
+          "$mod, D, exec, uwsm app -- rofi -show drun"
+          "ALT, TAB, exec, uwsm app -- rofi -show window"
           "$mod+SHIFT, SPACE, togglefloating"
           "$mod, SPACE, cyclenext, floating"
           "$mod+SHIFT, F, fullscreen, 0"
@@ -48,9 +49,9 @@ in {
           "$mod+SHIFT, K, movewindow, u"
           "$mod+SHIFT, J, movewindow, d"
           # Screenshot
-          "$mod+SHIFT, S, exec, grimblast edit area"
-          "$mod+ALT, S, exec, grimblast edit active"
-          "$mod+CTRL, S, exec, grimblast edit output"
+          "$mod+SHIFT, S, exec, uwsm app -- grimblast edit area"
+          "$mod+ALT, S, exec, uwsm app -- grimblast edit active"
+          "$mod+CTRL, S, exec, uwsm app -- grimblast edit output"
         ] ++ (
           builtins.concatLists (builtins.genList (
             x: let
@@ -70,21 +71,19 @@ in {
           "$mod, mouse:273, resizewindow"
         ];
         bindel = [
-          ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+          ", XF86AudioRaiseVolume, exec, uwsm app -- wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+          ", XF86AudioLowerVolume, exec, uwsm app -- wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ];
         bindl = [
-          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          ", XF86AudioPlay, exec, playerctl play-pause"
-          ", XF86AudioPrev, exec, playerctl previous"
-          ", XF86AudioNext, exec, playerctl next"
+          ", XF86AudioMute, exec, uwsm app -- wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ", XF86AudioPlay, exec, uwsm app -- playerctl play-pause"
+          ", XF86AudioPrev, exec, uwsm app -- playerctl previous"
+          ", XF86AudioNext, exec, uwsm app -- playerctl next"
 
-          ", switch:Lid Switch, exec, hyprlock"
+          ", switch:Lid Switch, exec, uwsm app -- hyprlock"
         ];
 
         env = [
-          "SLURP_ARGS, -d -b 16897a44 -c 04d6c8 -B 0e999e22"
-          "GRIMBLAST_EDITOR, pinta"
         ];
 
         windowrulev2 = [
@@ -100,14 +99,14 @@ in {
 
         exec-once = [
           # https://gist.github.com/brunoanc/2dea6ddf6974ba4e5d26c3139ffb7580#editing-the-configuration-file
-          "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-          "hyprpaper"
-          "kanshi"
-          "[workspace 1 silent] zen"
-          "[workspace 2 silent] kitty"
+          "uwsm app -- dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+          "uwsm app -- hyprpaper"
+          "uwsm app -- kanshi"
+          "[workspace 1 silent] uwsm app -- zen"
+          "[workspace 2 silent] uwsm app -- kitty"
         ];
 
-        exec = [ "pkill waybar; sleep 0.5 && waybar" ];
+        exec = [ "pkill waybar; sleep 0.5 && uwsm app -- waybar" ];
 
         general = {
           gaps_in = 5;
@@ -173,20 +172,14 @@ in {
       bindr = $mod, N, submap, notifications
       submap = notifications
 
-      bindr = $mod, C, exec, makoctl dismiss
-      bindr = $mod, A, exec, makoctl invoke && makoctl dismiss
-      bindr = $mod, H, exec, makoctl restore
+      bindr = $mod, C, exec, uwsm app -- makoctl dismiss
+      bindr = $mod, A, exec, uwsm app -- makoctl invoke && makoctl dismiss
+      bindr = $mod, H, exec, uwsm app -- makoctl restore
 
       # Exit notification submap
       bindr = $mod, N, submap, reset
       bindr = , catchall, submap, reset
       submap = reset
-
-      # Nvidia
-      env = LIBVA_DRIVER_NAME,nvidia
-      env = XDG_SESSION_TYPE,wayland
-      env = GBM_BACKEND,nvidia-drm
-      env = __GLX_VENDOR_LIBRARY_NAME,nvidia
 
       cursor {
         no_hardware_cursors = true
@@ -194,5 +187,18 @@ in {
       }
       '';
     };
+
+    xdg.configFile."uwsm/env".text = ''
+      export LIBVA_DRIVER_NAME=nvidia
+      export XDG_SESSION_TYPE=wayland
+      export GBM_BACKEND=nvidia-drm
+      export __GLX_VENDOR_LIBRARY_NAME=nvidia
+      export SLURP_ARGS=-d -b 16897a44 -c 04d6c8 -B 0e999e22
+      export GRIMBLAST_EDITOR=pinta
+    '';
+    # xdg.configFile."uwsm/env-hyprland".text = ''
+    #   export AQ_DRM_DEVICES=/dev/dri/card0:/dev/dri/card1
+    # '';
+
   };
 }
