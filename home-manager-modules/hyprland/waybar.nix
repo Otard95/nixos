@@ -251,6 +251,11 @@ in {
               "upper-medium" = 65;
               "high" = 80;
             };
+            "on-scroll-up"    = "${pkgs.brightnessctl}/bin/brightnessctl s 1%+";
+            "on-scroll-down"  = "${pkgs.brightnessctl}/bin/brightnessctl s 1%-";
+            "on-click"        = "${pkgs.brightnessctl}/bin/brightnessctl s 100%";
+            "on-click-middle" = "${pkgs.brightnessctl}/bin/brightnessctl s 50%";
+            "on-click-right"  = "${pkgs.brightnessctl}/bin/brightnessctl s 10%";
           };
 
           "group/keyoard" = {
