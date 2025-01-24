@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.modules.nixvim.plugins.lsp;
   enable = cfg.enable;
@@ -34,7 +34,10 @@ in {
         ];
 
         servers = {
-          # intelephense.enable = true; # TODO: needs package
+          intelephense = {
+            enable = true; # TODO: needs package
+            package = pkgs.intelephense;
+          };
           eslint.enable = true;
           gopls.enable = true;
           jsonls.enable = true;
