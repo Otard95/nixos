@@ -1,6 +1,6 @@
 { config, lib, pkgs, theme, ... }:
 let
-  cfg = config.modules.gtk;
+  cfg = config.modules.theme.gtk;
   enable = cfg.enable;
 
   gtkThemePackage = pkgs.catppuccin-gtk.override {
@@ -11,7 +11,7 @@ let
   gtkThemeName = "catppuccin-${theme.flavor}-${theme.accent}-${theme.size}";
 in {
 
-  options.modules.gtk.enable = lib.mkEnableOption "gtk";
+  options.modules.theme.gtk.enable = lib.mkEnableOption "gtk";
 
   config = lib.mkIf enable {
     gtk = {

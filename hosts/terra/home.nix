@@ -1,4 +1,4 @@
-{ theme, ...}:
+{ ... }:
 {
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -15,23 +15,6 @@
 
   home.username = "otard";
   home.homeDirectory = "/home/otard";
-
-  catppuccin = {
-    enable = true;
-    inherit (theme) flavor accent;
-    cursors.enable = true;
-  };
-
-  fonts.fontconfig = {
-    enable = true;
-    defaultFonts = {
-      serif = [ theme.font.regular.default theme.font.icons ] ++
-        theme.font.regular.extra;
-      sansSerif = [ theme.font.regular.default theme.font.icons ] ++
-        theme.font.regular.extra;
-      monospace = [ theme.font.mono.default theme.font.icons ];
-    };
-  };
 
   modules = {
     hyprland.wm.disable-sync = true;

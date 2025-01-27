@@ -1,4 +1,4 @@
-{ lib, theme, sources, ...}:
+{ sources, ... }:
 {
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -15,30 +15,6 @@
 
   home.username = "otard";
   home.homeDirectory = "/home/otard";
-
-  catppuccin = {
-    enable = true;
-    inherit (theme) flavor accent;
-    cursors.enable = true;
-  };
-  home.pointerCursor = {
-    gtk.enable = true;
-    x11.enable = true;
-    hyprcursor.enable = true;
-    size = 16;
-  };
-  home.sessionVariables.HYPRCURSOR_SIZE = lib.mkForce 24;
-
-  fonts.fontconfig = {
-    enable = true;
-    defaultFonts = {
-      serif = [ theme.font.regular.default theme.font.icons ] ++
-        theme.font.regular.extra;
-      sansSerif = [ theme.font.regular.default theme.font.icons ] ++
-        theme.font.regular.extra;
-      monospace = [ theme.font.mono.default theme.font.icons ];
-    };
-  };
 
   modules = {
     hyprland.hyprpaper.bg-image         = sources.images.background.forrest-lake-train;

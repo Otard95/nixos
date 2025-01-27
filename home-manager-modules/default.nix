@@ -7,9 +7,8 @@
     ./app-launcher
     ./power-menu
     ./term
+    ./theme
     ./mako.nix
-    ./gtk.nix
-    ./qt.nix
   ];
 
   modules = {
@@ -20,7 +19,6 @@
     term.enable         = lib.mkDefault true;
     nixvim.enable       = lib.mkDefault true;
     mako.enable         = lib.mkDefault true;
-    gtk.enable          = lib.mkDefault true;
-    qt.enable           = lib.mkDefault true;
+    theme.enable        = lib.mkDefault true;
   };
 }
