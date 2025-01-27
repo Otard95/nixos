@@ -56,20 +56,20 @@ in {
             font_size = 64;
             halign = "center";
             valign = "center";
-            position = "0, 170%";
+            position = "0, 100";
             text = "$TIME";
           }
           {
-            font_family = "MesloLGM";
+            font_family = theme.font.regular.default;
             font_size = 12;
             color = "rgb(165, 173, 206)";
             halign = "center";
             valign = "center";
-            position = "0, 100%";
+            position = "0, 35";
             text = "cmd[update:99999] date '+%A %d. %B'";
           }
           {
-            font_family = "MesloLGM";
+            font_family = theme.font.regular.default;
             font_size = 8;
             color = "rgb(165, 173, 206)";
             halign = "center";
