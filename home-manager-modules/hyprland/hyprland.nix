@@ -188,6 +188,11 @@ in {
       '';
     };
 
+    xdg.configFile."hypr/xdph.conf".text = ''
+      screencopy {
+        allow_token_by_default = true
+      }
+    '';
     xdg.configFile."uwsm/env".text = ''
       export LIBVA_DRIVER_NAME=nvidia
       export XDG_SESSION_TYPE=wayland
