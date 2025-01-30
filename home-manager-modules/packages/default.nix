@@ -8,6 +8,7 @@ in {
 
   imports = [
     ./cliphist.nix
+    ./hdrop.nix
   ];
 
   config = lib.mkIf enable {

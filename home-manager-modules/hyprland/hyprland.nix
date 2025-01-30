@@ -18,6 +18,8 @@ in {
       hyprcursor
     ];
 
+    modules.term.kitty.enable = lib.mkDefault true;
+
     catppuccin.hyprland.enable = true;
 
     wayland.windowManager.hyprland = {
