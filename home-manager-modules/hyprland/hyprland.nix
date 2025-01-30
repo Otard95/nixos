@@ -97,6 +97,8 @@ in {
           "size 500 200, initialTitle:(^File Operation Progress$)"
           "stayfocused, class:(Rofi)"
           "opacity 0.95,class:(zen)"
+          "move 50% 20,initialTitle:(Wine System Tray)"
+          "pin,initialTitle:(Wine System Tray)"
         ];
 
         exec-once = [
