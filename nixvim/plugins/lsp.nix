@@ -10,7 +10,17 @@ in {
 
   config = lib.mkIf enable {
     programs.nixvim.plugins = {
-      lsp-format.enable = true;
+      lsp-format = {
+        enable = true;
+
+        settings = {
+          typescript = {
+            exclude = [
+              "eslint"
+            ];
+          };
+        };
+      };
 
       lsp = {
         enable = true;
