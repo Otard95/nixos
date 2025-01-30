@@ -307,7 +307,7 @@ in {
               "cpu"
               "memory"
               "disk"
-              "temperature"
+              # "temperature"
             ];
           };
 
