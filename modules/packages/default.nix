@@ -9,9 +9,10 @@ in {
   imports = [
     ./apps
     ./btop.nix
+    ./docker.nix
+    ./kalker.nix
     ./notification.nix
     ./quickemu.nix
-    ./docker.nix
   ];
 
   config = lib.mkIf enable {
@@ -25,18 +26,19 @@ in {
             name = "Stian M";
           };
         }
-        { init = { defaultBranch = "main"; }; }
-        { merge = { conflictstyle = "diff3"; }; }
-        { diff = { colorMoved = "default"; }; }
-        { pull = { rebase = true; }; }
-        { checkout = { defaultRemote = "origin"; }; }
-        { rerere = { enable = true; }; }
-        { core = { sshCommand = "ssh -i /home/otard/.ssh/id_ed25519"; }; }
+        { init     = { defaultBranch = "main";                               }; }
+        { merge    = { conflictstyle = "diff3";                              }; }
+        { diff     = { colorMoved    = "default";                            }; }
+        { pull     = { rebase        = true;                                 }; }
+        { checkout = { defaultRemote = "origin";                             }; }
+        { rerere   = { enable        = true;                                 }; }
+        { core     = { sshCommand    = "ssh -i /home/otard/.ssh/id_ed25519"; }; }
       ];
     };
 
     modules.packages = {
-      btop.enable = lib.mkDefault true;
+      btop.enable     = lib.mkDefault true;
+      kalker.enable   = lib.mkDefault true;
       quickemu.enable = lib.mkDefault true;
     };
   };
