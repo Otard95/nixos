@@ -10,6 +10,10 @@ in {
     programs.nixvim.plugins.harpoon = {
       enable = true;
 
+      menu = {
+        width = 110;
+      };
+
       keymaps = {
         addFile = "<leader>a";
         toggleQuickMenu = "<leader>e";
