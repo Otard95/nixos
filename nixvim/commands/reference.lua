@@ -9,7 +9,7 @@ end
 local function reference(opts)
   local full_file_path = vim.fn.expand("%:p")
   local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-  local local_path = full_file_path:gsub(vim.fn.getcwd(), '')
+  local local_path = full_file_path:gsub(vim.fn.getcwd():gsub("%p", "%%%1"), '')
   local path = project_name .. local_path
 
   local line_start = opts.line1 or vim.fn.line(".")
