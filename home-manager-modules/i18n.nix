@@ -1,4 +1,4 @@
-{ config, lib, theme, ... }:
+{ config, lib, pkgs, theme, ... }:
 let
   cfg = config.modules.i18n;
   enable = cfg.enable;
@@ -15,7 +15,17 @@ in {
       accent = theme.accent;
     };
 
-    i18n.inputMethod.enabled = "fcitx5";
+    i18n.inputMethod = {
+      enabled = "fcitx5";
+      # fcitx5 = {
+      #   waylandFrontend = true;
+      #   addons = with pkgs; [
+      #     fcitx5-mozc
+      #     fcitx5-gtk
+      #     fcitx5-configtool
+      #   ];
+      # };
+    };
 
   };
 }

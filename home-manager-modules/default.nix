@@ -19,7 +19,7 @@
     power-menu.enable   = lib.mkDefault true;
     term.enable         = lib.mkDefault true;
     nixvim.enable       = lib.mkDefault true;
-    i18n.enable         = lib.mkDefault true;
+    # i18n.enable         = lib.mkDefault true;
     mako.enable         = lib.mkDefault true;
     theme.enable        = lib.mkDefault true;
   };

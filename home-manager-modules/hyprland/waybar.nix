@@ -261,8 +261,8 @@ in {
           "group/keyoard" = {
             "orientation" = "horizontal";
             "modules" = [
-              # "hyprland/language"
-              "custom/fcitx5"
+              "hyprland/language"
+              # "custom/fcitx5"
               "keyboard-state"
             ];
           };
