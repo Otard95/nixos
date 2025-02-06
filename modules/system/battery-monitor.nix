@@ -26,7 +26,7 @@ in {
             -h "int:value:$val" "Discharging" "$val%, $remaining"
         }
         while true; do
-          IFS=: read _ bat0 < <(${pkgs.acpi}/bin/acpi -b)
+          IFS=: read _ bat0 < <(${pkgs.acpi}/bin/acpi -b | grep -v 'rate information unavailable')
           IFS=\ , read status val remaining <<<"$bat0"
           val=''${val%\%}
 
