@@ -80,6 +80,7 @@ in {
           setupWrappers = [
             (s: ''vim.tbl_extend("keep", ${s} or {}, {
               handlers = {
+                vim.lsp.handlers,
                 ['textDocument/hover'] = vim.lsp.with(hover, { border = 'rounded' }),
                 ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
               },
