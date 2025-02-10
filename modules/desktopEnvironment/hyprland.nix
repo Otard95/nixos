@@ -35,10 +35,14 @@ in {
     # TODO: Move to home??? Or own module???
     xdg.portal = {
       enable = true;
-      xdgOpenUsePortal = true;
+      # xdgOpenUsePortal = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-kde
+      ];
       config = {
-        common.default = ["hyprland"];
-        hyprland.default = ["hyprland"];
+        common.default = ["hyprland" "gtk" "kde"];
+        hyprland.default = ["hyprland" "gtk" "kde"];
       };
     };
 
