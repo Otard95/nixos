@@ -17,7 +17,7 @@ in {
           settings = {
             typescript = {
               exclude = [
-                "eslint"
+                "ts_ls"
               ];
             };
           };
