@@ -54,6 +54,10 @@ in {
         providers.wl-copy.enable = true;
       };
 
+      extraConfigLuaPre = ''
+        pcall(require, 'local-plugins')
+      '';
+
     };
 
     modules.nixvim = {
