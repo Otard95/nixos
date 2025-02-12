@@ -21,6 +21,8 @@ in {
         text = ''
           zen
           .zen-wrapped
+          vivaldi
+          vivaldi-bin
         '';
         mode = "0755";
       };

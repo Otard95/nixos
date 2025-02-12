@@ -27,6 +27,7 @@ in {
     ./signal.nix
     ./slack.nix
     ./thunar.nix
+    ./vivaldi.nix
     ./wooting.nix
     ./yubikey.nix
     ./zen-browser.nix
