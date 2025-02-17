@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.modules.term.bash;
   enable = cfg.enable;
@@ -11,7 +11,8 @@ in {
       enable = true;
 
       shellAliases = {
-        ll = "ls -lah";
+        ls = "${pkgs.eza}/bin/eza";
+        ll = "${pkgs.eza}/bin/eza -lah --git --icons";
         ".." = "cd ..";
       };
 
