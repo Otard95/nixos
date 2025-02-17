@@ -71,8 +71,8 @@ in {
             end
             function hover(_, result, ctx, config)
               if not (result and result.contents) then config.width = 80 end
-              if result and type(result.contents) == "string" then config.width = __longest_line(result.contents) + 5 end
-              if result and type(result.contents.value) == "string" then config.width = __longest_line(result.contents.value) + 5 end
+              if result and type(result.contents) == "string" then config.width = __longest_line(result.contents) + 10 end
+              if result and type(result.contents.value) == "string" then config.width = __longest_line(result.contents.value) + 10 end
               if type(config.width) and config.width < 25 then config.width = 25 end
               return vim.lsp.handlers.hover(_, result, ctx, config)
             end
