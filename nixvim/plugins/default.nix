@@ -30,6 +30,7 @@ in {
     ./lualine.nix
     ./luasnip.nix
     ./markdown.nix
+    ./mini.nix
     ./nvim-tree.nix
     ./obsidian.nix
     ./oil.nix
@@ -50,19 +51,19 @@ in {
       else if cfg.preset == "basic"   then 2
       else /* cfg.preset == "all"       */ 3;
   in lib.mkIf enable {
-    programs.nixvim.plugins.mini = {
-      enable = true;
-      mockDevIcons = true;
-      modules = {
-        icons.enable = true;
-      };
-    };
 
     modules.nixvim.plugins = lib.mkMerge [
+      {
+        mini.modules = {
+          icons.enable = lib.mkDefault true;
+          indentscope.enable = lib.mkDefault true;
+        };
+      }
       (lib.mkIf (presetInt > 0) {
         cloak.enable = lib.mkDefault true;
         git.enable = lib.mkDefault true;
         harpoon.enable = lib.mkDefault true;
+        mini.enable = lib.mkDefault true;
         nvim-tree.enable = lib.mkDefault true;
         oil.enable = lib.mkDefault true;
         telescope.enable = lib.mkDefault true;
