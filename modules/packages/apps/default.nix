@@ -20,6 +20,7 @@ in {
     ./grimblast.nix
     ./kdeconnect.nix
     ./kwallet.nix
+    ./libre-office.nix
     ./loupe.nix
     ./matrix.nix
     ./mpv.nix
@@ -39,6 +40,7 @@ in {
       blueman.enable = lib.mkDefault config.modules.system.bluetooth.enable;
       flameshot.enable = lib.mkDefault (!config.modules.desktopEnvironment.hyprland.enable);
       grimblast.enable = lib.mkDefault config.modules.desktopEnvironment.hyprland.enable;
+      libre-office.enable = lib.mkDefault true;
       loupe.enable = lib.mkDefault true;
       mpv.enable = lib.mkDefault true;
       pavucontrol.enable = lib.mkDefault true;
