@@ -46,7 +46,7 @@ in {
 
           servers = {
             intelephense = {
-              enable = true; # TODO: needs package
+              enable = true;
               package = pkgs.intelephense;
             };
             eslint.enable = true;
