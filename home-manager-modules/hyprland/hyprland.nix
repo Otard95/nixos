@@ -101,6 +101,7 @@ in {
           "size 500 200, initialTitle:(^File Operation Progress$)"
           "stayfocused, class:(Rofi)"
           "opacity 0.95,class:(zen)"
+          "opacity 0.95,class:(vivaldi-stable)"
           "move 50% 20,initialTitle:(Wine System Tray)"
           "pin,initialTitle:(Wine System Tray)"
         ];
@@ -110,7 +111,7 @@ in {
           "uwsm app -- dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           "uwsm app -- hyprpaper"
           "uwsm app -- kanshi"
-          "[workspace 1 silent] uwsm app -- zen"
+          "[workspace 1 silent] uwsm app -- vivaldi"
           "[workspace 2 silent] uwsm app -- kitty"
         ];
 
