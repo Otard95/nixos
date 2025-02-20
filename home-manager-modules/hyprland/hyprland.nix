@@ -147,6 +147,15 @@ in {
           };
         };
 
+        group = {
+          groupbar = {
+            "col.active" = "0xbb51576d";
+            "col.inactive" = "0xbb232634";
+            "col.locked_active" = "0xbbaa576d";
+            "col.locked_inactive" = "0xbb992634";
+          };
+        };
+
         layerrule = [
           "blur, rofi"
           "blur, notifications"
