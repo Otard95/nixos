@@ -48,6 +48,9 @@ in {
             intelephense = {
               enable = true;
               package = pkgs.intelephense;
+              settings = {
+                intelephense.format.braces = "k&r";
+              };
             };
             eslint.enable = true;
             gopls.enable = true;
