@@ -38,6 +38,7 @@ in {
     ./telescope.nix
     ./text-manipulation.nix
     ./tmux-navigator.nix
+    ./treesitter-context.nix
     ./treesitter.nix
     ./trouble.nix
     ./undotree.nix
@@ -80,6 +81,7 @@ in {
         lualine.enable = lib.mkDefault true;
         luasnip.enable = lib.mkDefault true;
         markdown.enable = lib.mkDefault true;
+        treesitter-context.enable = lib.mkDefault true;
         treesitter.enable = lib.mkDefault true;
         trouble.enable = lib.mkDefault true;
       })
