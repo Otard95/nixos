@@ -10,6 +10,8 @@ in {
 
     environment.systemPackages = with pkgs; [
       kdePackages.kwallet
+      kdePackages.kwalletmanager
+      kdePackages.kcmutils
     ];
 
     security.pam.services = {
