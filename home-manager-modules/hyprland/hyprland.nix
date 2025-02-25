@@ -93,17 +93,24 @@ in {
         ];
 
         windowrulev2 = [
-          "float, class:(Rofi)"
-          "float, class:(zen), title:(Extension)"
+          # Rofi
+          "float,       class:(Rofi)"
+          "stayfocused, class:(Rofi)"
+          # Zen Browser
+          "float,        class:(zen), title:(Extension)"
           "float,        initialTitle:(^Picture-in-Picture$)"
           "size 944 530, initialTitle:(^Picture-in-Picture$)"
           "float,        initialTitle:(^File Operation Progress$)"
           "size 500 200, initialTitle:(^File Operation Progress$)"
-          "stayfocused, class:(Rofi)"
-          "opacity 0.95,class:(zen)"
-          "opacity 0.95,class:(vivaldi-stable)"
-          "move 50% 20,initialTitle:(Wine System Tray)"
-          "pin,initialTitle:(Wine System Tray)"
+          "opacity 0.95, class:(zen)"
+          # Vivaldi Browser
+          "opacity 0.95, class:(vivaldi-stable)"
+          "float,        initialTitle:(^$), initialClass:(^$)"
+          "move 50% 10,   initialTitle:(^$), initialClass:(^$)"
+          "pin,          initialTitle:(^$), initialClass:(^$)"
+          # Wine
+          "move 50% 20, initialTitle:(Wine System Tray)"
+          "pin,         initialTitle:(Wine System Tray)"
         ];
 
         exec-once = [
