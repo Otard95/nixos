@@ -110,21 +110,22 @@ in {
 
           executables = {
             php = {
-              command = "php-debug-adapter";
+              command = "node";
+              args = [ "${pkgs.vscode-extensions.xdebug.php-debug}/share/vscode/extensions/xdebug.php-debug/out/phpDebug.js" ];
               # TODO: Test this
-              # enrich_config = nixvim.mkRaw ''
-              #   function(conf, on_config)
-              #     if not conf.localSourceRoot then
-              #       local config = vim.deepcopy(conf)
-              #       config.pathMappings = {
-              #         ["/var/www/html/"] = vim.fn.getcwd().."/",
-              #       }
-              #       on_config(config)
-              #     else
-              #       on_config(conf)
-              #     end
-              #   end
-              # '';
+              enrichConfig = nixvim.mkRaw ''
+                function(conf, on_config)
+                  if not conf.localSourceRoot then
+                    local config = vim.deepcopy(conf)
+                    config.pathMappings = {
+                      ["/var/www/html/"] = vim.fn.getcwd().."/",
+                    }
+                    on_config(config)
+                  else
+                    on_config(conf)
+                  end
+                end
+              '';
             };
           };
         };

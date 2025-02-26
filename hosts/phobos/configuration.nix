@@ -89,6 +89,12 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  networking.firewall = {
+    allowedTCPPortRanges = [ { from = 9000; to = 9020; } ];
+  };
+  networking.extraHosts = ''
+    127.0.0.1 tenderms.dart ma2.dart melvis.dart ticketms.dart
+  '';
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
