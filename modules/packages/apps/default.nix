@@ -25,6 +25,7 @@ in {
     ./matrix.nix
     ./mpv.nix
     ./pavucontrol.nix
+    ./protonvpn.nix
     ./signal.nix
     ./slack.nix
     ./thunar.nix
@@ -44,6 +45,7 @@ in {
       loupe.enable = lib.mkDefault true;
       mpv.enable = lib.mkDefault true;
       pavucontrol.enable = lib.mkDefault true;
+      protonvpn.enable = lib.mkDefault true;
       signal.enable = lib.mkDefault true;
       thunar.enable = lib.mkDefault true;
       yubikey.enable = lib.mkDefault true;
