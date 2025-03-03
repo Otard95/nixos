@@ -26,6 +26,7 @@ in {
     ./fidget.nix
     ./git.nix
     ./harpoon.nix
+    ./indent-blankline.nix
     ./lsp.nix
     ./lualine.nix
     ./luasnip.nix
@@ -57,7 +58,6 @@ in {
       {
         mini.modules = {
           icons.enable = lib.mkDefault true;
-          indentscope.enable = lib.mkDefault true;
         };
       }
       (lib.mkIf (presetInt > 0) {
@@ -77,6 +77,7 @@ in {
         cmp.enable = lib.mkDefault true;
         colorize.enable = lib.mkDefault true;
         fidget.enable = lib.mkDefault true;
+        indent-blankline.enable = lib.mkDefault true;
         lsp.enable = lib.mkDefault true;
         lualine.enable = lib.mkDefault true;
         luasnip.enable = lib.mkDefault true;

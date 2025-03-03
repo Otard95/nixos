@@ -18,7 +18,7 @@ in {
     enable = lib.mkEnableOption "mini plugins";
 
     modules = {
-      icons = mkModuleOption "icons" { enable = true; };
+      icons = mkModuleOption "icons" {};
       indentscope = mkModuleOption "icons" {
         symbol = "⡇";
         draw = {
