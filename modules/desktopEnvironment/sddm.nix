@@ -9,10 +9,17 @@ in {
   };
 
   config = lib.mkIf enable {
+
+    catppuccin.sddm = {
+      enable = false;
+      assertQt6Sddm = true;
+    };
+
     services.displayManager.sddm = {
       enable = true;
       package = pkgs.kdePackages.sddm;
       wayland.enable = true;
     };
+
   };
 }

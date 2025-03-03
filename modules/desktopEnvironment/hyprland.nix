@@ -38,7 +38,7 @@ in {
       # xdgOpenUsePortal = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
-        xdg-desktop-portal-kde
+        kdePackages.xdg-desktop-portal-kde
       ];
       config = {
         common.default = ["hyprland" "gtk" "kde"];

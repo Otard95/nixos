@@ -51,81 +51,81 @@ in {
         end
       '';
 
-      plugins.dap = {
-        enable = true;
 
-        extensions = {
-          dap-ui.enable = true;
-          dap-virtual-text.enable = true;
-        };
+      plugins = {
+        dap-ui.enable = true;
+        dap-virtual-text.enable = true;
+        dap = {
+          enable = true;
 
-        signs = {
-          dapBreakpoint = {
-            text="⬤";
-            texthl="DapBreakpoint";
-            linehl="DapBreakpoint";
-            numhl="DapBreakpoint";
-          };
-          dapBreakpointCondition = {
-            text="";
-            texthl="DapBreakpoint";
-            linehl="DapBreakpoint";
-            numhl="DapBreakpoint";
-          };
-          dapBreakpointRejected = {
-            text="";
-            texthl="DapBreakpointRejected";
-            linehl="DapBreakpointRejected";
-            numhl="DapBreakpointRejected";
-          };
-          dapLogPoint = {
-            text="";
-            texthl="DapLogPoint";
-            linehl="DapLogPoint";
-            numhl="DapLogPoint";
-          };
-          dapStopped = {
-            text="";
-            texthl="DapStopped";
-            linehl="DapStopped";
-            numhl="DapStopped";
-          };
-        };
-
-        adapters = {
-          servers = {
-            pwa-node = {
-              host = "::1";
-              port = 8123;
-              executable = {
-                command = "${pkgs.vscode-js-debug}/bin/js-debug";
-                args = [ "8123" ];
-                # cwd = vim.fn.getcwd();
-              };
-              options = {
-                maxRetries = 40;
-              };
+          signs = {
+            dapBreakpoint = {
+              text="⬤";
+              texthl="DapBreakpoint";
+              linehl="DapBreakpoint";
+              numhl="DapBreakpoint";
+            };
+            dapBreakpointCondition = {
+              text="";
+              texthl="DapBreakpoint";
+              linehl="DapBreakpoint";
+              numhl="DapBreakpoint";
+            };
+            dapBreakpointRejected = {
+              text="";
+              texthl="DapBreakpointRejected";
+              linehl="DapBreakpointRejected";
+              numhl="DapBreakpointRejected";
+            };
+            dapLogPoint = {
+              text="";
+              texthl="DapLogPoint";
+              linehl="DapLogPoint";
+              numhl="DapLogPoint";
+            };
+            dapStopped = {
+              text="";
+              texthl="DapStopped";
+              linehl="DapStopped";
+              numhl="DapStopped";
             };
           };
 
-          executables = {
-            php = {
-              command = "node";
-              args = [ "${pkgs.vscode-extensions.xdebug.php-debug}/share/vscode/extensions/xdebug.php-debug/out/phpDebug.js" ];
-              # TODO: Test this
-              enrichConfig = nixvim.mkRaw ''
-                function(conf, on_config)
-                  if not conf.localSourceRoot then
-                    local config = vim.deepcopy(conf)
-                    config.pathMappings = {
-                      ["/var/www/html/"] = vim.fn.getcwd().."/",
-                    }
-                    on_config(config)
-                  else
-                    on_config(conf)
+          adapters = {
+            servers = {
+              pwa-node = {
+                host = "::1";
+                port = 8123;
+                executable = {
+                  command = "${pkgs.vscode-js-debug}/bin/js-debug";
+                  args = [ "8123" ];
+                  # cwd = vim.fn.getcwd();
+                };
+                options = {
+                  maxRetries = 40;
+                };
+              };
+            };
+
+            executables = {
+              php = {
+                command = "node";
+                args = [ "${pkgs.vscode-extensions.xdebug.php-debug}/share/vscode/extensions/xdebug.php-debug/out/phpDebug.js" ];
+                # TODO: Test this
+                enrichConfig = nixvim.mkRaw ''
+                  function(conf, on_config)
+                    if not conf.localSourceRoot then
+                      local config = vim.deepcopy(conf)
+                      config.pathMappings = {
+                        ["/var/www/html/"] = vim.fn.getcwd().."/",
+                      }
+                      on_config(config)
+                    else
+                      on_config(conf)
+                    end
                   end
-                end
-              '';
+                '';
+              };
             };
           };
         };
