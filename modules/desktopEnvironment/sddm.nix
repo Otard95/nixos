@@ -10,6 +10,12 @@ in {
 
   config = lib.mkIf enable {
 
+    environment.systemPackages = [
+      (pkgs.sddm-astronaut.override {
+        embeddedTheme = "pixel_sakura";
+      })
+    ];
+
     catppuccin.sddm = {
       enable = false;
       assertQt6Sddm = true;
@@ -19,6 +25,12 @@ in {
       enable = true;
       package = pkgs.kdePackages.sddm;
       wayland.enable = true;
+      theme = "sddm-astronaut-theme";
+      extraPackages = with pkgs.kdePackages; [
+        qtmultimedia
+        qtsvg
+        qtvirtualkeyboard
+      ];
     };
 
   };
