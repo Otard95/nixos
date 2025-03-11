@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.modules.packages.apps.protonvpn;
+  cfg = config.modules.packages.apps.proton-vpn;
   enable = cfg.enable;
 in {
-  options.modules.packages.apps.protonvpn.enable =
-    lib.mkEnableOption "protonvpn";
+  options.modules.packages.apps.proton-vpn.enable =
+    lib.mkEnableOption "proton-vpn";
 
   config = lib.mkIf enable {
 
