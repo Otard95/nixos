@@ -29,6 +29,10 @@ in {
 
     catppuccin.rofi.enable = false;
 
+    home.packages = with pkgs; [
+      rofimoji
+    ];
+
     programs.rofi = {
       enable = true;
 
