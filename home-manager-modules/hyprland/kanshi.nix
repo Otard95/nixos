@@ -27,9 +27,9 @@ in {
             name = "docked";
             exec = [ "${./scripts/kanshi-docked.sh}" ];
             outputs = [
-              { criteria = "eDP-1"; mode = "2560x1600"; position = "4000,1920"; scale = 1.0; }
-              { criteria = "DP-3"; mode = "2560x1440"; position = "4000,480"; }
-              { criteria = "DP-4"; mode = "2560x1440"; position = "2560,0"; transform = "270"; }
+              { criteria = "eDP-1"; mode = "2560x1600"; position = "5440,960"; scale = 1.0; }
+              { criteria = "DP-3"; mode = "2560x1440"; position = "4000,0"; transform = "270"; }
+              { criteria = "DP-4"; mode = "2560x1440"; position = "2560,0"; transform = "90"; }
               { criteria = "DP-5"; mode = "2560x1440"; position = "0,485"; }
             ];
           };
