@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, sources, ... }:
 let
   cfg = config.modules.desktopEnvironment.sddm;
   enable = cfg.enable;
@@ -12,7 +12,10 @@ in {
 
     environment.systemPackages = [
       (pkgs.sddm-astronaut.override {
-        embeddedTheme = "pixel_sakura";
+        themeConfig = {
+          Background = "${sources.images.background.forrest-lake-train}";
+        };
+        # embeddedTheme = "pixel_sakura";
       })
     ];
 

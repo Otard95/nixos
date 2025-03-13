@@ -58,7 +58,7 @@
 
     mkSystem = name: {
       specialArgs = {
-        inherit theme inputs pkgs-stable;
+        inherit theme inputs pkgs-stable sources;
         meta = { hostname = name; };
       };
       system = system;
