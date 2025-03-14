@@ -9,6 +9,7 @@ in {
   imports = [
     ./aws.nix
     ./bash.nix
+    ./bat.nix
     ./btop.nix
     ./direnv.nix
     ./fastfetch.nix
@@ -28,6 +29,7 @@ in {
   config = lib.mkIf enable {
     modules.term = {
       bash.enable = lib.mkDefault true;
+      bat.enable = lib.mkDefault true;
       btop.enable = lib.mkDefault true;
       fastfetch.enable = lib.mkDefault true;
       fzf.enable = lib.mkDefault true;

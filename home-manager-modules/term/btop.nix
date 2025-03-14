@@ -7,9 +7,6 @@ in {
   options.modules.term.btop.enable = lib.mkEnableOption "btop configuration";
 
   config = lib.mkIf enable {
-    home.packages = with pkgs; [
-      btop
-    ];
 
     catppuccin.btop = {
       enable = true;
