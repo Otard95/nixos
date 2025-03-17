@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ meta, ... }:
+{ meta, sources, ... }:
 
 {
   imports =
@@ -41,6 +41,7 @@
 
   # Modules
   modules = {
+    desktopEnvironment.sddm.background = sources.images.background.forrest-lake-train;
     nixvim.enable = true;
     system = {
       fingerprint.enable = true;
