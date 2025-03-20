@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let
   cfg = config.modules.term.git;
   enable = cfg.enable;
@@ -20,6 +20,11 @@ in {
   };
 
   config = lib.mkIf enable {
+
+    home.packages = [
+      inputs.ngm.packages."${pkgs.system}".default
+    ];
+
     programs.git = {
       enable = true;
 
@@ -103,5 +108,6 @@ in {
         }
       ];
     };
+
   };
 }
