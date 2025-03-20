@@ -59,9 +59,19 @@ in {
           follow_url_func = nixvim.mkRaw ''
             function (url)
               if path.is_relative(url) then
-                url = path.resolve(path.pathname(vim.api.nvim_buf_get_name(0)), url)
+                url = path.resolve(path.dirname(vim.api.nvim_buf_get_name(0)), url)
               end
-              vim.fn.jobstart({"open", url})
+              print('Opening: '..url)
+              vim.fn.jobstart({"xdg-open", url})
+            end
+          '';
+          follow_img_func = nixvim.mkRaw ''
+            function (url)
+              if path.is_relative(url) then
+                url = path.resolve(path.dirname(vim.api.nvim_buf_get_name(0)), url)
+              end
+              print('Opening: '..url)
+              vim.fn.jobstart({"xdg-open", url})
             end
           '';
           templates = {
