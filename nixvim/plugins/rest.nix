@@ -23,8 +23,8 @@ in {
               vim.opt_local.splitright = true
 
               local opts = { buffer = ev.buf }
-              vim.keymap.set({ 'n' }, '<leader>rr', '<cmd>Rest run<CR>', opts)
-              vim.keymap.set({ 'n' }, '<leader>rl', '<cmd>Rest run last<CR>', opts)
+              vim.keymap.set({ 'n' }, '<leader>rr', '<cmd>hor bo Rest run<CR>', opts)
+              vim.keymap.set({ 'n' }, '<leader>rl', '<cmd>hor bo Rest run last<CR>', opts)
               vim.keymap.set({ 'n' }, '<leader>re', require('telescope').extensions.rest.select_env, opts)
             end
           '';
