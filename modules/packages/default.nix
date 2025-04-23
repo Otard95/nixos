@@ -11,6 +11,7 @@ in {
     ./btop.nix
     ./docker.nix
     ./kalker.nix
+    ./numbat.nix
     ./notification.nix
     ./quickemu.nix
   ];
@@ -38,7 +39,7 @@ in {
 
     modules.packages = {
       btop.enable     = lib.mkDefault true;
-      kalker.enable   = lib.mkDefault true;
+      numbat.enable   = lib.mkDefault true;
       quickemu.enable = lib.mkDefault true;
     };
   };
