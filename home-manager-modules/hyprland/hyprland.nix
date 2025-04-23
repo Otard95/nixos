@@ -93,17 +93,17 @@ in {
         env = [
         ];
 
-        windowrulev2 = [
+        windowrule = [
           # Rofi
           "float,       class:(Rofi)"
           "stayfocused, class:(Rofi)"
           # Zen Browser
-          "float,        class:(zen), title:(Extension)"
-          "float,        initialTitle:(^Picture-in-Picture$)"
-          "size 944 530, initialTitle:(^Picture-in-Picture$)"
-          "float,        initialTitle:(^File Operation Progress$)"
-          "size 500 200, initialTitle:(^File Operation Progress$)"
-          "opacity 0.95, class:(zen)"
+          "float,               class:(zen), title:(Extension)"
+          "float,               initialTitle:(^Picture-in-Picture$)"
+          "size 944 530,        initialTitle:(^Picture-in-Picture$)"
+          "float,               initialTitle:(^File Operation Progress$)"
+          "size 500 200,        initialTitle:(^File Operation Progress$)"
+          "opacity 0.95 0.95 1, class:(zen)"
           # Vivaldi Browser
           "opacity 0.95, class:(vivaldi-stable)"
           "float,        initialTitle:(^$), initialClass:(^$)"
@@ -119,7 +119,7 @@ in {
           "uwsm app -- dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           "uwsm app -- hyprpaper"
           "uwsm app -- kanshi"
-          "[workspace 1 silent] uwsm app -- vivaldi"
+          "[workspace 1 silent] uwsm app -- zen"
           "[workspace 2 silent] uwsm app -- kitty"
         ];
 
