@@ -7,27 +7,34 @@ in {
     lib.mkEnableOption "harpoon plugin";
 
   config = lib.mkIf enable {
-    programs.nixvim.plugins.harpoon = {
-      enable = true;
 
-      menu = {
-        width = 110;
+    programs.nixvim = {
+
+      plugins.harpoon = {
+        enable = true;
+        enableTelescope = true;
       };
 
-      keymaps = {
-        addFile = "<leader>a";
-        toggleQuickMenu = "<leader>e";
-        navFile = {
-          "1" = "<leader>h";
-          "2" = "<leader>j";
-          "3" = "<leader>k";
-          "4" = "<leader>l";
-          "5" = "<leader>;";
-          "6" = "<leader>'";
-        };
-        navNext = "<leader>n";
-        navPrev = "<leader>p";
-      };
+      keymaps = [
+        { mode = "n"; key = "<leader>a";
+          action.__raw = "function() require'harpoon':list():add() end"; }
+        { mode = "n"; key = "<leader>e";
+          action.__raw = "function() require'harpoon'.ui:toggle_quick_menu(require'harpoon':list()) end"; }
+        { mode = "n"; key = "<leader>h";
+          action.__raw = "function() require'harpoon':list():select(1) end"; }
+        { mode = "n"; key = "<leader>j";
+          action.__raw = "function() require'harpoon':list():select(2) end"; }
+        { mode = "n"; key = "<leader>k";
+          action.__raw = "function() require'harpoon':list():select(3) end"; }
+        { mode = "n"; key = "<leader>l";
+          action.__raw = "function() require'harpoon':list():select(4) end"; }
+        { mode = "n"; key = "<leader>;";
+          action.__raw = "function() require'harpoon':list():select(5) end"; }
+        { mode = "n"; key = "<leader>'";
+          action.__raw = "function() require'harpoon':list():select(6) end"; }
+     ];
+
     };
+
   };
 }

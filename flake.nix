@@ -82,7 +82,7 @@
           home-manager.extraSpecialArgs = { inherit theme inputs pkgs-stable sources; };
           home-manager.users.otard = {
             imports = [
-              catppuccin.homeManagerModules.catppuccin
+              catppuccin.homeModules.catppuccin
               nixvim.homeManagerModules.nixvim
               ./nixvim
               ./home-manager-modules

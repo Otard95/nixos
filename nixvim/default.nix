@@ -23,13 +23,13 @@ in {
       enable = true;
       package = pkgs.neovim-unwrapped.overrideAttrs  (_: {
         pname = "neovim-unwrapped";
-        version = "0.10.1";
+        version = "0.11.0";
 
         src = pkgs.fetchFromGitHub {
           owner = "neovim";
           repo = "neovim";
-          rev = "refs/tags/v0.10.1";
-          hash = "sha256-OsHIacgorYnB/dPbzl1b6rYUzQdhTtsJYLsFLJxregk=";
+          rev = "refs/tags/v0.11.0";
+          hash = "sha256-UVMRHqyq3AP9sV79EkPUZnVkj0FpbS+XDPPOppp2yFE=";
         };
       });
 
