@@ -11,6 +11,7 @@ in {
     ./appgate.nix
     ./bitwarden.nix
     ./blueman.nix
+    ./calibre.nix
     ./clickup.nix
     ./dbeaver.nix
     ./discord.nix

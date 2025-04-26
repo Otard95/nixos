@@ -43,6 +43,7 @@
     nixvim.enable = true;
     system.bluetooth.enable = false;
     packages.apps = {
+      calibre.enable = true;
       discord.enable = true;
       games.enable = true;
       matrix.enable = true;
