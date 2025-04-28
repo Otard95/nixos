@@ -9,7 +9,26 @@ in {
     lib.mkEnableOption "lsp plugins";
 
   config = lib.mkIf enable {
+    
+
     programs.nixvim = {
+      nixpkgs.overlays = [
+        (pkgs: prevPkgs: {
+          vimPlugins = prevPkgs.vimPlugins.extend (plugins: prevPlugins: {
+            # Update nvim-lspconfig to fix https://github.com/nix-community/nixvim/issues/3224
+            # TODO: remove once nixpkgs updates vimPlugins
+            nvim-lspconfig = prevPlugins.nvim-lspconfig.overrideAttrs {
+              src = pkgs.fetchFromGitHub {
+                owner = "neovim";
+                repo = "nvim-lspconfig";
+                rev = "c48fac0936f24a5a2dbea9c8379ec9414a45eb8b";
+                hash = "sha256-L/yz0egBCIJ9kIDoZzX/+9GHx2au2VtlOPkm+zZ+T7M=";
+              };
+            };
+          });
+        })
+      ];
+
       plugins = {
         lsp-format = {
           enable = true;
@@ -62,9 +81,9 @@ in {
           };
 
           preConfig = ''
-            function __longest_line(s)
+            function __longest_line(lines)
               local max = 0
-              for line in s:gmatch("[^\n]+") do
+              for _, line in ipairs(lines) do
                 local len = #line
                 if len > max then
                   max = len
@@ -72,23 +91,18 @@ in {
               end
               return max
             end
-            function hover(_, result, ctx, config)
-              if not (result and result.contents) then config.width = 80 end
-              if result and type(result.contents) == "string" then config.width = __longest_line(result.contents) + 10 end
-              if result and type(result.contents.value) == "string" then config.width = __longest_line(result.contents.value) + 10 end
-              if type(config.width) and config.width < 25 then config.width = 25 end
-              return vim.lsp.handlers.hover(_, result, ctx, config)
+
+            local __open_floating_preview = vim.lsp.util.open_floating_preview
+            vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
+              local min_width = __longest_line(contents) + 10
+              local min_height = #contents + 2
+
+              opts.width = math.max(math.min(min_width, opts.max_width or math.huge), opts.width or 0)
+              opts.height = math.max(math.min(min_height, opts.max_height or math.huge), opts.height or 0)
+
+              return __open_floating_preview(contents, syntax, opts)
             end
           '';
-          setupWrappers = [
-            (s: ''vim.tbl_extend("keep", ${s} or {}, {
-              handlers = {
-                vim.lsp.handlers,
-                ['textDocument/hover'] = vim.lsp.with(hover, { border = 'rounded' }),
-                ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
-              },
-            })'')
-          ];
 
         };
 
