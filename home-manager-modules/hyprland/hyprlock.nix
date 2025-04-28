@@ -14,6 +14,8 @@ in {
   };
 
   config = lib.mkIf enable {
+    catppuccin.hyprlock.enable = false;
+
     programs.hyprlock = {
       enable = true;
 
@@ -44,7 +46,7 @@ in {
             fail_color = "rgb(234, 153, 156)";
             capslock_color = "rgb(229, 200, 144)";
             outline_thickness = 3;
-            placeholder_text = "<i>Password...</i>";
+            placeholder_text = ''<span foreground="##c6d0f5"><i>󰌾 Logged in as </i><span foreground="##81c8be">$USER</span></span>'';
             shadow_passes = 2;
             shadow_color = "rgb(48, 52, 70)";
           }
