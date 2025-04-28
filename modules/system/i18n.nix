@@ -49,19 +49,19 @@ in {
         LC_TIME = cfg.displayLocale;
       };
 
-      inputMethod = {
-        enable = true;
-        type = "fcitx5";
-        # ibus.engines = with pkgs.ibus-engines; [ mozc ];
-        fcitx5 = {
-          waylandFrontend = true;
-          addons = [
-            pkgs.fcitx5-mozc
-            pkgs.fcitx5-gtk
-            pkgs.fcitx5-configtool
-          ];
-        };
-      };
+      # inputMethod = {
+      #   enable = true;
+      #   type = "fcitx5";
+      #   # ibus.engines = with pkgs.ibus-engines; [ mozc ];
+      #   fcitx5 = {
+      #     waylandFrontend = true;
+      #     addons = [
+      #       pkgs.fcitx5-mozc
+      #       pkgs.fcitx5-gtk
+      #       pkgs.fcitx5-configtool
+      #     ];
+      #   };
+      # };
     };
 
     # Would normally set this to fcitx, but kitty only supports ibus, and fcitx
