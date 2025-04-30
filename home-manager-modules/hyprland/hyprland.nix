@@ -59,6 +59,8 @@ in {
           "$mod+SHIFT, S, exec, uwsm app -- grimblast edit area"
           "$mod+ALT, S, exec, uwsm app -- grimblast edit active"
           "$mod+CTRL, S, exec, uwsm app -- grimblast edit output"
+          # Convert unix timestamp
+          "$mod+CTRL, D, exec, ${pkgs.wl-clipboard}/bin/wl-paste --primary | xargs -I {} date -d @{} | xargs -I {} notify-send '{}'; ${pkgs.wl-clipboard}/bin/wl-paste | xargs -I {} date -d @{} | xargs -I {} notify-send '{}'"
         ] ++ (
           builtins.concatLists (builtins.genList (
             x: let
