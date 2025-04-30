@@ -29,27 +29,31 @@ in {
 
     catppuccin.rofi.enable = false;
 
-    home.packages = with pkgs; [
-      rofimoji
-    ];
-
     programs.rofi = {
       enable = true;
 
       package = pkgs.rofi-wayland;
 
+      plugins = with pkgs; [
+        rofi-emoji-wayland
+        (rofi-calc.override { rofi-unwrapped = rofi-wayland-unwrapped; })
+      ];
+
       font = theme.font.regular.default;
 
       extraConfig = {
-        modi = "drun,run,filebrowser,window";
+        modi = "combi,drun,window,calc,emoji";
+        combi-modes = "drun,window,emoji";
         show-icons = true;
         icon-theme = "Numix-Circle";
-        display-drun = "APPS";
-        display-run = "RUN";
-        display-filebrowser = "FILES";
-        display-window = "WINDOW";
+        display-combi = "󱐋";
+        display-drun = "󰀻";
+        display-window = "󱂬";
+        display-calc = "󰃬";
+        display-emoji = "󰞅";
         drun-display-format = "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
-        window-format = "{w} · {c} · {t}";
+        window-format = "{t}";
+        emoji-format = " {emoji} <span weight='bold'>{name}</span>[<span size='small'>({keywords})</span>]";
       };
 
       theme = let

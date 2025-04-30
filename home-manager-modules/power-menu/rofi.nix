@@ -26,9 +26,10 @@ in {
   };
 
   config = lib.mkIf enable {
-    home.packages = with pkgs; [
-      rofi-wayland
-    ];
+    # TODO: Fix this
+    # home.packages = with pkgs; [
+    #   rofi-wayland
+    # ];
 
     xdg.configFile = let
       themeTempl = builtins.readFile ./theme.rasi;
