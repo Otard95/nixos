@@ -13,6 +13,7 @@ in {
     ./blueman.nix
     ./calibre.nix
     ./clickup.nix
+    ./clocks.nix
     ./dbeaver.nix
     ./discord.nix
     ./firefox.nix
