@@ -114,6 +114,8 @@ in {
           # Wine
           "move 50% 20, initialTitle:(Wine System Tray)"
           "pin,         initialTitle:(Wine System Tray)"
+          # Gnome Clocks
+          "float, class:(org.gnome.clocks)"
         ];
 
         exec-once = [
