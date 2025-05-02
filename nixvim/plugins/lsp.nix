@@ -100,6 +100,8 @@ in {
               opts.width = math.max(math.min(min_width, opts.max_width or math.huge), opts.width or 0)
               opts.height = math.max(math.min(min_height, opts.max_height or math.huge), opts.height or 0)
 
+              opts.border = opts.border or 'rounded'
+
               return __open_floating_preview(contents, syntax, opts)
             end
           '';
