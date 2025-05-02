@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs-stable, ... }:
 let
   cfg = config.modules.packages.apps.proton-pass;
   enable = cfg.enable;
@@ -8,7 +8,7 @@ in {
 
   config = lib.mkIf enable {
     environment.systemPackages = [
-      pkgs.proton-pass
+      pkgs-stable.proton-pass
     ];
   };
 }
