@@ -18,7 +18,7 @@ in {
       hyprcursor
     ];
 
-    modules.term.kitty.enable = lib.mkDefault true;
+    modules.term.wezterm.enable = lib.mkDefault true;
 
     catppuccin.hyprland.enable = true;
 
@@ -29,7 +29,7 @@ in {
       settings = {
         "$mod" = "SUPER";
         bind = [
-          "$mod, RETURN, exec, uwsm app -- kitty"
+          "$mod, RETURN, exec, uwsm app -- wezterm"
           "$mod+SHIFT, Q, killactive"
           "$mod+SHIFT+CTRL, M, exec, uwsm stop"
           "$mod+SHIFT, P,   exec, uwsm app -- ~/.config/power-menu.sh"
@@ -124,7 +124,7 @@ in {
           "uwsm app -- hyprpaper"
           "uwsm app -- kanshi"
           "[workspace 1 silent] uwsm app -- zen"
-          "[workspace 2 silent] uwsm app -- kitty"
+          "[workspace 2 silent] uwsm app -- wezterm"
         ];
 
         exec = [ "pkill waybar; sleep 0.5 && uwsm app -- waybar" ];

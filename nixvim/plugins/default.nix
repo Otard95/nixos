@@ -43,7 +43,6 @@ in {
     ./treesitter.nix
     ./trouble.nix
     ./undotree.nix
-    # TODO: obsidian - work only?
     # TODO: linediff
   ];
 

@@ -320,7 +320,7 @@ in {
               "lower-medium" = 30;
               "low" = 10;
             };
-            "on-click" = "kitty btop";
+            "on-click" = "wezterm start btop";
             # "on-click-right" = "wezterm start btm";
           };
 
@@ -334,7 +334,7 @@ in {
               "lower-medium" = 30;
               "low" = 10;
             };
-            "on-click" = "kitty btop";
+            "on-click" = "wezterm start btop";
             # "on-click-right" = "wezterm start btm";
           };
 
@@ -348,7 +348,7 @@ in {
               "lower-medium" = 30;
               "low" = 10;
             };
-            "on-click" = "kitty btop";
+            "on-click" = "wezterm start btop";
             # "on-click-right" = "wezterm start btm";
           };
 

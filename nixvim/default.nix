@@ -13,6 +13,7 @@ in {
     ./todo.nix
     ./utils.nix
     ./commands.nix
+    ./wezterm-move.nix
     ./plugins
   ];
 
@@ -63,6 +64,7 @@ in {
 
     modules.nixvim = {
       plugins.enable = lib.mkDefault true;
+      wezterm-move.enable = lib.mkDefault true;
       ft-opts = {
         c = { commentstring = "//%s"; };
         cpp = { commentstring = "//%s"; };

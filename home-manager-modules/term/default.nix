@@ -23,6 +23,7 @@ in {
     ./thefuck.nix
     ./tmux.nix
     ./useful-commands.nix
+    ./wezterm.nix
     ./zoxide.nix
   ];
 
@@ -39,6 +40,7 @@ in {
       starship.enable = lib.mkDefault true;
       tmux.enable = lib.mkDefault true;
       useful-commands.enable = lib.mkDefault true;
+      wezterm.enable = lib.mkDefault true;
     };
   };
 
