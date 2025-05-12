@@ -8,6 +8,7 @@ in {
 
   imports = [
     ./scripts
+    ./wezterm
     ./aws.nix
     ./bash.nix
     ./bat.nix
@@ -24,7 +25,6 @@ in {
     ./thefuck.nix
     ./tmux.nix
     ./useful-commands.nix
-    ./wezterm.nix
     ./zoxide.nix
   ];
 

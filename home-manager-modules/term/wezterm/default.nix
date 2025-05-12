@@ -10,9 +10,19 @@ in {
 
     catppuccin.wezterm.enable = false;
 
+    # Fucks with starship otherwise
     programs.bash.initExtra = lib.mkOrder 9999 ''
       source "${pkgs.wezterm}/etc/profile.d/wezterm.sh"
     '';
+
+    xdg.configFile = let
+      fileNames = builtins.attrNames (builtins.readDir ./.);
+      entries = map (name: {
+        name = "wezterm/${name}";
+        value = { source = lib.path.append ./. "${name}"; };
+      }) (builtins.filter (name: !(lib.strings.hasSuffix "nix" name)) fileNames);
+      files = builtins.listToAttrs entries;
+    in files;
 
     programs.wezterm = {
 
@@ -29,6 +39,7 @@ in {
         require('mux').apply_to_config(config)
         require('theme').apply_to_config(config)
         require('keys').apply_to_config(config)
+        require('behaviour').apply_to_config(config)
 
         return config
 
