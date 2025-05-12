@@ -56,9 +56,11 @@ in {
           "$mod+ALT+SHIFT, L, movegroupwindow, f"
           "$mod+ALT+SHIFT, H, movegroupwindow, b"
           # Screenshot
-          "$mod+SHIFT, S, exec, uwsm app -- grimblast edit area"
-          "$mod+ALT, S, exec, uwsm app -- grimblast edit active"
-          "$mod+CTRL, S, exec, uwsm app -- grimblast edit output"
+          # "$mod+SHIFT, S, exec, uwsm app -- grimblast edit area"
+          # "$mod+ALT, S, exec, uwsm app -- grimblast edit active"
+          # "$mod+CTRL, S, exec, uwsm app -- grimblast edit output"
+          # Config from: https://github.com/flameshot-org/flameshot/issues/2978#issuecomment-1910298105
+          "$mod+SHIFT, S, exec, uwsm app -- flameshot gui -r | ${pkgs.wl-clipboard}/bin/wl-copy"
           # Convert unix timestamp
           "$mod+CTRL, D, exec, ${pkgs.wl-clipboard}/bin/wl-paste --primary | xargs -I {} date -d @{} | xargs -I {} notify-send '{}'; ${pkgs.wl-clipboard}/bin/wl-paste | xargs -I {} date -d @{} | xargs -I {} notify-send '{}'"
         ] ++ (
@@ -116,6 +118,22 @@ in {
           "pin,         initialTitle:(Wine System Tray)"
           # Gnome Clocks
           "float, class:(org.gnome.clocks)"
+          # Flameshot
+          #   TODO: Fix this is specific to phobos
+          #   Config from: https://github.com/flameshot-org/flameshot/issues/2978#issuecomment-2283569630
+          "monitor DP-5,             class:(flameshot), title:(flameshot)"
+          "move 0 -485,              class:(flameshot), title:(flameshot)"
+          "size 8000 2560,           class:(flameshot), title:(flameshot)"
+          "suppressevent fullscreen, class:(flameshot), title:(flameshot)"
+          "rounding 0,               class:(flameshot), title:(flameshot)"
+          "noborder,                 class:(flameshot), title:(flameshot)"
+          "float,                    class:(flameshot), title:(flameshot)"
+          "fullscreenstate,          class:(flameshot), title:(flameshot)"
+          "stayfocused,              class:(flameshot), title:(flameshot)"
+          "float,                    class:(flameshot), title:(Upload image)"
+          "float,                    class:(flameshot), title:(Configuration)"
+          "float,                    class:(flameshot), title:(Capture Launcher)"
+          "float,                    class:(flameshot), title:(Save screenshot)"
         ];
 
         exec-once = [
