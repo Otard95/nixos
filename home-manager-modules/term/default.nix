@@ -7,6 +7,7 @@ in {
   options.modules.term.enable = lib.mkEnableOption "terminal configuration";
 
   imports = [
+    ./scripts
     ./aws.nix
     ./bash.nix
     ./bat.nix
@@ -36,6 +37,7 @@ in {
       fzf.enable = lib.mkDefault true;
       git.enable = lib.mkDefault true;
       kitty.enable = lib.mkDefault true;
+      scripts.enable = lib.mkDefault true;
       ssh.enable = lib.mkDefault true;
       starship.enable = lib.mkDefault true;
       tmux.enable = lib.mkDefault true;
