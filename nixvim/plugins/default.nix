@@ -32,6 +32,7 @@ in {
     ./luasnip.nix
     ./markdown.nix
     ./mini.nix
+    ./neotest.nix
     ./nvim-tree.nix
     ./obsidian.nix
     ./oil.nix
@@ -88,6 +89,7 @@ in {
       (lib.mkIf (presetInt > 2) {
         dadbod.enable = lib.mkDefault true;
         dap.enable = lib.mkDefault true;
+        neotest.enable = lib.mkDefault true;
         rest.enable = lib.mkDefault true;
         obsidian.enable = lib.mkDefault true;
       })
