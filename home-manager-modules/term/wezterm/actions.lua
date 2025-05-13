@@ -4,7 +4,10 @@ local str = require 'utils.string'
 local tbl = require 'utils.table'
 local vim = require 'utils.vim'
 
-local M = {}
+local M = {
+  ---@type string
+  previous_workspace = 'default'
+}
 
 local direction_keys = {
   Left = "h",
@@ -46,6 +49,7 @@ local function get_workspace_choices()
   )
 end
 
+-- t-smart-tmux-session-manager remake inspired by sessionizer.wezterm
 function M.Sessionizer()
   return wezterm.action_callback(function(win, pane)
     win:perform_action(
@@ -56,6 +60,8 @@ function M.Sessionizer()
               -- User canceled
               return
             end
+
+            M.previous_workspace = inner_win:active_workspace()
 
             if id == nil then
               -- User selected a workspace
@@ -99,6 +105,7 @@ function M.SpawnProcessInWorkspace()
             description = 'Name the workspace',
             initial_value = command,
             action = wezterm.action_callback(function(inner_win, inner_pane, name)
+              M.previous_workspace = inner_win:active_workspace()
               inner_win:perform_action(
                 wezterm.action.SwitchToWorkspace {
                   name = name,
@@ -113,6 +120,17 @@ function M.SpawnProcessInWorkspace()
       end
     end)
   }
+end
+
+function M.SwitchToLastWorkspace()
+  return wezterm.action_callback(function(win, pane)
+    local target_workspace = M.previous_workspace
+    M.previous_workspace = win:active_workspace()
+    win:perform_action(
+      wezterm.action.SwitchToWorkspace { name = target_workspace, },
+      pane
+    )
+  end)
 end
 
 function M.RenameWorkspace()

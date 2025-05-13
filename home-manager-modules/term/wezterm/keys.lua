@@ -12,7 +12,8 @@ function M.apply_to_config(config)
       mods = 'CTRL',
       action = wezterm.action.ActivateCommandPalette,
     },
-    -- Create split panes
+
+    -- Panes
     {
       key = '|',
       mods = 'LEADER',
@@ -23,19 +24,18 @@ function M.apply_to_config(config)
       mods = 'LEADER',
       action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
     },
-    -- Toggle zen/zoom of pane
     {
       key = 'z',
       mods = 'LEADER',
       action = wezterm.action.TogglePaneZoomState,
     },
-    -- t-smart-tmux-session-manager remake inspired by sessionizer.wezterm
+
+    -- Sessions
     {
       key = 'j',
       mods = 'LEADER',
       action = actions.Sessionizer(),
     },
-    -- Create a new workspace running requested command
     {
       key = 'x',
       mods = 'LEADER',
@@ -46,6 +46,12 @@ function M.apply_to_config(config)
       mods = 'LEADER',
       action = actions.RenameWorkspace(),
     },
+    {
+      key = 'l',
+      mods = 'LEADER',
+      action = actions.SwitchToLastWorkspace(),
+    },
+
     -- Navigate wezterm and nvim splits/panes
     {
       key = 'h',
@@ -66,6 +72,16 @@ function M.apply_to_config(config)
       key = 'l',
       mods = 'CTRL',
       action = actions.MovePane 'Right',
+    },
+
+    --------------
+    --- Unbind ---
+    --------------
+
+    {
+      key = 'N',
+      mods = 'CTRL',
+      action = wezterm.action.DisableDefaultAssignment,
     }
   }
 end
