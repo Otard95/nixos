@@ -27,6 +27,7 @@ in {
     ./git.nix
     ./harpoon.nix
     ./indent-blankline.nix
+    ./lazydev.nix
     ./lsp.nix
     ./lualine.nix
     ./luasnip.nix
@@ -78,6 +79,7 @@ in {
         colorize.enable = lib.mkDefault true;
         fidget.enable = lib.mkDefault true;
         indent-blankline.enable = lib.mkDefault true;
+        lazydev.enable = lib.mkDefault true;
         lsp.enable = lib.mkDefault true;
         lualine.enable = lib.mkDefault true;
         luasnip.enable = lib.mkDefault true;
