@@ -1,4 +1,4 @@
-local wezterm = require "wezterm"
+local wezterm = require 'wezterm' --[[@as Wezterm]]
 local path = require 'utils.path'
 local str = require 'utils.string'
 local tbl = require 'utils.table'
@@ -83,8 +83,7 @@ function M.Sessionizer()
                 inner_pane
               )
             end
-          end,
-          pane
+          end
         ),
         title = "Wezterm Sessionizer",
         choices = tbl.concat(get_workspace_choices(), get_directories_choices()),
@@ -162,6 +161,16 @@ function M.RenameWorkspace()
       pane
     )
   end)
+end
+
+function M.SendSelectedText()
+  return wezterm.action_callback(
+    function(win, pane)
+      pane:send_text(win:get_selection_text_for_pane(pane) .. ' ')
+      win:perform_action(wezterm.action.ClearSelection, pane)
+      win:perform_action(wezterm.action.CopyMode 'ClearSelectionMode', pane)
+    end
+  )
 end
 
 return M

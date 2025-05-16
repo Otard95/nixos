@@ -43,6 +43,7 @@ function M.apply_to_config(config)
         wezterm.action.ClearSelection,
         wezterm.action.CopyMode 'ClearSelectionMode'
       } },
+      keys.map { 'n', 'CTRL', actions.SendSelectedText() },
       keys.map { 'Enter', wezterm.action.CopyMode 'Close' }
     })
   }
