@@ -1,5 +1,6 @@
 local wezterm = require 'wezterm' --[[@as Wezterm]]
 local actions = require 'actions'
+local tbl = require 'utils.table'
 local keys = require 'utils.keys'
 
 local M = {}
@@ -36,14 +37,14 @@ function M.apply_to_config(config)
   }
 
   config.key_tables = {
-    copy_mode = {
-      keys.map { 'y', 'NONE', wezterm.action.Multiple {
-        wezterm.action.CopyTo 'PrimarySelection',
+    copy_mode = tbl.concat(wezterm.gui.default_key_tables().copy_mode, {
+      keys.map { 'y', wezterm.action.Multiple {
+        wezterm.action.CopyTo 'ClipboardAndPrimarySelection',
         wezterm.action.ClearSelection,
-        -- clear the selection mode, but remain in copy mode
-        -- wezterm.action.CopyMode { 'ClearSelectionMode' },
-      } }
-    }
+        wezterm.action.CopyMode 'ClearSelectionMode'
+      } },
+      keys.map { 'Enter', wezterm.action.CopyMode 'Close' }
+    })
   }
 end
 
