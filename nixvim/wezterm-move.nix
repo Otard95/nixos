@@ -16,25 +16,25 @@ in {
       {
         mode = "n";
         key = "<C-h>";
-        action = nixvim.mkRaw "function() require 'utils.wezterm'.move 'h' end";
+        action = nixvim.mkRaw "require 'utils.wezterm'.move 'h'";
         options = { silent = true; };
       }
       {
         mode = "n";
         key = "<C-j>";
-        action = nixvim.mkRaw "function() require 'utils.wezterm'.move 'j' end";
+        action = nixvim.mkRaw "require 'utils.wezterm'.move 'j'";
         options = { silent = true; };
       }
       {
         mode = "n";
         key = "<C-k>";
-        action = nixvim.mkRaw "function() require 'utils.wezterm'.move 'k' end";
+        action = nixvim.mkRaw "require 'utils.wezterm'.move 'k'";
         options = { silent = true; };
       }
       {
         mode = "n";
         key = "<C-l>";
-        action = nixvim.mkRaw "function() require 'utils.wezterm'.move 'l' end";
+        action = nixvim.mkRaw "require 'utils.wezterm'.move 'l'";
         options = { silent = true; };
       }
     ];
