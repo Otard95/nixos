@@ -51,7 +51,11 @@ in {
           ++ [ " #" ]
         );
         wtl = ''worktree list'';
-        wtr = ''worktree remove'';
+        wtr = lib.concatStrings(
+          [ ''!git worktree remove $1'' ]
+          ++ lib.optional config.modules.term.zoxide.enable " && zoxide remove ../$1"
+          ++ [ " #" ]
+        );
       };
 
       ignores = [
