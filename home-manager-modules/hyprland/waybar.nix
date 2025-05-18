@@ -707,11 +707,11 @@ in {
         }
 
         #disk.lower-medium {
-          color: @rosewater;
+          color: @mauve;
         }
 
         #disk.medium {
-          color: @yellow;
+          color: @rosewater;
         }
 
         #disk.upper-medium {
