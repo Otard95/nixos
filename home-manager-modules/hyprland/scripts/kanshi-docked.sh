@@ -10,7 +10,6 @@ keyword workspace 6,monitor:DP-3; \
 keyword workspace 7,monitor:DP-5; \
 keyword workspace 8,monitor:DP-4; \
 keyword workspace 9,monitor:DP-3; \
-keyword workspace 10,monitor:eDP-1; \
 dispatch moveworkspacetomonitor 1 DP-5; \
 dispatch moveworkspacetomonitor 2 DP-4; \
 dispatch moveworkspacetomonitor 3 DP-3; \
@@ -19,5 +18,4 @@ dispatch moveworkspacetomonitor 5 DP-4; \
 dispatch moveworkspacetomonitor 6 DP-3; \
 dispatch moveworkspacetomonitor 7 DP-5; \
 dispatch moveworkspacetomonitor 8 DP-4; \
-dispatch moveworkspacetomonitor 9 DP-3; \
-dispatch moveworkspacetomonitor 10 eDP-1"
+dispatch moveworkspacetomonitor 9 DP-3"
