@@ -244,7 +244,7 @@ in {
       export XDG_SESSION_TYPE=wayland
       export GBM_BACKEND=nvidia-drm
       export __GLX_VENDOR_LIBRARY_NAME=nvidia
-      export SLURP_ARGS=-d -b 16897a44 -c 04d6c8 -B 0e999e22
+      export SLURP_ARGS="-d -b 16897a44 -c 04d6c8 -B 0e999e22"
       export GRIMBLAST_EDITOR=pinta
     '';
     # xdg.configFile."uwsm/env-hyprland".text = ''
