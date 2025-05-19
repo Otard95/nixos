@@ -14,12 +14,14 @@ in {
     ./gc.nix
     ./graphics.nix
     ./i18n.nix
+    ./networking.nix
     ./sound.nix
   ];
 
   config = lib.mkIf enable {
+    modules.system.bluetooth.enable = lib.mkDefault true;
     modules.system.gc.enable = lib.mkDefault true;
     modules.system.i18n.enable = lib.mkDefault true;
-    modules.system.bluetooth.enable = lib.mkDefault true;
+    modules.system.networking.enable = lib.mkDefault true;
   };
 }

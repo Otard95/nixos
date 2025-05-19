@@ -2,8 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ meta, sources, ... }:
-
+{ sources, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -18,16 +17,6 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.hostName = meta.hostname; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -39,13 +28,16 @@
     # packages = with pkgs; [];
   };
 
+  services.logind.lidSwitchDocked = "ignore";
+  services.logind.lidSwitchExternalPower = "ignore";
+
   # Modules
   modules = {
     desktopEnvironment.sddm.background = sources.images.background.forrest-lake-train;
     nixvim.enable = true;
     system = {
-      fingerprint.enable = true;
       battery-monitor.enable = true;
+      fingerprint.enable = true;
       graphics = {
         prime = {
           enable = true;
@@ -53,6 +45,7 @@
           nvidiaBusId = "PCI:1:0:0";
         };
       };
+      networking.preset.smb-backend.enable = true;
     };
     packages = {
       docker.enable = true;
@@ -65,6 +58,7 @@
         kdeconnect.enable = true;
         slack.enable = true;
         vivaldi.enable = true;
+        games.enable = true;
       };
     };
   };
@@ -85,18 +79,6 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-  networking.firewall = {
-    allowedTCPPortRanges = [ { from = 9000; to = 9020; } ];
-  };
-  networking.extraHosts = ''
-    127.0.0.1 tenderms.dart ma2.dart melvis.dart ticketms.dart
-  '';
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
