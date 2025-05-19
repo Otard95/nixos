@@ -15,8 +15,13 @@ in {
   config = lib.mkIf enable (lib.mkMerge [
     {
       networking.hostName = meta.hostname; # Define your hostname.
+
+      # This services makes the 'graphical.target' delay.
+      # Which fucks with login and session startup
       systemd.network.wait-online.enable = false;
+      systemd.services.NetworkManager-wait-online.enable = false;
       boot.initrd.systemd.network.wait-online.enable = false;
+
       # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
       # Configure network proxy if necessary
