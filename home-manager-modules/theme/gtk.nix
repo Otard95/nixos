@@ -33,6 +33,11 @@ in {
         name = theme.font.regular.default;
         size = 10;
       };
+      cursorTheme = {
+        name = "BreezeX-RosePine-Linux";
+        package = pkgs.rose-pine-cursor;
+        size = 24;
+      };
     };
     xdg.configFile = let
       gtk4Dir = "${gtkThemePackage}/share/themes/${gtkThemeName}/gtk-4.0";

@@ -29,5 +29,6 @@
     colloid-icon-theme
     catppuccin-gtk
     catppuccin-cursors.frappeTeal
+    rose-pine-hyprcursor
   ];
 }

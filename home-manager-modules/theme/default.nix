@@ -1,4 +1,4 @@
-{ config, lib, theme, ... }:
+{ config, lib, pkgs, theme, ... }:
 let
   cfg = config.modules.theme;
   enable = cfg.enable;
@@ -21,15 +21,16 @@ in {
     catppuccin = {
       enable = true;
       inherit (theme) flavor accent;
-      cursors.enable = true;
+      cursors.enable = false;
     };
     home.pointerCursor = {
-      gtk.enable = true;
+      name = "rose-pine-hyprcursor";
+      package = pkgs.rose-pine-hyprcursor;
+      size = 24;
+      # gtk.enable = true;
       x11.enable = true;
       hyprcursor.enable = true;
-      size = 16;
     };
-    home.sessionVariables.HYPRCURSOR_SIZE = lib.mkForce 24;
 
     fonts.fontconfig = {
       enable = true;
