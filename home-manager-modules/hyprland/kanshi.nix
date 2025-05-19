@@ -10,7 +10,7 @@ in {
     services.kanshi = {
       enable = true;
 
-      systemdTarget = "hyprland-session.target";
+      systemdTarget = "wayland-session@Hyprland.target";
 
       settings = [
         {
