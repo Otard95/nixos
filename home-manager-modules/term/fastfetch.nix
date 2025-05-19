@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.modules.term.fastfetch;
   enable = cfg.enable;
@@ -7,14 +7,9 @@ in {
   options.modules.term.fastfetch.enable = lib.mkEnableOption "fastfetch configuration";
 
   config = lib.mkIf enable {
-    home.packages = with pkgs; [
-      fastfetch
-    ];
-
     programs = {
 
       fastfetch = {
-
         enable = true;
 
         settings = {
@@ -48,7 +43,7 @@ in {
       };
 
       bash.initExtra = "fastfetch";
-
+      zsh.initContent = "fastfetch";
     };
   };
 

@@ -33,6 +33,7 @@
       };
       k9s.enable = true;
       thefuck.enable = true;
+      zsh.enable = true;
     };
     nixvim = {
       enable = true;

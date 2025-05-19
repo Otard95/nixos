@@ -15,6 +15,7 @@ in {
     ./graphics.nix
     ./i18n.nix
     ./networking.nix
+    ./shell.nix
     ./sound.nix
   ];
 
@@ -23,5 +24,6 @@ in {
     modules.system.gc.enable = lib.mkDefault true;
     modules.system.i18n.enable = lib.mkDefault true;
     modules.system.networking.enable = lib.mkDefault true;
+    modules.system.shell.enable = lib.mkDefault true;
   };
 }

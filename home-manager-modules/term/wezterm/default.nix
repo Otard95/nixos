@@ -14,6 +14,9 @@ in {
     programs.bash.initExtra = lib.mkOrder 9999 ''
       source "${pkgs.wezterm}/etc/profile.d/wezterm.sh"
     '';
+    programs.zsh.initContent = lib.mkOrder 9999 ''
+      source "${pkgs.wezterm}/etc/profile.d/wezterm.sh"
+    '';
 
     xdg.configFile = let
       fileNames = builtins.attrNames (builtins.readDir ./.);
@@ -28,6 +31,7 @@ in {
 
       enable = true;
       enableBashIntegration = false;
+      enableZshIntegration = false;
 
       extraConfig = ''
 

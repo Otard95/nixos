@@ -26,6 +26,7 @@ in {
     ./tmux.nix
     ./useful-commands.nix
     ./zoxide.nix
+    ./zsh.nix
   ];
 
   config = lib.mkIf enable {

@@ -46,6 +46,7 @@
         };
       };
       networking.preset.smb-backend.enable = true;
+      shell.kind = "zsh";
     };
     packages = {
       docker.enable = true;

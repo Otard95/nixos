@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.modules.term.starship;
   enable = cfg.enable;
@@ -7,10 +7,6 @@ in {
   options.modules.term.starship.enable = lib.mkEnableOption "starship configuration";
 
   config = lib.mkIf enable {
-    home.packages = with pkgs; [
-      starship
-    ];
-
     catppuccin.starship.enable = true;
 
     programs.starship = {
