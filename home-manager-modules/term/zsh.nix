@@ -19,6 +19,10 @@ in {
         ".." = "cd ..";
       };
 
+      initContent = ''
+        bindkey -v '^?' backward-delete-char
+      '';
+
       profileExtra = ''
         # Secrets
         if [ -d ~/.secret ]; then
