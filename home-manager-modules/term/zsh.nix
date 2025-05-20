@@ -21,6 +21,10 @@ in {
 
       initContent = ''
         bindkey -v '^?' backward-delete-char
+        bindkey -r '^H'
+        bindkey -r '^J'
+        bindkey -r '^K'
+        bindkey -r '^L'
       '';
 
       profileExtra = ''

@@ -9,6 +9,7 @@ in {
     kind = lib.mkOption {
       description = "Select which shell to use";
       type = lib.types.enum [ "bash" "zsh" ];
+      default = "bash";
     };
   };
 
