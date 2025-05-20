@@ -13,7 +13,7 @@ function M.apply_to_config(config)
     keys.map { 'P', 'CTRL', wezterm.action.ActivateCommandPalette },
 
     -- Panes
-    keys.map { '|', 'LEADER', wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+    keys.map { '|', 'LEADER|SHIFT', wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
     keys.map { '-', 'LEADER', wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
     keys.map { 'z', 'LEADER', wezterm.action.TogglePaneZoomState },
 
@@ -28,6 +28,10 @@ function M.apply_to_config(config)
     keys.map { 'j', 'CTRL', actions.MovePane 'Down' },
     keys.map { 'k', 'CTRL', actions.MovePane 'Up' },
     keys.map { 'l', 'CTRL', actions.MovePane 'Right' },
+
+    keys.map { 'd', 'LEADER', wezterm.action_callback(function(_win, pane)
+      wezterm.log_info('pane:user_vars', pane:get_user_vars())
+    end) },
 
     --------------
     --- Unbind ---
