@@ -18,7 +18,7 @@ in {
             name = "undocked";
             exec = [ "${./scripts/kanshi-undocked.sh}" ];
             outputs = [
-              { criteria = "eDP-1"; mode = "2560x1600"; scale = 1.0; }
+              { criteria = "eDP-1"; status = "enable"; position = "0,0"; mode = "2560x1600"; scale = 1.0; }
             ];
           };
         }
