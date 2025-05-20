@@ -43,7 +43,7 @@ in {
         require('mux').apply_to_config(config)
         require('theme').apply_to_config(config)
         require('keys').apply_to_config(config)
-        require('behaviour').apply_to_config(config)
+        require('options').apply_to_config(config)
 
         return config
 
