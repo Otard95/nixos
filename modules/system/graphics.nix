@@ -28,6 +28,10 @@ in {
       ];
     };
 
+    nvidia = {
+      open = lib.mkEnableOption "NVidia open source kernel module";
+    };
+
     prime = {
       enable = lib.mkEnableOption "PRIME";
 
@@ -55,8 +59,8 @@ in {
     (lib.mkIf (cfg.manufacturer == "nvidia") {
       hardware.nvidia = {
         modesetting.enable = true;
-        powerManagement.enable = true;
-        open = false;
+        powerManagement.enable = false;
+        open = cfg.nvidia.open;
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
       };

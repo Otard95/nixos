@@ -39,6 +39,7 @@
       battery-monitor.enable = true;
       fingerprint.enable = true;
       graphics = {
+        nvidia.open = true;
         prime = {
           enable = true;
           intelBusId = "PCI:0:2:0";

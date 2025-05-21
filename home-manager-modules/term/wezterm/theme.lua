@@ -22,7 +22,7 @@ function M.apply_to_config(config)
     ['Catppuccin Frappe'] = catppuccin_frappe
   }
   config.color_scheme = 'Catppuccin Frappe'
-  config.window_background_opacity = 0.85
+  config.window_background_opacity = 0.95
 
   -- Tab bar styling: https://wezterm.org/config/appearance.html#tab-bar-appearance-colors
   -- config.hide_tab_bar_if_only_one_tab = true

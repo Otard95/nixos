@@ -104,7 +104,7 @@ in {
           "size 944 530,        initialTitle:(^Picture-in-Picture$)"
           "float,               initialTitle:(^File Operation Progress$)"
           "size 500 200,        initialTitle:(^File Operation Progress$)"
-          "opacity 0.95 0.95 1, class:(zen)"
+          # "opacity 0.95 0.95 1, class:(zen)"
           # Vivaldi Browser
           "opacity 0.95, class:(vivaldi-stable)"
           "float,        initialTitle:(^$), initialClass:(^$)"
@@ -167,11 +167,16 @@ in {
           };
 
           blur = {
+            enabled = false;
             noise = 0;
             size = 2;
             passes = 3;
             ignore_opacity = true;
           };
+        };
+
+        opengl = {
+          nvidia_anti_flicker = false;
         };
 
         group = {
@@ -183,11 +188,11 @@ in {
           };
         };
 
-        layerrule = [
-          "blur, rofi"
-          "blur, notifications"
-          "ignorezero, notifications"
-        ];
+        # layerrule = [
+        #   "blur, rofi"
+        #   "blur, notifications"
+        #   "ignorezero, notifications"
+        # ];
 
         animations = {
           enabled = true;
