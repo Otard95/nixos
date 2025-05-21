@@ -106,7 +106,6 @@ in {
           "size 500 200,        initialTitle:(^File Operation Progress$)"
           # "opacity 0.95 0.95 1, class:(zen)"
           # Vivaldi Browser
-          "opacity 0.95, class:(vivaldi-stable)"
           "float,        initialTitle:(^$), initialClass:(^$)"
           "move 50% 10,   initialTitle:(^$), initialClass:(^$)"
           "pin,          initialTitle:(^$), initialClass:(^$)"
