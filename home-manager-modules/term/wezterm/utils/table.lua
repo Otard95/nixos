@@ -30,9 +30,12 @@ function M.concat(...)
   return out
 end
 
----comment
+---If `predicate` is a function:
+---  Returns true if `predicate` returns true for any element of `tbl`, otherwise false.
+---If `predicate` is not a function:
+---  Returns true if `predicate` is equal to any element in the table, otherwise false.
 ---@param tbl table
----@param predicate function|any a predicate function taking individual elements of tbl or a value to match
+---@param predicate (fun(value: any): boolean)|any
 ---@return boolean
 function M.has(tbl, predicate)
   local match = type(predicate) == 'function' and predicate or function(val)
@@ -44,6 +47,17 @@ function M.has(tbl, predicate)
     end
   end
   return false
+end
+
+---Returns the first element of `tbl`, for which `predicate` returns true
+---@param tbl table
+---@param predicate fun(value: any): boolean
+function M.find(tbl, predicate)
+  for _, value in ipairs(tbl) do
+    if predicate(value) then
+      return value
+    end
+  end
 end
 
 return M
