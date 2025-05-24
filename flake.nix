@@ -39,7 +39,12 @@
   let
     system = "x86_64-linux";
 
-    pkgs-stable = nixpkgs-stable.legacyPackages.${system};
+    pkgs-stable = import nixpkgs-stable {
+      system = system;
+      config = {
+        allowUnfree = true;
+      };
+    };
 
     theme = {
       flavor = "frappe";

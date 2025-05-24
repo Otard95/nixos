@@ -35,7 +35,10 @@
     packages.apps = {
       calibre.enable = true;
       discord.enable = true;
-      games.enable = true;
+      games = {
+        enable = true;
+        minecraft.enable = true;
+      };
       matrix.enable = true;
       wooting.enable = true;
     };

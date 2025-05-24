@@ -3,8 +3,15 @@ let
   cfg = config.modules.packages.apps.games;
   enable = cfg.enable;
 in {
-  options.modules.packages.apps.games.enable =
-    lib.mkEnableOption "games";
+  options.modules.packages.apps.games = {
+    enable = lib.mkEnableOption "games";
+
+    minecraft = {
+      enable = lib.mkEnableOption "minecraft";
+
+      launcher = lib.mkPackageOption pkgs "prismlauncher" { };
+    };
+  };
 
   config = lib.mkIf enable {
 
@@ -31,7 +38,8 @@ in {
           dxvk
         ];
       })
-    ];
+    ]
+      ++ lib.optional cfg.minecraft.enable cfg.minecraft.launcher;
 
   };
 }
