@@ -7,7 +7,7 @@ in {
   options.modules.hyprland.hyprpaper = {
     enable = lib.mkEnableOption "hyprpaper configuration";
     bg-image = lib.mkOption {
-      description = "Path to the backround image to use";
+      description = "Path to the background image to use";
       default = sources.images.background.falling-into-infinity;
       type = lib.types.path;
     };
