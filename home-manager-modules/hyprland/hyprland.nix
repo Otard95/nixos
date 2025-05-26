@@ -229,7 +229,7 @@ in {
       submap = reset
 
       cursor {
-        # no_hardware_cursors = true
+        no_hardware_cursors = true
         # allow_dumb_copy = true
         # sync_gsettings_theme = false
       }
