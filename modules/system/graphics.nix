@@ -59,7 +59,7 @@ in {
     (lib.mkIf (cfg.manufacturer == "nvidia") {
       hardware.nvidia = {
         modesetting.enable = true;
-        powerManagement.enable = false;
+        powerManagement.enable = true;
         open = cfg.nvidia.open;
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
