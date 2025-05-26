@@ -4,7 +4,19 @@ let
   enable = cfg.enable;
 in {
 
-  options.modules.nixvim.enable = lib.mkEnableOption "nixvim configuration";
+  options.modules.nixvim = {
+    enable = lib.mkEnableOption "nixvim configuration";
+
+    defaultTerminal = lib.mkOption {
+      description = ''
+        Set the your default terminal.
+        This determines which terminal your window manager will start,
+        which tmux and nvim integrations are enabled by default, etc.
+      '';
+      type = lib.types.enum [ "kitty" "wezterm" ];
+      default = "kitty";
+    };
+  };
 
   imports = [
     ./opts.nix
@@ -64,7 +76,7 @@ in {
 
     modules.nixvim = {
       plugins.enable = lib.mkDefault true;
-      wezterm-move.enable = lib.mkDefault true;
+      wezterm-move.enable = lib.mkDefault (config.modules.nixvim.defaultTerminal == "wezterm"); # (config.modules.term.defaultTerminal == "wezterm")
       ft-opts = {
         c = { commentstring = "//%s"; };
         cpp = { commentstring = "//%s"; };

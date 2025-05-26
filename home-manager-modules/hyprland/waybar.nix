@@ -320,8 +320,8 @@ in {
               "lower-medium" = 30;
               "low" = 10;
             };
-            "on-click" = "wezterm start btop";
-            # "on-click-right" = "wezterm start btm";
+            "on-click" = "${config.modules.term.defaultTerminal} start btop";
+            # "on-click-right" = "${config.modules.term.defaultTerminal} start btm";
           };
 
           "memory" = {
@@ -334,8 +334,8 @@ in {
               "lower-medium" = 30;
               "low" = 10;
             };
-            "on-click" = "wezterm start btop";
-            # "on-click-right" = "wezterm start btm";
+            "on-click" = "${config.modules.term.defaultTerminal} start btop";
+            # "on-click-right" = "${config.modules.term.defaultTerminal} start btm";
           };
 
           "disk" = {
@@ -348,8 +348,8 @@ in {
               "lower-medium" = 30;
               "low" = 10;
             };
-            "on-click" = "wezterm start btop";
-            # "on-click-right" = "wezterm start btm";
+            "on-click" = "${config.modules.term.defaultTerminal} start btop";
+            # "on-click-right" = "${config.modules.term.defaultTerminal} start btm";
           };
 
           "temperature" = {

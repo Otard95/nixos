@@ -18,8 +18,6 @@ in {
       hyprcursor
     ];
 
-    modules.term.wezterm.enable = lib.mkDefault true;
-
     catppuccin.hyprland.enable = true;
 
     wayland.windowManager.hyprland = {
@@ -29,7 +27,7 @@ in {
       settings = {
         "$mod" = "SUPER";
         bind = [
-          "$mod, RETURN, exec, uwsm app -- wezterm"
+          "$mod, RETURN, exec, uwsm app -- ${config.modules.term.defaultTerminal}"
           "$mod+SHIFT, Q, killactive"
           "$mod+SHIFT+CTRL, M, exec, uwsm stop"
           "$mod+SHIFT, P,   exec, uwsm app -- ~/.config/power-menu.sh"
@@ -138,7 +136,7 @@ in {
           "uwsm app -- hyprpaper"
           "uwsm app -- kanshi"
           "[workspace 1 silent] uwsm app -- zen"
-          "[workspace 2 silent] uwsm app -- wezterm"
+          "[workspace 2 silent] uwsm app -- ${config.modules.term.defaultTerminal}"
         ];
 
         exec = [ "pkill waybar; sleep 0.5 && uwsm app -- waybar" ];

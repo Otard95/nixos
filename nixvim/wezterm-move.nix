@@ -10,8 +10,6 @@ in {
 
   config = lib.mkIf enable {
 
-    modules.nixvim.plugins.tmux-navigator.enable = false;
-
     programs.nixvim.keymaps = [
       {
         mode = "n";

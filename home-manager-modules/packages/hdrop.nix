@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.modules.packages.hdrop;
   enable = cfg.enable;
@@ -24,7 +24,7 @@ in {
     }
 
     # TODO: Setup this for wezterm too
-    (lib.mkIf config.modules.term.kitty.enable {
+    (lib.mkIf (config.modules.term.defaultTerminal == "kitty") {
       wayland.windowManager.hyprland.settings.bind = [
         "ALT, Q, exec, uwsm app -- /home/otard/scripts/hdrop -f -w 99 -g 61 -c kitty_hdrop 'kitty --class kitty_hdrop'"
       ];

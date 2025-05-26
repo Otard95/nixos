@@ -89,8 +89,8 @@
             imports = [
               catppuccin.homeModules.catppuccin
               nixvim.homeManagerModules.nixvim
-              ./nixvim
               ./home-manager-modules
+              ./nixvim
               (nixpkgs.lib.path.append ./hosts "${name}/home.nix")
             ];
           };

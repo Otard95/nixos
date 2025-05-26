@@ -70,7 +70,7 @@ in {
         oil.enable = lib.mkDefault true;
         telescope.enable = lib.mkDefault true;
         text-manipulation.enable = lib.mkDefault true;
-        tmux-navigator.enable = lib.mkDefault true;
+        tmux-navigator.enable = lib.mkDefault (config.modules.nixvim.defaultTerminal == "kitty"); # (config.modules.nixvim.defaultTerminal == "kitty")
         undotree.enable = lib.mkDefault true;
       })
       (lib.mkIf (presetInt > 1) {
