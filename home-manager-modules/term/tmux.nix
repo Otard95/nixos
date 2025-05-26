@@ -67,10 +67,15 @@ in {
 
         set -g status-position top
 
-        # keybindings
-        bind-key -T copy-mode-vi v send-keys -X begin-selection
-        bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-        bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+        #################
+        #  keybindings  #
+        #################
+
+        # Copy mode with vim bindings
+        bind-key -T copy-mode-vi v send -X begin-selection
+        bind-key -T copy-mode-vi C-v send -X rectangle-toggle
+        bind-key -T copy-mode-vi y send -X copy-selection
+        unbind -T copy-mode-vi MouseDragEnd1Pane # don't exit copy mode after dragging with mouse
 
         unbind %
         bind | split-window -h
@@ -80,6 +85,7 @@ in {
 
         bind 0 next-layout
 
+        # Use C-l to clear the screen since we use 'christoomey/vim-tmux-navigator'
         bind C-l send-keys C-l
 
         # Resize panes using prefix + hjkl
@@ -93,14 +99,6 @@ in {
 
         # Create sesson with command and name(same as command)
         bind X command-prompt -p "Command:" "new-session -s '%1' '%1'"
-
-        # Copy mode with vim bindings
-        bind-key -T copy-mode-vi 'v' send -X begin-selection # start selecting text with "v"
-        bind-key -T copy-mode-vi 'y' send -X copy-selection # copy text with "y"
-        unbind -T copy-mode-vi MouseDragEnd1Pane # don't exit copy mode after dragging with mouse
-
-        # Use C-l to clear the screen since we use 'christoomey/vim-tmux-navigator'
-        bind C-l send-keys C-l
       '';
     };
     xdg.configFile."tmux/tmux.conf".text = lib.mkOrder 600 ''
