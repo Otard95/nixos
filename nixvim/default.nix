@@ -14,7 +14,7 @@ in {
         which tmux and nvim integrations are enabled by default, etc.
       '';
       type = lib.types.enum [ "kitty" "wezterm" ];
-      default = "kitty";
+      default = "wezterm";
     };
   };
 
