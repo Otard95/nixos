@@ -46,7 +46,10 @@
           nvidiaBusId = "PCI:1:0:0";
         };
       };
-      networking.preset.smb-backend.enable = true;
+      networking.preset = {
+        smb-backend.enable = true;
+        openvpn-luna.enable = true;
+      };
       # shell.kind = "zsh";
     };
     packages = {
