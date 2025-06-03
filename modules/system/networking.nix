@@ -9,7 +9,6 @@ in {
     preset = {
       smb-backend.enable =
         lib.mkEnableOption "Enable extra hosts and open ports for local backends";
-      openvpn-luna.enable = lib.mkEnableOption "Add openvpn service for luna";
     };
   };
 
@@ -45,12 +44,6 @@ in {
       networking.extraHosts = ''
         127.0.0.1 tenderms.dart ma2.dart melvis.dart ticketms.dart
       '';
-    })
-    (lib.mkIf cfg.preset.openvpn-luna.enable {
-      services.openvpn.servers.luna = {
-        config = "config /openvpn/configs/luna.ovpn";
-        autoStart = false;
-      };
     })
   ]);
 }
