@@ -43,6 +43,14 @@ in {
             right_pad = 1;
             # Minimum width to use for code blocks when width is "block"
             min_width = 80;
+            # Determines how the top / bottom of code block are rendered.
+            # | none  | do not render a border                               |
+            # | thick | use the same highlight as the code body              |
+            # | thin  | when lines are empty overlay the above & below icons |
+            # | hide  | conceal lines unless language name or icon is added  |
+            border = "thin";
+            # Used below code blocks for thin border.
+            below = "🮂";
           };
         };
       };
