@@ -6,11 +6,6 @@ in {
 
   options.modules.hyprland.wm = {
     enable = lib.mkEnableOption "hyprland configuration";
-    disable-sync = lib.mkOption {
-      description = "Disable explicit_sync. Games may require this";
-      default = false;
-      type = lib.types.bool;
-    };
   };
 
   config = lib.mkIf enable {
@@ -145,11 +140,6 @@ in {
           gaps_in = 5;
           gaps_out = 15;
           border_size = 0;
-        };
-
-        render = lib.mkIf cfg.disable-sync {
-          explicit_sync = 0;
-          explicit_sync_kms = 0;
         };
 
         decoration = {
