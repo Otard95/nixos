@@ -28,10 +28,6 @@ in {
           }
         ];
 
-        fingerprint = {
-          enabled = true;
-        };
-
         input-field = [
           {
             size = "300, 45";
