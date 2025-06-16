@@ -17,12 +17,14 @@ in {
     services.mako = {
       enable = true;
 
-      sort = "+time";
-      width = 400;
-      borderSize = 2;
-      borderRadius = 10;
-      maxIconSize = 32;
-      backgroundColor = lib.mkForce "#303446aa";
+      settings = {
+        sort = "+time";
+        width = 400;
+        border-size = 2;
+        border-radius = 10;
+        max-icon-size = 32;
+        background-color = lib.mkForce "#303446aa";
+      };
 
       extraConfig = ''
         []

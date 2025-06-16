@@ -34,7 +34,6 @@ in {
     ./kitty.nix
     ./ssh.nix
     ./starship.nix
-    ./thefuck.nix
     ./tmux.nix
     ./useful-commands.nix
     ./zoxide.nix

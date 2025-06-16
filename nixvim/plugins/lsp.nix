@@ -110,7 +110,7 @@ in {
 
       };
 
-      diagnostics = {
+      diagnostic.settings = {
         float = {
           border = "rounded";
         };
