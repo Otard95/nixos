@@ -17,7 +17,6 @@
   home.homeDirectory = "/home/otard";
 
   modules = {
-    hyprland.wm.disable-sync = false;
     nixvim.enable = true;
     term.direnv.enable = true;
   };
