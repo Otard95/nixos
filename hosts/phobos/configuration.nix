@@ -54,6 +54,7 @@
     };
     packages = {
       docker.enable = true;
+      ollama.enable = true;
       apps = {
         _1password.enable = true;
         appgate.enable = true;

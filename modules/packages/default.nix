@@ -13,6 +13,7 @@ in {
     ./kalker.nix
     ./numbat.nix
     ./notification.nix
+    ./ollama.nix
     ./quickemu.nix
   ];
 
