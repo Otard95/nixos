@@ -10,6 +10,7 @@ in {
     ./apps
     ./btop.nix
     ./docker.nix
+    ./fabric.nix
     ./kalker.nix
     ./numbat.nix
     ./notification.nix
