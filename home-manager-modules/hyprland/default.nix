@@ -7,6 +7,7 @@ in {
   options.modules.hyprland.enable = lib.mkEnableOption "hyprland";
 
   imports = [
+    ./hypridle.nix
     ./hyprland.nix
     ./hyprpaper.nix
     ./hyprlock.nix
@@ -18,6 +19,7 @@ in {
   config = lib.mkIf enable {
     modules.hyprland = {
       wm.enable = lib.mkDefault true;
+      hypridle.enable = lib.mkDefault true;
       hyprpaper.enable = lib.mkDefault true;
       hyprlock.enable = lib.mkDefault true;
       kanshi.enable = lib.mkDefault true;
