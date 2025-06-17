@@ -25,6 +25,7 @@
       hdrop.enable = true;
     };
     term = {
+      scripts.fabric.enable = true;
       direnv.enable = true;
       gh.enable = true;
       git.user = {

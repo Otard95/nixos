@@ -6,6 +6,10 @@ in {
   options.modules.term.scripts.enable =
     lib.mkEnableOption "scripts";
 
+  imports = [
+    ./fabric
+  ];
+
   config = lib.mkIf enable {
 
     home = {
@@ -20,6 +24,7 @@ in {
         }) (builtins.filter (name: lib.strings.hasSuffix "sh" name) fileNames);
         scripts = builtins.listToAttrs files;
       in scripts;
+
     };
 
   };
