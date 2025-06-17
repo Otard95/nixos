@@ -32,6 +32,7 @@ in {
     ./git.nix
     ./k9s.nix
     ./kitty.nix
+    ./pay-respects.nix
     ./ssh.nix
     ./starship.nix
     ./tmux.nix
@@ -49,6 +50,7 @@ in {
       fzf.enable = lib.mkDefault true;
       git.enable = lib.mkDefault true;
       kitty.enable = lib.mkDefault (cfg.defaultTerminal == "kitty");
+      pay-respects.enable = lib.mkDefault true;
       scripts.enable = lib.mkDefault true;
       ssh.enable = lib.mkDefault true;
       starship.enable = lib.mkDefault true;
