@@ -35,4 +35,4 @@ if [ "$pattern" != "-" ]; then
   args+=("-p" "$pattern")
 fi
 
-printf "%s\n\n%s\n" "$piped" "$prompt" | fabric "${args[@]}"
+printf "%s\n\n# ADDITIONAL CONTEXT:\n\n%s\n" "$prompt" "$piped" | fabric "${args[@]}"
