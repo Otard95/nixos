@@ -400,7 +400,7 @@ in {
             };
             "tooltip-format-activated" = "Idle Inhibitor <span color='#a6da95'>on</span>";
             "tooltip-format-deactivated" = "Idle Inhibitor <span color='#ee99a0'>off</span>";
-            "start-activated" = true;
+            "start-activated" = false;
           };
 
           "custom/logout_menu" = {
