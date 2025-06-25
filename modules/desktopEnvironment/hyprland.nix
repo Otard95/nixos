@@ -19,6 +19,9 @@ in {
       hyprlock.enable = true;
     };
 
+    # To manage displays with GUI
+    environment.systemPackages = [ pkgs.wdisplays ];
+
     environment.sessionVariables = {
       # If cursor becomes invisible
       # WLR_NO_HARDWARE_CURSORS = "1";
