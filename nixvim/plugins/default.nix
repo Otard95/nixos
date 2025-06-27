@@ -26,6 +26,7 @@ in {
     ./fidget.nix
     ./git.nix
     ./harpoon.nix
+    ./image.nix
     ./indent-blankline.nix
     ./lazydev.nix
     ./lsp.nix
@@ -91,6 +92,7 @@ in {
       (lib.mkIf (presetInt > 2) {
         dadbod.enable = lib.mkDefault true;
         dap.enable = lib.mkDefault true;
+        image.enable = lib.mkDefault true;
         neotest.enable = lib.mkDefault true;
         rest.enable = lib.mkDefault true;
         obsidian.enable = lib.mkDefault true;
