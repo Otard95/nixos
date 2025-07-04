@@ -19,6 +19,7 @@ in {
 
     modules = {
       icons = mkModuleOption "icons" {};
+      diff = mkModuleOption "icons" {};
       indentscope = mkModuleOption "icons" {
         symbol = "⡇";
         draw = {
