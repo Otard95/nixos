@@ -26,7 +26,7 @@ in {
             ];
             on-resume = builtins.concatStringsSep " ; " [
               "${pkgs.brightnessctl}/bin/brightnessctl -r"
-              "${pkgs.libnotify}/bin/notify-send -t 3000 --replace-id $(cat /var/tmp/idle-notification) 'You are now active'"
+              "${pkgs.mako}/bin/makoctl dismiss -n $(cat /var/tmp/idle-notification)"
             ];
           }
 
