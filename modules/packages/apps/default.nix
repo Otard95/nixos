@@ -26,6 +26,7 @@ in {
     ./loupe.nix
     ./matrix.nix
     ./mpv.nix
+    ./notes.nix
     ./pavucontrol.nix
     ./proton-pass.nix
     ./proton-vpn.nix
@@ -47,6 +48,7 @@ in {
       libre-office.enable = lib.mkDefault true;
       loupe.enable = lib.mkDefault true;
       mpv.enable = lib.mkDefault true;
+      notes.enable = lib.mkDefault true;
       pavucontrol.enable = lib.mkDefault true;
       proton-pass.enable = lib.mkDefault true;
       proton-vpn.enable = lib.mkDefault true;
