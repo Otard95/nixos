@@ -1,9 +1,9 @@
 { config, lib, pkgs, theme, ... }:
 let
-  cfg = config.modules.theme;
+  cfg = config.modules.desktopEnvironment.theme;
   enable = cfg.enable;
 in {
-  options.modules.theme.enable =
+  options.modules.desktopEnvironment.theme.enable =
     lib.mkEnableOption "theme";
 
   imports = [
@@ -13,7 +13,7 @@ in {
 
   config = lib.mkIf enable {
 
-    modules.theme = {
+    modules.desktopEnvironment.theme = {
       gtk.enable = lib.mkDefault true;
       qt.enable  = lib.mkDefault true;
     };

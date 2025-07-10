@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.modules.hyprland.hypridle;
+  cfg = config.modules.desktopEnvironment.hyprland.hypridle;
   enable = cfg.enable;
 in {
-  options.modules.hyprland.hypridle.enable =
+  options.modules.desktopEnvironment.hyprland.hypridle.enable =
     lib.mkEnableOption "name";
 
   config = lib.mkIf enable {

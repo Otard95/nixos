@@ -1,10 +1,10 @@
 { config, lib, sources, ... }:
 let
-  cfg = config.modules.hyprland.hyprpaper;
+  cfg = config.modules.desktopEnvironment.hyprland.hyprpaper;
   enable = cfg.enable;
 in {
 
-  options.modules.hyprland.hyprpaper = {
+  options.modules.desktopEnvironment.hyprland.hyprpaper = {
     enable = lib.mkEnableOption "hyprpaper configuration";
     bg-image = lib.mkOption {
       description = "Path to the background image to use";

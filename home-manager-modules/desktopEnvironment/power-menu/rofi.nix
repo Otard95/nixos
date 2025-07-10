@@ -1,10 +1,10 @@
-{ config, lib, pkgs, theme, sources, ... }:
+{ config, lib, theme, sources, ... }:
 let
-  cfg = config.modules.power-menu.rofi;
+  cfg = config.modules.desktopEnvironment.power-menu.rofi;
   enable = cfg.enable;
 in {
 
-  options.modules.power-menu.rofi = {
+  options.modules.desktopEnvironment.power-menu.rofi = {
     enable = lib.mkEnableOption "rofi";
     splash-image = {
       path = lib.mkOption {

@@ -1,10 +1,10 @@
 { config, lib, pkgs, theme, sources, ... }:
 let
-  cfg = config.modules.app-launcher.rofi;
+  cfg = config.modules.desktopEnvironment.app-launcher.rofi;
   enable = cfg.enable;
 in {
 
-  options.modules.app-launcher.rofi = {
+  options.modules.desktopEnvironment.app-launcher.rofi = {
     enable = lib.mkEnableOption "rofi";
     splash-image = {
       path = lib.mkOption {

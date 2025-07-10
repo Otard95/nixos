@@ -1,10 +1,10 @@
 { config, lib, theme, ... }:
 let
-  cfg = config.modules.mako;
+  cfg = config.modules.desktopEnvironment.mako;
   enable = cfg.enable;
 in {
 
-  options.modules.mako.enable = lib.mkEnableOption "mako";
+  options.modules.desktopEnvironment.mako.enable = lib.mkEnableOption "mako";
 
   config = lib.mkIf enable {
 

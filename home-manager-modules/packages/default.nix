@@ -8,10 +8,14 @@ in {
 
   imports = [
     ./cliphist.nix
+    ./gromit.nix
     ./hdrop.nix
   ];
 
   config = lib.mkIf enable {
-    modules.packages.cliphist.enable = lib.mkDefault true;
+    modules.packages = {
+      cliphist.enable = lib.mkDefault true;
+      gromit.enable = lib.mkDefault true;
+    };
   };
 }

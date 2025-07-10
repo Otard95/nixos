@@ -1,9 +1,9 @@
 { config, lib, ... }:
 let
-  cfg = config.modules.hyprland.kanshi;
+  cfg = config.modules.desktopEnvironment.hyprland.kanshi;
   enable = cfg.enable;
 in {
-  options.modules.hyprland.kanshi.enable =
+  options.modules.desktopEnvironment.hyprland.kanshi.enable =
     lib.mkEnableOption "kanshi";
 
   config = lib.mkIf enable (lib.mkMerge [
@@ -40,7 +40,7 @@ in {
       };
 
     }
-    (lib.mkIf config.modules.hyprland.wm.enable {
+    (lib.mkIf config.modules.desktopEnvironment.hyprland.wm.enable {
 
       wayland.windowManager.hyprland.settings.bindl = [
         "$mod+SHIFT, F5, exec, systemctl --user restart kanshi.service"

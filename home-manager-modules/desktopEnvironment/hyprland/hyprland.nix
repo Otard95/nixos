@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.modules.hyprland.wm;
+  cfg = config.modules.desktopEnvironment.hyprland.wm;
   enable = cfg.enable;
 in {
 
-  options.modules.hyprland.wm = {
+  options.modules.desktopEnvironment.hyprland.wm = {
     enable = lib.mkEnableOption "hyprland configuration";
   };
 

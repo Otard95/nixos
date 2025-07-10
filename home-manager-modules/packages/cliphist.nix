@@ -12,7 +12,7 @@ in {
     services.cliphist.enable = true;
 
     wayland.windowManager.hyprland.settings.bind =
-      lib.mkIf config.modules.hyprland.wm.enable [
+      lib.mkIf config.modules.desktopEnvironment.hyprland.wm.enable [
         "ALT+CTRL, V, exec, uwsm app -- rofi -modi clipboard:cliphist-rofi-img -show clipboard -show-icons"
       ];
 

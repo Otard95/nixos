@@ -1,9 +1,9 @@
 { config, lib, theme, sources, ... }:
 let
-  cfg = config.modules.hyprland.hyprlock;
+  cfg = config.modules.desktopEnvironment.hyprland.hyprlock;
   enable = cfg.enable;
 in {
-  options.modules.hyprland.hyprlock = {
+  options.modules.desktopEnvironment.hyprland.hyprlock = {
     enable = lib.mkEnableOption "hyprlock";
 
     bg-image = lib.mkOption {

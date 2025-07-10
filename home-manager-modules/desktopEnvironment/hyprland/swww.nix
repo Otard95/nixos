@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.modules.hyprland.swww;
+  cfg = config.modules.desktopEnvironment.hyprland.swww;
   enable = cfg.enable;
 in {
 
-  options.modules.hyprland.swww.enable = lib.mkEnableOption "swww configuration";
+  options.modules.desktopEnvironment.hyprland.swww.enable = lib.mkEnableOption "swww configuration";
 
   config = lib.mkIf enable {
     xdg.configFile."hypr/background-images".source = ./background-images;

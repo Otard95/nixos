@@ -1,10 +1,10 @@
 { config, lib, pkgs, theme, ... }:
 let
-  cfg = config.modules.hyprland.waybar;
+  cfg = config.modules.desktopEnvironment.hyprland.waybar;
   enable = cfg.enable;
 in {
 
-  options.modules.hyprland.waybar.enable = lib.mkEnableOption "waybar configuration";
+  options.modules.desktopEnvironment.hyprland.waybar.enable = lib.mkEnableOption "waybar configuration";
 
   config = lib.mkIf enable {
     home.packages = with pkgs; [

@@ -10,7 +10,7 @@ in {
   config = lib.mkIf enable (lib.mkMerge [
     {
       assertions = [
-        { assertion = config.modules.hyprland.wm.enable;
+        { assertion = config.modules.desktopEnvironment.hyprland.wm.enable;
           message = "hdrop only work in a hyprland session";
         }
       ];

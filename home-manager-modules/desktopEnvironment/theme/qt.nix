@@ -1,10 +1,10 @@
 { config, lib, pkgs, theme, ... }:
 let
-  cfg = config.modules.theme.qt;
+  cfg = config.modules.desktopEnvironment.theme.qt;
   enable = cfg.enable;
 in {
 
-  options.modules.theme.qt.enable = lib.mkEnableOption "qt";
+  options.modules.desktopEnvironment.theme.qt.enable = lib.mkEnableOption "qt";
 
   config = lib.mkIf enable {
 

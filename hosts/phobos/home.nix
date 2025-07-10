@@ -17,10 +17,10 @@
   home.homeDirectory = "/home/otard";
 
   modules = {
-    hyprland.hyprpaper.bg-image         = sources.images.background.forrest-lake-train;
-    hyprland.hyprlock.bg-image          = sources.images.background.forrest-lake-train;
-    app-launcher.rofi.splash-image.path = sources.images.splash.bridge-forrest-fog;
-    power-menu.rofi.splash-image.path   = sources.images.splash.bridge-forrest-fog;
+    desktopEnvironment = {
+      background-image = sources.images.background.forrest-lake-train;
+      splash-image     = sources.images.splash.bridge-forrest-fog;
+    };
     packages = {
       hdrop.enable = true;
     };
