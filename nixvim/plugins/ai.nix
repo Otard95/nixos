@@ -47,7 +47,7 @@ in {
         };
       };
       avante = {
-        enable = true;
+        enable = false;
 
         settings = {
           provider = "ollama";
