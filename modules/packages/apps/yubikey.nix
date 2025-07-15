@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs-stable, ... }:
 let
   cfg = config.modules.packages.apps.yubikey;
   enable = cfg.enable;
@@ -9,7 +9,7 @@ in {
 
     services.pcscd.enable = true;
 
-    environment.systemPackages = with pkgs; [ yubioath-flutter ];
+    environment.systemPackages = with pkgs-stable; [ yubioath-flutter ];
 
   };
 }
