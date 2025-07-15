@@ -8,6 +8,7 @@ in {
 
   imports = [
     ./cliphist.nix
+    ./flameshot.nix
     ./gromit.nix
     ./hdrop.nix
   ];
@@ -15,6 +16,7 @@ in {
   config = lib.mkIf enable {
     modules.packages = {
       cliphist.enable = lib.mkDefault true;
+      flameshot.enable = lib.mkDefault true;
       gromit.enable = lib.mkDefault true;
     };
   };

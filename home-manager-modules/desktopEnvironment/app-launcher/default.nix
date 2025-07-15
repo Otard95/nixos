@@ -27,12 +27,28 @@ in {
   ];
 
   config = lib.mkIf enable (lib.mkMerge [
+
     (lib.mkIf (cfg.launcher == "rofi") {
-      modules.desktopEnvironment.app-launcher.rofi = {
-        enable = lib.mkDefault true;
-        splash-image.path = cfg.splash-image;
+      modules.desktopEnvironment = {
+        app-launcher.rofi = {
+          enable = lib.mkDefault true;
+          splash-image.path = cfg.splash-image;
+        };
+
+        keybinds = [
+          { key = "d"; mods = [ "main" ];
+            exec = "uwsm app -- rofi -show combi";
+          }
+          { key = "tab"; mods = [ "alt" ];
+            exec = "uwsm app -- rofi -show window";
+          }
+          { key = "e"; mods = [ "ctrl" "shift" ];
+            exec = "uwsm app -- rofi -show emoji";
+          }
+        ];
       };
     })
+
   ]);
 
 }

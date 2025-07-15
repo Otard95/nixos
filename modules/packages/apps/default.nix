@@ -17,7 +17,6 @@ in {
     ./dbeaver.nix
     ./discord.nix
     ./firefox.nix
-    ./flameshot.nix
     ./games.nix
     ./grimblast.nix
     ./kdeconnect.nix
@@ -43,7 +42,6 @@ in {
     modules.packages.apps = {
       bitwarden.enable = lib.mkDefault true;
       blueman.enable = lib.mkDefault config.modules.system.bluetooth.enable;
-      flameshot.enable = lib.mkDefault (config.modules.desktopEnvironment.hyprland.enable);
       # grimblast.enable = lib.mkDefault config.modules.desktopEnvironment.hyprland.enable;
       libre-office.enable = lib.mkDefault true;
       loupe.enable = lib.mkDefault true;

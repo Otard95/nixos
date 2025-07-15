@@ -27,12 +27,22 @@ in {
   ];
 
   config = lib.mkIf enable (lib.mkMerge [
+
     (lib.mkIf (cfg.launcher == "rofi") {
-      modules.desktopEnvironment.power-menu.rofi = {
-        enable = lib.mkDefault true;
-        splash-image.path = cfg.splash-image;
+      modules.desktopEnvironment = {
+        power-menu.rofi = {
+          enable = lib.mkDefault true;
+          splash-image.path = cfg.splash-image;
+        };
+
+        keybinds = [
+          { key = "p"; mods = [ "super" "shift" ];
+            exec = "uwsm app -- ~/.config/power-menu.sh";
+          }
+        ];
       };
     })
+
   ]);
 
 }

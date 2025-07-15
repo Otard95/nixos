@@ -25,10 +25,6 @@ in {
           "$mod, RETURN, exec, uwsm app -- ${config.modules.term.defaultTerminal}"
           "$mod+SHIFT, Q, killactive"
           "$mod+SHIFT+CTRL, M, exec, uwsm stop"
-          "$mod+SHIFT, P,   exec, uwsm app -- ~/.config/power-menu.sh"
-          "$mod,       D,   exec, uwsm app -- rofi -show combi"
-          "ALT,        TAB, exec, uwsm app -- rofi -show window"
-          "CTRL+SHIFT, E,   exec, uwsm app -- rofi -show emoji"
           "$mod+SHIFT, SPACE, togglefloating"
           "$mod, SPACE, cyclenext, floating"
           "$mod+SHIFT, F, fullscreen, 0"
@@ -52,8 +48,6 @@ in {
           # "$mod+SHIFT, S, exec, uwsm app -- grimblast edit area"
           # "$mod+ALT, S, exec, uwsm app -- grimblast edit active"
           # "$mod+CTRL, S, exec, uwsm app -- grimblast edit output"
-          # Config from: https://github.com/flameshot-org/flameshot/issues/2978#issuecomment-1910298105
-          "$mod+SHIFT, S, exec, uwsm app -- flameshot gui -r | ${pkgs.wl-clipboard}/bin/wl-copy"
           # Convert unix timestamp
           "$mod+CTRL, D, exec, ${pkgs.wl-clipboard}/bin/wl-paste --primary | xargs -I {} date -d @{} | xargs -I {} notify-send '{}'; ${pkgs.wl-clipboard}/bin/wl-paste | xargs -I {} date -d @{} | xargs -I {} notify-send '{}'"
         ] ++ (
@@ -87,6 +81,7 @@ in {
           # ", switch:Lid Switch, exec, uwsm app -- hyprlock"
         ];
 
+        #   TODO: Port this to some equivalent to `modules.desktopEnvironment.keybinds`
         windowrule = [
           # Rofi
           "float,       class:(Rofi)"
@@ -108,7 +103,7 @@ in {
           # Gnome Clocks
           "float, class:(org.gnome.clocks)"
           # Flameshot
-          #   TODO: Fix this is specific to phobos
+          #   TODO: Fix this. This is specific to phobos
           #   Config from: https://github.com/flameshot-org/flameshot/issues/2978#issuecomment-2283569630
           "monitor DP-5,             class:(flameshot), title:(flameshot)"
           "move 0 -485,              class:(flameshot), title:(flameshot)"
@@ -125,6 +120,7 @@ in {
           "float,                    class:(flameshot), title:(Save screenshot)"
         ];
 
+        #   TODO: Port this to some equivalent to `modules.desktopEnvironment.keybinds`
         exec-once = [
           # https://gist.github.com/brunoanc/2dea6ddf6974ba4e5d26c3139ffb7580#editing-the-configuration-file
           "uwsm app -- dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
@@ -134,6 +130,7 @@ in {
           "[workspace 2 silent] uwsm app -- ${config.modules.term.defaultTerminal}"
         ];
 
+        #   TODO: Port this to some equivalent to `modules.desktopEnvironment.keybinds`
         exec = [ "pkill waybar; sleep 0.5 && uwsm app -- waybar" ];
 
         general = {

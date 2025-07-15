@@ -12,5 +12,11 @@ in {
     };
 
     systemd.user.services.gromit-mpx = lib.mkForce {};
+
+    modules.desktopEnvironment.keybinds = [
+      { key = "f9";
+        exec = "uwsm app -- bash -c 'pidof gromit-mpx && gromit-mpx -q || gromit-mpx -a'";
+      }
+    ];
   };
 }
