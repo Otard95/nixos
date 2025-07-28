@@ -33,7 +33,7 @@
     nixvim.enable = true;
     system.bluetooth.enable = false;
     packages.apps = {
-      calibre.enable = true;
+      # calibre.enable = true;
       discord.enable = true;
       games = {
         enable = true;

@@ -1,13 +1,14 @@
-{ config, lib, ... }:
+{ config, lib, sources, ... }:
 let
   cfg = config.modules.desktopEnvironment;
   enable = cfg.enable;
 in {
 
   options.modules.desktopEnvironment = let
-    imageOption = name: lib.mkOption {
+    imageOption = name: defaultImage: lib.mkOption {
       description = "Path to the ${name} image to use";
       type = lib.types.path;
+      default = defaultImage;
     };
   in {
     enable = lib.mkEnableOption "Desktop Environment";
@@ -48,8 +49,8 @@ in {
       });
     };
 
-    background-image = imageOption "background";
-    splash-image = imageOption "splash";
+    background-image = imageOption "background" sources.images.background.falling-into-infinity;
+    splash-image = imageOption "splash" sources.images.splash.spacegirl;
   };
 
   imports = [

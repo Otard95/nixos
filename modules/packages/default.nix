@@ -42,7 +42,7 @@ in {
     modules.packages = {
       btop.enable     = lib.mkDefault true;
       numbat.enable   = lib.mkDefault true;
-      quickemu.enable = lib.mkDefault true;
+      # quickemu.enable = lib.mkDefault true;
     };
   };
 }
