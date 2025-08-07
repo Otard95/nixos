@@ -2,13 +2,15 @@ local wezterm = require 'wezterm' --[[@as Wezterm]]
 local actions = require 'actions'
 local tbl = require 'utils.table'
 local keys = require 'utils.keys'
-
 local M = {}
 
 ---@param config Config
 function M.apply_to_config(config)
   config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
   config.keys = {
+    -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
+    keys.map { 'a', 'LEADER|CTRL', wezterm.action.SendKey { key = 'a', mods = 'CTRL' } },
+
     -- Wezterm pallet?? well see how this'll work
     keys.map { 'P', 'CTRL', wezterm.action.ActivateCommandPalette },
 
