@@ -20,7 +20,8 @@ in {
                 return require('codecompanion.adapters').extend('ollama', {
                   schema = {
                     model = {
-                      default = 'qwen2.5-coder:latest', -- context: 32768
+                      default = 'qwen3-coder:latest', -- context: 262144
+                      -- default = 'qwen2.5-coder:latest', -- context: 32768
                       -- default = 'qwen3:latest', -- context: 40960
                       -- default = 'deepseek-r1:latest', -- context: 131072
                       -- default = "llama3.1:8b-instruct-q8_0",
@@ -72,7 +73,9 @@ in {
           # of 512; serves as an good starting point to estimate your computing
           # power. Once you have a reliable estimate of your local computing power;
           # you should adjust the context window to a larger value.
-          context_window = 1024; # original: 512
+          context_window = 512; # original: 512
+          debounce = 0; # original: 400
+
           provider_options = {
             openai_fim_compatible = {
               # For Windows users; TERM may not be present in environment variables.
