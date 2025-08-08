@@ -46,6 +46,8 @@ in {
         };
       });
 
+      nixpkgs.config.allowUnfree = true;
+
       # Enable lazy loading provider
       # plugins.lz-n.enable = true;
 

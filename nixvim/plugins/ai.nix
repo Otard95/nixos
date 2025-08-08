@@ -10,6 +10,10 @@ in {
 
   config = lib.mkIf enable {
     programs.nixvim.plugins = {
+      claude-code = {
+        enable = true;
+      };
+
       codecompanion = {
         enable = true;
 
