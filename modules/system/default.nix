@@ -15,6 +15,7 @@ in {
     ./graphics.nix
     ./i18n.nix
     ./networking.nix
+    ./printing.nix
     ./shell.nix
     ./sound.nix
   ];

@@ -50,6 +50,7 @@
         };
       };
       networking.preset.smb-backend.enable = true;
+      printing.enable = true;
       # shell.kind = "zsh";
     };
     packages = {
