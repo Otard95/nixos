@@ -44,6 +44,7 @@ in {
           "reverseSync"
         ];
       };
+      finegrainedPowerManagement = lib.mkEnableOption "NVIDIA's finegrained power management (offlod mode only)";
 
       intelBusId = mkBusIDOption "Intel";
       nvidiaBusId = mkBusIDOption "NVIDIA";
@@ -64,9 +65,7 @@ in {
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
       };
-      services.xserver.videoDrivers = lib.mkIf (cfg.manufacturer == "nvidia") [
-        "nvidia"
-      ];
+      services.xserver.videoDrivers = ["nvidia"];
       boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
     })
 
@@ -86,19 +85,27 @@ in {
         }
       ];
 
-      hardware.nvidia.prime = {
-        intelBusId = cfg.prime.intelBusId;
-        nvidiaBusId = lib.mkIf (cfg.manufacturer == "nvidia") cfg.prime.nvidiaBusId;
-        amdgpuBusId = lib.mkIf (cfg.manufacturer == "amdgpu") cfg.prime.amdgpuBusId;
+      services.xserver.videoDrivers = lib.mkIf
+        (cfg.manufacturer == "nvidia" && cfg.prime.mode == "offload")
+        [ "nvidia" "modesetting" ];
 
-        offload = lib.mkIf (cfg.prime.mode == "offload") {
-          enable = true;
-          enableOffloadCmd = true;
+      hardware.nvidia = {
+        powerManagement.finegrained = cfg.prime.finegrainedPowerManagement;
+
+        prime = {
+          intelBusId = cfg.prime.intelBusId;
+          nvidiaBusId = lib.mkIf (cfg.manufacturer == "nvidia") cfg.prime.nvidiaBusId;
+          amdgpuBusId = lib.mkIf (cfg.manufacturer == "amdgpu") cfg.prime.amdgpuBusId;
+
+          offload = lib.mkIf (cfg.prime.mode == "offload") {
+            enable = true;
+            enableOffloadCmd = true;
+          };
+
+          sync.enable = cfg.prime.mode == "sync";
+
+          reverseSync.enable = cfg.prime.mode == "reverseSync";
         };
-
-        sync.enable = cfg.prime.mode == "sync";
-
-        reverseSync.enable = cfg.prime.mode == "reverseSync";
       };
     })
 
