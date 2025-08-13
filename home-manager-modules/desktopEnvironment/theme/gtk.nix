@@ -20,15 +20,15 @@ in {
         name = gtkThemeName;
         package = gtkThemePackage;
       };
-      iconTheme =
-      let
-        # use the light icon theme for latte
-        polarity = if theme.flavor == "latte" then "Light" else "Dark";
-      in
-      {
-        name = "Papirus-${polarity}";
-        package = pkgs.catppuccin-papirus-folders.override { inherit (theme) accent flavor; };
-      };
+      # iconTheme =
+      # let
+      #   # use the light icon theme for latte
+      #   polarity = if theme.flavor == "latte" then "Light" else "Dark";
+      # in
+      # {
+      #   name = "Papirus-${polarity}";
+      #   package = pkgs.catppuccin-papirus-folders.override { inherit (theme) accent flavor; };
+      # };
       font = {
         name = theme.font.regular.default;
         size = 10;

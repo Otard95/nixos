@@ -20,22 +20,23 @@ in {
       colorschemes.catppuccin.settings.integrations.nvimtree = true;
       plugins.nvim-tree = {
         enable = true;
-        disableNetrw = true;
 
-        view.width = 40;
-        updateFocusedFile = {
-          enable = true;
-          updateRoot = true;
-        };
-        git = {
-          enable = true;
-          ignore = false;
-        };
-        actions.changeDir = {
-          enable = false;
-          restrictAboveCwd = true;
-        };
-        onAttach = nixvim.mkRaw ''
+        settings = {
+          disable_netrw = true;
+          view.width = 40;
+          update_focused_file = {
+            enable = true;
+            update_root = true;
+          };
+          git = {
+            enable = true;
+            ignore = false;
+          };
+          actions.change_dir = {
+            enable = false;
+            restrict_above_cwd = true;
+          };
+          on_attach = nixvim.mkRaw ''
           function(bufnr)
             local api = require 'nvim-tree.api'
 
@@ -62,7 +63,8 @@ in {
               end
             end, { buffer = bufnr })
           end
-        '';
+          '';
+        };
       };
     };
   };

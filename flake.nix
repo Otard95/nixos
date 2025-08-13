@@ -88,7 +88,7 @@
           home-manager.users.otard = {
             imports = [
               catppuccin.homeModules.catppuccin
-              nixvim.homeManagerModules.nixvim
+              nixvim.homeModules.nixvim
               ./home-manager-modules
               ./nixvim
               (nixpkgs.lib.path.append ./hosts "${name}/home.nix")
