@@ -47,10 +47,10 @@ in {
             on-resume = "hyprctl dispatch dpms on && ${pkgs.brightnessctl}/bin/brightnessctl -r";
           }
 
-          {
-            timeout = 960; # 15min
-            on-timeout = "systemctl suspend";
-          }
+          # {
+          #   timeout = 960; # 15min
+          #   on-timeout = "systemctl suspend";
+          # }
         ];
       };
     };
