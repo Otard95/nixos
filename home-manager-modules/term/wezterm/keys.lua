@@ -9,7 +9,7 @@ function M.apply_to_config(config)
   config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
   config.keys = {
     -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
-    keys.map { 'a', 'LEADER|CTRL', wezterm.action.SendKey { key = 'a', mods = 'CTRL' } },
+    keys.map { 'a', 'LEADER|CTRL', wezterm.action.SendString '\x01' },
 
     -- Wezterm pallet?? well see how this'll work
     keys.map { 'P', 'CTRL', wezterm.action.ActivateCommandPalette },
@@ -34,6 +34,7 @@ function M.apply_to_config(config)
     keys.map { 'd', 'LEADER', wezterm.action_callback(function(_win, pane)
       wezterm.log_info('pane:user_vars', pane:get_user_vars())
     end) },
+    keys.map { 'D', 'LEADER', wezterm.action.ShowDebugOverlay },
 
     --------------
     --- Unbind ---
