@@ -17,19 +17,19 @@ in {
 
         settings = {
           bullet = {
-            left_pad = 2;
+            left_pad = 1;
           };
           checkbox = {
             unchecked = {
-              icon = "󰄱";
+              icon = " 󰄱";
             };
             checked = {
-              icon = "󰱒";
+              icon = " 󰱒";
             };
             custom = {
-              todo = { raw = "[-]"; rendered = "󰥔"; highlight = "RenderMarkdownTodo"; };
-              follow_up = { raw = "[>]"; rendered = "󰬪"; highlight = "WarningMsg"; };
-              canceled = { raw = "[~]"; rendered = "󰅙"; highlight = "ErrorMsg"; };
+              todo = { raw = "[-]"; rendered = " 󰥔"; highlight = "RenderMarkdownTodo"; };
+              follow_up = { raw = "[>]"; rendered = " 󰬪"; highlight = "WarningMsg"; };
+              canceled = { raw = "[~]"; rendered = " 󰅙"; highlight = "ErrorMsg"; };
             };
           };
           code = {
