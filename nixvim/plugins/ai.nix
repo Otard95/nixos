@@ -78,7 +78,7 @@ in {
           # power. Once you have a reliable estimate of your local computing power;
           # you should adjust the context window to a larger value.
           context_window = 512; # original: 512
-          debounce = 0; # original: 400
+          debounce = 100; # original: 400
 
           provider_options = {
             openai_fim_compatible = {
