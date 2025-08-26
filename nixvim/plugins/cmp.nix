@@ -34,6 +34,7 @@ in {
             { name = "path"; }
             { name = "nvim_lsp"; }
             { name = "nvim_lua"; }
+            { name = "vim-dadbod-completion"; }
             { name = "luasnip"; }
             { name = "buffer"; }
           ];
