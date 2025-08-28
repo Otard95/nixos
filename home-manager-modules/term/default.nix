@@ -25,6 +25,7 @@ in {
     ./bash.nix
     ./bat.nix
     ./btop.nix
+    ./claude.nix
     ./direnv.nix
     ./fastfetch.nix
     ./fzf.nix
