@@ -10,6 +10,8 @@ in {
 
     catppuccin.wezterm.enable = false;
 
+    modules.term.zoxide.enable = lib.mkDefault true;
+
     # Fucks with starship otherwise
     programs.bash.initExtra = lib.mkOrder 9999 ''
       source "${pkgs.wezterm}/etc/profile.d/wezterm.sh"

@@ -50,11 +50,8 @@ in {
       fzf.enable = lib.mkDefault true;
       git.enable = lib.mkDefault true;
       kitty.enable = lib.mkDefault (cfg.defaultTerminal == "kitty");
-      pay-respects.enable = lib.mkDefault true;
-      scripts.enable = lib.mkDefault true;
       ssh.enable = lib.mkDefault true;
       starship.enable = lib.mkDefault true;
-      tmux.enable = lib.mkDefault true;
       useful-commands.enable = lib.mkDefault true;
       wezterm.enable = lib.mkDefault (cfg.defaultTerminal == "wezterm");
     };
