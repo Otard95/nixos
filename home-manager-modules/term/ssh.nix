@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.modules.term.ssh;
   enable = cfg.enable;
@@ -15,17 +15,15 @@ in {
       matchBlocks = {
         home = {
           host = "home";
-          hostname = "ssh.core-lab.net";
+          hostname = "100.90.128.0";
           user = "otard";
           port = 22;
-          proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
         };
-        pi = {
-          host = "pi";
-          hostname = "raspberrypi.core-lab.net";
+        jove = {
+          host = "jove";
+          hostname = "core-lab.net";
           user = "otard";
           port = 22;
-          proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
         };
       };
 
