@@ -26,8 +26,6 @@ in {
           # ];
           # defaultMode = "acceptEdits";
           deny = [
-            "WebFetch"
-            "Bash(curl:*)"
             "Read(./.env)"
             "Read(./.env*)"
             "Read(./**/.env)"
