@@ -70,6 +70,9 @@ in {
         github = {
           type = "http";
           url = "https://api.githubcopilot.com/mcp/";
+          headers = {
+            Authorization = "Bearer \${GITHUB_TOKEN_CLAUDE}";
+          };
         };
       };
 
