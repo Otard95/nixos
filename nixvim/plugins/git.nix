@@ -38,23 +38,26 @@ in {
               vim.keymap.set('n', '<leader>gu', ':Git pull<CR>', opts)
               vim.keymap.set('n', '<leader>gb', ':Git branch<CR>', opts)
 
-              -- TODO: fix branch creation
-              -- vim.keymap.set('n', '<leader>ba', create_branch, opts)
+              vim.keymap.set('n', '<leader>ba', require('utils.git').create_branch, opts)
             end
           '';
         }
-        # TODO: Port this - functions??
-        # vim.api.nvim_create_autocmd('FileType', {
-        #   pattern = 'git',
-        #   callback = function(e)
-        #     local opts = { buffer = e.buf, silent = true }
+        {
+          event = "FileType";
+          pattern = "git";
+          callback = nixvim.mkRaw ''
+            function(e)
+              local git = require 'utils.git'
+              local fn = require 'utils.fn'
+              local opts = { buffer = e.buf, silent = true }
 
-        #     vim.keymap.set('n', '<C-r>', reload_branch_list, opts)
-        #     vim.keymap.set('n', '<leader>a', fn.flow(create_branch, reload_branch_list), opts)
-        #     vim.keymap.set('n', '<leader>dd', fn.flow(delete_branch_under_cursor, reload_branch_list), opts)
-        #     vim.keymap.set('n', '<leader>mm', merge_branch_under_cursor, opts)
-        #   end,
-        # })
+              vim.keymap.set('n', '<C-r>', git.reload_branch_list, opts)
+              vim.keymap.set('n', '<leader>a', fn.flow(git.create_branch, git.reload_branch_list), opts)
+              vim.keymap.set('n', '<leader>dd', fn.flow(git.delete_branch_under_cursor, git.reload_branch_list), opts)
+              vim.keymap.set('n', '<leader>mm', git.merge_branch_under_cursor, opts)
+            end
+          '';
+        }
       ];
 
       colorschemes.catppuccin.settings.integrations.gitsigns = true;
