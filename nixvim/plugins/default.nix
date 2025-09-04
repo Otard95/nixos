@@ -91,7 +91,6 @@ in {
         trouble.enable = lib.mkDefault true;
       })
       (lib.mkIf (presetInt > 2) {
-        ai.enable = lib.mkDefault true;
         dadbod.enable = lib.mkDefault true;
         dap.enable = lib.mkDefault true;
         image.enable = lib.mkDefault true;
