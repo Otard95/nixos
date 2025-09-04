@@ -105,19 +105,18 @@ in {
           # Flameshot
           #   TODO: Fix this. This is specific to phobos
           #   Config from: https://github.com/flameshot-org/flameshot/issues/2978#issuecomment-2283569630
-          "monitor DP-5,             class:(flameshot), title:(flameshot)"
-          "move 0 -485,              class:(flameshot), title:(flameshot)"
-          "size 8000 2560,           class:(flameshot), title:(flameshot)"
-          "suppressevent fullscreen, class:(flameshot), title:(flameshot)"
-          "rounding 0,               class:(flameshot), title:(flameshot)"
-          "noborder,                 class:(flameshot), title:(flameshot)"
-          "float,                    class:(flameshot), title:(flameshot)"
-          "fullscreenstate,          class:(flameshot), title:(flameshot)"
-          "stayfocused,              class:(flameshot), title:(flameshot)"
-          "float,                    class:(flameshot), title:(Upload image)"
-          "float,                    class:(flameshot), title:(Configuration)"
-          "float,                    class:(flameshot), title:(Capture Launcher)"
-          "float,                    class:(flameshot), title:(Save screenshot)"
+          "monitor DP-5,             initialTitle:(flameshot)"
+          "move 0 -485,              initialTitle:(flameshot)"
+          "pin,                      initialTitle:(flameshot)"
+          "suppressevent fullscreen, initialTitle:(flameshot)"
+          "float,                    initialTitle:(flameshot)"
+          "rounding 0,               initialTitle:(flameshot)"
+          "noborder,                 initialTitle:(flameshot)"
+          "stayfocused,              initialTitle:(flameshot)"
+          "float,                    initialTitle:(Upload image)"
+          "float,                    initialTitle:(Configuration)"
+          "float,                    initialTitle:(Capture Launcher)"
+          "float,                    initialTitle:(Save screenshot)"
         ];
 
         #   TODO: Port this to some equivalent to `modules.desktopEnvironment.keybinds`
