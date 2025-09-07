@@ -21,6 +21,8 @@ in {
   ];
 
   config = lib.mkIf enable {
+    programs.nix-ld.enable = true;
+
     modules.system.bluetooth.enable = lib.mkDefault true;
     modules.system.gc.enable = lib.mkDefault true;
     modules.system.i18n.enable = lib.mkDefault true;

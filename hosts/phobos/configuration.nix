@@ -33,9 +33,6 @@
   # services.logind.lidSwitchDocked = "ignore";
   # services.logind.lidSwitchExternalPower = "ignore";
 
-  # Development
-  programs.nix-ld.enable = true;
-
   # Modules
   modules = {
     desktopEnvironment.sddm.background = sources.images.background.forrest-lake-train;
