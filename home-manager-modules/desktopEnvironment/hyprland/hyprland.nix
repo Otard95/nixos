@@ -103,9 +103,9 @@ in {
           # Gnome Clocks
           "float, class:(org.gnome.clocks)"
           # Flameshot
-          #   TODO: Fix this. This is specific to phobos
+          #   TODO: Fix this. This is specific to deimos
           #   Config from: https://github.com/flameshot-org/flameshot/issues/2978#issuecomment-2283569630
-          "monitor DP-5,             initialTitle:(flameshot)"
+          "monitor HDMI-A-1,         initialTitle:(flameshot)"
           "move 0 -485,              initialTitle:(flameshot)"
           "pin,                      initialTitle:(flameshot)"
           "suppressevent fullscreen, initialTitle:(flameshot)"
