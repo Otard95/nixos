@@ -228,16 +228,13 @@ in {
       }
     '';
     xdg.configFile."uwsm/env".text = ''
-      export LIBVA_DRIVER_NAME=nvidia
-      export XDG_SESSION_TYPE=wayland
-      export GBM_BACKEND=nvidia-drm
-      export __GLX_VENDOR_LIBRARY_NAME=nvidia
+      # export LIBVA_DRIVER_NAME=radeonsi
+      # export WLR_DRM_DEVICES=/dev/dri/by-path/pci-0000:c5:00.0-card
+      # export XDG_SESSION_TYPE=wayland
+      export WLR_NO_HARDWARE_CURSORS=1
       export SLURP_ARGS="-d -b 16897a44 -c 04d6c8 -B 0e999e22"
       export GRIMBLAST_EDITOR=pinta
     '';
-    # xdg.configFile."uwsm/env-hyprland".text = ''
-    #   export AQ_DRM_DEVICES=/dev/dri/card0:/dev/dri/card1
-    # '';
 
   };
 }

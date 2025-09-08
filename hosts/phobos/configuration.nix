@@ -41,13 +41,18 @@
       battery-monitor.enable = true;
       fingerprint.enable = true;
       graphics = {
-        nvidia.open = true;
-        prime = {
-          enable = true;
-          mode = "offload";
-          finegrainedPowerManagement = true;
-          intelBusId = "PCI:0:2:0";
-          nvidiaBusId = "PCI:1:0:0";
+        iGPU = {
+          type = "intel";
+          busId = "PCI:0:2:0";
+        };
+        dGPU = {
+          type = "nvidia";
+          busId = "PCI:1:0:0";
+        };
+        nvidia = {
+          open = true;
+          powerManagement = "finegrained";
+          prime = "offload";
         };
       };
       networking.preset.smb-backend.enable = true;

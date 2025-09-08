@@ -102,6 +102,7 @@
     nixosConfigurations = {
       terra = nixpkgs.lib.nixosSystem (mkSystem "terra");
       phobos = nixpkgs.lib.nixosSystem (mkSystem "phobos");
+      deimos = nixpkgs.lib.nixosSystem (mkSystem "deimos");
     };
 
   };

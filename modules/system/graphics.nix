@@ -6,36 +6,59 @@ let
   busIDType = lib.types.strMatching "([[:print:]]+[\:\@][0-9]{1,3}\:[0-9]{1,2}\:[0-9])?";
   mkBusIDOption = name: lib.mkOption {
     type = busIDType;
-    default = "";
     description = ''
-      Bus ID of the ${name} GPU. You can find it using lspci; for example if lspci
-      shows the Intel GPU at "01:00.0", set this option to "PCI:1:0:0".
+      Bus ID of the ${name}. You can find it using lspci; for example if lspci
+      shows this GPU at "01:00.0", set this option to "PCI:1:0:0".
+      Use this to get the correct value:
+      $ nix --experimental-features "flakes nix-command" run github:eclairevoyant/pcids
     '';
   };
+
+  mkGpuOption = name: lib.mkOption {
+    type = lib.types.nullOr (lib.types.submodule {
+      options = {
+        type = lib.mkOption {
+          type = lib.types.enum [
+            "nvidia"
+            "amdgpu"
+            "intel"
+          ];
+          description = "The type/manufacturer of the ${name}";
+        };
+        busId = mkBusIDOption name;
+      };
+    });
+    default = null;
+    description = "Options for the ${name}";
+  };
+
+  gpuTypes = []
+    ++ lib.optional (cfg.iGPU != null) cfg.iGPU.type
+    ++ lib.optional (cfg.dGPU != null) cfg.dGPU.type;
 in {
 
   options.modules.system.graphics = {
 
     enable = lib.mkEnableOption "graphics";
 
-    manufacturer = lib.mkOption {
-      description = "eg. AMD, Nvidia, Intel";
-      default = "nvidia";
-      type = lib.types.enum [
-        "nvidia"
-        "amdgpu"
-        "intel"
-      ];
-    };
+    iGPU = mkGpuOption "iGPU";
+    dGPU = mkGpuOption "dGPU";
 
     nvidia = {
-      open = lib.mkEnableOption "NVidia open source kernel module";
-    };
+      package = lib.mkOption {
+        default = config.boot.kernelPackages.nvidiaPackages.stable;
+        defaultText = lib.literalExpression "config.boot.kernelPackages.nvidiaPackages.stable";
+        example = "config.boot.kernelPackages.nvidiaPackages.legacy_470";
+        description = "The NVIDIA driver package to use.";
+      };
+      powerManagement = lib.mkOption {
+        type = lib.types.enum [ "off" "on" "finegrained" ];
+        default = "on";
+        description = "What level of power management should we enable for the nvidia GPU.";
+      };
+      open = lib.mkEnableOption "NVidia open source kernel module" // { default = true; };
 
-    prime = {
-      enable = lib.mkEnableOption "PRIME";
-
-      mode = lib.mkOption {
+      prime = lib.mkOption {
         description = "Choose offload, sync, or reverse sync mode";
         default = "sync";
         type = lib.types.enum [
@@ -44,67 +67,52 @@ in {
           "reverseSync"
         ];
       };
-      finegrainedPowerManagement = lib.mkEnableOption "NVIDIA's finegrained power management (offlod mode only)";
-
-      intelBusId = mkBusIDOption "Intel";
-      nvidiaBusId = mkBusIDOption "NVIDIA";
-      amdgpuBusId = mkBusIDOption "AMD";
     };
-
   };
 
   config = lib.mkIf enable (lib.mkMerge [
 
-    { hardware.graphics.enable = true; }
+    {
+      hardware.graphics.enable = true;
+      services.xserver.videoDrivers = builtins.filter (type: type != "intel") gpuTypes;
+    }
 
-    (lib.mkIf (cfg.manufacturer == "nvidia") {
+    (lib.mkIf (builtins.elem "nvidia" gpuTypes) {
       hardware.nvidia = {
         modesetting.enable = true;
-        powerManagement.enable = true;
+        powerManagement.enable = builtins.elem cfg.nvidia.powerManagement [ "on" "finegrained" ];
         open = cfg.nvidia.open;
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        package = cfg.nvidia.package;
       };
-      services.xserver.videoDrivers = ["nvidia"];
-      boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
     })
 
-    (lib.mkIf cfg.prime.enable {
+    (lib.mkIf (lib.length gpuTypes == 2 && builtins.elem "nvidia" gpuTypes) {
       assertions = [
         {
-          assertion = cfg.prime.intelBusId != "";
-          message = "You must provide the `intelBusId` when prime is enabled";
+          assertion = cfg.dGPU.busId != "";
+          message = "You must provide the `dGPU.busId` for the nvidia card when when you have multiple GPU's";
         }
         {
-          assertion = (cfg.manufacturer != "nvidia") || (cfg.prime.nvidiaBusId != "");
-          message = "You must provide the `nvidiaBusId` when prime is enabled for NVIDIA dGPU";
-        }
-        {
-          assertion = (cfg.manufacturer != "amdgpu") || (cfg.prime.amdgpuBusId != "");
-          message = "You must provide the `amdgpuBusId` when prime is enabled for AMD dGPU";
+          assertion = cfg.iGPU.busId != "";
+          message = "You must provide the `iGPU.busId` for the ${cfg.iGPU.type} card when when you have multiple GPU's";
         }
       ];
 
-      services.xserver.videoDrivers = lib.mkIf
-        (cfg.manufacturer == "nvidia" && cfg.prime.mode == "offload")
-        [ "nvidia" "modesetting" ];
-
       hardware.nvidia = {
-        powerManagement.finegrained = cfg.prime.finegrainedPowerManagement;
+        powerManagement.finegrained = cfg.nvidia.powerManagement == "finegrained";
 
         prime = {
-          intelBusId = cfg.prime.intelBusId;
-          nvidiaBusId = lib.mkIf (cfg.manufacturer == "nvidia") cfg.prime.nvidiaBusId;
-          amdgpuBusId = lib.mkIf (cfg.manufacturer == "amdgpu") cfg.prime.amdgpuBusId;
+          nvidiaBusId = cfg.dGPU.busId;
+          intelBusId = lib.mkIf (builtins.elem "intel" gpuTypes) cfg.iGPU.busId;
+          amdgpuBusId = lib.mkIf (builtins.elem "amdgpu" gpuTypes) cfg.iGPU.busId;
 
-          offload = lib.mkIf (cfg.prime.mode == "offload") {
+          offload = lib.mkIf (cfg.nvidia.prime == "offload") {
             enable = true;
             enableOffloadCmd = true;
           };
-
-          sync.enable = cfg.prime.mode == "sync";
-
-          reverseSync.enable = cfg.prime.mode == "reverseSync";
+          sync.enable = cfg.nvidia.prime == "sync";
+          reverseSync.enable = cfg.nvidia.prime == "reverseSync";
         };
       };
     })
