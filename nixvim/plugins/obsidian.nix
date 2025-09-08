@@ -16,18 +16,6 @@ in {
 
         enable = true;
 
-        # lazyLoad = {
-        #   enable = true;
-        #   settings = {
-        #     cmd = [
-        #       "ObsidianNew"
-        #       "ObsidianOpen"
-        #       "ObsidianSearch"
-        #       "ObsidianToday"
-        #     ];
-        #   };
-        # };
-
         luaConfig.pre = ''
           local time = require('utils.time')
           local path = require('utils.path')
@@ -50,6 +38,7 @@ in {
         '';
 
         settings = {
+          legacy_commands = false;
           workspaces = [
             {
               name = "Work";
@@ -104,13 +93,19 @@ in {
             date_format = "%Y/%b/%d";
             template = "Daily_nvim.md";
           };
+          checkbox = {
+            enable = true;
+            insert = true;
+            order = [ " " "x" "-" ">" "~" ];
+          };
           ui = {
             enable = false;
             checkboxes = {
-              " " = { char = "▢"; hl_group = "ObsidianTodo"; };
-              "x" = { char = ""; hl_group = "ObsidianDone"; };
-              ">" = { char = ""; hl_group = "ObsidianRightArrow"; };
-              "~" = { char = "◩"; hl_group = "ObsidianTilde"; };
+              " " = { char = "▢"; hl_group = "obsidiantodo"; };
+              "x" = { char = "󰱒"; hl_group = "obsidiandone"; };
+              "-" = { char = "󰥔"; hl_group = "obsidiandone"; };
+              ">" = { char = ""; hl_group = "obsidianrightarrow"; };
+              "~" = { char = "󰅙"; hl_group = "obsidiantilde"; };
             };
           };
         };
