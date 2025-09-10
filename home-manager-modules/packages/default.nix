@@ -11,6 +11,7 @@ in {
     ./flameshot.nix
     ./gromit.nix
     ./hdrop.nix
+    ./yubioath.nix
   ];
 
   config = lib.mkIf enable {
@@ -18,6 +19,7 @@ in {
       cliphist.enable = lib.mkDefault true;
       flameshot.enable = lib.mkDefault true;
       gromit.enable = lib.mkDefault true;
+      yubioath.enable = lib.mkDefault true;
     };
   };
 }
