@@ -17,10 +17,10 @@ in {
           # additionalDirectories = [
           #   "../docs/"
           # ];
-          # allow = [
-          #   "Bash(git diff:*)"
-          #   "Edit"
-          # ];
+          allow = [
+            "Bash(git diff:*)"
+            "Bash(mkdir:*)"
+          ];
           # ask = [
           #   "Bash(git push:*)"
           # ];
