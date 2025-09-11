@@ -20,6 +20,12 @@ in {
           allow = [
             "Bash(git diff:*)"
             "Bash(mkdir:*)"
+            "Bash(pnpm run build)"
+            "Bash(pnpm run lint)"
+            "Bash(pnpm run lint:fix)"
+            "Bash(pnpm --filter:*)"
+            "Bash(pnpm --filter:*)"
+            "Bash(pnpm --filter:*)"
           ];
           # ask = [
           #   "Bash(git push:*)"
