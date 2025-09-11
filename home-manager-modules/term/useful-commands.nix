@@ -11,6 +11,7 @@ in {
       jq
       ripgrep
       unzip
+      tree
     ];
   };
 
