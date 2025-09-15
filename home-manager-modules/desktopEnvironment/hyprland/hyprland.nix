@@ -198,6 +198,13 @@ in {
           repeat_rate = 50;
           repeat_delay = 160;
         };
+
+        misc = {
+          # https://github.com/hyprwm/Hyprland/discussions/11616
+          # https://github.com/hyprwm/Hyprland/issues/9452
+          # https://github.com/hyprwm/Hyprland/issues/10514
+          enable_anr_dialog = false;
+        };
       };
 
       extraConfig = ''
