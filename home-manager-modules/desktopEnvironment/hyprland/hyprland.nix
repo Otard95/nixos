@@ -15,6 +15,16 @@ in {
 
     catppuccin.hyprland.enable = true;
 
+    modules.desktopEnvironment.uwsm = {
+      enable = true;
+
+      envs = [
+        { name = "WLR_NO_HARDWARE_CURSORS"; value = "1"; }
+        { name = "SLURP_ARGS";              value = "-d -b 16897a44 -c 04d6c8 -B 0e999e22"; }
+        { name = "GRIMBLAST_EDITOR";        value = "pinta"; }
+      ];
+    };
+
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = false;
@@ -233,14 +243,6 @@ in {
       screencopy {
         allow_token_by_default = true
       }
-    '';
-    xdg.configFile."uwsm/env".text = ''
-      # export LIBVA_DRIVER_NAME=radeonsi
-      # export WLR_DRM_DEVICES=/dev/dri/by-path/pci-0000:c5:00.0-card
-      # export XDG_SESSION_TYPE=wayland
-      export WLR_NO_HARDWARE_CURSORS=1
-      export SLURP_ARGS="-d -b 16897a44 -c 04d6c8 -B 0e999e22"
-      export GRIMBLAST_EDITOR=pinta
     '';
 
   };

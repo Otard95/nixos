@@ -16,6 +16,13 @@
   home.username = "otard";
   home.homeDirectory = "/home/otard";
 
+  modules.desktopEnvironment.uwsm = {
+    envs = [
+      { name = "WLR_NO_HARDWARE_CURSORS"; value = "nvidia"; }
+      { name = "__GLX_VENDOR_LIBRARY_NAME"; value = "nvidia"; }
+    ];
+  };
+
   modules = {
     nixvim.enable = true;
     term.direnv.enable = true;

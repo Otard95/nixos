@@ -59,6 +59,7 @@ in {
     ./power-menu
     ./theme
     ./mako.nix
+    ./uwsm.nix
   ];
 
   config = lib.mkIf enable (lib.mkMerge [
