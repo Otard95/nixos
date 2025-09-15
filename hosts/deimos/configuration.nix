@@ -68,6 +68,7 @@
         clickup.enable = true;
         clocks.enable = true;
         kdeconnect.enable = true;
+        obsidian.enable = true;
         slack.enable = true;
         vivaldi.enable = true;
       };

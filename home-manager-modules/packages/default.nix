@@ -11,6 +11,7 @@ in {
     ./flameshot.nix
     ./gromit.nix
     ./hdrop.nix
+    ./obsidian.nix
     ./yubioath.nix
   ];
 

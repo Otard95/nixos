@@ -22,6 +22,12 @@
       background-image = sources.images.background.forrest-lake-train;
       splash-image     = sources.images.splash.bridge-forrest-fog;
     };
+    packages = {
+      obsidian = {
+        enable = true;
+        vaults = [ { name = "work"; path = "dev/smb/vaults/work"; } ];
+      };
+    };
     term = {
       kitty.enable = true;
       direnv.enable = true;

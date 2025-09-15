@@ -26,6 +26,7 @@ in {
     ./matrix.nix
     ./mpv.nix
     ./notes.nix
+    ./obsidian.nix
     ./pavucontrol.nix
     ./proton-pass.nix
     ./proton-vpn.nix
