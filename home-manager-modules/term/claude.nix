@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.modules.term.claude;
   enable = cfg.enable;
@@ -26,6 +26,23 @@ in {
             "Bash(pnpm --filter:*)"
             "Bash(pnpm --filter:*)"
             "Bash(pnpm --filter:*)"
+            "mcp__obsidian__obsidian_list_files_in_dir"
+            "mcp__obsidian__obsidian_list_files_in_vault"
+            "mcp__obsidian__obsidian_get_file_contents"
+            "mcp__obsidian__obsidian_simple_search"
+            "mcp__obsidian__obsidian_delete_file"
+            "mcp__obsidian__obsidian_complex_search"
+            "mcp__obsidian__obsidian_batch_get_file_contents"
+            "mcp__obsidian__obsidian_get_periodic_note"
+            "mcp__obsidian__obsidian_get_recent_periodic_notes"
+            "mcp__obsidian__obsidian_get_recent_changes"
+            "mcp__clickup__getTaskById"
+            "mcp__clickup__searchTasks"
+            "mcp__clickup__searchSpaces"
+            "mcp__clickup__getListInfo"
+            "mcp__clickup__getTimeEntries"
+            "mcp__clickup__readDocument"
+            "mcp__clickup__searchDocuments"
           ];
           # ask = [
           #   "Bash(git push:*)"
@@ -73,11 +90,28 @@ in {
       };
 
       mcpServers = {
-        github = {
-          type = "http";
-          url = "https://api.githubcopilot.com/mcp/";
-          headers = {
-            Authorization = "Bearer \${GITHUB_TOKEN_CLAUDE}";
+        # github = {
+        #   type = "http";
+        #   url = "https://api.githubcopilot.com/mcp/";
+        #   headers = {
+        #     Authorization = "Bearer \${GITHUB_TOKEN_CLAUDE}";
+        #   };
+        # };
+        clickup = {
+          command = "${pkgs.nodejs_24}/bin/npx";
+          args = [ "-y" "@hauptsache.net/clickup-mcp@latest" ];
+          env = {
+            "CLICKUP_API_KEY" = "\${CLICKUP_API_KEY}";
+            "CLICKUP_TEAM_ID" = "2628532";
+          };
+        };
+        obsidian = {
+          command = "${pkgs.uv}/bin/uvx";
+          args = [
+            "mcp-obsidian"
+          ];
+          env = {
+            OBSIDIAN_API_KEY = "\${OBSIDIAN_TOKEN}";
           };
         };
       };
