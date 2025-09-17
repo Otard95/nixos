@@ -77,7 +77,16 @@ in {
 
           ## Task
 
-          Based on the changes above, create a single atomic git commit with a descriptive message.
+          Create one or more atomic git commits with descriptive messages. Each commit should represent a single logical change that can stand alone.
+
+          **Critical considerations:**
+          - **Analyze the actual changes** - understand what was modified and why
+          - **Review project documentation** - consult CLAUDE.md, .claude/rules/, and any relevant project guidelines
+          - **Group related changes** - stage and commit logically related modifications together
+          - **Separate unrelated changes** - create multiple commits when changes serve different purposes
+          - **Follow project conventions** - adhere to the repository's commit message format and practices
+
+          Ensure each commit is atomic (complete, testable, and reversible) while accurately reflecting the intent and scope of the changes made.
         '';
         fix-issue = ''
           ---
