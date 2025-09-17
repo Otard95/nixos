@@ -30,7 +30,7 @@
     };
 
     ngm = {
-      url = "github:Otard95/ngm?ref=feat/go-rewrite";
+      url = "github:Otard95/ngm";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -149,16 +149,15 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1755500637,
-        "narHash": "sha256-mwrpVrREhCWG62J0KQ1gZVMkg4k0NmaPQ82edJEexwU=",
+        "lastModified": 1758019438,
+        "narHash": "sha256-4p9omAga0cwPHBUQ6HXtriqiVN7hmS33vk0LKfwKqKQ=",
         "owner": "Otard95",
         "repo": "ngm",
-        "rev": "ba8f28de4afe2753ea9e81fa3aa34d6d9d7b2da8",
+        "rev": "cd9dd621a7799c4025fa33e2db33cb9cfea000c7",
         "type": "github"
       },
       "original": {
         "owner": "Otard95",
-        "ref": "feat/go-rewrite",
         "repo": "ngm",
         "type": "github"
       }
