@@ -20,7 +20,6 @@ in {
     ./hyprland.nix
     ./hyprpaper.nix
     ./hyprlock.nix
-    ./kanshi.nix
     ./waybar.nix
   ];
 
@@ -36,7 +35,6 @@ in {
         enable = lib.mkDefault true;
         bg-image = cfg.background-image;
       };
-      kanshi.enable = lib.mkDefault true;
       waybar.enable = lib.mkDefault true;
     };
   };

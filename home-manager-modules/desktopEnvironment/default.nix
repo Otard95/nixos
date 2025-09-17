@@ -56,6 +56,7 @@ in {
   imports = [
     ./app-launcher
     ./hyprland
+    ./kanshi
     ./power-menu
     ./theme
     ./mako.nix
@@ -73,6 +74,7 @@ in {
           enable = lib.mkDefault true;
           splash-image = cfg.splash-image;
         };
+        kanshi.enable = lib.mkDefault true;
         theme.enable = lib.mkDefault true;
         mako.enable = lib.mkDefault true;
       };
