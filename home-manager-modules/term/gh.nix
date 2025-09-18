@@ -20,5 +20,7 @@ in {
       };
     };
 
+    modules.term.bash.bindToSecret.gh.GITHUB_TOKEN = "github/token/cli";
+
   };
 }

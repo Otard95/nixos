@@ -29,6 +29,10 @@
       };
     };
     term = {
+      bash.bindToSecret.pnpm = {
+        GITHUB_TOKEN = "github/token/packages";
+        TURBOREPO_TOKEN = "keys/turbo";
+      };
       kitty.enable = true;
       direnv.enable = true;
       claude.enable = true;

@@ -127,6 +127,12 @@ in {
 
     };
 
+    modules.term.bash.bindToSecret.claude = {
+      CLICKUP_API_KEY = "keys/clickup";
+      OBSIDIAN_API_KEY = "keys/obsidian";
+      # GITHUB_TOKEN_CLAUDE = "github/token/claude";
+    };
+
   };
 
 }
