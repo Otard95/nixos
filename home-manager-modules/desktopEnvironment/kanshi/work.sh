@@ -10,7 +10,6 @@ includes() {
   return 1
 }
 
-
 if includes "$DESKTOP_SESSION $XDG_CURRENT_DESKTOP" "hyprland"; then
   hyprctl --batch " \
   keyword workspace 1,monitor:$1; \
