@@ -1,16 +1,9 @@
-{ config, lib, ... }:
+{ config, lib, helpers, ... }:
 let
   cfg = config.modules.packages.obsidian;
   enable = cfg.enable;
 
-  mkStrOption = name: lib.mkOption {
-    description = name;
-    type = lib.types.str;
-  };
-  mkAnyOption = name: lib.mkOption {
-    description = name;
-    type = lib.types.anything;
-  };
+  mkOption = helpers.mkOption;
 in {
   options.modules.packages.obsidian = {
     enable = lib.mkEnableOption "obsidian";
@@ -18,9 +11,9 @@ in {
     vaults = lib.mkOption {
       type = lib.types.listOf (lib.types.submodule {
         options = {
-          name = mkStrOption "Vault name.";
-          path = mkStrOption "Path relative to user home of the vault (defaults to `name` option)."; 
-          settings = mkAnyOption "The vaults settings.";
+          name = mkOption.str "Vault name.";
+          path = mkOption.str "Path relative to user home of the vault (defaults to `name` option)."; 
+          settings = mkOption.any "The vaults settings.";
         };
       });
       default = [];

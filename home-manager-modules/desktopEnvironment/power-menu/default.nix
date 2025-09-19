@@ -1,15 +1,10 @@
-{ config, lib, ... }:
+{ config, lib, helpers, ... }:
 let
   cfg = config.modules.desktopEnvironment.power-menu;
   enable = cfg.enable;
 in {
 
-  options.modules.desktopEnvironment.power-menu = let
-    imageOption = name: lib.mkOption {
-      description = "Path to the ${name} image to use";
-      type = lib.types.path;
-    };
-  in {
+  options.modules.desktopEnvironment.power-menu = {
     enable = lib.mkEnableOption "power menu";
     launcher = lib.mkOption {
       default = "rofi";
@@ -19,7 +14,7 @@ in {
       ];
     };
 
-    splash-image = imageOption "splash";
+    splash-image = helpers.mkOption.image "splash";
   };
 
   imports = [

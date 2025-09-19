@@ -1,18 +1,13 @@
-{ config, lib, ... }:
+{ config, lib, helpers, ... }:
 let
   cfg = config.modules.desktopEnvironment.hyprland;
   enable = cfg.enable;
 in {
 
-  options.modules.desktopEnvironment.hyprland = let
-    imageOption = name: lib.mkOption {
-      description = "Path to the ${name} image to use";
-      type = lib.types.path;
-    };
-  in {
+  options.modules.desktopEnvironment.hyprland = {
     enable = lib.mkEnableOption "hyprland";
 
-    background-image = imageOption "background";
+    background-image = helpers.mkOption.image "background";
   };
 
   imports = [
