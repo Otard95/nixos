@@ -79,6 +79,10 @@ if [[ ${#command_args[@]} -eq 0 ]]; then
   exit 128
 fi
 
+if [[ "$DEBUG" == "true" ]]; then
+  echo "[DEBUG] parsed args"
+fi
+
 if [[ $test_arg_parsing == 1 ]]; then
 echo "
 env_options=${env_options[@]}
@@ -91,9 +95,9 @@ fi
 generate_hash() {
   local sorted_vars
   # Sort the env_vars array to ensure consistent hashing
-  IFS=$'\n' sorted_vars=($(sort <<<"${env_vars[*]}"))
+  IFS=$'\n' sorted_vars=($(sort <<<"${env_vars[@]}"))
   # Create hash from sorted variables
-  printf '%s\n' "${sorted_vars[@]}" | sha256sum | cut -d' ' -f1
+  printf '%s\n' "${sorted_vars[*]}" | sha256sum | cut -d' ' -f1
 }
 
 # Set up cache store path
@@ -174,24 +178,50 @@ set_cache() {
   printf '%s\n' "$env_string" | PASSWORD_STORE_DIR="$cache_store_dir" pass insert -e "$hash"
 }
 
+if [[ "$DEBUG" == "true" ]]; then
+  echo "[DEBUG] funcs created"
+fi
+
 # Main execution logic
 hash=$(generate_hash)
+
+if [[ "$DEBUG" == "true" ]]; then
+  echo "[DEBUG] got hash $hash"
+fi
+
 cache_store_dir=$(get_cache_store_path)
+
+if [[ "$DEBUG" == "true" ]]; then
+  echo "[DEBUG] got cache_store_dir $cache_store_dir"
+fi
 
 # Try to get from cache first
 if cached_env=$(check_cache "$cache_store_dir" "$hash"); then
   # Cache hit - use cached environment
   env_string="$cached_env"
+  if [[ "$DEBUG" == "true" ]]; then
+    echo "[DEBUG] using cached secret: $hash"
+  fi
 else
+  if [[ "$DEBUG" == "true" ]]; then
+    echo "[DEBUG] getting secrets"
+  fi
   # Cache miss - get secrets
   env_string=$(get_secrets)
   get_secrets_exit_code=$?
   if [[ $get_secrets_exit_code -ne 0 ]]; then
     exit $get_secrets_exit_code
   fi
+
+  if [[ "$DEBUG" == "true" ]]; then
+    echo "[DEBUG] got secrets"
+  fi
   
   # Store in cache unless dry run
   if [[ $dry -eq 0 ]]; then
+    if [[ "$DEBUG" == "true" ]]; then
+      echo "[DEBUG] caching"
+    fi
     set_cache "$cache_store_dir" "$hash" "$env_string"
   fi
 fi
@@ -202,9 +232,12 @@ readarray -t env_assignments <<<"$env_string"
 if [[ $dry -eq 1 ]]; then
   # Dry run - print what would be executed
   echo "Would execute:"
-  echo "env ${env_options[@]} ${env_assignments[@]} ${command_args[@]}"
+  echo "env ${env_options[*]} ${env_assignments[*]} ${command_args[*]}"
 else
   # Execute the command with environment variables
+  if [[ "$DEBUG" == "true" ]]; then
+    echo "[DEBUG] execute"
+  fi
   exec env "${env_options[@]}" "${env_assignments[@]}" "${command_args[@]}"
 fi
 
