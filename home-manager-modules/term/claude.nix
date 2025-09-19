@@ -131,6 +131,8 @@ in {
       CLICKUP_API_KEY = "keys/clickup";
       OBSIDIAN_API_KEY = "keys/obsidian";
       # GITHUB_TOKEN_CLAUDE = "github/token/claude";
+      GITHUB_TOKEN = "github/token/packages";
+      TURBOREPO_TOKEN = "keys/turbo";
     };
 
   };
