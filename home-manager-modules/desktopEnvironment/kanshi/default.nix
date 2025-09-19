@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, helpers, ... }:
 let
   cfg = config.modules.desktopEnvironment.kanshi;
   enable = cfg.enable;
@@ -16,7 +16,7 @@ in {
         {
           profile = {
             name = "undocked";
-            exec = [ "${./kanshi-undocked.sh}" ];
+            exec = [ "${helpers.mkExecutable ./kanshi-undocked.sh}" ];
             outputs = [
               { criteria = "eDP-1"; status = "enable"; position = "0,0"; scale = 1.0; } # mode = "1920x1200"; mode = "2560x1600";
             ];
@@ -25,7 +25,7 @@ in {
         {
           profile = {
             name = "docked-phobos";
-            exec = [ "${./kanshi-docked-phobos.sh}" ];
+            exec = [ "${helpers.mkExecutable ./kanshi-docked-phobos.sh}" ];
             outputs = [
               { criteria = "eDP-1"; status = "disable"; } #  mode = "2560x1600"; position = "5440,960"; scale = 1.0;
               { criteria = "DP-3"; mode = "2560x1440"; position = "4000,0"; transform = "270"; }
@@ -37,7 +37,7 @@ in {
         {
           profile = {
             name = "docked-deimos-1";
-            exec = [ "${./work.sh} HDMI-A-1 DP-9 DP-7" ];
+            exec = [ "${helpers.mkExecutable ./work.sh} HDMI-A-1 DP-9 DP-7" ];
             outputs = [
               { criteria = "eDP-1"; status = "disable"; } #  mode = "2560x1600"; position = "5440,960"; scale = 1.0;
               { criteria = "DP-7"; mode = "2560x1440"; position = "4000,0"; transform = "270"; }
@@ -49,7 +49,7 @@ in {
         {
           profile = {
             name = "docked-deimos-2";
-            exec = [ "${./work.sh} HDMI-A-1 DP-11 DP-8" ];
+            exec = [ "${helpers.mkExecutable ./work.sh} HDMI-A-1 DP-11 DP-8" ];
             outputs = [
               { criteria = "eDP-1"; status = "disable"; } #  mode = "2560x1600"; position = "5440,960"; scale = 1.0;
               { criteria = "DP-8"; mode = "2560x1440"; position = "4000,0"; transform = "270"; }

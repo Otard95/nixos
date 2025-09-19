@@ -65,10 +65,11 @@
     };
 
     sources = import ./sources;
+    helpers = import ./utils { pkgs = import nixpkgs { inherit system; config.allowUnfree = true; }; lib = nixpkgs.lib; };
 
     mkSystem = name: {
       specialArgs = {
-        inherit theme inputs pkgs-stable sources;
+        inherit theme inputs pkgs-stable sources helpers;
         meta = { hostname = name; };
       };
       system = system;
@@ -84,7 +85,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "bak";
-          home-manager.extraSpecialArgs = { inherit theme inputs pkgs-stable sources; };
+          home-manager.extraSpecialArgs = { inherit theme inputs pkgs-stable sources helpers; };
           home-manager.users.otard = {
             imports = [
               catppuccin.homeModules.catppuccin
