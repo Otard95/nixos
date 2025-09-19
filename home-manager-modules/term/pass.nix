@@ -25,12 +25,12 @@ in {
             font-large = "${theme.font.regular.default}:size=20";
             # Amount of the squares in the pin area. Defaults to 16.
             pin-square-amount = 6;
-            # # Padding around the labels of the buttons. Defaults to 5.
-            # button-inner-padding = <positive integer>;
-            # # Top and bottom padding of the dialog prompt window. Defaults to 10.
-            # vertical-padding = <positive integer>;
-            # # Left and right padding of the dialog prompt window. Defaults to 15.
-            # horizontal-padding = <positive integer>;
+            # Padding around the labels of the buttons. Defaults to 5.
+            button-inner-padding = 10;
+            # Top and bottom padding of the dialog prompt window. Defaults to 10.
+            vertical-padding = 20;
+            # Left and right padding of the dialog prompt window. Defaults to 15.
+            horizontal-padding = 30;
             # # Size of of the squares in the pin area, which represent the typed characters of the secret. Defaults to 18.
             # pin-square-size = <positive integer>;
             # # Width of the border of the dialog prompt window. Defaults to 2.
