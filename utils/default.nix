@@ -5,6 +5,11 @@
       install -Dm755 ${path} $out
     '';
 
+  toShellVarRaw = name: value:
+    lib.throwIfNot (lib.isValidPosixName name)
+      "toShellVarRaw: ${name} is not a valid shell variable name"
+      "${name}=${value}";
+
   mkOption = {
     str = name: lib.mkOption {
       description = name;

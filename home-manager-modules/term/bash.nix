@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, helpers, ... }:
 let
   cfg = config.modules.term.bash;
   enable = cfg.enable;
@@ -30,14 +30,8 @@ in {
         ll = "${pkgs.eza}/bin/eza -lah --git --icons";
         ".." = "cd ..";
       } // lib.mapAttrs (command: envs: let
-          isValidPosixName = name: builtins.match "[a-zA-Z_][a-zA-Z0-9_]*" name != null;
-          toShellVar = name: value:
-            lib.throwIfNot (isValidPosixName name)
-              "toShellVar: ${name} is not a valid shell variable name"
-              "${name}=${value}";
-
-          finalEnvs = lib.mapAttrs (_: secretName: "$(pass show ${secretName})") envs;
-        in "${lib.concatStringsSep " " (lib.mapAttrsToList toShellVar finalEnvs)} ${command}"
+          envStr = lib.concatStringsSep " " (lib.mapAttrsToList helpers.toShellVarRaw envs);
+        in "pass-env ${envStr} ${command}"
       ) cfg.bindToSecret;
 
       historyControl = [

@@ -7,6 +7,8 @@ in {
 
   config = lib.mkIf enable {
 
+    home.packages = [ (pkgs.callPackage ./pass-env {}) ];
+
     programs = {
       password-store.enable = true;
       gpg = {
