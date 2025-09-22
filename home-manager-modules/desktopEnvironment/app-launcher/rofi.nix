@@ -32,11 +32,9 @@ in {
     programs.rofi = {
       enable = true;
 
-      package = pkgs.rofi-wayland;
-
       plugins = with pkgs; [
-        rofi-emoji-wayland
-        (rofi-calc.override { rofi-unwrapped = rofi-wayland-unwrapped; })
+        rofi-emoji
+        rofi-calc
       ];
 
       font = theme.font.regular.default;
