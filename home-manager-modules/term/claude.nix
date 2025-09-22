@@ -106,14 +106,14 @@ in {
         #     Authorization = "Bearer \${GITHUB_TOKEN_CLAUDE}";
         #   };
         # };
-        clickup = {
-          command = "${pkgs.nodejs_24}/bin/npx";
-          args = [ "-y" "@hauptsache.net/clickup-mcp@latest" ];
-          env = {
-            "CLICKUP_API_KEY" = "\${CLICKUP_API_KEY}";
-            "CLICKUP_TEAM_ID" = "2628532";
-          };
-        };
+        # clickup = {
+        #   command = "${pkgs.nodejs_24}/bin/npx";
+        #   args = [ "-y" "@hauptsache.net/clickup-mcp@latest" ];
+        #   env = {
+        #     "CLICKUP_API_KEY" = "\${CLICKUP_API_KEY}";
+        #     "CLICKUP_TEAM_ID" = "2628532";
+        #   };
+        # };
         obsidian = {
           command = "${pkgs.uv}/bin/uvx";
           args = [
@@ -128,7 +128,7 @@ in {
     };
 
     modules.term.bash.bindToSecret.claude = {
-      CLICKUP_API_KEY = "keys/clickup";
+      # CLICKUP_API_KEY = "keys/clickup";
       OBSIDIAN_API_KEY = "keys/obsidian";
       # GITHUB_TOKEN_CLAUDE = "github/token/claude";
       GITHUB_TOKEN = "github/token/packages";
