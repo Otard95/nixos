@@ -60,43 +60,31 @@ in {
           ];
           disableBypassPermissionsMode = "disable";
         };
+        hooks = {
+          PostToolUse = [
+            {
+              hooks = [
+                {
+                  command = ''
+                    echo '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"Have you remembered critical things? Read the correct rules, docs, etc.? Have you tested, built, linted, etc.? Or anything else thats relevant for what you are doing?"}}'
+                  '';
+                  type = "command";
+                }
+              ];
+              matcher = "Read|Write|Edit";
+            }
+          ];
+        };
         theme = "dark";
       };
 
-      commands = {
-        commit = ''
-          ---
-          allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*)
-          description: Create a git commit with proper message
-          ---
-          ## Context
-
-          - Current git status: !`git status`
-          - Current git diff: !`git diff HEAD`
-          - Recent commits: !`git log --oneline -5`
-
-          ## Task
-
-          Create one or more atomic git commits with descriptive messages. Each commit should represent a single logical change that can stand alone.
-
-          **Critical considerations:**
-          - **Analyze the actual changes** - understand what was modified and why
-          - **Review project documentation** - consult CLAUDE.md, .claude/rules/, and any relevant project guidelines
-          - **Group related changes** - stage and commit logically related modifications together
-          - **Separate unrelated changes** - create multiple commits when changes serve different purposes
-          - **Follow project conventions** - adhere to the repository's commit message format and practices
-
-          Ensure each commit is atomic (complete, testable, and reversible) while accurately reflecting the intent and scope of the changes made.
-        '';
-        fix-issue = ''
-          ---
-          allowed-tools: Bash(git status:*), Read
-          argument-hint: [issue-number]
-          description: Fix GitHub issue following coding standards
-          ---
-          Fix issue #$ARGUMENTS following our coding standards and best practices.
-        '';
-      };
+      commands = let
+        fileNames = builtins.attrNames (builtins.readDir ./commands);
+        files = map (name: {
+          name = "${lib.strings.removeSuffix ".md" name}";
+          value = builtins.readFile (lib.path.append ./commands "${name}");
+        }) fileNames;
+      in builtins.listToAttrs files;
 
       mcpServers = {
         # github = {
@@ -106,30 +94,34 @@ in {
         #     Authorization = "Bearer \${GITHUB_TOKEN_CLAUDE}";
         #   };
         # };
-        # clickup = {
-        #   command = "${pkgs.nodejs_24}/bin/npx";
-        #   args = [ "-y" "@hauptsache.net/clickup-mcp@latest" ];
-        #   env = {
-        #     "CLICKUP_API_KEY" = "\${CLICKUP_API_KEY}";
-        #     "CLICKUP_TEAM_ID" = "2628532";
-        #   };
-        # };
-        obsidian = {
-          command = "${pkgs.uv}/bin/uvx";
+        clickup = {
+          command = "pass-env";
           args = [
-            "mcp-obsidian"
+            "CLICKUP_API_TOKEN=keys/clickup"
+            "docker" "run"
+            "-i"
+            "--rm"
+            "-e" "CLICKUP_API_TOKEN"
+            "-e" "CLICKUP_TEAM_ID"
+            "clickup-mcp-server"
           ];
           env = {
-            OBSIDIAN_API_KEY = "\${OBSIDIAN_TOKEN}";
+            "CLICKUP_TEAM_ID" = "2628532";
           };
+        };
+        obsidian = {
+          command = "pass-env";
+          args = [
+            "OBSIDIAN_API_KEY=keys/obsidian"
+            "${pkgs.uv}/bin/uvx"
+            "mcp-obsidian"
+          ];
         };
       };
 
     };
 
     modules.term.bash.bindToSecret.claude = {
-      # CLICKUP_API_KEY = "keys/clickup";
-      OBSIDIAN_API_KEY = "keys/obsidian";
       # GITHUB_TOKEN_CLAUDE = "github/token/claude";
       GITHUB_TOKEN = "github/token/packages";
       TURBOREPO_TOKEN = "keys/turbo";
