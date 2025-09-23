@@ -65,7 +65,10 @@
     };
 
     sources = import ./sources;
-    helpers = import ./utils { pkgs = import nixpkgs { inherit system; config.allowUnfree = true; }; lib = nixpkgs.lib; };
+    helpers = import ./utils {
+      pkgs = import nixpkgs { inherit system; };
+      lib = nixpkgs.lib;
+    };
 
     mkSystem = name: {
       specialArgs = {
