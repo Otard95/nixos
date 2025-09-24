@@ -57,7 +57,10 @@
           prime = "offload";
         };
       };
-      networking.preset.smb-backend.enable = true;
+      networking.preset = {
+        smb-backend.enable = true;
+        smb-frontend.enable = true;
+      };
       printing.enable = true;
     };
     packages = {

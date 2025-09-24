@@ -9,6 +9,8 @@ in {
     preset = {
       smb-backend.enable =
         lib.mkEnableOption "Enable extra hosts and open ports for local backends";
+      smb-frontend.enable = 
+        lib.mkEnableOption "Enable extra hosts and open ports for local frontends";
     };
   };
 
@@ -43,6 +45,11 @@ in {
       };
       networking.extraHosts = ''
         127.0.0.1 tenderms.dart ma2.dart melvis.dart ticketms.dart
+      '';
+    })
+    (lib.mkIf cfg.preset.smb-frontend.enable {
+      networking.extraHosts = ''
+        127.0.0.1 ma-local.click business.ma-local.click consumer.ma-local.click
       '';
     })
   ]);
