@@ -26,17 +26,6 @@ in {
         bindkey -r '^K'
         bindkey -r '^L'
       '';
-
-      profileExtra = ''
-        # Secrets
-        if [ -d ~/.secret ]; then
-          for file in $(ls -a ~/.secret); do
-            if [[ -f ~/.secret/$file ]] && [[ -n "''${file##*ignore*}" ]]; then
-              source ~/.secret/$file
-            fi
-          done
-        fi
-      '';
     };
   };
 }

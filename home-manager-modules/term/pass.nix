@@ -13,7 +13,7 @@ in {
       password-store = {
         enable = true;
         settings = {
-          PASSWORD_STORE_DIR = "$XDG_DATA_HOME/password-store";
+          PASSWORD_STORE_DIR = "\${XDG_DATA_HOME:-$HOME/.local/share}/password-store";
           PASSWORD_STORE_KEY = "59CA827A1DE6C7CE";
         };
       };

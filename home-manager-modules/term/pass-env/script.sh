@@ -238,6 +238,6 @@ else
   if [[ "$DEBUG" == "true" ]]; then
     echo "[DEBUG] execute"
   fi
-  exec env "${env_options[@]}" "${env_assignments[@]}" "${command_args[@]}"
+  exec env ${env_options[@]} ${env_assignments[@]} "${command_args[@]}"
 fi
 
