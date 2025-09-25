@@ -61,17 +61,29 @@ in {
           disableBypassPermissionsMode = "disable";
         };
         hooks = {
-          PostToolUse = [
+          SessionStart = [
             {
               hooks = [
                 {
+                  type = "command";
+                  command = ''
+                    echo '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"**TODAYS DATE**: '"$(date)"'"}}'
+                  '';
+                }
+              ];
+            }
+          ];
+          PostToolUse = [
+            {
+              matcher = "Read";
+              hooks = [
+                {
+                  type = "command";
                   command = ''
                     echo '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"Have you remembered critical things? Read the correct rules, docs, etc.? Have you tested, built, linted, etc.? **ONLY** read/do relevant things, be critical."}}'
                   '';
-                  type = "command";
                 }
               ];
-              matcher = "Read";
             }
           ];
         };
