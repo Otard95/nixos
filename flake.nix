@@ -65,10 +65,7 @@
     };
 
     sources = import ./sources;
-    helpers = import ./utils {
-      pkgs = import nixpkgs { inherit system; };
-      lib = nixpkgs.lib;
-    };
+    helpers = import ./helpers { pkgs = import nixpkgs { inherit system; }; };
 
     mkSystem = name: {
       specialArgs = {
