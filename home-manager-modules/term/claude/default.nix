@@ -80,7 +80,18 @@ in {
                 {
                   type = "command";
                   command = ''
-                    echo '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"Have you remembered critical things? Read the correct rules, docs, etc.? Have you tested, built, linted, etc.? **ONLY** read/do relevant things, be critical."}}'
+                    echo '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"Have you remembered critical things? Read the correct rules, docs, etc.? **ONLY** read/do relevant things, be critical."}}'
+                  '';
+                }
+              ];
+            }
+            {
+              matcher = "Write|Edit";
+              hooks = [
+                {
+                  type = "command";
+                  command = ''
+                    echo '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"Have you tested, built, linted, etc.?"}}'
                   '';
                 }
               ];
