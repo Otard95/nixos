@@ -2,6 +2,8 @@
 let
   cfg = config.modules.term.claude;
   enable = cfg.enable;
+
+  useScript = file: pkgs.writeShellScriptBin (builtins.baseNameOf file) (builtins.readFile file);
 in {
 
   options.modules.term.claude.enable = lib.mkEnableOption "claude configuration";
@@ -79,9 +81,7 @@ in {
               hooks = [
                 {
                   type = "command";
-                  command = ''
-                    echo '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"Have you remembered critical things? Read the correct rules, docs, etc.? **ONLY** read/do relevant things, be critical."}}'
-                  '';
+                  command = "${lib.getExe (useScript ./hooks/rule-and-docs-reminder.sh)}";
                 }
               ];
             }
@@ -90,9 +90,7 @@ in {
               hooks = [
                 {
                   type = "command";
-                  command = ''
-                    echo '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"Have you tested, built, linted, etc.?"}}'
-                  '';
+                  command = "${lib.getExe (useScript ./hooks/validate-reminder.sh)}";
                 }
               ];
             }
