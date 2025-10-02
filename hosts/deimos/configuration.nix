@@ -70,6 +70,7 @@
         appgate.enable = true;
         clickup.enable = true;
         clocks.enable = true;
+        digiKam.enable = true;
         kdeconnect.enable = true;
         obsidian.enable = true;
         slack.enable = true;

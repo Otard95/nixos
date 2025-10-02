@@ -15,6 +15,7 @@ in {
     ./clickup.nix
     ./clocks.nix
     ./dbeaver.nix
+    ./digiKam.nix
     ./discord.nix
     ./firefox.nix
     ./games.nix
