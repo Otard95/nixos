@@ -18,6 +18,7 @@ in {
         gh = { GITHUB_TOKEN = "github/tokens/cli"; };
       };
       type = with lib.types; attrsOf (attrsOf str);
+      default = {};
     };
   };
 
