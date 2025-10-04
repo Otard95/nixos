@@ -36,7 +36,7 @@
       graphics.dGPU.type = "nvidia";
     };
     packages.apps = {
-      # calibre.enable = true;
+      calibre.enable = true;
       discord.enable = true;
       games = {
         enable = true;
