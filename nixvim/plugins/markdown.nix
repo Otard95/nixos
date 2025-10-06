@@ -16,9 +16,8 @@ in {
         enable = true;
 
         settings = {
-          bullet = {
-            left_pad = 1;
-          };
+          completions = { lsp = { enabled = true; }; };
+          bullet = { left_pad = 1; };
           checkbox = {
             unchecked = {
               icon = " 󰄱";

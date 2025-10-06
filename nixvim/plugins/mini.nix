@@ -18,9 +18,12 @@ in {
     enable = lib.mkEnableOption "mini plugins";
 
     modules = {
-      icons = mkModuleOption "icons" {};
-      diff = mkModuleOption "icons" {};
-      indentscope = mkModuleOption "icons" {
+      icons = mkModuleOption "icons" {
+        filetype = {
+          redis = { glyph = ""; hl = "MiniIconsRed"; };
+        };
+      };
+      indentscope = mkModuleOption "indentscope" {
         symbol = "⡇";
         draw = {
           animation = nixvim.mkRaw ''
@@ -37,7 +40,7 @@ in {
       enable = true;
       mockDevIcons = cfg.modules.icons != false;
       modules = {
-        icons = lib.mkIf cfg.modules.icons.enable cfg.modules.icons.settings;
+        icons       = lib.mkIf cfg.modules.icons.enable       cfg.modules.icons.settings;
         indentscope = lib.mkIf cfg.modules.indentscope.enable cfg.modules.indentscope.settings;
       };
     };

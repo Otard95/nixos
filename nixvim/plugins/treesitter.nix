@@ -19,6 +19,8 @@ in {
           highlight.enable = true;
         };
 
+        languageRegister = { bash = "redis"; };
+
         grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
           bash
           c
