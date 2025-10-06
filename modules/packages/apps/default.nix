@@ -18,6 +18,7 @@ in {
     ./digiKam.nix
     ./discord.nix
     ./firefox.nix
+    ./firezone.nix
     ./games.nix
     ./grimblast.nix
     ./kdeconnect.nix

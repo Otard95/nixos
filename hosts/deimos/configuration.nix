@@ -71,6 +71,7 @@
         clickup.enable = true;
         clocks.enable = true;
         digiKam.enable = true;
+        firezone.enable = true;
         kdeconnect.enable = true;
         obsidian.enable = true;
         slack.enable = true;
