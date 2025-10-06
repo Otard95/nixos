@@ -31,6 +31,7 @@ in {
           '';
         };
       };
+      surround = mkModuleOption "surround" {};
     };
   };
 
@@ -42,6 +43,7 @@ in {
       modules = {
         icons       = lib.mkIf cfg.modules.icons.enable       cfg.modules.icons.settings;
         indentscope = lib.mkIf cfg.modules.indentscope.enable cfg.modules.indentscope.settings;
+        surround    = lib.mkIf cfg.modules.surround.enable    cfg.modules.surround.settings;
       };
     };
 
