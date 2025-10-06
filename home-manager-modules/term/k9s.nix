@@ -18,7 +18,7 @@ in {
 
     programs.k9s.enable = true;
 
-    home.packages = with pkgs; [ aws-mfa ];
+    # home.packages = with pkgs; [ aws-mfa ];
 
   };
 }
