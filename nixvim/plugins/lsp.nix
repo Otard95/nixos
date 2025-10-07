@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.modules.nixvim.plugins.lsp;
   enable = cfg.enable;
@@ -47,13 +47,7 @@ in {
           ];
 
           servers = {
-            intelephense = {
-              enable = true;
-              package = pkgs.intelephense;
-              settings = {
-                intelephense.format.braces = "k&r";
-              };
-            };
+            phpactor.enable = true;
             eslint.enable = true;
             gopls.enable = true;
             jsonls.enable = true;
