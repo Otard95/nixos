@@ -83,6 +83,7 @@ in {
         "**/.nvmrc"
         "**/_*"
         "**/_*.*"
+        "**/.direnv"
       ];
 
       extraConfig = {
