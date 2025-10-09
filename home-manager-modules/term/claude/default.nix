@@ -22,6 +22,8 @@ in {
           allow = [
             "Bash(git diff:*)"
             "Bash(mkdir:*)"
+            "Bash(grep:*)"
+            "Bash(awk:*)"
             "Bash(pnpm run build)"
             "Bash(pnpm run lint)"
             "Bash(pnpm run lint:fix)"
@@ -59,6 +61,8 @@ in {
             "Read(./**/secrets/**)"
             "Read(./services.json)"
             "Read(./**/services.json)"
+            "Read(./settings.json)"
+            "Read(./**/settings.json)"
           ];
           disableBypassPermissionsMode = "disable";
         };
