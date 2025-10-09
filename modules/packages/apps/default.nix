@@ -32,6 +32,7 @@ in {
     ./pavucontrol.nix
     ./proton-pass.nix
     ./proton-vpn.nix
+    ./redis-insight.nix
     ./signal.nix
     ./slack.nix
     ./thunar.nix
