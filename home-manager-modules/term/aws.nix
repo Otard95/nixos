@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs-stable, ... }:
 let
   cfg = config.modules.term.aws;
   enable = cfg.enable;
@@ -8,9 +8,9 @@ in {
 
   config = lib.mkIf enable {
 
-    home.packages = with pkgs; [
+    home.packages = with pkgs-stable; [
       awscli2
-      (pkgs.writeShellScriptBin "aws-mfa" ''
+      (pkgs-stable.writeShellScriptBin "aws-mfa" ''
         json="$(aws sts get-session-token --serial-number arn:aws:iam::455170233623:mfa/stian.myklebostad-yubikey --token-code $@)"
         echo "$json"
         echo "[default]

@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs-stable, ... }:
 let
   cfg = config.modules.packages.gromit;
   enable = cfg.enable;
@@ -9,6 +9,7 @@ in {
   config = lib.mkIf enable {
     services.gromit-mpx = {
       enable = true;
+      package = pkgs-stable.gromit-mpx;
     };
 
     systemd.user.services.gromit-mpx = lib.mkForce {};
