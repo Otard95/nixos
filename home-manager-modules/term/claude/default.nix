@@ -24,6 +24,7 @@ in {
             "Bash(mkdir:*)"
             "Bash(grep:*)"
             "Bash(awk:*)"
+            "Bash(jq:*)"
             "Bash(pnpm run build)"
             "Bash(pnpm run lint)"
             "Bash(pnpm run lint:fix)"
