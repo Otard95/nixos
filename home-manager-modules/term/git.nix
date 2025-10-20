@@ -108,6 +108,7 @@ in {
             user = {
               name = "Stian M";
               email = "otard.code@proton.me";
+              signingKey = "A3D77EC138A73982";
             };
           };
         }
