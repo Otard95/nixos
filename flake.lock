@@ -92,6 +92,27 @@
         "type": "github"
       }
     },
+    "flake-utils_3": {
+      "inputs": {
+        "systems": [
+          "pass-env",
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -256,6 +277,28 @@
         "type": "github"
       }
     },
+    "pass-env": {
+      "inputs": {
+        "flake-utils": "flake-utils_3",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": "systems_4"
+      },
+      "locked": {
+        "lastModified": 1760966888,
+        "narHash": "sha256-Qzx5bXqGgR5UPYfPUVMwF+N/Uw06fSOhaVwuOa/LgbQ=",
+        "owner": "Otard95",
+        "repo": "pass-env",
+        "rev": "7a6d8687d8b01060d8753221cb6894ba3db56165",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Otard95",
+        "repo": "pass-env",
+        "type": "github"
+      }
+    },
     "quickemu": {
       "inputs": {
         "flake-schemas": "flake-schemas",
@@ -285,6 +328,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim",
+        "pass-env": "pass-env",
         "quickemu": "quickemu",
         "zen-browser": "zen-browser"
       }
@@ -320,6 +364,21 @@
       }
     },
     "systems_3": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_4": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

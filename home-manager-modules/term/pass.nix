@@ -1,4 +1,4 @@
-{ config, lib, pkgs, theme, ... }:
+{ config, lib, pkgs, theme, inputs, ... }:
 let
   cfg = config.modules.term.pass;
   enable = cfg.enable;
@@ -7,7 +7,7 @@ in {
 
   config = lib.mkIf enable {
 
-    home.packages = [ (pkgs.callPackage ./pass-env {}) ];
+    home.packages = [ inputs.pass-env.packages."${pkgs.system}".default ];
 
     programs = {
       password-store = {

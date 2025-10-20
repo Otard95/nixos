@@ -33,6 +33,10 @@
       url = "github:Otard95/ngm";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    pass-env = {
+      url = "github:Otard95/pass-env";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, nixpkgs-stable, home-manager, nixvim, catppuccin, ... } @ inputs:
