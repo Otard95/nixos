@@ -38,8 +38,16 @@ in {
           dxvk
         ];
       })
+      heroic
     ]
       ++ lib.optional cfg.minecraft.enable cfg.minecraft.launcher;
+
+    # Fix VIRPIL Joisticks
+    users.groups.joystick-users.members = [ "otard" ];
+    services.udev.extraRules = ''
+      SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3344", MODE="0660" GROUP="joystick-users"
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="3344", MODE="0660" GROUP="joystick-users"
+    '';
 
   };
 }
