@@ -39,6 +39,7 @@ in {
     undofile = true;
 
     # Misc
+    winborder = "rounded";
     wildmode = "longest:full,full";
     list = true;
     listchars = "tab:󰌒 ,trail:⋅";
