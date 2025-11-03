@@ -15,16 +15,16 @@ in {
       lsp = {
 
         keymaps = [
-          { key = "K";           lspBufAction = "hover"; }
-          { key = "gd";          lspBufAction = "definition"; }
-          { key = "gi";          lspBufAction = "implementation"; }
-          { key = "<leader>vca"; lspBufAction = "code_action"; }
-          { key = "<leader>vrr"; lspBufAction = "references"; }
-          { key = "<leader>vrn"; lspBufAction = "rename"; }
-          { key = "<C-f>";       lspBufAction = "format"; }
-          { key = "]d";          action = nixvim.mkRaw "vim.diagnostic.goto_next"; }
-          { key = "[d";          action = nixvim.mkRaw "vim.diagnostic.goto_prev"; }
-          { key = "<leader>vd";  action = nixvim.mkRaw "vim.diagnostic.open_float"; }
+          { key = "K";           lspBufAction = "hover";          mode = "n"; }
+          { key = "gd";          lspBufAction = "definition";     mode = "n"; }
+          { key = "gi";          lspBufAction = "implementation"; mode = "n"; }
+          { key = "<leader>vca"; lspBufAction = "code_action";    mode = "n"; }
+          { key = "<leader>vrr"; lspBufAction = "references";     mode = "n"; }
+          { key = "<leader>vrn"; lspBufAction = "rename";         mode = "n"; }
+          { key = "<C-f>";       lspBufAction = "format";         mode = "n"; }
+          { key = "]d";          action = nixvim.mkRaw "vim.diagnostic.goto_next"; mode = "n"; }
+          { key = "[d";          action = nixvim.mkRaw "vim.diagnostic.goto_prev"; mode = "n"; }
+          { key = "<leader>vd";  action = nixvim.mkRaw "vim.diagnostic.open_float"; mode = "n"; }
           { key = "<C-h>";       action = nixvim.mkRaw "vim.lsp.buf.signature_help"; mode = "i"; }
         ];
 
