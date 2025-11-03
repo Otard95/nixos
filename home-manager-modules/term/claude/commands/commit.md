@@ -2,6 +2,10 @@
 allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*)
 description: Create a git commit with proper message
 ---
+## User message
+
+$ARGUMENTS
+
 ## Context
 
 - Current git status: !`git status`
