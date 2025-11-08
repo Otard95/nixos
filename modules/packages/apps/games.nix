@@ -11,6 +11,8 @@ in {
 
       launcher = lib.mkPackageOption pkgs "prismlauncher" { };
     };
+
+    elite-dangerous-utils.enable = lib.mkEnableOption "minecraft";
   };
 
   config = lib.mkIf enable {
@@ -40,7 +42,8 @@ in {
       })
       heroic
     ]
-      ++ lib.optional cfg.minecraft.enable cfg.minecraft.launcher;
+      ++ lib.optional cfg.minecraft.enable cfg.minecraft.launcher
+      ++ lib.optional cfg.elite-dangerous-utils.enable pkgs.ed-odyssey-materials-helper;
 
     # Fix VIRPIL Joisticks
     users.groups.joystick-users.members = [ "otard" ];
