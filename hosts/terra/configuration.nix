@@ -42,6 +42,7 @@
         enable = true;
         minecraft.enable = true;
       };
+      gimp.enable = true;
       kdeconnect.enable = true;
       matrix.enable = true;
       wooting.enable = true;

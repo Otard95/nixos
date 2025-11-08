@@ -20,6 +20,7 @@ in {
     ./firefox.nix
     ./firezone.nix
     ./games.nix
+    ./gimp.nix
     ./grimblast.nix
     ./kdeconnect.nix
     ./kwallet.nix
