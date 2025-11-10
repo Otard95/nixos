@@ -49,7 +49,7 @@ in {
             # | hide  | conceal lines unless language name or icon is added  |
             border = "thin";
             # Used below code blocks for thin border.
-            below = "🮂";
+            below = "▀";
           };
         };
       };
