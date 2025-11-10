@@ -56,7 +56,7 @@ in {
             enabled = true;
           };
 
-          aliases = {
+          alias = {
             co = ''checkout'';
             ci = ''commit'';
             remove = ''reset HEAD --'';
