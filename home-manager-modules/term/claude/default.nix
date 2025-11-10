@@ -41,13 +41,17 @@ in {
             "mcp__obsidian__obsidian_get_periodic_note"
             "mcp__obsidian__obsidian_get_recent_periodic_notes"
             "mcp__obsidian__obsidian_get_recent_changes"
-            "mcp__clickup__getTaskById"
-            "mcp__clickup__searchTasks"
-            "mcp__clickup__searchSpaces"
-            "mcp__clickup__getListInfo"
-            "mcp__clickup__getTimeEntries"
-            "mcp__clickup__readDocument"
-            "mcp__clickup__searchDocuments"
+            "mcp__clickup__get_task"
+            "mcp__clickup__search_tasks"
+            "mcp__clickup__search_spaces"
+            "mcp__clickup__get_space_structure"
+            "mcp__clickup__get_tasks_in_list"
+            "mcp__clickup__get_list_info"
+            "mcp__clickup__get_task_comments"
+            "mcp__clickup__get_time_entries"
+            "mcp__clickup__read_document"
+            "mcp__clickup__search_documents"
+            "mcp__clickup__get_task_relationships"
           ];
           # ask = [
           #   "Bash(git push:*)"
@@ -75,6 +79,30 @@ in {
                   type = "command";
                   command = ''
                     echo '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"**TODAYS DATE**: '"$(date)"'"}}'
+                  '';
+                }
+              ];
+            }
+          ];
+          Notification = [
+            {
+              hooks = [
+                {
+                  type = "command";
+                  command = ''
+                    jq '.message' | xargs notify-send -t 6000 "✨ Claude"
+                  '';
+                }
+              ];
+            }
+          ];
+          Stop = [
+            {
+              hooks = [
+                {
+                  type = "command";
+                  command = ''
+                    jq '.transcript_path' | xargs jq 'select(.type == "summary") // { "summary": "Waiting for input" } | .summary' | tail -n 1 | xargs notify-send -t 6000 "✨ Claude"
                   '';
                 }
               ];
