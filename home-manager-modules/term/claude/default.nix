@@ -52,6 +52,7 @@ in {
             "mcp__clickup__read_document"
             "mcp__clickup__search_documents"
             "mcp__clickup__get_task_relationships"
+            "mcp__memory"
           ];
           # ask = [
           #   "Bash(git push:*)"
@@ -148,6 +149,15 @@ in {
         #     Authorization = "Bearer \${GITHUB_TOKEN_CLAUDE}";
         #   };
         # };
+        memory = {
+          command = "docker";
+          args = [
+            "run" "-i" "--rm"
+            "-v" "/home/otard/.claude/memory-mcp:/home/mcpuser/.claude/memory-mcp"
+            "-e" "PWD"
+            "memory-mcp-server"
+          ];
+        };
         clickup = {
           command = "pass-env";
           args = [
