@@ -37,7 +37,7 @@
 
   # Modules
   modules = {
-    desktopEnvironment.sddm.background = sources.images.background.forrest-lake-train;
+    desktopEnvironment.sddm.background = sources.images.background.astronaut;
     nixvim.enable = true;
     system = {
       battery-monitor.enable = true;

@@ -19,8 +19,8 @@
   modules = {
     desktopEnvironment = {
       enable = true;
-      background-image = sources.images.background.forrest-lake-train;
-      splash-image     = sources.images.splash.bridge-forrest-fog;
+      background-image = sources.images.background.astronaut;
+      splash-image     = sources.images.splash.black-hole;
     };
     packages = {
       obsidian = {
