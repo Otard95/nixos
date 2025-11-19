@@ -94,7 +94,7 @@ in {
           mantle = mkLiteral "#292c3c";
           crust = mkLiteral "#232634";
 
-          baseAlpha = mkLiteral "#303446aa";
+          baseAlpha = mkLiteral "#303446ee";
         };
 
         ## /*****----- Main Window -----*****/
