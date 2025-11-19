@@ -33,7 +33,18 @@ in {
           event = "FileType";
           pattern = [ "json" ];
           callback = nixvim.mkRaw ''
-            function(ev) vim.bo.formatprg = "jq" end
+            function(ev) vim.bo.formatprg = "${pkgs.writeShellScriptBin "format" ''
+              input=$(cat)
+
+              # Try to format it with jq
+              if formatted=$(printf '%s\n' "$input" | jq '.'); then
+                # jq succeeded: output formatted JSON
+                printf '%s\n' "$formatted"
+              else
+                # jq failed: output original text
+                printf '%s\n' "$input"
+              fi
+            ''}/bin/format" end
           '';
         }
       ];
