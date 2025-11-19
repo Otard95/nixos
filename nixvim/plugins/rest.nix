@@ -52,6 +52,10 @@ in {
       plugins.rest = {
         enable = true;
         enableTelescope = true;
+
+        settings = {
+          request.hooks.encode_url = false;
+        };
       };
 
     };
