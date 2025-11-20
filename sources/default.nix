@@ -6,6 +6,7 @@
       forrest-lake-train    = ./background-images/forrest-lake-train.png;
       mountain-lake-sunrise = ./background-images/mountain-lake-sunrise.png;
       astronaut             = ./background-images/astronaut.png;
+      astronaut-vertical    = ./background-images/astronaut-vertical.png;
     };
     splash = {
       bridge-forrest-fog  = ./splash-images/bridge-forrest-fog.jpg;

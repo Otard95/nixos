@@ -43,7 +43,7 @@ in {
       });
     };
 
-    background-image = helpers.mkOption.image "background" // { default = sources.images.background.falling-into-infinity; };
+    background-image = helpers.mkOption.monitorBackground sources.images.background.falling-into-infinity;
     splash-image = helpers.mkOption.image "splash" // { default = sources.images.splash.spacegirl; };
   };
 
@@ -76,7 +76,10 @@ in {
     (lib.mkIf (cfg.windowManager == "hyprland") {
       modules.desktopEnvironment.hyprland = {
         enable = lib.mkDefault true;
-        background-image = cfg.background-image;
+        background-image = {
+          horizontal = lib.mkDefault cfg.background-image.horizontal;
+          vertical = lib.mkDefault cfg.background-image.vertical;
+        };
       };
       wayland.windowManager.hyprland.settings = let
         compileMods = mods: builtins.concatStringsSep "+" (

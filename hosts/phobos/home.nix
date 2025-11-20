@@ -18,8 +18,8 @@
 
   modules = {
     desktopEnvironment = {
-      background-image = sources.images.background.forrest-lake-train;
-      splash-image     = sources.images.splash.bridge-forrest-fog;
+      background-image.horizontal = sources.images.background.forrest-lake-train;
+      splash-image = sources.images.splash.bridge-forrest-fog;
     };
     packages = {
       hdrop.enable = true;

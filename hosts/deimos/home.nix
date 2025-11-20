@@ -19,8 +19,11 @@
   modules = {
     desktopEnvironment = {
       enable = true;
-      background-image = sources.images.background.astronaut;
-      splash-image     = sources.images.splash.black-hole;
+      background-image = {
+        horizontal = sources.images.background.astronaut;
+        vertical = sources.images.background.astronaut-vertical;
+      };
+      splash-image = sources.images.splash.black-hole;
     };
     packages = {
       obsidian = {

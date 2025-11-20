@@ -25,5 +25,23 @@ in {
       description = "Path to the ${name} image to use";
       type = lib.types.path;
     };
+    optional = option: option // { type = lib.types.nullOr option.type; };
+    monitorBackground = default: lib.mkOption {
+      description = "Path to the background image(s) to use";
+      type = lib.types.submodule {
+        options = {
+          horizontal = lib.mkOption {
+            description = "Path to the horizontal background image to use";
+            default = default;
+            type = lib.types.path;
+          };
+          vertical = lib.mkOption {
+            description = "Path to the horizontal background image to use";
+            default = null;
+            type = lib.types.nullOr lib.types.path;
+          };
+        };
+      };
+    };
   };
 }

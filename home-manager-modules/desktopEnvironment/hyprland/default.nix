@@ -1,4 +1,4 @@
-{ config, lib, helpers, ... }:
+{ config, lib, helpers, sources, ... }:
 let
   cfg = config.modules.desktopEnvironment.hyprland;
   enable = cfg.enable;
@@ -7,7 +7,7 @@ in {
   options.modules.desktopEnvironment.hyprland = {
     enable = lib.mkEnableOption "hyprland";
 
-    background-image = helpers.mkOption.image "background";
+    background-image = helpers.mkOption.monitorBackground sources.images.background.falling-into-infinity;
   };
 
   imports = [
@@ -24,11 +24,14 @@ in {
       hypridle.enable = lib.mkDefault true;
       hyprpaper = {
         enable = lib.mkDefault true;
-        bg-image = cfg.background-image;
+        bg-image = {
+          horizontal = lib.mkDefault cfg.background-image.horizontal;
+          vertical = lib.mkDefault cfg.background-image.vertical;
+        };
       };
       hyprlock = {
         enable = lib.mkDefault true;
-        bg-image = cfg.background-image;
+        bg-image = cfg.background-image.horizontal;
       };
       waybar.enable = lib.mkDefault true;
     };
