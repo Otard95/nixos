@@ -12,7 +12,7 @@ in {
       sessionVariables.MOZ_USE_XINPUT2 = "1";
 
       systemPackages = with pkgs; [
-        inputs.zen-browser.packages."${system}".default
+        inputs.zen-browser.packages."${stdenv.hostPlatform.system}".default
         (makeDesktopItem {
           name = "zen-browser-personal";
           desktopName = "Zen Browser";

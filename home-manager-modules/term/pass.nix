@@ -7,7 +7,7 @@ in {
 
   config = lib.mkIf enable {
 
-    home.packages = [ inputs.pass-env.packages."${pkgs.system}".default ];
+    home.packages = [ inputs.pass-env.packages."${pkgs.stdenv.hostPlatform.system}".default ];
 
     programs = {
       password-store = {

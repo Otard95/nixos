@@ -10,7 +10,7 @@ in {
   config = lib.mkIf enable {
     virtualisation.spiceUSBRedirection.enable = true;
     environment.systemPackages = with pkgs; [
-      inputs.quickemu.packages."${system}".default
+      inputs.quickemu.packages."${stdenv.hostPlatform.system}".default
       # (quickemu.overrideAttrs  (_: {
       #   pname = "quickemu";
       #   version = "4.9.7";

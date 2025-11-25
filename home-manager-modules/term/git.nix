@@ -22,7 +22,7 @@ in {
   config = lib.mkIf enable {
 
     home.packages = [
-      inputs.ngm.packages."${pkgs.system}".default
+      inputs.ngm.packages."${pkgs.stdenv.hostPlatform.system}".default
     ];
 
     programs = {
