@@ -24,6 +24,7 @@
         vertical = sources.images.background.astronaut-vertical;
       };
       splash-image = sources.images.splash.black-hole;
+      power-menu.rofi.splash-image.scale = "width";
     };
     packages = {
       obsidian = {
