@@ -32,6 +32,10 @@ function M.apply_to_config(config)
     keys.map { 'l', 'CTRL', actions.MovePane 'Right' },
     keys.map { '<', 'CTRL|SHIFT', wezterm.action.MoveTabRelative(-1) },
     keys.map { '>', 'CTRL|SHIFT', wezterm.action.MoveTabRelative(1) },
+    keys.map { 'h', 'CTRL|SHIFT', wezterm.action.AdjustPaneSize { 'Left', 5 } },
+    keys.map { 'j', 'CTRL|SHIFT', wezterm.action.AdjustPaneSize { 'Down', 5 } },
+    keys.map { 'k', 'CTRL|SHIFT', wezterm.action.AdjustPaneSize { 'Up', 5 } },
+    keys.map { 'l', 'CTRL|SHIFT', wezterm.action.AdjustPaneSize { 'Right', 5 } },
 
     keys.map { 'd', 'LEADER', wezterm.action_callback(function(_win, pane)
       wezterm.log_info('pane:user_vars', pane:get_user_vars())
