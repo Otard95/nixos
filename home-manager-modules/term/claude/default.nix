@@ -141,6 +141,14 @@ in {
         }) fileNames;
       in builtins.listToAttrs files;
 
+      agents = let
+        fileNames = builtins.attrNames (builtins.readDir ./agents);
+        files = map (name: {
+          name = "${lib.strings.removeSuffix ".md" name}";
+          value = builtins.readFile (lib.path.append ./agents "${name}");
+        }) fileNames;
+      in builtins.listToAttrs files;
+
       mcpServers = {
         # github = {
         #   type = "http";
