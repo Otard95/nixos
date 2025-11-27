@@ -7,7 +7,13 @@ in {
     lib.mkEnableOption "docker";
 
   config = lib.mkIf enable {
-    virtualisation.docker.enable = true;
-    # users.users.otard.extraGroups = [ "docker" ];
+    virtualisation.docker = {
+      enable = true;
+
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
+    };
   };
 }
