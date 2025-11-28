@@ -2,9 +2,33 @@
 let
   cfg = config.modules.system.networking;
   enable = cfg.enable;
+
+  baseDnsServers = [
+    # Cloudflare (Block malware)
+    "1.1.1.2" "1.0.0.2"
+    # Quad9
+    "9.9.9.9" "149.112.112.112"
+    # AdGuard
+    "94.140.14.14" "94.140.15.15"
+
+    # Cloudflare
+    "2606:4700:4700::1112" "2606:4700:4700::1002"
+    # Quad9
+    "2620:fe::fe" "2620:fe::fe"
+    # AdGuard
+    "2a10:50c0::ad1:ff" "2a10:50c0::ad2:ff"
+  ];
 in {
   options.modules.system.networking = {
     enable = lib.mkEnableOption "networking";
+
+    additionalDnsServers = lib.mkOption {
+      description = "Additional prioritized DNS servers on top of the module default.";
+      default = [];
+      type = with lib.types; listOf str;
+    };
+
+    resolved.enable = lib.mkEnableOption "systemd-resolved";
 
     preset = {
       smb-backend.enable =
@@ -31,7 +55,17 @@ in {
       # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
       # Enable networking
-      networking.networkmanager.enable = true;
+      networking.networkmanager = {
+        enable = true;
+        # Required to set custom dns
+        dns =  "none";
+      };
+
+      # These options are unnecessary when managing DNS ourselves
+      networking.useDHCP = false;
+      networking.dhcpcd.enable = false;
+
+      networking.nameservers = cfg.additionalDnsServers ++ baseDnsServers;
 
       # Open ports in the firewall.
       # networking.firewall.allowedTCPPorts = [ ... ];
@@ -39,6 +73,14 @@ in {
       # Or disable the firewall altogether.
       # networking.firewall.enable = false;
     }
+    (lib.mkIf cfg.resolved.enable {
+      networking.networkmanager.dns = lib.mkForce "systemd-resolved";
+      services.resolved = {
+        enable = true;
+
+        fallbackDns = cfg.additionalDnsServers ++ baseDnsServers;
+      };
+    })
     (lib.mkIf cfg.preset.smb-backend.enable {
       networking.firewall = {
         allowedTCPPortRanges = [ { from = 9000; to = 9020; } ];

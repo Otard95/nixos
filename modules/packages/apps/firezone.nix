@@ -22,8 +22,7 @@ in {
       # };
     };
 
-    networking.networkmanager.dns = "systemd-resolved";
-    services.resolved.enable = true;
+    modules.system.networking.resolved.enable = true;
 
   };
 }
