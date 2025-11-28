@@ -42,7 +42,6 @@
         email = "stian.myklebostad@schibsted.com";
       };
       pass.enable = true;
-      pay-respects.enable = true;
       scripts.enable = true;
       k9s.enable = true;
       zsh.enable = true;

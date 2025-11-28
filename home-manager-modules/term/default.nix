@@ -34,7 +34,6 @@ in {
     ./k9s.nix
     ./kitty.nix
     ./pass.nix
-    ./pay-respects.nix
     ./ssh.nix
     ./starship.nix
     ./tmux.nix
