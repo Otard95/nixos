@@ -12,7 +12,7 @@ in {
       launcher = lib.mkPackageOption pkgs "prismlauncher" { };
     };
 
-    elite-dangerous-utils.enable = lib.mkEnableOption "minecraft";
+    elite-dangerous-utils.enable = lib.mkEnableOption "elite-dangerous-utils";
   };
 
   config = lib.mkIf enable {
@@ -22,6 +22,7 @@ in {
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
       localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+      protontricks.enable = true;
     };
     # Useful for non-steam games
     # environment.systemPackages = with pkgs; [
@@ -34,16 +35,24 @@ in {
         extraLibraries =  pkgs: [
           # List library dependencies here
           dxvk
+          libadwaita
+          gtk4
         ];
         extraPkgs = pkgs: [
           # List package dependencies here
           dxvk
+          libadwaita
+          gtk4
         ];
       })
       heroic
     ]
       ++ lib.optional cfg.minecraft.enable cfg.minecraft.launcher
-      ++ lib.optional cfg.elite-dangerous-utils.enable pkgs.ed-odyssey-materials-helper;
+      ++ lib.optionals cfg.elite-dangerous-utils.enable [
+        edmarketconnector
+        (pkgs.callPackage ./ed-odyssey-materials-helper.nix {})
+        (pkgs.callPackage ./edhm-ui.nix {})
+      ];
 
     # Fix VIRPIL Joisticks
     users.groups.joystick-users.members = [ "otard" ];

@@ -28,6 +28,10 @@
     # packages = with pkgs; [];
   };
 
+  programs.nix-ld.libraries = [
+    pkgs.glib
+  ];
+
   # Modules
   modules = {
     nixvim.enable = true;

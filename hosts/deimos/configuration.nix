@@ -32,9 +32,6 @@
   services.logind.settings.Login.HandleLidSwitchDocked = "ignore";
   services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
 
-  # Development
-  programs.nix-ld.enable = true;
-
   # Modules
   modules = {
     desktopEnvironment.sddm.background = sources.images.background.astronaut;

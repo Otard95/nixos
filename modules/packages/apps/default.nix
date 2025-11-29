@@ -19,7 +19,7 @@ in {
     ./discord.nix
     ./firefox.nix
     ./firezone.nix
-    ./games.nix
+    ./games
     ./gimp.nix
     ./grimblast.nix
     ./kdeconnect.nix
