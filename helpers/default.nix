@@ -28,6 +28,10 @@ in {
     optional = option: option // { type = lib.types.nullOr option.type; };
     monitorBackground = default: lib.mkOption {
       description = "Path to the background image(s) to use";
+      default = {
+        horizontal = default;
+        vertical   = null;
+      };
       type = lib.types.submodule {
         options = {
           horizontal = lib.mkOption {
