@@ -70,6 +70,7 @@
         digiKam.enable = true;
         firezone.enable = true;
         kdeconnect.enable = true;
+        logitech.enable = true;
         obsidian.enable = true;
         redis-insight.enable = true;
         slack.enable = true;

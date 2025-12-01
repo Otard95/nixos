@@ -49,15 +49,10 @@
       };
       gimp.enable = true;
       kdeconnect.enable = true;
+      logitech.enable = true;
       matrix.enable = true;
       wooting.enable = true;
     };
-  };
-
-  # TODO: move to module
-  hardware.logitech.wireless = {
-    enable = true;
-    enableGraphical = true;
   };
 
   # List packages installed in system profile. To search, run:

@@ -13,6 +13,7 @@ in {
     ./fonts.nix
     ./gc.nix
     ./graphics.nix
+    ./hardware.nix
     ./i18n.nix
     ./networking.nix
     ./printing.nix
@@ -23,10 +24,13 @@ in {
   config = lib.mkIf enable {
     programs.nix-ld.enable = true;
 
-    modules.system.bluetooth.enable = lib.mkDefault true;
-    modules.system.gc.enable = lib.mkDefault true;
-    modules.system.i18n.enable = lib.mkDefault true;
-    modules.system.networking.enable = lib.mkDefault true;
-    modules.system.shell.enable = lib.mkDefault true;
+    modules.system = {
+      bluetooth.enable = lib.mkDefault true;
+      gc.enable = lib.mkDefault true;
+      hardware.enable = lib.mkDefault true;
+      i18n.enable = lib.mkDefault true;
+      networking.enable = lib.mkDefault true;
+      shell.enable = lib.mkDefault true;
+    };
   };
 }

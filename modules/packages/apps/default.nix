@@ -25,6 +25,7 @@ in {
     ./kdeconnect.nix
     ./kwallet.nix
     ./libre-office.nix
+    ./logitech.nix
     ./loupe.nix
     ./matrix.nix
     ./mpv.nix
