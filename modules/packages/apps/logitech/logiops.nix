@@ -4,18 +4,23 @@ let
   enable = cfg.enable;
   utils = import ./logiops-utils.nix { inherit pkgs; inherit lib; inherit helpers; };
 
-  finalConfig =
-    let
-      enabledPresets =
-        lib.filterAttrs (name: _: cfg.preset.${name}) utils.preset;
-    in
-    lib.foldl' lib.recursiveUpdate {} [
-      cfg.settings
-      (lib.foldl' lib.recursiveUpdate {} (lib.attrValues enabledPresets))
-    ];
+  mergedConfig =
+  let
+    enabledPresets =
+      lib.filterAttrs (name: _: cfg.preset.${name}) utils.preset;
+
+    mergedPresets =
+      lib.foldl' utils.recursiveUpdateNonNull {} (lib.attrValues enabledPresets);
+  in
+    utils.recursiveUpdateNonNull mergedPresets cfg.settings;
+
+
+  finalConfig = mergedConfig // {
+    devices = utils.toListDevices mergedConfig.devices;
+  };
 
   configFormat = pkgs.formats.libconfig {};
-  configFile = configFormat.generate "logid.cfg" (utils.filterDeep (_: v: v != null) finalConfig);
+  configFile = configFormat.generate "logid.cfg" (utils.filterDeep (_: v: v != null) (builtins.trace (builtins.toJSON finalConfig) finalConfig));
 in {
   options.modules.packages.apps.logitech.logiops = {
     enable = lib.mkEnableOption "logiops";

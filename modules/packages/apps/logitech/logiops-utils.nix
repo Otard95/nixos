@@ -4,17 +4,13 @@ let
 
   configFormat = pkgs.formats.libconfig {};
 
-  noneActionType = with lib.types; submodule {
+  ActionType = with lib.types; submodule {
     options = {
-      type = lib.mkOption { type = enum ["None"]; };
-    };
-  };
-
-  keypressActionType = with lib.types; submodule {
-    options = {
-      type = lib.mkOption { type = enum ["Keypress"]; };
-      keys = lib.mkOption {
+      type = lib.mkOption { type = enum ["None" "Keypress" "ToggleSmartShift" "Gestures"]; };
+      keys = mkOption.optional (lib.mkOption {
         description = ''
+          Set only for action type `Keypress`
+
           This is a required list of strings/integers that defines the
           keys to be pressed/released. For a list of key/button strings, refer
           to [linux/input-event-codes.h](https://github.com/torvalds/linux/blob/master/include/uapi/linux/input-event-codes.h). (e.g. keys: ["KEY_A", "KEY_B"];).
@@ -26,33 +22,19 @@ let
           keyboard. (e.g. "KEY_Z" on a QWERTZ layout should be "KEY_Y")
         '';
         type = coercedTo (listOf (oneOf [ints.positive str])) configFormat.lib.mkArray anything;
-      };
-    };
-  };
-
-  toggleSmartShiftActionType = with lib.types; submodule {
-    options = {
-      type = lib.mkOption { type = enum ["ToggleSmartShift"]; };
-    };
-  };
-
-  nonGestureActionType = with lib.types; oneOf [ noneActionType keypressActionType toggleSmartShiftActionType ];
-
-  gestureActionType = with lib.types; submodule {
-    options = {
-      type = lib.mkOption { type = enum ["Gestures"]; };
-      gestures = listOf (submodule {
-        direction = lib.mkOption { type = enum ["Up" "Down" "Left" "Right" "None"]; };
-        threshold = lib.mkOption { type = ints.positive; default = 50; };
-        mode = lib.mkOption { type = enum [ "NoPress" "OnRelease" "OnInterval" "OnThreshold" "Axis" ]; };
-        axis = lib.mkOption { type = nullOr str; default = null; };
-        axis_multiplier = lib.mkOption { type = nullOr ints.positive; default = null; };
-        action = lib.mkOption { type = nullOr nonGestureActionType; default = null; };
       });
+      gestures = mkOption.optional (mkOption.listOf "Define the gestures for action type `Gestures`" (submodule {
+        options = {
+          direction = lib.mkOption { type = enum ["Up" "Down" "Left" "Right" "None"]; };
+          threshold = mkOption.optional (lib.mkOption { type = ints.positive; default = 50; });
+          mode = mkOption.optional (lib.mkOption { type = enum [ "NoPress" "OnRelease" "OnInterval" "OnThreshold" "Axis" ]; });
+          axis = mkOption.optional (lib.mkOption { type = nullOr str; default = null; });
+          axis_multiplier = mkOption.optional (lib.mkOption { type = nullOr ints.positive; default = null; });
+          action = mkOption.optional (lib.mkOption { type = nullOr ActionType; default = null; });
+        };
+      }));
     };
   };
-
-  actionType = with lib.types; oneOf [ noneActionType keypressActionType toggleSmartShiftActionType gestureActionType ];
 
   filterDeep = 
     pred: value:
@@ -82,15 +64,19 @@ let
       value;
 in {
   filterDeep = filterDeep;
+  toListDevices = devicesSet:
+    lib.mapAttrsToList (name: cfg: cfg // { name = cfg.name or name; }) devicesSet;
+  recursiveUpdateNonNull = lhs: rhs:
+    lib.recursiveUpdate (filterDeep (_: v: v != null) lhs) (filterDeep (_: v: v != null) rhs);
 
   settings-type = with lib.types; submodule {
     options = {
 
       ignore = mkOption.listOf "Ignored device PIDs" str;
 
-      devices = mkOption.listOf "A list of device configurations" (submodule {
+      devices = mkOption.attrsOf "A list of device configurations" (submodule {
         options = {
-          name = mkOption.str "The name of the device to configure";
+          name = mkOption.optional (mkOption.str "The name of the device to configure, (defaults to the key of `devices`)");
 
           dpi = mkOption.optional (lib.mkOption {
             description = "The mouse DPI, or list of DIPs if it has more than one sensor";
@@ -115,11 +101,11 @@ in {
               '');
               up = mkOption.optional (lib.mkOption {
                 description = "The gesture/action that will be taken when the scroll wheel is moved up (down if inverted).";
-                type = actionType;
+                type = ActionType;
               });
               down = mkOption.optional (lib.mkOption {
                 description = "The gesture/action that will be taken when the scroll wheel is moved down (up if inverted).";
-                type = actionType;
+                type = ActionType;
               });
             }
           );
@@ -130,11 +116,11 @@ in {
               invert = mkOption.optional (mkOption.bool "Should thumb wheel be inverted or not.");
               left = mkOption.optional (lib.mkOption {
                 description = "The gesture/action that will be taken when the scroll wheel is moved left (right if inverted).";
-                type = actionType;
+                type = ActionType;
               });
               right = mkOption.optional (lib.mkOption {
                 description = "The gesture/action that will be taken when the scroll wheel is moved right (letf if inverted).";
-                type = actionType;
+                type = ActionType;
               });
             }
           );
@@ -147,12 +133,12 @@ in {
                 The `cid` of the button to configure. You can find a list here:
                 https://github.com/PixlOne/logiops/wiki/CIDs
                 '';
-                type = coercedTo (strMatching "0x[0-9a-fA-F]{2}(?:[0-9a-fA-F]{2})?") configFormat.lib.mkHex anything;
+                type = coercedTo (strMatching "0x[0-9a-fA-F]{2}([0-9a-fA-F]{2})?") configFormat.lib.mkHex anything;
               };
 
               action = lib.mkOption {
                 description = "What the button should do";
-                type = actionType;
+                type = ActionType;
               };
 
             };
@@ -165,7 +151,7 @@ in {
 
   preset = {
     sensibleMXMaster4 = {
-      devices = [ { name = "MX Master 4"; thumbwheel.invert = true; } ];
+      devices."MX Master 4".thumbwheel.invert = true;
     };
   };
 }

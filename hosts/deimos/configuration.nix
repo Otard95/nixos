@@ -74,6 +74,14 @@
           enable = true;
           logiops = {
             enable = true;
+            settings = {
+              devices."MX Master 4".buttons = [
+                {
+                  cid = "0xc3";
+                  action = { type = "Keypress"; keys = [ "KEY_LEFTALT" "BTN_MOUSE" ]; };
+                }
+              ];
+            };
             preset.sensibleMXMaster4 = true;
           };
         };

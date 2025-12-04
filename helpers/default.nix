@@ -50,6 +50,11 @@ in {
       default = [];
       type = lib.types.listOf type;
     };
+    attrsOf = name: type: lib.mkOption {
+      description = name;
+      default = {};
+      type = lib.types.attrsOf type;
+    };
     any = name: lib.mkOption {
       description = name;
       type = lib.types.anything;
