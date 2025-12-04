@@ -20,7 +20,7 @@ let
   };
 
   configFormat = pkgs.formats.libconfig {};
-  configFile = configFormat.generate "logid.cfg" (utils.filterDeep (_: v: v != null) (builtins.trace (builtins.toJSON finalConfig) finalConfig));
+  configFile = configFormat.generate "logid.cfg" (utils.filterDeep (_: v: v != null) finalConfig);
 in {
   options.modules.packages.apps.logitech.logiops = {
     enable = lib.mkEnableOption "logiops";
