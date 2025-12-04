@@ -45,6 +45,7 @@ in {
           vim
           vimdoc
           yaml
+          zig
         ];
       };
     };

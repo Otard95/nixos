@@ -51,6 +51,16 @@ in {
             # Used below code blocks for thin border.
             below = "▀";
           };
+
+          overrides = {
+            buftype = {
+              nofile = {
+                code = { left_pad = 0; right_pad = 0; below = null; };
+                padding = { highlight = "NormalFloat"; };
+                sign = { enabled = false; };
+              };
+            };
+          };
         };
       };
     };
