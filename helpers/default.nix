@@ -17,6 +17,39 @@ in {
       description = name;
       type = lib.types.str;
     };
+    int = name: lib.mkOption {
+      description = name;
+      type = lib.types.int;
+    };
+    ints = {
+      positive = name: lib.mkOption {
+        description = name;
+        type = lib.types.positive;
+      };
+      unsigned = name: lib.mkOption {
+        description = name;
+        type = lib.types.unsigned;
+      };
+      u8 = name: lib.mkOption {
+        description = name;
+        type = lib.types.u8;
+      };
+    };
+    bool = name: lib.mkOption {
+      description = name;
+      type = lib.types.bool;
+    };
+    submodule = name: options: lib.mkOption {
+      description = name;
+      type = lib.types.submodule {
+        options = options;
+      };
+    };
+    listOf = name: type: lib.mkOption {
+      description = name;
+      default = [];
+      type = lib.types.listOf type;
+    };
     any = name: lib.mkOption {
       description = name;
       type = lib.types.anything;
@@ -25,7 +58,10 @@ in {
       description = "Path to the ${name} image to use";
       type = lib.types.path;
     };
-    optional = option: option // { type = lib.types.nullOr option.type; };
+    optional = option: option // {
+      type = lib.types.nullOr option.type;
+      default = null;
+    };
     monitorBackground = default: lib.mkOption {
       description = "Path to the background image(s) to use";
       default = {

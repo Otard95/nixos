@@ -70,7 +70,13 @@
         digiKam.enable = true;
         firezone.enable = true;
         kdeconnect.enable = true;
-        logitech.enable = true;
+        logitech = {
+          enable = true;
+          logiops = {
+            enable = true;
+            preset.sensibleMXMaster4 = true;
+          };
+        };
         obsidian.enable = true;
         redis-insight.enable = true;
         slack.enable = true;
