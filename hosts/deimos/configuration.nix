@@ -78,7 +78,7 @@
               devices."MX Master 4".buttons = [
                 {
                   cid = "0xc3";
-                  action = { type = "Keypress"; keys = [ "KEY_LEFTALT" "BTN_MOUSE" ]; };
+                  action = { type = "Keypress"; keys = [ "KEY_LEFTALT" "BTN_LEFT" ]; };
                 }
               ];
             };
