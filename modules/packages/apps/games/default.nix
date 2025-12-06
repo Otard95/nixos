@@ -29,6 +29,10 @@ in {
     #   steam-run
     # ];
 
+    programs.nix-ld.libraries = lib.mkIf cfg.elite-dangerous-utils.enable [
+      pkgs.glib
+    ];
+
     environment.systemPackages = with pkgs; [
       # lutris
       (lutris.override {
