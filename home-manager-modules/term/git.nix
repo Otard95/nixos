@@ -25,6 +25,8 @@ in {
       inputs.ngm.packages."${pkgs.stdenv.hostPlatform.system}".default
     ];
 
+    modules.term.gpg.enable = lib.mkDefault true;
+
     programs = {
       delta = {
         enable = true;

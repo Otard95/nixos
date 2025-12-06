@@ -31,6 +31,7 @@ in {
     ./fzf.nix
     ./gh.nix
     ./git.nix
+    ./gpg.nix
     ./k9s.nix
     ./kitty.nix
     ./pass.nix
