@@ -2,11 +2,11 @@
 
 stdenv.mkDerivation rec {
   pname = "edhm-ui-v3";
-  version = "3.0.57";
+  version = "3.0.59";
 
   src = fetchzip {
     url = "https://github.com/BlueMystical/EDHM_UI/releases/download/v${version}/edhm-ui-v3-linux-x64.zip";
-    sha256 = "sha256-dkQoQFHnKkJOl0T7W9CfZxvQy9clPVT3cwiO0XAT4r4=";
+    sha256 = "sha256-XSOF246jKvxEyHD75noD9Wcf4gC/D0Bx/jT6KKx7scY=";
     stripRoot = false;
   };
 
