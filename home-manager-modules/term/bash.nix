@@ -38,11 +38,6 @@ in {
       historyControl = [
         "ignoreboth"
       ];
-
-      bashrcExtra = ''
-        set -o vi
-        set completion-ignore-case on
-      '';
     };
   };
 
