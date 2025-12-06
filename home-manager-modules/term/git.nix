@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, helpers, ... }:
 let
   cfg = config.modules.term.git;
   enable = cfg.enable;
@@ -17,6 +17,7 @@ in {
         default = "otard.code@proton.me";
       };
     };
+    signingKey = helpers.mkOption.str "GPG key to use for siging commits" // { default = "5A54250184DB5974"; };
   };
 
   config = lib.mkIf enable {
@@ -81,7 +82,7 @@ in {
         };
 
         signing = {
-          key = "914102AFC03F586D";
+          key = cfg.signingKey;
           signByDefault =  true;
         };
 

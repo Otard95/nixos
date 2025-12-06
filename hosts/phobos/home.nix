@@ -29,9 +29,12 @@
       direnv.enable = true;
       claude.enable = true;
       gh.enable = true;
-      git.user = {
-        name = "Stian Myklebostad";
-        email = "stian.myklebostad@schibsted.com";
+      git = {
+        user = {
+          name = "Stian Myklebostad";
+          email = "stian.myklebostad@schibsted.com";
+        };
+        signingKey = "914102AFC03F586D";
       };
       scripts.enable = true;
       k9s.enable = true;
