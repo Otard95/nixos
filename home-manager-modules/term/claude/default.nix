@@ -25,6 +25,7 @@ in {
             "Bash(grep:*)"
             "Bash(awk:*)"
             "Bash(jq:*)"
+            "Bash(sed:*)"
             "Bash(pnpm run build)"
             "Bash(pnpm run lint)"
             "Bash(pnpm run lint:fix)"
@@ -161,7 +162,7 @@ in {
           command = "docker";
           args = [
             "run" "-i" "--rm"
-            "-v" "/home/otard/.claude/memory-mcp:/home/mcpuser/.claude/memory-mcp"
+            "-v" "/home/otard/.claude/memory-mcp:/root/.claude/memory-mcp"
             "-e" "PWD"
             "memory-mcp-server"
           ];
