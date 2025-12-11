@@ -7,6 +7,7 @@ in {
     lib.mkEnableOption "docker";
 
   config = lib.mkIf enable {
+
     virtualisation.docker = {
       enable = true;
 
@@ -19,5 +20,6 @@ in {
         };
       };
     };
+
   };
 }

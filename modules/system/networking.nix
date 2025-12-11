@@ -54,6 +54,16 @@ in {
       # networking.proxy.default = "http://user:password@proxy:port/";
       # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+      # Redirect only localhost HTTP/HTTPS to high ports.
+      # Use -C first so we don't duplicate rules on rebuild.
+      networking.firewall.extraCommands = ''
+        iptables -t nat -C OUTPUT -p tcp -d 127.0.0.1/8 --dport 80  -j REDIRECT --to-ports 1080 2>/dev/null \
+          || iptables -t nat -A OUTPUT -p tcp -d 127.0.0.1/8 --dport 80  -j REDIRECT --to-ports 1080
+
+        iptables -t nat -C OUTPUT -p tcp -d 127.0.0.1/8 --dport 443 -j REDIRECT --to-ports 1443 2>/dev/null \
+          || iptables -t nat -A OUTPUT -p tcp -d 127.0.0.1/8 --dport 443 -j REDIRECT --to-ports 1443
+      '';
+
       # Enable networking
       networking.networkmanager = {
         enable = true;
