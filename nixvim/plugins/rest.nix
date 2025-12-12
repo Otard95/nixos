@@ -42,7 +42,7 @@ in {
                 printf '%s\n' "$formatted"
               else
                 # jq failed: output original text
-                printf '%s\n' "$input"
+                printf '%s\n' "$input" | ${pkgs.lynx}/bin/lynx -stdin -dump
               fi
             ''}/bin/format" end
           '';
