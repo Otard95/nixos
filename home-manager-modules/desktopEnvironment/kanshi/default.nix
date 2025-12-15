@@ -24,13 +24,10 @@ in {
         }
         {
           profile = {
-            name = "docked-phobos";
-            exec = [ "${helpers.mkExecutable ./kanshi-docked-phobos.sh}" ];
+            name = "external-deimos";
             outputs = [
-              { criteria = "eDP-1"; status = "disable"; } #  mode = "2560x1600"; position = "5440,960"; scale = 1.0;
-              { criteria = "DP-3"; mode = "2560x1440"; position = "4000,0"; transform = "270"; }
-              { criteria = "DP-4"; mode = "2560x1440"; position = "2560,0"; transform = "90"; }
-              { criteria = "DP-5"; mode = "2560x1440"; position = "0,485"; }
+              { criteria = "eDP-1"; status = "enable"; position = "0,0"; scale = 1.0; }
+              { criteria = "HDMI-A-1"; mode = "2560x1440"; status = "enable"; position = "0,-1440"; scale = 1.0; }
             ];
           };
         }
