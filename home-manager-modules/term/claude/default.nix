@@ -194,12 +194,6 @@ in {
 
     };
 
-    modules.term.bash.bindToSecret.claude = {
-      # GITHUB_TOKEN_CLAUDE = "github/token/claude";
-      GITHUB_TOKEN = "github/token/packages";
-      TURBOREPO_TOKEN = "keys/turbo";
-    };
-
   };
 
 }
