@@ -29,6 +29,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    affinity-nix.url = "github:mrshmllow/affinity-nix";
+
     ngm = {
       url = "github:Otard95/ngm";
       inputs.nixpkgs.follows = "nixpkgs";

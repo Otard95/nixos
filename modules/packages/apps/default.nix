@@ -8,6 +8,7 @@ in {
 
   imports = [
     ./1password.nix
+    ./affinity.nix
     ./appgate.nix
     ./bitwarden.nix
     ./blueman.nix
