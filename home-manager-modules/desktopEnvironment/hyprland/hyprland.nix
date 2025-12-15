@@ -37,6 +37,7 @@ in {
           "$mod+SHIFT+CTRL, M, exec, uwsm stop"
           "$mod+SHIFT, SPACE, togglefloating"
           "$mod, SPACE, cyclenext, floating"
+          "$mod, BACKSPACE, cyclenext, tiled"
           "$mod+SHIFT, F, fullscreen, 0"
           "$mod, E, togglesplit"
           "$mod, W, togglegroup"
