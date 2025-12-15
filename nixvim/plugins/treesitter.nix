@@ -24,6 +24,7 @@ in {
         grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
           bash
           c
+          css
           go
           gomod
           graphql
@@ -39,6 +40,7 @@ in {
           nix
           php
           phpdoc
+          svelte
           terraform
           tsx
           typescript

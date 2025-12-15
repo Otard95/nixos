@@ -46,6 +46,7 @@ in {
           ts_ls.enable = true;
           typos_lsp.enable = true;
           basedpyright.enable = true;
+          svelte.enable = true;
         };
 
       };
