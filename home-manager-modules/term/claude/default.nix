@@ -182,14 +182,14 @@ in {
             "CLICKUP_TEAM_ID" = "2628532";
           };
         };
-        obsidian = {
-          command = "pass-env";
-          args = [
-            "OBSIDIAN_API_KEY=keys/obsidian"
-            "${pkgs.uv}/bin/uvx"
-            "mcp-obsidian"
-          ];
-        };
+        # obsidian = {
+        #   command = "pass-env";
+        #   args = [
+        #     "OBSIDIAN_API_KEY=keys/obsidian"
+        #     "${pkgs.uv}/bin/uvx"
+        #     "mcp-obsidian"
+        #   ];
+        # };
       };
 
     };
