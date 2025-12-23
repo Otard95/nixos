@@ -2,3 +2,9 @@ snippet struct "A struct"
 	type ${1:Name} struct {
 		${2:field} ${3:type}
 	}
+
+snippet rer If err != nil return err 
+	if err != nil {
+		return err
+	}
+
