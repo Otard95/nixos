@@ -80,8 +80,8 @@ in {
                 {
                   type = "command";
                   command = ''
-                    echo '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"**TODAYS DATE**: '"$(date)"'"}}'
-                  '';
+              echo '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"**TODAYS DATE**: '"$(date)"'\n\n**MANDATORY TOC CHECK - TWO PHASES REQUIRED**:\n\nPHASE 1 - DISCOVERY (run all three):\n1. mcp__memory__list\n2. Glob pattern=\"**/_*.md\"\n3. git diff\n\nPHASE 2 - SELECTIVE LOADING:\n- Based on what you discovered AND what the user is asking, decide what to load\n- Not everything needs to be read - be selective\n- See CONTEXT DISCOVERY in global CLAUDE.md"}}'
+            '';
                 }
               ];
             }
