@@ -44,6 +44,7 @@
         };
         signingKey = "914102AFC03F586D";
       };
+      opencode.enable = true;
       pass.enable = true;
       scripts.enable = true;
       k9s.enable = true;

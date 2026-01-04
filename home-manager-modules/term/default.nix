@@ -20,6 +20,7 @@ in {
 
   imports = [
     ./claude
+    ./opencode
     ./scripts
     ./wezterm
     ./aws.nix
