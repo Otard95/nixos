@@ -3,6 +3,11 @@ snippet struct "A struct"
 		${2:field} ${3:type}
 	}
 
+snippet gofunc "go func(){}()"
+	go func(){
+		$0
+	}()
+
 snippet rer If err != nil return err 
 	if err != nil {
 		return ${1:err}
