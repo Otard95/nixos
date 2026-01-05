@@ -17,6 +17,7 @@ in {
   };
 
   imports = [
+    ./99.nix
     ./ai.nix
     ./barbecue.nix
     ./cloak.nix
@@ -91,6 +92,7 @@ in {
         trouble.enable = lib.mkDefault true;
       })
       (lib.mkIf (presetInt > 2) {
+        _99.enable = lib.mkDefault true;
         dadbod.enable = lib.mkDefault true;
         dap.enable = lib.mkDefault true;
         image.enable = lib.mkDefault true;
