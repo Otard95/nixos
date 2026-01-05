@@ -95,39 +95,35 @@ in {
         #   TODO: Port this to some equivalent to `modules.desktopEnvironment.keybinds`
         windowrule = [
           # Rofi
-          "float,       class:(Rofi)"
-          "stayfocused, class:(Rofi)"
+          "match:class Rofi, float on"
+          "match:class Rofi, stay_focused on"
           # Zen Browser
-          "float,               class:(zen), title:(Extension)"
-          "float,               initialTitle:(^Picture-in-Picture$)"
-          "size 944 530,        initialTitle:(^Picture-in-Picture$)"
-          "float,               initialTitle:(^File Operation Progress$)"
-          "size 500 200,        initialTitle:(^File Operation Progress$)"
-          # "opacity 0.95 0.95 1, class:(zen)"
-          # Vivaldi Browser
-          "float,        initialTitle:(^$), initialClass:(^$)"
-          "move 50% 10,   initialTitle:(^$), initialClass:(^$)"
-          "pin,          initialTitle:(^$), initialClass:(^$)"
+          "match:class zen, match:title Extension, float on"
+          "match:initial_title ^Picture-in-Picture$, float on"
+          "match:initial_title ^Picture-in-Picture$, size 944 530"
+          "match:initial_title ^File Operation Progress$, float on"
+          "match:initial_title ^File Operation Progress$, size 500 200"
+          # "match:class zen, opacity 0.95 0.95 1"
           # Wine
-          "move 50% 20, initialTitle:(Wine System Tray)"
-          "pin,         initialTitle:(Wine System Tray)"
+          "match:initial_title Wine System Tray, move 50% 20"
+          "match:initial_title Wine System Tray, pin on"
           # Gnome Clocks
-          "float, class:(org.gnome.clocks)"
+          "match:class org.gnome.clocks, float on"
           # Flameshot
           #   TODO: Fix this. This is specific to deimos
           #   Config from: https://github.com/flameshot-org/flameshot/issues/2978#issuecomment-2283569630
-          "monitor HDMI-A-1,         initialTitle:(flameshot)"
-          "move 0 -485,              initialTitle:(flameshot)"
-          "pin,                      initialTitle:(flameshot)"
-          "suppressevent fullscreen, initialTitle:(flameshot)"
-          "float,                    initialTitle:(flameshot)"
-          "rounding 0,               initialTitle:(flameshot)"
-          "noborder,                 initialTitle:(flameshot)"
-          "stayfocused,              initialTitle:(flameshot)"
-          "float,                    initialTitle:(Upload image)"
-          "float,                    initialTitle:(Configuration)"
-          "float,                    initialTitle:(Capture Launcher)"
-          "float,                    initialTitle:(Save screenshot)"
+          "match:initial_title flameshot, monitor HDMI-A-1"
+          "match:initial_title flameshot, move 0 -485"
+          "match:initial_title flameshot, pin on"
+          "match:initial_title flameshot, suppress_event fullscreen"
+          "match:initial_title flameshot, float on"
+          "match:initial_title flameshot, rounding 0"
+          "match:initial_title flameshot, border_size 0"
+          "match:initial_title flameshot, stay_focused on"
+          "match:initial_title Upload image, float on"
+          "match:initial_title Configuration, float on"
+          "match:initial_title Capture Launcher, float on"
+          "match:initial_title Save screenshot, float on"
         ];
 
         #   TODO: Port this to some equivalent to `modules.desktopEnvironment.keybinds`

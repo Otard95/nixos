@@ -21,16 +21,16 @@ in {
         ] ++ lib.optional (cfg.bg-image.vertical != null) "${cfg.bg-image.vertical}";
 
         wallpaper = [
-          ", ${cfg.bg-image.horizontal}"
-          "HDMI-A-1, ${cfg.bg-image.horizontal}"
+          { path = "${cfg.bg-image.horizontal}"; }
+          { monitor = "HDMI-A-1"; path = "${cfg.bg-image.horizontal}"; }
         ]
           ++ lib.optionals (cfg.bg-image.vertical != null) [
-            "DP-7, ${cfg.bg-image.vertical}"
-            "DP-9, ${cfg.bg-image.vertical}"
+            { monitor = "DP-7"; path = "${cfg.bg-image.vertical}"; }
+            { monitor = "DP-9"; path = "${cfg.bg-image.vertical}"; }
           ]
           ++ lib.optionals (cfg.bg-image.vertical == null) [
-            "DP-7, ${cfg.bg-image.horizontal}"
-            "DP-9, ${cfg.bg-image.horizontal}"
+            { monitor = "DP-7"; path = "${cfg.bg-image.horizontal}"; }
+            { monitor = "DP-9"; path = "${cfg.bg-image.horizontal}"; }
           ];
       };
     };

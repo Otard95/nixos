@@ -12,16 +12,13 @@ in {
       plugins.treesitter = {
         enable = true;
 
-        folding = true;
-
-        settings = {
-          indent.enable = true;
-          highlight.enable = true;
-        };
+        folding.enable = true;
+        indent.enable = true;
+        highlight.enable = true;
 
         languageRegister = { bash = "redis"; };
 
-        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        grammarPackages = with pkgs.vimPlugins.nvim-treesitter-parsers; [
           bash
           c
           css
@@ -33,7 +30,7 @@ in {
           javascript
           json
           json5
-          jsonc
+          # jsonc
           lua
           markdown
           markdown_inline

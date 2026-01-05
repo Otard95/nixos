@@ -34,17 +34,17 @@ in {
     programs.nixvim = {
 
       enable = true;
-      package = pkgs.neovim-unwrapped.overrideAttrs  (_: {
-        pname = "neovim-unwrapped";
-        version = "0.11.0";
+      # package = pkgs.neovim-unwrapped.overrideAttrs  (_: {
+      #   pname = "neovim-unwrapped";
+      #   version = "0.11.0";
 
-        src = pkgs.fetchFromGitHub {
-          owner = "neovim";
-          repo = "neovim";
-          rev = "refs/tags/v0.11.0";
-          hash = "sha256-UVMRHqyq3AP9sV79EkPUZnVkj0FpbS+XDPPOppp2yFE=";
-        };
-      });
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "neovim";
+      #     repo = "neovim";
+      #     rev = "refs/tags/v0.11.0";
+      #     hash = "sha256-UVMRHqyq3AP9sV79EkPUZnVkj0FpbS+XDPPOppp2yFE=";
+      #   };
+      # });
 
       nixpkgs.config.allowUnfree = true;
 
