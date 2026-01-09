@@ -70,6 +70,8 @@ in {
         providers.wl-copy.enable = true;
       };
 
+      extraPackages = with pkgs; [ kalker ];
+
       extraConfigLuaPre = ''
         pcall(require, 'local-plugins')
       '';
