@@ -21,7 +21,7 @@ in {
         ] ++ lib.optional (cfg.bg-image.vertical != null) "${cfg.bg-image.vertical}";
 
         wallpaper = [
-          { path = "${cfg.bg-image.horizontal}"; }
+          { monitor = ""; path = "${cfg.bg-image.horizontal}"; }
           { monitor = "HDMI-A-1"; path = "${cfg.bg-image.horizontal}"; }
         ]
           ++ lib.optionals (cfg.bg-image.vertical != null) [

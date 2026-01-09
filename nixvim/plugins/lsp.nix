@@ -22,8 +22,8 @@ in {
           { key = "<leader>vrr"; lspBufAction = "references";     mode = "n"; }
           { key = "<leader>vrn"; lspBufAction = "rename";         mode = "n"; }
           { key = "<C-f>";       lspBufAction = "format";         mode = "n"; }
-          { key = "]d";          action = nixvim.mkRaw "vim.diagnostic.goto_next"; mode = "n"; }
-          { key = "[d";          action = nixvim.mkRaw "vim.diagnostic.goto_prev"; mode = "n"; }
+          { key = "]d";          action = nixvim.mkRaw "function() vim.diagnostic.jump(1) end"; mode = "n"; }
+          { key = "[d";          action = nixvim.mkRaw "function() vim.diagnostic.jump(-1) end"; mode = "n"; }
           { key = "<leader>vd";  action = nixvim.mkRaw "vim.diagnostic.open_float"; mode = "n"; }
           { key = "<C-h>";       action = nixvim.mkRaw "vim.lsp.buf.signature_help"; mode = "i"; }
         ];

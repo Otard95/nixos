@@ -16,6 +16,7 @@ in {
         enable = true;
 
         settings = {
+          latex.enabled = false;
           completions = { lsp = { enabled = true; }; };
           bullet = { left_pad = 1; };
           checkbox = {
