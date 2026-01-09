@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ sources, ... }:
+{ sources, pkgs, ... }:
 
 {
   imports =
@@ -31,6 +31,21 @@
 
   services.logind.settings.Login.HandleLidSwitchDocked = "ignore";
   services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
+
+  nixpkgs.overlays = [
+    (final: prev:
+      {
+        opencode = prev.opencode.overrideAttrs (old: {
+          version = "1.1.8";
+          src = pkgs.fetchFromGitHub {
+            owner = "happycastle114";
+            repo = "opencode";
+            tag = "5e0125b78c8da0917173d4bcd00f7a0050590c55";
+            hash = "sha256-lXS6dUW9KzAGEKMUhASnuijPI2ywhCynb2bim0nziIw=";
+          };
+        });
+      })
+  ];
 
   # Modules
   modules = {
