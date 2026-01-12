@@ -35,13 +35,13 @@
   nixpkgs.overlays = [
     (final: prev:
       {
-        opencode = prev.opencode.overrideAttrs (old: {
-          version = "1.1.8";
+        opencode = prev.opencode.overrideAttrs (old: rec {
+          version = "1.1.11";
           src = pkgs.fetchFromGitHub {
-            owner = "happycastle114";
+            owner = "anomalyco";
             repo = "opencode";
-            tag = "5e0125b78c8da0917173d4bcd00f7a0050590c55";
-            hash = "sha256-lXS6dUW9KzAGEKMUhASnuijPI2ywhCynb2bim0nziIw=";
+            tag = "${version}";
+            hash = "sha256-PZB9XsuUr8EzXDhlzM3tKANFAXc19RheIyxSXjLuZrM=";
           };
         });
       })
