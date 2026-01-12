@@ -40,9 +40,9 @@
       git = {
         user = {
           name = "Stian Myklebostad";
-          email = "stian.myklebostad@schibsted.com";
+          email = "stian.myklebostad@mittanbud.no";
         };
-        signingKey = "914102AFC03F586D";
+        signingKey = "B2D64340F9493B0A";
       };
       opencode.enable = true;
       pass.enable = true;
