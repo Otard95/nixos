@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-stable, ... }:
 let
   cfg = config.modules.nixvim.plugins.treesitter;
   enable = cfg.enable;
@@ -11,6 +11,7 @@ in {
       colorschemes.catppuccin.settings.integrations.nvimtree = true;
       plugins.treesitter = {
         enable = true;
+        package = pkgs-stable.vimPlugins.nvim-treesitter;
 
         folding.enable = true;
         indent.enable = true;
