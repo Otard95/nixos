@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-stable, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.modules.nixvim.plugins.treesitter;
   enable = cfg.enable;
@@ -11,7 +11,6 @@ in {
       colorschemes.catppuccin.settings.integrations.nvimtree = true;
       plugins.treesitter = {
         enable = true;
-        package = pkgs-stable.vimPlugins.nvim-treesitter;
 
         folding.enable = true;
         indent.enable = true;
@@ -19,10 +18,11 @@ in {
 
         languageRegister = { bash = "redis"; };
 
-        grammarPackages = with pkgs.vimPlugins.nvim-treesitter-parsers; [
+        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
           bash
           c
           css
+          diff
           go
           gomod
           graphql
