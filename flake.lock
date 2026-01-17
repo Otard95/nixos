@@ -53,11 +53,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1768306820,
-        "narHash": "sha256-gEU3lTKeHRZGv/aAhsQBXdfbJC9vsADZSeckmhpR6hQ=",
+        "lastModified": 1768418734,
+        "narHash": "sha256-j8Y1NAsCxGWAyGWamg3SYr+rCE4jdx6BNEocJ9QVMmw=",
         "owner": "Otard95",
         "repo": "ed-expedition",
-        "rev": "1e07be467bbe7207b81338ce027e52f543f3a0f7",
+        "rev": "38126f8b120e9392cc14f22a2489aacab420f708",
         "type": "github"
       },
       "original": {
