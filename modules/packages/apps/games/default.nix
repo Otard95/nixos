@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 let
   cfg = config.modules.packages.apps.games;
   enable = cfg.enable;
@@ -54,6 +54,7 @@ in {
       ++ lib.optional cfg.minecraft.enable cfg.minecraft.launcher
       ++ lib.optionals cfg.elite-dangerous-utils.enable [
         edmarketconnector
+        inputs.ed-expedition.packages.${stdenv.hostPlatform.system}.default
         (pkgs.callPackage ./ed-odyssey-materials-helper.nix {})
         (pkgs.callPackage ./edhm-ui.nix {})
       ];

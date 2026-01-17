@@ -39,6 +39,11 @@
       url = "github:Otard95/pass-env";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ed-expedition = {
+      url = "github:Otard95/ed-expedition";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, nixpkgs-stable, home-manager, nixvim, catppuccin, ... } @ inputs:
