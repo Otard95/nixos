@@ -94,6 +94,8 @@ in {
 
         #   TODO: Port this to some equivalent to `modules.desktopEnvironment.keybinds`
         windowrule = [
+          # TEMP: ed-discovery
+          "match:initial_title ed-expedition, float on"
           # Rofi
           "match:class Rofi, float on"
           "match:class Rofi, stay_focused on"
@@ -110,16 +112,6 @@ in {
           # Gnome Clocks
           "match:class org.gnome.clocks, float on"
           # Flameshot
-          #   TODO: Fix this. This is specific to deimos
-          #   Config from: https://github.com/flameshot-org/flameshot/issues/2978#issuecomment-2283569630
-          "match:initial_title flameshot, monitor HDMI-A-1"
-          "match:initial_title flameshot, move 0 -485"
-          "match:initial_title flameshot, pin on"
-          "match:initial_title flameshot, suppress_event fullscreen"
-          "match:initial_title flameshot, float on"
-          "match:initial_title flameshot, rounding 0"
-          "match:initial_title flameshot, border_size 0"
-          "match:initial_title flameshot, stay_focused on"
           "match:initial_title Upload image, float on"
           "match:initial_title Configuration, float on"
           "match:initial_title Capture Launcher, float on"
