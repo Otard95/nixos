@@ -30,7 +30,6 @@ in {
   ];
 
   config = lib.mkIf enable {
-
     programs.nixvim = {
 
       enable = true;
