@@ -13,8 +13,8 @@ in {
         src = fetchFromGitHub {
           owner = "ThePrimeagen";
           repo = "99";
-          rev = "91bdba31c8a031625575818b6edbcdcb625d61e8";
-          hash = "sha256-vKkc7wYYounXSF9Fr24AnsAi0sncm736IPbg7iVL0Ag=";
+          rev = "91ea4cfd4a46d756152e9470abe495f4b178e818";
+          hash = "sha256-0ezflDXCIcPI/zordlNX5jwwnX2+507kVicif227IUs=";
         };
       })];
 
@@ -44,7 +44,6 @@ in {
           --- assuming that /foo is project root (based on cwd)
           md_files = {
             "AGENT.md",
-            "CLAUDE.md",
           },
         })
 

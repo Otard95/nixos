@@ -93,6 +93,7 @@ in {
       })
       (lib.mkIf (presetInt > 2) {
         _99.enable = lib.mkDefault true;
+        ai.enable = lib.mkDefault true;
         dadbod.enable = lib.mkDefault true;
         dap.enable = lib.mkDefault true;
         image.enable = lib.mkDefault true;
