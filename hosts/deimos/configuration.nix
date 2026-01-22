@@ -36,7 +36,7 @@
     (final: prev:
       {
         opencode = prev.opencode.overrideAttrs (old: rec {
-          version = "1.1.11";
+          version = "1.1.21";
           src = pkgs.fetchFromGitHub {
             owner = "anomalyco";
             repo = "opencode";
