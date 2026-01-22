@@ -8,7 +8,6 @@ in {
 
   config = lib.mkIf enable {
     programs.nixvim = {
-      colorschemes.catppuccin.settings.integrations.nvimtree = true;
       plugins.treesitter = {
         enable = true;
 
@@ -16,36 +15,46 @@ in {
         indent.enable = true;
         highlight.enable = true;
 
-        languageRegister = { bash = "redis"; };
+        languageRegister = {
+          bash = "redis";
+          php_only = "php";
+        };
 
         grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
           bash
-          c
-          css
           diff
-          go
-          gomod
-          graphql
-          html
           http
-          javascript
-          json
-          json5
-          # jsonc
-          lua
-          markdown
-          markdown_inline
-          nix
-          php
-          phpdoc
+
+          html
+          css
           svelte
-          terraform
           tsx
           typescript
+          javascript
+          graphql
+          php
+          php_only
+          phpdoc
+
+          c
+          go
+          gomod
+          zig
+
+          json
+          json5
+          yaml
+          # jsonc
+
+          markdown
+          markdown_inline
+
+          lua
+          nix
           vim
           vimdoc
-          yaml
-          zig
+
+          terraform
         ];
       };
     };
