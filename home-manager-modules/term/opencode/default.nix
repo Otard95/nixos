@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.modules.term.opencode;
   enable = cfg.enable;
@@ -12,7 +12,7 @@ in {
       enable = true;
 
       settings = {
-        theme = "catppuccin-frappe-transparent";
+        theme = lib.mkForce "catppuccin-frappe-transparent";
       };
 
       themes = {
