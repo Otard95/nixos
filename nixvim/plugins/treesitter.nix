@@ -8,6 +8,14 @@ in {
 
   config = lib.mkIf enable {
     programs.nixvim = {
+      # [[BUG] Colorschema off since my last flake update · Issue #4152 · nix-community/nixvim](https://github.com/nix-community/nixvim/issues/4152)
+      extraFiles = {
+        "queries/ecma/highlights.scm".source = pkgs.fetchurl {
+          url = "https://raw.githubusercontent.com/nvim-treesitter/nvim-treesitter/master/queries/ecma/highlights.scm";
+          sha256 = "sha256-N4NFR+uqnBYMrYfqvTg4fUcisbQNRLq1TY5x0f7/m54=";
+        };
+      };
+
       plugins.treesitter = {
         enable = true;
 
