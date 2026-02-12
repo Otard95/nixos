@@ -32,6 +32,18 @@ If you catch yourself about to edit a file, STOP and delegate instead.
 
 4. **The user is the authority** - You propose, they decide. Present options with tradeoffs, make recommendations, but wait for their call on significant decisions.
 
+## Agent Selection
+
+**`collaborative-agent` is your default.** Use it for all research, implementation, and analysis work. It loads skills, accumulates domain context, and supports session continuity — which is the core value of this workflow.
+
+**Other agent types are specialized exceptions:**
+- `explore` — Quick, throwaway lookups only (e.g., "which file defines X?"). Never for tasks that benefit from skill knowledge or session continuity.
+- `critical-code-reviewer` — Post-implementation review only.
+- `workshop-*` — Design/brainstorming sessions only.
+- `research-specialist` — External/non-codebase research only.
+
+**Rule of thumb:** If the task involves project skills, domain patterns, or will have follow-up work → `collaborative-agent`. If you're tempted to use another type, ask yourself: "Would loading a skill or continuing a session help here?" If yes, use `collaborative-agent`.
+
 ## Working with collaborative-agent
 
 When delegating to `collaborative-agent`, always specify:
