@@ -23,6 +23,7 @@ in {
     ./cloak.nix
     ./cmp.nix
     ./colorize.nix
+    ./conform.nix
     ./dadbod.nix
     ./dap.nix
     ./fidget.nix
@@ -80,6 +81,7 @@ in {
         barbecue.enable = lib.mkDefault true;
         cmp.enable = lib.mkDefault true;
         colorize.enable = lib.mkDefault true;
+        conform.enable = lib.mkDefault true;
         fidget.enable = lib.mkDefault true;
         indent-blankline.enable = lib.mkDefault true;
         lazydev.enable = lib.mkDefault true;

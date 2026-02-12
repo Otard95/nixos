@@ -21,7 +21,7 @@ in {
           { key = "<leader>vca"; lspBufAction = "code_action";    mode = "n"; }
           { key = "<leader>vrr"; lspBufAction = "references";     mode = "n"; }
           { key = "<leader>vrn"; lspBufAction = "rename";         mode = "n"; }
-          { key = "<C-f>";       lspBufAction = "format";         mode = "n"; }
+          # { key = "<C-f>";       lspBufAction = "format";         mode = "n"; }
           { key = "]d";          action = nixvim.mkRaw "function() vim.diagnostic.jump({ count = 1, float = true }) end"; mode = "n"; }
           { key = "[d";          action = nixvim.mkRaw "function() vim.diagnostic.jump({ count = -1, float = true }) end"; mode = "n"; }
           { key = "<leader>vd";  action = nixvim.mkRaw "vim.diagnostic.open_float"; mode = "n"; }
