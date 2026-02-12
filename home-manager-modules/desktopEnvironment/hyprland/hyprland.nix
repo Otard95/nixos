@@ -203,6 +203,7 @@ in {
           # https://github.com/hyprwm/Hyprland/issues/9452
           # https://github.com/hyprwm/Hyprland/issues/10514
           enable_anr_dialog = false;
+          middle_click_paste = false;
         };
       };
 
