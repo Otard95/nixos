@@ -13,6 +13,7 @@ in {
 
       settings = {
         theme = lib.mkForce "catppuccin-frappe-transparent";
+        permission = import ./permissions.nix;
       };
 
       themes = {
