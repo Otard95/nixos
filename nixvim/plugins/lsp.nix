@@ -38,7 +38,8 @@ in {
               ];
             };
           };
-          eslint.enable = true;
+          # eslint.enable = true;
+          biome.enable = true;
           gopls.enable = true;
           jsonls.enable = true;
           lua_ls.enable = true;
