@@ -79,7 +79,7 @@ in {
 
     modules.nixvim = {
       plugins.enable = lib.mkDefault true;
-      wezterm-move.enable = lib.mkDefault (config.modules.nixvim.defaultTerminal == "wezterm"); # (config.modules.term.defaultTerminal == "wezterm")
+      wezterm-move.enable = lib.mkDefault (config.modules.nixvim.defaultTerminal == "wezterm");
       ft-opts = {
         c = { commentstring = "//%s"; };
         cpp = { commentstring = "//%s"; };
