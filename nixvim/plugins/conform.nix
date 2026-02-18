@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.modules.nixvim.plugins.conform;
   enable = cfg.enable;
@@ -10,8 +10,6 @@ in {
 
   config = lib.mkIf enable {
     programs.nixvim = {
-      # extraPackages = [ pkgs.phpPackages.php-cs-fixer ];
-
       keymaps = [
         {
           action = nixvim.mkRaw "require('conform').format";
@@ -23,8 +21,10 @@ in {
       plugins.conform-nvim = {
         enable = true;
 
+        autoInstall.enable = true;
+
         settings = {
-          formatters_by_ft.php = [ "php-cs-fixer" ];
+          formatters_by_ft.php = [ "php_cs_fixer" ];
           default_format_opts.lsp_format = "last";
         };
       };
