@@ -32,20 +32,20 @@
   services.logind.settings.Login.HandleLidSwitchDocked = "ignore";
   services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
 
-  nixpkgs.overlays = [
-    (final: prev:
-      {
-        opencode = prev.opencode.overrideAttrs (old: rec {
-          version = "1.1.21";
-          src = pkgs.fetchFromGitHub {
-            owner = "anomalyco";
-            repo = "opencode";
-            tag = "${version}";
-            hash = "sha256-PZB9XsuUr8EzXDhlzM3tKANFAXc19RheIyxSXjLuZrM=";
-          };
-        });
-      })
-  ];
+  # nixpkgs.overlays = [
+  #   (final: prev:
+  #     {
+  #       opencode = prev.opencode.overrideAttrs (old: rec {
+  #         version = "1.1.21";
+  #         src = pkgs.fetchFromGitHub {
+  #           owner = "anomalyco";
+  #           repo = "opencode";
+  #           tag = "${version}";
+  #           hash = "sha256-PZB9XsuUr8EzXDhlzM3tKANFAXc19RheIyxSXjLuZrM=";
+  #         };
+  #       });
+  #     })
+  # ];
 
   # Modules
   modules = {

@@ -88,7 +88,7 @@ in {
       services.resolved = {
         enable = true;
 
-        fallbackDns = cfg.additionalDnsServers ++ baseDnsServers;
+        settings.Resolve.FallbackDNS = cfg.additionalDnsServers ++ baseDnsServers;
       };
     })
     (lib.mkIf cfg.preset.smb-backend.enable {
