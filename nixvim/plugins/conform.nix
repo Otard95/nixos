@@ -26,6 +26,7 @@ in {
         settings = {
           formatters_by_ft.php = [ "php_cs_fixer" ];
           default_format_opts.lsp_format = "last";
+          format_after_save.enable = true;
         };
       };
     };
