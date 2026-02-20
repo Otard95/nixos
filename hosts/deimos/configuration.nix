@@ -1,9 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ sources, pkgs, ... }:
-
+{ sources, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -31,21 +26,6 @@
 
   services.logind.settings.Login.HandleLidSwitchDocked = "ignore";
   services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
-
-  # nixpkgs.overlays = [
-  #   (final: prev:
-  #     {
-  #       opencode = prev.opencode.overrideAttrs (old: rec {
-  #         version = "1.1.21";
-  #         src = pkgs.fetchFromGitHub {
-  #           owner = "anomalyco";
-  #           repo = "opencode";
-  #           tag = "${version}";
-  #           hash = "sha256-PZB9XsuUr8EzXDhlzM3tKANFAXc19RheIyxSXjLuZrM=";
-  #         };
-  #       });
-  #     })
-  # ];
 
   # Modules
   modules = {
