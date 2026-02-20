@@ -45,24 +45,6 @@ in {
               path = "~/dev/smb/vaults/work";
             }
           ];
-          follow_url_func = nixvim.mkRaw ''
-            function (url)
-              if path.is_relative(url) then
-                url = path.resolve(path.dirname(vim.api.nvim_buf_get_name(0)), url)
-              end
-              print('Opening: '..url)
-              vim.fn.jobstart({"xdg-open", url})
-            end
-          '';
-          follow_img_func = nixvim.mkRaw ''
-            function (url)
-              if path.is_relative(url) then
-                url = path.resolve(path.dirname(vim.api.nvim_buf_get_name(0)), url)
-              end
-              print('Opening: '..url)
-              vim.fn.jobstart({"xdg-open", url})
-            end
-          '';
           templates = {
             subdir = "Templates";
             date_format = "%d %b %Y";
@@ -98,16 +80,16 @@ in {
             insert = true;
             order = [ " " "x" "-" ">" "~" ];
           };
-          ui = {
-            enable = false;
-            checkboxes = {
-              " " = { char = "▢"; hl_group = "obsidiantodo"; };
-              "x" = { char = "󰱒"; hl_group = "obsidiandone"; };
-              "-" = { char = "󰥔"; hl_group = "obsidiandone"; };
-              ">" = { char = ""; hl_group = "obsidianrightarrow"; };
-              "~" = { char = "󰅙"; hl_group = "obsidiantilde"; };
-            };
-          };
+          # ui = {
+          #   enable = false;
+          #   checkboxes = {
+          #     " " = { char = "▢"; hl_group = "obsidiantodo"; };
+          #     "x" = { char = "󰱒"; hl_group = "obsidiandone"; };
+          #     "-" = { char = "󰥔"; hl_group = "obsidiandone"; };
+          #     ">" = { char = ""; hl_group = "obsidianrightarrow"; };
+          #     "~" = { char = "󰅙"; hl_group = "obsidiantilde"; };
+          #   };
+          # };
         };
 
       };
