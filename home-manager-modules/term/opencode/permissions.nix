@@ -67,7 +67,7 @@ in {
     // denyGlobs secretPatterns;
 
   edit = { "*" = "ask"; }
-    // allowExts sourceExts
+    // allowExts (sourceExts ++ configExts ++ docExts)
     // allowGlobs [ "**/Makefile" "**/Dockerfile" ]
     // denyGlobs (secretPatterns ++ [ "*.lock" "*.sum" ]);
 
