@@ -488,11 +488,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1768211559,
-        "narHash": "sha256-wvaK+FNSbltIs6T/bU+HHOOGeS/8hFTUZoJ00KPB6KI=",
+        "lastModified": 1771835434,
+        "narHash": "sha256-pKdu83/Gj1Wlowzl/utn2IrU/1XouflsLTa4tO3rXP0=",
         "owner": "Otard95",
         "repo": "pass-env",
-        "rev": "b3ad0bc59568bdf2338edf1723fb86921437b856",
+        "rev": "84bbcd7bd3ed3b8ad46be1283aa67b453fd01750",
         "type": "github"
       },
       "original": {
