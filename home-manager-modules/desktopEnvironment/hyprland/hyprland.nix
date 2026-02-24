@@ -123,7 +123,7 @@ in {
           # https://gist.github.com/brunoanc/2dea6ddf6974ba4e5d26c3139ffb7580#editing-the-configuration-file
           "uwsm app -- dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           # "uwsm app -- hyprpaper"
-          "uwsm app -- kanshi"
+          # "uwsm app -- kanshi"
           "[workspace 1 silent] uwsm app -- zen"
           "[workspace 2 silent] uwsm app -- ${config.modules.term.defaultTerminal}"
         ];
