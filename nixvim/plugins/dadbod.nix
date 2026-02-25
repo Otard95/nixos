@@ -27,7 +27,7 @@ in {
               --   "urls": { "<url-name>": "[user[:pass]@]<host>" },
               --   "databases": { "<name>": { "url": "<url-name>", path = "<path-with-slash>" } }
               -- }
-              db_ui_pass_config = vim.fn.json_decode(vim.fn.system('pass show database/aws-config'))
+              db_ui_pass_config = vim.fn.json_decode(vim.fn.system('pass show database/db-ui-config'))
             end
 
             local database_config = db_ui_pass_config.databases[name]
