@@ -6,7 +6,7 @@ in {
     # Indenting
     expandtab = true;
     shiftwidth = 2;
-    tabstop = 2;
+    tabstop = 4;
     autoindent = true;
     smartindent = true;
 
