@@ -24,8 +24,12 @@ in {
         autoInstall.enable = true;
 
         settings = {
-          formatters_by_ft.php = [ "php_cs_fixer" ];
-          default_format_opts.lsp_format = "last";
+          formatters_by_ft = {
+            php = [ "php_cs_fixer" ];
+            typescript = [ "biome-check" ];
+            javascript = [ "biome-check" ];
+          };
+          default_format_opts.lsp_format = "fallback";
           format_after_save.enable = true;
         };
       };

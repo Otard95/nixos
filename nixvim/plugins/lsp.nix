@@ -54,17 +54,6 @@ in {
 
       plugins = {
         lsp.enable = true;
-        lsp-format = {
-          enable = true;
-
-          settings = {
-            typescript = {
-              exclude = [
-                "ts_ls"
-              ];
-            };
-          };
-        };
       };
 
     };
