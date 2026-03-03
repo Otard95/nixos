@@ -21,13 +21,13 @@ $ARGUMENTS
 Create a GitHub pull request following these steps:
 
 ### 0. Load Reviewer Configuration
-- Read `~/.claude/pr-reviewers.json` using the Read tool
+- Read `~/.config/opencode/pr-reviewers.json` using the Read tool
 - Parse the JSON to get owner info and available reviewers with their repos
 
 ### 1. Check for ClickUp Task
 - Look for ClickUp task IDs in User Input (format: `MA-12345` or similar)
 - Check recent conversation context for ClickUp task references
-- If found, use `mcp__clickup__get_task_by_id` with `custom_task_ids: true` to get task details
+- Use the clickup cli (with associated skill)
 - Extract task title and description for context
 
 ### 2. Parse Reviewer Input
@@ -47,7 +47,7 @@ Be flexible - accept any of these formats:
 4. Supplement with recent authors from git log
 
 Use fuzzy matching against:
-1. Known reviewers from `~/.claude/pr-reviewers.json`
+1. Known reviewers from `~/.config/opencode/pr-reviewers.json`
 2. Recent authors from git log output above
 3. **Never include the owner** (`.owner.username`) as a reviewer
 
@@ -62,8 +62,8 @@ git log -100 --format='%an <%ae>' | grep '@users.noreply.github.com'
 
 - Review all commits and understand the overall goal
 - If ClickUp task exists, incorporate its context
-- Read any relevant `.claude/rules/*` for the repo
-- Read relevant sections from CLAUDE.md if it exists
+- Read any relevant docs/skills/etc.
+- Read relevant sections from AGENTS.md if it exists
 - Identify the type of change (feat/fix/refactor/chore/docs)
 - Understand which parts of the codebase were modified
 
@@ -109,7 +109,7 @@ Important Notes
 
 - Always check that commits are pushed before creating PR
 - If unsure about reviewer names, ask for clarification rather than guessing
-- Follow any project-specific PR conventions from CLAUDE.md
+- Follow any project-specific PR conventions from AGENTS.md
 - The PR body should be detailed enough to review without checking commit messages
-- To add new reviewers permanently, update ~/.claude/pr-reviewers.json
+- To add new reviewers permanently, update ~/.config/opencode/pr-reviewers.json
 - ClickUp task IDs should be in the title (in brackets) or body (with "Closes" link)
