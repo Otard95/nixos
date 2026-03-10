@@ -32,7 +32,7 @@ let
 
   # --- Extension groups ---
   sourceExts = [
-    "ts" "tsx" "js" "jsx" "mjs" "cjs"
+    "ts" "tsx" "js" "jsx" "mjs" "cjs" "svelte"
     "go"
     "php"
     "sh" "bash" "zsh"
