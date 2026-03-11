@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.modules.nixvim.plugins.kulala;
   enable = cfg.enable;
@@ -9,6 +9,8 @@ in {
   config = lib.mkIf enable {
 
     programs.nixvim = {
+
+      extraPackages = [ pkgs.prettier ];
 
       plugins.kulala = {
         enable = true;
