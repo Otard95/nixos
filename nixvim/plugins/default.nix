@@ -41,7 +41,7 @@ in {
     ./nvim-tree.nix
     ./obsidian.nix
     ./oil.nix
-    ./rest.nix
+    ./kulala.nix
     ./telescope.nix
     ./text-manipulation.nix
     ./tmux-navigator.nix
@@ -100,7 +100,7 @@ in {
         dap.enable = lib.mkDefault true;
         image.enable = lib.mkDefault true;
         neotest.enable = lib.mkDefault true;
-        rest.enable = lib.mkDefault true;
+        kulala.enable = lib.mkDefault true;
         obsidian.enable = lib.mkDefault true;
       })
     ];
