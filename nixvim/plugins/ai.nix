@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.modules.nixvim.plugins.ai;
   enable = cfg.enable;
@@ -10,15 +10,18 @@ in {
 
   config = lib.mkIf enable {
     programs.nixvim = {
-      extraPackages = [ pkgs.lsof ];
-      extraPlugins = [ pkgs.vimPlugins.opencode-nvim ];
-      opts.autoread = true;
-      globals.opencode_opts = {
-        provider = {
-          enabled = "${config.modules.term.defaultTerminal}";
-          wezterm = { };
+      plugins = {
+        opencode.enable = true;
+
+        snacks = {
+          enable = true;
+
+          settings = { input.enabled = true; picker.enabled = true; terminal.enabled = true; };
         };
       };
+
+      opts.autoread = true;
+
       keymaps = [
         {
           mode = [ "n" "x" ];
@@ -51,14 +54,6 @@ in {
           options = { expr = true; desc = "Add range to opencode"; };
         }
       ];
-
-      plugins = {
-        snacks = {
-          enable = true;
-
-          settings = { input.enabled = true; picker.enabled = true; terminal.enabled = true; };
-        };
-      };
     };
   };
 }
