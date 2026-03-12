@@ -15,7 +15,6 @@ in {
     ./numbat.nix
     ./notification.nix
     ./ollama.nix
-    ./quickemu.nix
   ];
 
   config = lib.mkIf enable {
@@ -42,7 +41,6 @@ in {
     modules.packages = {
       btop.enable     = lib.mkDefault true;
       numbat.enable   = lib.mkDefault true;
-      # quickemu.enable = lib.mkDefault true;
     };
   };
 }

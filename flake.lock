@@ -153,20 +153,6 @@
         "type": "github"
       }
     },
-    "flake-schemas": {
-      "locked": {
-        "lastModified": 1772200446,
-        "narHash": "sha256-hcUPpu25+VLvQsf961cu4zTeA//Ab35MaMjqSS/Ojqc=",
-        "rev": "d6a6b7cfa25bea552c197c9e227cd293ff801dbb",
-        "revCount": 115,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/flake-schemas/0.3.0/019c9f61-e746-760e-a1fe-53f05b10d026/source.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/DeterminateSystems/flake-schemas/%2A.tar.gz"
-      }
-    },
     "flake-utils": {
       "inputs": {
         "systems": [
@@ -311,6 +297,26 @@
       "original": {
         "owner": "Otard95",
         "repo": "ngm",
+        "type": "github"
+      }
+    },
+    "nix-index-database": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772945408,
+        "narHash": "sha256-PMt48sEQ8cgCeljQ9I/32uoBq/8t8y+7W/nAZhf72TQ=",
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "rev": "1c1d8ea87b047788fd7567adf531418c5da321ec",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-index-database",
         "type": "github"
       }
     },
@@ -513,27 +519,6 @@
         "url": "https://github.com/noahc3/AffinityPluginLoader/releases/download/v0.2.0/affinitypluginloader-plus-winefix.tar.xz"
       }
     },
-    "quickemu": {
-      "inputs": {
-        "flake-schemas": "flake-schemas",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1772618139,
-        "narHash": "sha256-kPeeEMH7RuZiIZPtnm2/xUBApMTtlJvmHS95YuNoFAI=",
-        "owner": "quickemu-project",
-        "repo": "quickemu",
-        "rev": "b541fe1c58ff09782dec59da50d509ccc5e5d57e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "quickemu-project",
-        "repo": "quickemu",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "affinity-nix": "affinity-nix",
@@ -541,11 +526,11 @@
         "ed-expedition": "ed-expedition",
         "home-manager": "home-manager",
         "ngm": "ngm",
+        "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim",
         "pass-env": "pass-env",
-        "quickemu": "quickemu",
         "zen-browser": "zen-browser"
       }
     },

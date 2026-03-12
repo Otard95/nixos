@@ -17,8 +17,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    quickemu = {
-      url = "github:quickemu-project/quickemu";
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -46,7 +46,7 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, home-manager, nixvim, catppuccin, ... } @ inputs:
+  outputs = { nixpkgs, nixpkgs-stable, home-manager, nixvim, catppuccin, nix-index-database, ... } @ inputs:
   let
     system = "x86_64-linux";
 
@@ -101,6 +101,7 @@
             imports = [
               catppuccin.homeModules.catppuccin
               nixvim.homeModules.nixvim
+              nix-index-database.homeModules.default
               ./home-manager-modules
               ./nixvim
               (nixpkgs.lib.path.append ./hosts "${name}/home.nix")
