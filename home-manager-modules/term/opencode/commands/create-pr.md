@@ -8,108 +8,50 @@ $ARGUMENTS
 
 ## Context
 
-**Git information:**
 - Current branch: !`git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "unknown"`
 - Base branch: !`git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@' || echo "main"`
-- Recent authors: !`git log -100 --format='%an <%ae>' | grep -oP '(?<=\+)[^@]+(?=@users\.noreply\.github\.com)' | sort -u | head -10`
-- Commits on branch: !`git log origin/main..HEAD --oneline 2>/dev/null || echo "No commits"`
-- Changed files: !`git diff origin/main...HEAD --name-only 2>/dev/null | head -20`
-- Commit messages: !`git log origin/main..HEAD --format="%s%n%b" 2>/dev/null`
+- Status: !`git status`
 
 ## Task
 
-Create a GitHub pull request following these steps:
+Create a GitHub pull request.
 
-### 0. Load Reviewer Configuration
-- Read `~/.config/opencode/pr-reviewers.json` using the Read tool
-- Parse the JSON to get owner info and available reviewers with their repos
+### 1. Gather Context
 
-### 1. Check for ClickUp Task
-- Look for ClickUp task IDs in User Input (format: `MA-12345` or similar)
-- Check recent conversation context for ClickUp task references
-- Use the clickup cli (with associated skill)
-- Extract task title and description for context
+- Load reviewer config from `~/.config/opencode/pr-reviewers.json`
+- Check for ClickUp task IDs in user input or conversation (format: `MA-12345`)
+  - If found, use clickup-cli skill to get task context
+- Read project AGENTS.md if it exists for PR conventions
 
-### 2. Parse Reviewer Input
-Extract reviewer usernames from User Input.
-Be flexible - accept any of these formats:
-- `alice bob`
-- `@alice @bob`
-- `reviewers: alice, bob`
-- `alice and bob please`
-- (or similar)
-- (not specified - auto-suggest/pick based on repo and recent authors from git log and/or git blame of most edited files)
+### 2. Determine Reviewers
 
-**Auto-suggestion logic when no reviewers specified:**
-1. Get current repo path: `pwd | sed "s|^$HOME|~|"`
-2. Match against `repos` array in reviewer JSON to find relevant teammates
-3. Filter out the owner (never suggest yourself as reviewer)
-4. Supplement with recent authors from git log
+If specified in user input (flexible formats accepted), match against the reviewer JSON.
 
-Use fuzzy matching against:
-1. Known reviewers from `~/.config/opencode/pr-reviewers.json`
-2. Recent authors from git log output above
-3. **Never include the owner** (`.owner.username`) as a reviewer
+If not specified, auto-select:
+1. Get changed files: `git diff origin/<base>...HEAD --name-only`
+2. Pick a couple of the most relevant changed files
+3. Extract unique authors: `git blame --line-porcelain -- <files> | grep "^author-mail " | sort -u`
+4. Cross-reference with `pr-reviewers.json` for valid reviewers on this repo
+5. **Never include the owner** (`.owner.username`)
 
-**How to extract GitHub username from git log:**
-If you need to find more usernames dynamically, use:
-```bash
-git log -100 --format='%an <%ae>' | grep '@users.noreply.github.com'
-# The username is between + and @, e.g., Author: Name <12345+username@users.noreply.github.com> → username is username
-```
+If no reviewers can be determined, ask the user.
 
-### 3. Analyze Changes
+### 3. Draft the PR
 
-- Review all commits and understand the overall goal
-- If ClickUp task exists, incorporate its context
-- Read any relevant docs/skills/etc.
-- Read relevant sections from AGENTS.md if it exists
-- Identify the type of change (feat/fix/refactor/chore/docs)
-- Understand which parts of the codebase were modified
+Review the commits on this branch and understand the overall goal.
 
-### 4. Generate PR Title
+**Title:** `type(scope): description` (conventional commits, 50-72 chars)
+- Append ClickUp task ID if present, plain — no brackets or wrapping: `feat(triggers): add session cookie handler MA-25396`
 
-- Follow conventional commit format: type(scope): description
-- If ClickUp task exists, include task ID at the end: feat(triggers): Add session cookie handler [MA-25396]
-- Keep it concise (50-72 characters including task ID)
-- Based on the primary purpose of all commits combined
+**Body:** Concise — explain the *why* not the *what*. Use bullet points,
+paragraphs, or checkboxes as fits. Include ClickUp task ID somewhere
+(title or body). Incorporate any specific requests from user input.
 
-### 5. Generate PR Body
+### 4. Create the PR
 
-It should be concise use any combination of bullet-points, paragraphs, checkboxes
-depending on what makes sense.
+- Push to remote if needed
+- `pass-env ghc gh pr create --title "..." --reviewer user1,user2 --body "..."`
+- `--draft` if user specified
+- Omit `--reviewer` if empty
 
-Add the task id to the body if it's not in the title (we have an action that will find an link it).
-
-Make the summary meaningful - explain the "why" not just the "what".
-
-Note: Consider the user input, does it indicate you should add something specific?
-
-### 6. Validate Before Creating
-
-- Ensure current branch is pushed to remote (push if needed)
-- Verify matched reviewers are valid GitHub usernames
-- If no reviewers matched or uncertain, ask user for confirmation
-
-### 7. Create the PR
-
-IMPORTANT: Always use pass-env GITHUB_TOKEN=github/token/cli to inject the GitHub token:
-
-`pass-env GITHUB_TOKEN=github/token/cli gh pr create --title "..." --body "..." --reviewer user1,user2`
-
-If reviewer list is empty, omit the `--reviewer` flag.
-
-Use `--draft` if specified by the user.
-
-### 8. Output
-
-Show the PR URL and list of reviewers added.
-
-Important Notes
-
-- Always check that commits are pushed before creating PR
-- If unsure about reviewer names, ask for clarification rather than guessing
-- Follow any project-specific PR conventions from AGENTS.md
-- The PR body should be detailed enough to review without checking commit messages
-- To add new reviewers permanently, update ~/.config/opencode/pr-reviewers.json
-- ClickUp task IDs should be in the title (in brackets) or body (with "Closes" link)
+Show PR URL and reviewers added.
