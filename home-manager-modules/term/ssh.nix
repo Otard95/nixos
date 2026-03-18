@@ -14,11 +14,11 @@ in {
       enableDefaultConfig = false;
 
       matchBlocks = {
-        home = {
-          host = "home";
-          hostname = "100.90.128.0";
-          user = "otard";
-          port = 22;
+        "gitea.core-lab.net" = {
+          host = "gitea.core-lab.net";
+          hostname = "gitea.core-lab.net";
+          user = "git";
+          port = 2222;
         };
         jove = {
           host = "jove";
