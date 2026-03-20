@@ -1,4 +1,4 @@
-{ config, lib, theme, ... }:
+{ config, lib, pkgs, theme, ... }:
 let
   cfg = config.modules.term.k9s;
   enable = cfg.enable;
@@ -9,6 +9,8 @@ in {
   config = lib.mkIf enable {
 
     modules.term.aws.enable = lib.mkDefault true;
+
+    home.packages = [ pkgs.kubectl ];
 
     catppuccin.k9s = {
       enable = true;
