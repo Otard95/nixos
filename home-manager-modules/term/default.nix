@@ -13,7 +13,7 @@ in {
         This determines which terminal your window manager will start,
         which tmux and nvim integrations are enabled by default, etc.
       '';
-      type = lib.types.enum [ "kitty" "wezterm" ];
+      type = lib.types.enum [ "kitty" "wezterm" "ghostty" ];
       default = "wezterm";
     };
   };
@@ -31,6 +31,7 @@ in {
     ./fastfetch.nix
     ./fzf.nix
     ./gh.nix
+    ./ghostty.nix
     ./git.nix
     ./gpg.nix
     ./k9s.nix
@@ -51,10 +52,12 @@ in {
       btop.enable = lib.mkDefault true;
       fastfetch.enable = lib.mkDefault true;
       fzf.enable = lib.mkDefault true;
+      ghostty.enable = lib.mkDefault (cfg.defaultTerminal == "ghostty");
       git.enable = lib.mkDefault true;
       kitty.enable = lib.mkDefault (cfg.defaultTerminal == "kitty");
       ssh.enable = lib.mkDefault true;
       starship.enable = lib.mkDefault true;
+      tmux.enable = lib.mkDefault (cfg.defaultTerminal != "wezterm");
       useful-commands.enable = lib.mkDefault true;
       wezterm.enable = lib.mkDefault (cfg.defaultTerminal == "wezterm");
     };

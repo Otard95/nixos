@@ -33,6 +33,7 @@
       };
     };
     term = {
+      defaultTerminal = "ghostty";
       kitty.enable = true;
       direnv.enable = true;
       claude.enable = true;
@@ -52,6 +53,7 @@
     };
     nixvim = {
       enable = true;
+      defaultTerminal = "ghostty";
       plugins.preset = "all";
     };
   };
