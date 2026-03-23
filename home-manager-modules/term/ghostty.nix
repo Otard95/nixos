@@ -27,6 +27,7 @@ in {
 
         keybind = [
           "ctrl+enter=unbind"
+          "ctrl+shift+n=unbind"
 
           "ctrl+shift+digit_1=text:\\x011"
           "ctrl+shift+digit_2=text:\\x012"
