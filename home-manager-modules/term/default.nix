@@ -29,6 +29,7 @@ in {
     ./btop.nix
     ./direnv.nix
     ./fastfetch.nix
+    ./fd.nix
     ./fzf.nix
     ./gh.nix
     ./ghostty.nix
@@ -39,6 +40,7 @@ in {
     ./pass.nix
     ./ssh.nix
     ./starship.nix
+    ./television.nix
     ./tmux.nix
     ./useful-commands.nix
     ./zoxide.nix
@@ -57,6 +59,7 @@ in {
       kitty.enable = lib.mkDefault (cfg.defaultTerminal == "kitty");
       ssh.enable = lib.mkDefault true;
       starship.enable = lib.mkDefault true;
+      television.enable = lib.mkDefault true;
       tmux.enable = lib.mkDefault (cfg.defaultTerminal != "wezterm");
       useful-commands.enable = lib.mkDefault true;
       wezterm.enable = lib.mkDefault (cfg.defaultTerminal == "wezterm");
