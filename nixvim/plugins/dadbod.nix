@@ -9,6 +9,7 @@ in {
   config = lib.mkIf enable {
     programs.nixvim = {
       extraPackages = with pkgs; [
+        sqlite
         mariadb
         redis
       ];
