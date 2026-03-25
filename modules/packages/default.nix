@@ -15,6 +15,7 @@ in {
     ./numbat.nix
     ./notification.nix
     ./ollama.nix
+    ./pangolin.nix
   ];
 
   config = lib.mkIf enable {

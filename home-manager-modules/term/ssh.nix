@@ -16,9 +16,9 @@ in {
       matchBlocks = {
         "gitea.core-lab.net" = {
           host = "gitea.core-lab.net";
-          hostname = "gitea.core-lab.net";
+          hostname = "gitea.internal";
           user = "git";
-          port = 2222;
+          port = 22;
         };
         jove = {
           host = "jove";

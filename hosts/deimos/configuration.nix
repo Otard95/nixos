@@ -57,6 +57,7 @@
     };
     packages = {
       docker.enable = true;
+      pangolin.enable = true;
       apps = {
         _1password.enable = true;
         affinity.enable = true;
