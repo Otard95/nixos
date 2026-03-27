@@ -1,7 +1,22 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.modules.term.opencode;
   enable = cfg.enable;
+
+  opencode = pkgs.opencode.overrideAttrs (finalAttrs: previousAttrs: {
+    version = "1.3.2-ocv.3.0";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "leohenon";
+      repo = "opencode";
+      tag = "v${finalAttrs.version}";
+      hash = "sha256-wnw2ISAZJpK8AJa3evJSlp0cDqj9WnfVqRPuLf7OMbk=";
+    };
+
+    node_modules = previousAttrs.node_modules.overrideAttrs (finalAttrs: {
+      outputHash = "sha256-v9VF9n+fCydp373whhgopj8M+gzRGivy8iBErnqK4dw=";
+    });
+  });
 in {
 
   options.modules.term.opencode.enable = lib.mkEnableOption "opencode configuration";
@@ -10,6 +25,8 @@ in {
 
     programs.opencode = {
       enable = true;
+
+      package = opencode;
 
       settings = {
         theme = lib.mkForce "catppuccin-frappe-transparent";
