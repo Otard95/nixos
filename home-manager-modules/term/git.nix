@@ -84,6 +84,7 @@ in {
         signing = {
           key = cfg.signingKey;
           signByDefault =  true;
+          format = "openpgp";
         };
 
         ignores = [

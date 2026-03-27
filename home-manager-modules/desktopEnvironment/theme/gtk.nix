@@ -20,6 +20,10 @@ in {
         name = gtkThemeName;
         package = gtkThemePackage;
       };
+      gtk4.theme = {
+        name = gtkThemeName;
+        package = gtkThemePackage;
+      };
       # iconTheme =
       # let
       #   # use the light icon theme for latte

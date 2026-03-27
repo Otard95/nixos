@@ -9,7 +9,7 @@ in {
   config = lib.mkIf enable {
 
     environment.systemPackages = with pkgs; [
-      protonvpn-gui
+      proton-vpn
     ];
 
     networking.firewall.checkReversePath = "loose";
