@@ -19,9 +19,13 @@ in {
         font-size = 10;
         font-family = theme.font.mono.default;
         background-opacity = 0.95;
+
+        cursor-style = "block";
+        shell-integration-features = "no-cursor";
         cursor-style-blink = false;
 
         copy-on-select = true;
+
         working-directory = "home";
         window-inherit-working-directory = false;
 
