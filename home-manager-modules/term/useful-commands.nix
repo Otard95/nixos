@@ -12,6 +12,7 @@ in {
       ripgrep
       unzip
       tree
+      wl-clipboard
     ];
   };
 
