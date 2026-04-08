@@ -83,7 +83,6 @@
           };
         };
         obsidian.enable = true;
-        redis-insight.enable = true;
         slack.enable = true;
         vivaldi.enable = true;
       };
