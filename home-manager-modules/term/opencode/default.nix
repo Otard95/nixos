@@ -29,8 +29,11 @@ in {
       package = opencode;
 
       settings = {
-        theme = lib.mkForce "catppuccin-frappe-transparent";
         permission = import ./permissions.nix;
+      };
+
+      tui = {
+        theme = lib.mkForce "catppuccin-frappe-transparent";
         keybinds = {
           messages_first = "ctrl+g";
           messages_last = "ctrl+alt+g";
