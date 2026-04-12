@@ -98,6 +98,8 @@ in {
 
         # Tabs/Windows
 
+        set-option -g renumber-windows on
+
         bind -n C-S-t new-window
         bind -n C-S-w kill-window
 
