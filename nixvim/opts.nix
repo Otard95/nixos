@@ -4,8 +4,8 @@ let
 in {
   programs.nixvim.opts = {
     # Indenting
-    expandtab = true;
-    shiftwidth = 2;
+    # expandtab = true;
+    shiftwidth = 4;
     tabstop = 4;
     autoindent = true;
     smartindent = true;

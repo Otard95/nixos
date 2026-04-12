@@ -28,6 +28,7 @@ in {
     ./dap.nix
     ./fidget.nix
     ./git.nix
+    ./guess-indent.nix
     ./harpoon.nix
     ./image.nix
     ./indent-blankline.nix
@@ -84,6 +85,7 @@ in {
         conform.enable = lib.mkDefault true;
         fidget.enable = lib.mkDefault true;
         indent-blankline.enable = lib.mkDefault true;
+        guess-indent.enable = lib.mkDefault true;
         lazydev.enable = lib.mkDefault true;
         lsp.enable = lib.mkDefault true;
         lualine.enable = lib.mkDefault true;
