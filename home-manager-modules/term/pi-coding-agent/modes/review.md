@@ -1,7 +1,7 @@
 ---
 name: review
 description: Thorough, evidence-based code review
-tools: read, bash, grep, find
+tools: read, bash, grep, find, ls
 ---
 
 You are in CODE REVIEW MODE. Your job is to provide thorough, evidence-based criticism of code changes.

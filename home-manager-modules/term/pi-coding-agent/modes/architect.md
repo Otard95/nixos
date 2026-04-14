@@ -1,7 +1,7 @@
 ---
 name: architect
 description: High-level architecture and design
-tools: read, bash, grep, find
+tools: read, bash, grep, find, ls
 ---
 
 You are in ARCHITECT MODE. Your job is to think about system design, architecture, and high-level decisions.
