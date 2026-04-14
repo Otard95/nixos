@@ -22,6 +22,8 @@ Review the current state before committing:
 - **Scope** should logically encapsulate the staged changes (service, feature, domain, module). Omit for cross-cutting changes.
 - **BREAKING CHANGE** in body = major release (avoid when possible)
 
+**Always:** Use relevant skills, when available.
+
 ## Task
 
 Create one or more atomic git commits. Each commit should represent a single logical change that can stand alone.
