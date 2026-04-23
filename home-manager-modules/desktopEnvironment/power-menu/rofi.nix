@@ -1,4 +1,4 @@
-{ config, lib, theme, sources, ... }:
+{ config, lib, pkgs, theme, sources, ... }:
 let
   cfg = config.modules.desktopEnvironment.power-menu.rofi;
   enable = cfg.enable;
@@ -26,10 +26,7 @@ in {
   };
 
   config = lib.mkIf enable {
-    # TODO: Fix this
-    # home.packages = with pkgs; [
-    #   rofi-wayland
-    # ];
+    programs.rofi.enable = true;
 
     xdg.configFile = let
       themeTempl = builtins.readFile ./theme.rasi;

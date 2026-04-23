@@ -31,6 +31,11 @@
 
     affinity-nix.url = "github:mrshmllow/affinity-nix";
 
+    vicinae-extensions = {
+      url = "github:vicinaehq/extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ngm = {
       url = "github:Otard95/ngm";
       inputs.nixpkgs.follows = "nixpkgs";

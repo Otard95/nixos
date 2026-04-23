@@ -19,6 +19,7 @@
   modules = {
     desktopEnvironment = {
       enable = true;
+      app-launcher.launcher = "vicinae";
       background-image = {
         horizontal = sources.images.background.astronaut;
         vertical = sources.images.background.astronaut-vertical;

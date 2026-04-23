@@ -11,6 +11,7 @@ in {
       description = "Select a launcher to use";
       type = lib.types.enum [
         "rofi"
+        "vicinae"
       ];
     };
 
@@ -19,6 +20,7 @@ in {
 
   imports = [
     ./rofi.nix
+    ./vicinae.nix
   ];
 
   config = lib.mkIf enable (lib.mkMerge [
@@ -40,6 +42,27 @@ in {
           { key = "e"; mods = [ "ctrl" "shift" ];
             exec = "uwsm app -- rofi -show emoji";
           }
+        ];
+      };
+    })
+
+    (lib.mkIf (cfg.launcher == "vicinae") {
+      modules.desktopEnvironment = {
+        app-launcher.vicinae = {
+          enable = lib.mkDefault true;
+          splash-image.path = cfg.splash-image;
+        };
+
+        keybinds = [
+          { key = "d"; mods = [ "main" ];
+            exec = "uwsm app -- vicinae toggle";
+          }
+          # { key = "tab"; mods = [ "alt" ];
+          #   exec = "uwsm app -- rofi -show window";
+          # }
+          # { key = "e"; mods = [ "ctrl" "shift" ];
+          #   exec = "uwsm app -- rofi -show emoji";
+          # }
         ];
       };
     })
