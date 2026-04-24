@@ -26,14 +26,14 @@ let
 
   pi-extensions = mkPiPackage rec {
     pname = "pi-extensions";
-    version = "0.6.0";
+    version = "0.7.1";
     src = pkgs.fetchFromGitHub {
       owner = "Otard95";
       repo = "pi-extensions";
       tag = "v${version}";
-      hash = "sha256-2Q5OluOmZQumsc4sFOV0cM38jzT6RN0DWvu3KQmX0lY=";
+      hash = "sha256-TWEXofQWKtrdrXqFP5Ztt6K06jGmNRKeVcNshgT02G8=";
     };
-    npmDepsHash = "sha256-XQcBIUupEhgKt0tl2MqaHiWyaC0+Y92m2Wknitf+rK4=";
+    npmDepsHash = "sha256-twsPgwiQhf3GaPmuVSoHEpuHB75tgS7FoZjwDabddCA=";
   };
 in {
 
@@ -58,6 +58,17 @@ in {
         searxng = {
           "url" = "https://searxng.core-lab.net";
           "authorization" = "pass:searxng/auth";
+        };
+        protected-files = {
+          patterns = [
+            "*.env*"
+            ".secret*"
+            "secrets/**"
+            "*.pem"
+            "*.key"
+            "FrameWork/settings.json"
+            "services.json"
+          ];
         };
       };
       "pi/keybindings.json".source = jsonFormat.generate "pi-keybindings.json" {
