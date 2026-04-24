@@ -15,8 +15,7 @@ in {
         inputs.zen-browser.packages."${stdenv.hostPlatform.system}".default
         (makeDesktopItem {
           name = "zen-browser-personal";
-          desktopName = "Zen Browser";
-          genericName = "Personal";
+          desktopName = "Zen Browser (Personal)";
           exec = "zen -P Personal";
           icon = "zen";
           startupWMClass = "zen-alpha";
