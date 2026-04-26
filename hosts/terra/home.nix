@@ -25,9 +25,14 @@
         ];
       };
       hyprland.hypridle.enable = false;
+      app-launcher.launcher = "vicinae";
     };
     nixvim.enable = true;
-    term.direnv.enable = true;
+    term = {
+      defaultTerminal = "ghostty";
+      direnv.enable = true;
+    };
+
   };
 
   # home.packages = with pkgs; [ ];
