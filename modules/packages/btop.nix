@@ -6,9 +6,18 @@ in {
   options.modules.packages.btop.enable =
     lib.mkEnableOption "btop";
 
-  config = lib.mkIf enable {
-    environment.systemPackages = with pkgs; [
-      btop
+  config = with pkgs; lib.mkIf enable {
+    nixpkgs.overlays = [
+      (self: super: {
+        btop = super.btop.overrideAttrs (old: let pkgs = super; in {
+          nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ pkgs.patchelf ];
+          fixupPhase = (old.fixupPhase or "") + ''
+            patchelf --add-rpath /run/opengl-driver/lib $out/bin/btop
+          '';
+        });
+      })
     ];
+
+    environment.systemPackages = [ btop ];
   };
 }
