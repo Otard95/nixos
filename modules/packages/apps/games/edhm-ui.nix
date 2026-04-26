@@ -1,12 +1,12 @@
-{ lib, stdenv, fetchzip, unzip, makeWrapper, patchelf, gtk3, glib, xorg, libGL, vulkan-loader, electron, ffmpeg, nss, nspr, dbus, atk, cups, pango, cairo, mesa, libdrm, libgbm, expat, libxkbcommon, systemd, alsa-lib, ... }:
+{ lib, stdenv, fetchzip, unzip, makeWrapper, patchelf, gtk3, glib, xorg, libGL, vulkan-loader, ffmpeg, nss, nspr, dbus, atk, cups, pango, cairo, mesa, libdrm, libgbm, expat, libxkbcommon, systemd, alsa-lib, ... }:
 
 stdenv.mkDerivation rec {
   pname = "edhm-ui-v3";
-  version = "3.0.60";
+  version = "3.0.63";
 
   src = fetchzip {
     url = "https://github.com/BlueMystical/EDHM_UI/releases/download/v${version}/edhm-ui-v3-linux-x64.zip";
-    sha256 = "sha256-v4510IIUJ/ALBw1Y1694NRBEanDSeihNnCHCRljPRbo=";
+    sha256 = "sha256-gJY0gOxtg0YU3r3e/ossopH3cZPWisqI/q9og1Qe0XE=";
     stripRoot = false;
   };
 
