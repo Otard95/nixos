@@ -46,7 +46,6 @@
         };
         signingKey = "B2D64340F9493B0A";
       };
-      opencode.enable = true;
       pi-coding-agent.enable = true;
       pass.enable = true;
       scripts.enable = true;
