@@ -39,6 +39,10 @@ in {
       description = name;
       type = lib.types.bool;
     };
+    enum = name: options: lib.mkOption {
+      description = name;
+      type = lib.types.enum options;
+    };
     submodule = name: options: lib.mkOption {
       description = name;
       type = lib.types.submodule {
