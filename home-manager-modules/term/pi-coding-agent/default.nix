@@ -26,12 +26,12 @@ let
 
   pi-extensions = mkPiPackage rec {
     pname = "pi-extensions";
-    version = "0.7.1";
+    version = "0.9.0";
     src = pkgs.fetchFromGitHub {
       owner = "Otard95";
       repo = "pi-extensions";
       tag = "v${version}";
-      hash = "sha256-TWEXofQWKtrdrXqFP5Ztt6K06jGmNRKeVcNshgT02G8=";
+      hash = "sha256-8UzyuftNnCuOZEtPdpR65yBcsyWlcqcvKoINonTwx9c=";
     };
     npmDepsHash = "sha256-twsPgwiQhf3GaPmuVSoHEpuHB75tgS7FoZjwDabddCA=";
   };
@@ -41,23 +41,28 @@ in {
 
   config = lib.mkIf enable {
 
-    home.packages = [ pkgs.pi-coding-agent ];
+    home.packages = with pkgs; [
+      pi-coding-agent
+      ffmpeg
+      whisper-cpp
+    ];
 
     home.sessionVariables.PI_CODING_AGENT_DIR = "\${XDG_CONFIG_HOME:-$HOME}/.config/pi";
 
     xdg.configFile = {
       "pi/settings.json".source = jsonFormat.generate "pi-settings.json" {
         theme = "catppuccin-frappe";
-        "lastChangelogVersion" = "0.64.0";
-        "defaultProvider" = "anthropic";
-        "defaultModel" = "claude-sonnet-4-5";
-        "defaultThinkingLevel" = "medium";
+        lastChangelogVersion = "0.71.0";
+        defaultProvider = "anthropic";
+        defaultModel = "claude-sonnet-4-5";
+        defaultThinkingLevel = "medium";
+        enableInstallTelemetry = false;
         packages = [
           "${pi-extensions}/lib"
         ];
         searxng = {
-          "url" = "https://searxng.core-lab.net";
-          "authorization" = "pass:searxng/auth";
+          url = "https://searxng.core-lab.net";
+          authorization = "pass:searxng/auth";
         };
         protected-files = {
           patterns = [
