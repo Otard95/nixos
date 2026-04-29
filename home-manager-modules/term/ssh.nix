@@ -49,6 +49,7 @@ in {
           user = "otard";
           port = 22;
           identityFile = personal_identity_files;
+          forwardAgent = true;
         };
         luna = {
           host = "luna";
@@ -56,6 +57,7 @@ in {
           user = "otard";
           port = 22;
           identityFile = personal_identity_files;
+          forwardAgent = true;
         };
       };
 
