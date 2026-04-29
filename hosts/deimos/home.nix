@@ -49,6 +49,7 @@
       pi-coding-agent.enable = true;
       pass.enable = true;
       scripts.enable = true;
+      ssh.identity-preset = "work";
       k9s.enable = true;
       zsh.enable = true;
     };
