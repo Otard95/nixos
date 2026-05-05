@@ -96,7 +96,7 @@ in {
         allowedTCPPortRanges = [ { from = 9000; to = 9020; } ];
       };
       networking.extraHosts = ''
-        127.0.0.1 tenderms.dart ma2.dart melvis.dart ticketms.dart
+        127.0.0.1 tenderms.dart ma2.dart melvis.dart ticketms.dart chat.dart
       '';
     })
     (lib.mkIf cfg.preset.smb-frontend.enable {
