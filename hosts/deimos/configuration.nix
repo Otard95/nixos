@@ -57,6 +57,7 @@
     };
     packages = {
       docker.enable = true;
+      podman.enable = true;
       pangolin.enable = true;
       apps = {
         _1password.enable = true;

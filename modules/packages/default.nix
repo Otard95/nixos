@@ -16,6 +16,7 @@ in {
     ./notification.nix
     ./ollama.nix
     ./pangolin.nix
+    ./podman.nix
   ];
 
   config = lib.mkIf enable {
