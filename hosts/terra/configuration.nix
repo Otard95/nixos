@@ -20,14 +20,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.otard = {
-    isNormalUser = true;
-    description = "Stian";
-    extraGroups = [ "networkmanager" "wheel" ];
-    # packages = with pkgs; [];
-  };
-
   # Modules
   modules = {
     nixvim.enable = true;

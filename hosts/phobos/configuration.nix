@@ -20,18 +20,8 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.otard = {
-    isNormalUser = true;
-    description = "Stian";
-    extraGroups = [ "networkmanager" "wheel" "input" ];
-    # packages = with pkgs; [];
-  };
-
   services.logind.settings.Login.HandleLidSwitchDocked = "ignore";
   services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
-  # services.logind.lidSwitchDocked = "ignore";
-  # services.logind.lidSwitchExternalPower = "ignore";
 
   # Modules
   modules = {

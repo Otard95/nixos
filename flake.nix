@@ -83,10 +83,10 @@
     sources = import ./sources;
     helpers = import ./helpers { pkgs = import nixpkgs { inherit system; }; };
 
-    mkSystem = name: {
+    mkSystem = hostname: nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit theme inputs pkgs-stable sources helpers;
-        meta = { hostname = name; };
+        meta = { hostname = hostname; };
       };
       system = system;
       modules = [
@@ -94,7 +94,7 @@
         nixvim.nixosModules.nixvim
         ./nixvim
         ./modules
-        (nixpkgs.lib.path.append ./hosts "${name}/configuration.nix")
+        (nixpkgs.lib.path.append ./hosts "${hostname}/configuration.nix")
 
         home-manager.nixosModules.home-manager
         {
@@ -109,7 +109,7 @@
               nix-index-database.homeModules.default
               ./home-manager-modules
               ./nixvim
-              (nixpkgs.lib.path.append ./hosts "${name}/home.nix")
+              (nixpkgs.lib.path.append ./hosts "${hostname}/home.nix")
             ];
           };
         }
@@ -118,9 +118,9 @@
   in {
 
     nixosConfigurations = {
-      terra = nixpkgs.lib.nixosSystem (mkSystem "terra");
-      phobos = nixpkgs.lib.nixosSystem (mkSystem "phobos");
-      deimos = nixpkgs.lib.nixosSystem (mkSystem "deimos");
+      terra = mkSystem "terra";
+      phobos = mkSystem "phobos";
+      deimos = mkSystem "deimos";
     };
 
   };

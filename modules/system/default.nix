@@ -19,6 +19,7 @@ in {
     ./printing.nix
     ./shell.nix
     ./sound.nix
+    ./users.nix
   ];
 
   config = lib.mkIf enable {
