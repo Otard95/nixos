@@ -9,18 +9,17 @@ in {
   imports = [
     ./cliphist.nix
     ./flameshot.nix
+    ./satty.nix
     ./gromit.nix
     ./hdrop.nix
     ./obsidian.nix
-    ./yubioath.nix
   ];
 
   config = lib.mkIf enable {
     modules.packages = {
       cliphist.enable = lib.mkDefault true;
-      flameshot.enable = lib.mkDefault true;
+      satty.enable = lib.mkDefault true;
       gromit.enable = lib.mkDefault true;
-      yubioath.enable = lib.mkDefault true;
     };
   };
 }

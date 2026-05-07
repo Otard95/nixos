@@ -65,7 +65,6 @@
       ollama.enable = true;
       apps = {
         _1password.enable = true;
-        appgate.enable = true;
         clickup.enable = true;
         clocks.enable = true;
         dbeaver.enable = true;

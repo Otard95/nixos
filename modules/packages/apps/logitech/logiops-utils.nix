@@ -29,7 +29,7 @@ let
           threshold = mkOption.optional (lib.mkOption { type = ints.positive; default = 50; });
           mode = mkOption.optional (lib.mkOption { type = enum [ "NoPress" "OnRelease" "OnInterval" "OnThreshold" "Axis" ]; });
           axis = mkOption.optional (lib.mkOption { type = nullOr str; default = null; });
-          axis_multiplier = mkOption.optional (lib.mkOption { type = nullOr ints.positive; default = null; });
+          axis_multiplier = mkOption.optional (lib.mkOption { type = nullOr ints.float; default = null; });
           action = mkOption.optional (lib.mkOption { type = nullOr ActionType; default = null; });
         };
       }));
@@ -151,7 +151,10 @@ in {
 
   preset = {
     sensibleMXMaster4 = {
-      devices."MX Master 4".thumbwheel.invert = true;
+      devices."MX Master 4" = {
+        thumbwheel.invert = true;
+        hiresscroll.hires = true;
+      };
     };
   };
 }

@@ -17,8 +17,9 @@ in {
 
       settings = {
         General = {
-          disabledGrimWarning = true;
-          useGrimAdapter = true;
+          disabledTrayIcon = true;
+          # disabledGrimWarning = true;
+          # useGrimAdapter = true;
         };
       };
     };

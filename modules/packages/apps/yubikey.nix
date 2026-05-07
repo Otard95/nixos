@@ -9,6 +9,7 @@ in {
 
     # YubiKey
     environment.systemPackages = with pkgs; [
+      yubioath-flutter         # GUI app for otp and more
       yubikey-personalization  # CLI tools for configuring YubiKey
       yubikey-manager          # Manage YubiKey settings
       yubikey-agent
@@ -25,10 +26,6 @@ in {
       pcscd.enable = true;
       yubikey-agent.enable = true;
     };
-
-    # TODO: Use this when fixed
-    #       Wayland/EGL quirk. Fixed by GDK_BACKEND=x11 env-var
-    # environment.systemPackages = with pkgs-stable; [ yubioath-flutter ];
 
   };
 }
