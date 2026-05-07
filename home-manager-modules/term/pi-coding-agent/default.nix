@@ -54,7 +54,7 @@ in {
         theme = "catppuccin-frappe";
         lastChangelogVersion = "0.71.0";
         defaultProvider = "anthropic";
-        defaultModel = "claude-sonnet-4-5";
+        defaultModel = "claude-sonnet-4-6";
         defaultThinkingLevel = "medium";
         enableInstallTelemetry = false;
         packages = [
