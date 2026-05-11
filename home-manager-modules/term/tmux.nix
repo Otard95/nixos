@@ -89,6 +89,12 @@ in {
         set -g extended-keys on
         set -g extended-keys-format csi-u
 
+        # HiRes scroll fix (uncomment if not using)
+        bind -T copy-mode WheelUpPane   send -N1 -X scroll-up
+        bind -T copy-mode WheelDownPane send -N1 -X scroll-down
+        bind -T copy-mode-vi WheelUpPane   send -N1 -X scroll-up
+        bind -T copy-mode-vi WheelDownPane send -N1 -X scroll-down
+
         # Sessions
 
         bind l switch-client -l
@@ -132,6 +138,7 @@ in {
         bind -n C-S-l resize-pane -R 5
 
         # Toggle maximized pane
+
         bind -r m resize-pane -Z
 
         # Copy mode with vim bindings
@@ -155,6 +162,7 @@ in {
         unbind -T copy-mode-vi MouseDragEnd1Pane # don't exit copy mode after dragging with mouse
 
         # Use C-l to clear the screen since we use 'christoomey/vim-tmux-navigator'
+
         bind C-l send-keys C-l
 
       '';
