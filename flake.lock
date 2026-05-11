@@ -359,11 +359,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1758019438,
-        "narHash": "sha256-4p9omAga0cwPHBUQ6HXtriqiVN7hmS33vk0LKfwKqKQ=",
+        "lastModified": 1778509024,
+        "narHash": "sha256-XpiO2xNZjBiQTtyqDQQvi6E+/w7NNudveIgG6AIQfsQ=",
         "owner": "Otard95",
         "repo": "ngm",
-        "rev": "cd9dd621a7799c4025fa33e2db33cb9cfea000c7",
+        "rev": "caab886eb5b199dceb91d7ea813727f25c234acf",
         "type": "github"
       },
       "original": {
