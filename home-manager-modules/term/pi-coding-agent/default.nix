@@ -26,14 +26,14 @@ let
 
   pi-extensions = mkPiPackage rec {
     pname = "pi-extensions";
-    version = "0.9.0";
+    version = "0.11.0";
     src = pkgs.fetchFromGitHub {
       owner = "Otard95";
       repo = "pi-extensions";
       tag = "v${version}";
-      hash = "sha256-8UzyuftNnCuOZEtPdpR65yBcsyWlcqcvKoINonTwx9c=";
+      hash = "sha256-0VU18qEs8stSGIiO/y3aWUMk9PojNsyjiPlxmvpnVlo=";
     };
-    npmDepsHash = "sha256-twsPgwiQhf3GaPmuVSoHEpuHB75tgS7FoZjwDabddCA=";
+    npmDepsHash = "sha256-Vz2SYn5d2ZxeBEW4jwBCAMZvTRvLmKVjcXOkibqXBrg=";
   };
 in {
 
@@ -72,8 +72,22 @@ in {
             "*.pem"
             "*.key"
             "FrameWork/settings.json"
+            "FrameWork/settings.*.json"
             "services.json"
           ];
+        };
+        pass = {
+          timeout = 30000;
+        };
+        screenshot = {
+          exclude = [
+            { title = "Proton Pass"; }
+            { class = "yubioath"; }
+            { class = "1password"; }
+          ];
+        };
+        web-read = {
+          browserPath = lib.getExe pkgs.chromium;
         };
       };
       "pi/keybindings.json".source = jsonFormat.generate "pi-keybindings.json" {
