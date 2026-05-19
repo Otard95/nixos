@@ -18,8 +18,8 @@ in {
     termguicolors = false;
 
     # Folding
-    foldlevel = 2;
-    foldlevelstart = 4;
+    foldlevel = 4;
+    # foldlevelstart = 4;
 
     # Search
     # smartcase = true;
