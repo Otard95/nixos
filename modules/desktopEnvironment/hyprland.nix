@@ -36,37 +36,18 @@ in {
     };
 
     # TODO: Move to home??? Or own module???
-    # xdg.portal = {
-    #   enable = true;
-    #   # xdgOpenUsePortal = true;
-    #   extraPortals = with pkgs; [
-    #     xdg-desktop-portal-gtk
-    #     # kdePackages.xdg-desktop-portal-kde
-    #   ];
-    #   config = {
-    #     common = {
-    #       default = [ "hyprland" "gtk" ]; # "kde"
-    #       "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ]; # "kde"
-    #     };
-    #     hyprland = {
-    #       default = [ "hyprland" "gtk" ]; # "kde"
-    #       "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ]; # "kde"
-    #     };
-    #   };
-    # };
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-hyprland
         xdg-desktop-portal-gtk
-        kdePackages.xdg-desktop-portal-kde
       ];
-      # xdgOpenUsePortal = true;
-      configPackages = [ pkgs.hyprland ];
+      configPackages = with pkgs; [
+        hyprland
+        xdg-desktop-portal-gtk
+      ];
       config.hyprland = {
         default = [ "hyprland" "gtk" ];
-        "org.freedesktop.impl.portal.FileChooser" = "kde";
-        "org.freedesktop.impl.portal.Print" = "kde";
       };
     };
 
