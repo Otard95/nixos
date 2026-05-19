@@ -59,6 +59,8 @@ in {
 
   config = lib.mkIf enable (lib.mkMerge [
     {
+      # Disable portal here until this is fixed: https://github.com/nix-community/home-manager/issues/7124
+      xdg.portal.enable = lib.mkForce false;
       modules.desktopEnvironment = {
         app-launcher = {
           enable = lib.mkDefault true;
