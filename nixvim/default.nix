@@ -20,7 +20,6 @@ in {
 
   imports = [
     ./opts.nix
-    ./ft-opts.nix
     ./keymap.nix
     ./todo.nix
     ./utils.nix
@@ -69,13 +68,6 @@ in {
     modules.nixvim = {
       plugins.enable = lib.mkDefault true;
       wezterm-move.enable = lib.mkDefault (config.modules.nixvim.defaultTerminal == "wezterm");
-      ft-opts = {
-        c = { commentstring = "//%s"; };
-        cpp = { commentstring = "//%s"; };
-        php = { shiftwidth = 4; tabstop = 4; };
-        json = { formatprg = "jq"; };
-        go = { expandtab = false; };
-      };
     };
   };
 }

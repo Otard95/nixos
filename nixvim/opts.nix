@@ -2,52 +2,65 @@
 let
   nixvim = config.lib.nixvim;
 in {
-  programs.nixvim.opts = {
-    # Indenting
-    # expandtab = true;
-    shiftwidth = 4;
-    tabstop = 4;
-    autoindent = true;
-    smartindent = true;
 
-    # Line numbers
-    relativenumber = true;
-    number = true;
+  imports = [ ./ft-opts.nix ];
 
-    # Colors
-    termguicolors = false;
+  config = {
+    programs.nixvim.opts = {
+      # Indenting
+      # expandtab = true;
+      shiftwidth = 4;
+      tabstop = 4;
+      autoindent = true;
+      smartindent = true;
 
-    # Folding
-    foldlevel = 4;
-    # foldlevelstart = 4;
+      # Line numbers
+      relativenumber = true;
+      number = true;
 
-    # Search
-    # smartcase = true;
-    ignorecase = true;
+      # Colors
+      termguicolors = false;
 
-    # Line wrapping
-    wrap = true;
-    showbreak = "↪ ";
-    linebreak = true;
-    colorcolumn = "80";
-    signcolumn = "yes";
+      # Folding
+      foldlevel = 4;
+      # foldlevelstart = 4;
 
-    # Undo, swap, backup
-    swapfile = false;
-    backup = false;
-    undodir = nixvim.mkRaw "os.getenv('HOME') .. '/.local/state/nvim/undodir'";
-    undofile = true;
+      # Search
+      # smartcase = true;
+      ignorecase = true;
 
-    # Misc
-    winborder = "rounded";
-    wildmode = "longest:full,full";
-    list = true;
-    listchars = "tab:󰌒 ,trail:⋅";
-    scrolloff = 20;
-    sidescrolloff = 10;
-    cmdheight = 2;
-    mouse = "a";
-    updatetime = 50;
-    # "formatoptions:remove" = nixvim.mkRaw "{ 'o' }";
+      # Line wrapping
+      wrap = true;
+      showbreak = "↪ ";
+      linebreak = true;
+      colorcolumn = "80";
+      signcolumn = "yes";
+
+      # Undo, swap, backup
+      swapfile = false;
+      backup = false;
+      undodir = nixvim.mkRaw "os.getenv('HOME') .. '/.local/state/nvim/undodir'";
+      undofile = true;
+
+      # Misc
+      winborder = "rounded";
+      wildmode = "longest:full,full";
+      list = true;
+      listchars = "tab:󰌒 ,trail:⋅";
+      scrolloff = 20;
+      sidescrolloff = 10;
+      cmdheight = 2;
+      mouse = "a";
+      updatetime = 50;
+      # "formatoptions:remove" = nixvim.mkRaw "{ 'o' }";
+    };
+
+    modules.nixvim.ft-opts = {
+      c = { commentstring = "//%s"; };
+      cpp = { commentstring = "//%s"; };
+      php = { shiftwidth = 4; tabstop = 4; autoindent = true; };
+      json = { formatprg = "jq"; };
+      go = { expandtab = false; };
+    };
   };
 }
