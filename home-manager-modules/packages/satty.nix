@@ -8,15 +8,16 @@ in {
   };
 
   config = lib.mkIf enable {
-    home.packages = [ pkgs.grimblast pkgs.wl-clipboard ];
+    home.packages = [ pkgs.grim pkgs.wl-clipboard ];
 
     programs.satty = {
       enable = true;
 
       settings = {
         general = {
+          fullscreen = "all";
           early-exit = true;
-          initial-tool = "arrow";
+          initial-tool = "crop";
           copy-command = "wl-copy";
           annotation-size-factor = 2;
           corner-roundness = 12;
@@ -34,7 +35,7 @@ in {
       {
         key = "s";
         mods = [ "main" "shift" ];
-        exec = "uwsm app -- grimblast save area - | satty --filename -";
+        exec = "uwsm app -- grim -o \$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name') -t png - | satty --filename -";
       }
     ];
   };
