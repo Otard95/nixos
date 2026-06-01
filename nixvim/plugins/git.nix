@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.modules.nixvim.plugins.git;
   enable = cfg.enable;
@@ -63,6 +63,20 @@ in {
       colorschemes.catppuccin.settings.integrations.gitsigns = true;
       plugins = {
         fugitive.enable = true;
+
+        diffview = {
+          enable = true;
+          package = pkgs.vimUtils.buildVimPlugin {
+            name = "diffview-nvim-test";
+            src = pkgs.fetchFromGitHub {
+                owner = "dlyongemallo";
+                repo = "diffview.nvim";
+                rev = "d52621fe8a0b865e0971389bc36dd9220260cbc3";
+                hash = "sha256-1DwfCbOl+Tfj4QtW/nbgNkFg9CQU21N8E4p63sDPl20=";
+            };
+            doCheck = false;
+          };
+        };
 
         gitsigns = {
           enable = true;
