@@ -8,8 +8,8 @@ let
     "~/.ssh/id_ed25519_sk_rk_yubikey_personal_secondary"
   ];
   work_identity_files = [
-    "~/.ssh/id_ed25519_sk_rk_yubikey_work_primary"
     "~/.ssh/id_ed25519_sk_rk_yubikey_work_secondary"
+    "~/.ssh/id_ed25519_sk_rk_yubikey_work_primary"
   ];
 in {
   options.modules.term.ssh = {
@@ -28,6 +28,8 @@ in {
 
       enable = true;
       enableDefaultConfig = false;
+
+      includes = [ "~/.ssh/mux.conf" ];
 
       matchBlocks = {
         "*" = {
