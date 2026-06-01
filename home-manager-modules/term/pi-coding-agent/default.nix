@@ -26,12 +26,12 @@ let
 
   pi-extensions = mkPiPackage rec {
     pname = "pi-extensions";
-    version = "0.12.0";
+    version = "0.13.0";
     src = pkgs.fetchFromGitHub {
       owner = "Otard95";
       repo = "pi-extensions";
       tag = "v${version}";
-      hash = "sha256-L8PLjlwmyaUR2MWbd2YHw5YJZXlR/fi57bM1Gu+3u7w=";
+      hash = "sha256-CyLXMOBPlN+AJmAnOaVwhNCnHjBQXkW9MbnlSwGlO8M=";
     };
     npmDepsHash = "sha256-jdvNATxmh48fRHHSeLzEjloEEXK9s0z7LIpdtNq4KoY=";
   };
