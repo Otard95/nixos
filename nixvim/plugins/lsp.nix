@@ -52,10 +52,6 @@ in {
 
       };
 
-      plugins = {
-        lsp.enable = true;
-      };
-
     };
   };
 }
