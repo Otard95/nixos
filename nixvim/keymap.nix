@@ -7,26 +7,26 @@ in {
     maplocalleader = " ";
   };
 
-  programs.nixvim.extraConfigLua = ''
-    do
-      local acc = { up = 0, down = 0 }
-      local threshold = 3
+  # programs.nixvim.extraConfigLua = ''
+  #   do
+  #     local acc = { up = 0, down = 0 }
+  #     local threshold = 3
 
-      local function scroll(dir)
-        local opp = dir == "up" and "down" or "up"
-        acc[opp] = 0
-        acc[dir] = acc[dir] + 1
-        if acc[dir] >= threshold then
-          acc[dir] = 0
-          vim.cmd("normal! " .. (dir == "up" and "\25" or "\5"))
-        end
-      end
+  #     local function scroll(dir)
+  #       local opp = dir == "up" and "down" or "up"
+  #       acc[opp] = 0
+  #       acc[dir] = acc[dir] + 1
+  #       if acc[dir] >= threshold then
+  #         acc[dir] = 0
+  #         vim.cmd("normal! " .. (dir == "up" and "\25" or "\5"))
+  #       end
+  #     end
 
-      local modes = { "n", "v", "i" }
-      vim.keymap.set(modes, "<ScrollWheelUp>",   function() scroll("up")   end, { silent = true })
-      vim.keymap.set(modes, "<ScrollWheelDown>", function() scroll("down") end, { silent = true })
-    end
-  '';
+  #     local modes = { "n", "v", "i" }
+  #     vim.keymap.set(modes, "<ScrollWheelUp>",   function() scroll("up")   end, { silent = true })
+  #     vim.keymap.set(modes, "<ScrollWheelDown>", function() scroll("down") end, { silent = true })
+  #   end
+  # '';
 
   programs.nixvim.keymaps = map (m: {
     mode = builtins.elemAt m 0;
