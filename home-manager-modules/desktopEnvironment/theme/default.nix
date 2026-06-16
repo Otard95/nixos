@@ -20,6 +20,7 @@ in {
 
     catppuccin = {
       enable = true;
+      autoEnable = true;
       inherit (theme) flavor accent;
       cursors.enable = false;
     };

@@ -14,7 +14,7 @@
     # Nixvim
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-index-database = {
@@ -29,7 +29,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    affinity-nix.url = "github:mrshmllow/affinity-nix";
+    affinity-nix.url = "github:mrshmllow/affinity-nix/3c1a4c49084621704481c3f41abb8bf0e47c95d4";
 
     vicinae-extensions = {
       url = "github:vicinaehq/extensions";

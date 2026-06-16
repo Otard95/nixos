@@ -83,20 +83,37 @@ in {
           vertical = lib.mkDefault cfg.background-image.vertical;
         };
       };
-      wayland.windowManager.hyprland.settings = let
-        compileMods = mods: builtins.concatStringsSep "+" (
+      # wayland.windowManager.hyprland.settings = let
+      #   compileMods = mods: builtins.concatStringsSep "+" (
+      #     builtins.map
+      #     (mod: if mod == "main" then "$mod" else lib.toUpper mod)
+      #     mods
+      #   );
+      # in {
+      #   bind = builtins.map
+      #     (bind: (compileMods bind.mods) + ", ${lib.toUpper bind.key}, exec, ${bind.exec}")
+      #     (builtins.filter (bind: !bind.inLock) cfg.keybinds);
+      #   bindl = builtins.map
+      #     (bind: (compileMods bind.mods) + ", ${lib.toUpper bind.key}, exec, ${bind.exec}")
+      #     (builtins.filter (bind: bind.inLock) cfg.keybinds);
+      # };
+      wayland.windowManager.hyprland.extraConfig = let
+        compileMods = mods: lib.concatStringsSep " + " (
           builtins.map
-          (mod: if mod == "main" then "$mod" else lib.toUpper mod)
-          mods
+            (mod: if mod == "main" then "SUPER" else lib.toUpper mod)
+            mods
         );
-      in {
-        bind = builtins.map
-          (bind: (compileMods bind.mods) + ", ${lib.toUpper bind.key}, exec, ${bind.exec}")
-          (builtins.filter (bind: !bind.inLock) cfg.keybinds);
-        bindl = builtins.map
-          (bind: (compileMods bind.mods) + ", ${lib.toUpper bind.key}, exec, ${bind.exec}")
-          (builtins.filter (bind: bind.inLock) cfg.keybinds);
-      };
+        escapeExec = cmd: builtins.replaceStrings [ ''"'' ] [ ''\"'' ] cmd;
+        mkBind = locked: bind:
+          let
+            key  = "${compileMods bind.mods} + ${lib.toUpper bind.key}";
+            opts = lib.optionalString locked ", { locked = true }";
+          in
+          ''hl.bind("${key}", hl.dsp.exec_cmd("${escapeExec bind.exec}")${opts})'';
+      in lib.concatStringsSep "\n" (
+        builtins.map (mkBind false) (builtins.filter (b: !b.inLock) cfg.keybinds) ++
+        builtins.map (mkBind true)  (builtins.filter (b:  b.inLock) cfg.keybinds)
+      );
     })
   ]);
 }

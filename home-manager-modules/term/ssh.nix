@@ -31,7 +31,7 @@ in {
 
       includes = [ "~/.ssh/mux.conf" ];
 
-      matchBlocks = {
+      settings = {
         "*" = {
           host = "*";
           identityFile = if cfg.identity-preset == "personal"

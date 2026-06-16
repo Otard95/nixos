@@ -46,7 +46,6 @@ in {
 
   config = lib.mkIf enable {
     modules.packages.apps = {
-      bitwarden.enable = lib.mkDefault true;
       blueman.enable = lib.mkDefault config.modules.system.bluetooth.enable;
       # grimblast.enable = lib.mkDefault config.modules.desktopEnvironment.hyprland.enable;
       libre-office.enable = lib.mkDefault true;

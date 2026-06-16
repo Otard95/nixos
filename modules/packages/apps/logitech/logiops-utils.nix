@@ -153,7 +153,7 @@ in {
     sensibleMXMaster4 = {
       devices."MX Master 4" = {
         thumbwheel.invert = true;
-        hiresscroll.hires = false;
+        hiresscroll.hires = true;
       };
     };
   };
