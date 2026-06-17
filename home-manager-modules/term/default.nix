@@ -19,7 +19,6 @@ in {
   };
 
   imports = [
-    ./claude
     ./opencode
     ./pi-coding-agent
     ./scripts

@@ -37,7 +37,6 @@
       defaultTerminal = "ghostty";
       kitty.enable = true;
       direnv.enable = true;
-      claude.enable = true;
       gh.enable = true;
       git = {
         user = {

@@ -27,7 +27,6 @@
     term = {
       scripts.fabric.enable = true;
       direnv.enable = true;
-      claude.enable = true;
       gh.enable = true;
       git = {
         user = {
