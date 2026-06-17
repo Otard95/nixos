@@ -8,7 +8,6 @@ in {
 
   imports = [
     ./1password.nix
-    ./affinity.nix
     ./bitwarden.nix
     ./blueman.nix
     ./calibre.nix

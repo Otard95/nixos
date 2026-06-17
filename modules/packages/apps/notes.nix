@@ -7,6 +7,6 @@ in {
     lib.mkEnableOption "notes";
 
   config = lib.mkIf enable {
-    environment.systemPackages = with pkgs; [ gedit sublime ];
+    environment.systemPackages = with pkgs; [ gedit ];
   };
 }

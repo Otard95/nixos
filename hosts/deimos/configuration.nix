@@ -53,7 +53,6 @@
       pangolin.enable = true;
       apps = {
         _1password.enable = true;
-        affinity.enable = true;
         clickup.enable = true;
         clocks.enable = true;
         digiKam.enable = true;

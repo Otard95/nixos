@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, helpers, ... }:
+{ config, lib, helpers, ... }:
 let
   cfg = config.modules.term.git;
   enable = cfg.enable;
@@ -21,10 +21,6 @@ in {
   };
 
   config = lib.mkIf enable {
-
-    home.packages = [
-      inputs.ngm.packages."${pkgs.stdenv.hostPlatform.system}".default
-    ];
 
     modules.term.gpg.enable = lib.mkDefault true;
 

@@ -29,17 +29,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    affinity-nix.url = "github:mrshmllow/affinity-nix/3c1a4c49084621704481c3f41abb8bf0e47c95d4";
-
     vicinae-extensions = {
       url = "github:vicinaehq/extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ngm = {
-      url = "github:Otard95/ngm";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     pass-env = {
       url = "github:Otard95/pass-env";
       inputs.nixpkgs.follows = "nixpkgs";
