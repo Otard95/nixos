@@ -48,6 +48,7 @@ in {
           additional_curl_options = [
             "--cookie" (nixvim.mkRaw "require('kulala.globals').COOKIES_JAR_FILE")
           ];
+          ui.max_response_size = 262144;
         };
       };
 
