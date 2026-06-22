@@ -12,5 +12,9 @@ in {
       pkgs.devenv
     ];
 
+    programs.bash.bashrcExtra = ''
+      eval "$(devenv hook bash)"
+    '';
+
   };
 }
