@@ -49,6 +49,7 @@ in {
             "--cookie" (nixvim.mkRaw "require('kulala.globals').COOKIES_JAR_FILE")
           ];
           ui.max_response_size = 262144;
+          lsp.filetypes = [ "http" "rest" "bruno" ];
         };
       };
 
