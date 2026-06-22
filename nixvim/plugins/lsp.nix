@@ -39,15 +39,16 @@ in {
             };
           };
           # eslint.enable = true;
+          basedpyright.enable = true;
           biome.enable = true;
           gopls.enable = true;
           jsonls.enable = true;
           lua_ls.enable = true;
           nixd.enable = true;
+          qmlls.enable = true;
+          svelte.enable = true;
           ts_ls.enable = true;
           typos_lsp.enable = true;
-          basedpyright.enable = true;
-          svelte.enable = true;
         };
 
       };
