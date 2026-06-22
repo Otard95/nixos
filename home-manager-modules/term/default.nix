@@ -27,7 +27,7 @@ in {
     ./bash.nix
     ./bat.nix
     ./btop.nix
-    ./direnv.nix
+    ./devenv.nix
     ./fastfetch.nix
     ./fd.nix
     ./fzf.nix

@@ -37,7 +37,7 @@
     term = {
       defaultTerminal = "ghostty";
       kitty.enable = true;
-      direnv.enable = true;
+      devenv.enable = true;
       gh.enable = true;
       git = {
         user = {

@@ -30,7 +30,7 @@
     nixvim.enable = true;
     term = {
       defaultTerminal = "ghostty";
-      direnv.enable = true;
+      devenv.enable = true;
     };
 
   };
