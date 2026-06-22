@@ -52,6 +52,7 @@ in {
     ./hyprland
     ./kanshi
     ./power-menu
+    ./quickshell
     ./theme
     ./mako.nix
     ./uwsm.nix
@@ -70,7 +71,7 @@ in {
           enable = lib.mkDefault true;
           splash-image = cfg.splash-image;
         };
-        kanshi.enable = lib.mkDefault true;
+        # kanshi.enable = lib.mkDefault true;
         theme.enable = lib.mkDefault true;
         mako.enable = lib.mkDefault true;
       };

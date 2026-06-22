@@ -32,9 +32,11 @@ in {
       configType = "lua";
 
       extraLuaFiles = {
-        "lua/config" = { content = ./lua/config.lua; autoLoad = false; };
-        "lua/binds"  = { content = ./lua/binds.lua;  autoLoad = false; };
-        "lua/rules"  = { content = ./lua/rules.lua;  autoLoad = false; };
+        "lua/config"                = { content = ./lua/config.lua; autoLoad = false; };
+        "lua/binds"                 = { content = ./lua/binds.lua;  autoLoad = false; };
+        "lua/rules"                 = { content = ./lua/rules.lua;  autoLoad = false; };
+        "lua/monitors"              = { content = ./lua/monitors.lua;  autoLoad = false; };
+        "lua/utils/debounce-queue"  = { content = ./lua/utils/debounce-queue.lua;  autoLoad = false; };
       };
 
       extraConfig = ''
@@ -44,6 +46,7 @@ in {
           wl_paste  = "${pkgs.wl-clipboard}/bin/wl-paste",
         })
         require("lua.rules").setup()
+        require("lua.monitors").setup()
       '';
 
     };

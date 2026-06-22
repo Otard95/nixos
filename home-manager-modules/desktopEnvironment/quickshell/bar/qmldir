@@ -1,0 +1,22 @@
+module Bar
+singleton Time 1.0 Sources/Time.qml
+singleton WM 1.0 Sources/WM.qml
+singleton BatterySource 1.0 Sources/Battery.qml
+singleton Keyboard 1.0 Sources/Keyboard.qml
+singleton Notifications 1.0 Sources/Notifications.qml
+singleton NetworkSource 1.0 Sources/Network.qml
+singleton Theme 1.0 Theme.qml
+Container 1.0 Components/Container.qml
+Pill 1.0 Components/Pill.qml
+OuterPill 1.0 Components/OuterPill.qml
+ActiveWindow 1.0 Modules/ActiveWindow.qml
+Clock 1.0 Modules/Clock.qml
+Volume 1.0 Modules/Volume.qml
+Network 1.0 Modules/Network.qml
+Battery 1.0 Modules/Battery.qml
+Brightness 1.0 Modules/Brightness.qml
+PowerMenu 1.0 Modules/PowerMenu.qml
+Misc 1.0 Modules/Misc.qml
+Mode 1.0 Modules/Mode.qml
+KeyboardLayout 1.0 Modules/KeyboardLayout.qml
+Workspaces 1.0 Modules/Workspaces.qml
