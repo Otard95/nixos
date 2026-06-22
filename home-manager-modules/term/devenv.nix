@@ -8,7 +8,7 @@ in {
 
   config = lib.mkIf enable {
 
-    environment.systemPackages = [
+    home.packages = [
       pkgs.devenv
     ];
 
