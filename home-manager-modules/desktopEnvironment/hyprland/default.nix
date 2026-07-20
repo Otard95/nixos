@@ -33,7 +33,7 @@ in {
         enable = lib.mkDefault true;
         bg-image = cfg.background-image.horizontal;
       };
-      waybar.enable = lib.mkDefault true;
+      # waybar.enable = lib.mkDefault true;
     };
   };
 
