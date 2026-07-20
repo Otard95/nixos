@@ -36,18 +36,18 @@ Singleton {
 
     // Typography
     readonly property string font: "Meslo LG M"
-    readonly property int fontXs:  11   // captions, labels
-    readonly property int fontSm:  12   // secondary values
-    readonly property int fontMd:  13   // body text
-    readonly property int fontLg:  14   // pill content
-    readonly property int fontXl:  16   // popup headings
-    readonly property int fontDisplay:   52  // large display
-    readonly property int fontDisplaySm: 26  // display secondary
+    readonly property int fontXs: 9   // captions, labels
+    readonly property int fontSm: 11   // secondary values
+    readonly property int fontMd: 12   // body text
+    readonly property int fontLg: 14   // pill content
+    readonly property int fontXl: 16   // popup headings
+    readonly property int fontDisplay: 50  // large display
+    readonly property int fontDisplaySm: 25  // display secondary
 
     // Bar geometry
     readonly property int barHeight: 36
     readonly property int barMarginTop: 10
-    readonly property int barMarginH: 28
+    readonly property int barMarginH: 15
     readonly property int outerRadius: 18
     readonly property int innerRadius: 15
     readonly property real bgAlpha: 1.0

@@ -55,7 +55,7 @@ Pill {
             id: iconText
             anchors.centerIn: parent
             font.family: Theme.font
-            font.pixelSize: Theme.fontLg
+            font.pixelSize: Theme.fontMd
             color: root.iconColor
             text: root.icon
         }

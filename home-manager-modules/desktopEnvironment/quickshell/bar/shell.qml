@@ -1,3 +1,4 @@
+//@ pragma NativeTextRendering
 import Quickshell
 import Quickshell.Wayland
 import QtQuick
@@ -24,12 +25,12 @@ Scope {
             // Push the surface 10px from the top edge, then reserve the
             // combined height so windows start below the gap + bar.
             margins.top: Theme.barMarginTop
-            exclusiveZone: Theme.barHeight + Theme.barMarginTop
+            exclusiveZone: Theme.barHeight
             color: "transparent"
 
             Component.onCompleted: {
                 if (IdleInhibit.window === null)
-                    IdleInhibit.window = panel
+                    IdleInhibit.window = panel;
             }
 
             RowLayout {

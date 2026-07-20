@@ -11,7 +11,7 @@ Pill {
     property bool menuOpen: false
 
     Item {
-        implicitWidth:  icon.implicitWidth + Theme.innerPadH * 2
+        implicitWidth: icon.implicitWidth + Theme.innerPadH * 2
         implicitHeight: Theme.barHeight - 10
 
         Text {
@@ -20,7 +20,7 @@ Pill {
             text: "󰐥"
             color: Theme.red
             font.family: Theme.font
-            font.pixelSize: Theme.fontLg
+            font.pixelSize: Theme.fontMd
         }
 
         MouseArea {
@@ -36,19 +36,20 @@ Pill {
         anchor.rect.y: root.panelWindow.height + 6
         visible: root.menuOpen
         grabFocus: true
-        onVisibleChanged: if (!visible) root.menuOpen = false
+        onVisibleChanged: if (!visible)
+            root.menuOpen = false
 
         color: "transparent"
 
-        implicitWidth:  popupBg.implicitWidth
+        implicitWidth: popupBg.implicitWidth
         implicitHeight: popupBg.implicitHeight
 
         Rectangle {
             id: popupBg
             anchors.fill: parent
-            color:  Theme.base
+            color: Theme.base
             radius: Theme.outerRadius
-            implicitWidth:  popupContent.implicitWidth
+            implicitWidth: popupContent.implicitWidth
             implicitHeight: popupContent.implicitHeight
         }
 
@@ -60,11 +61,26 @@ Pill {
 
             Repeater {
                 model: [
-                    { label: "  Lock",      cmd: ["hyprlock"] },
-                    { label: "  Suspend",   cmd: ["systemctl", "suspend"] },
-                    { label: "  Logout",    cmd: ["uwsm", "stop"] },
-                    { label: "  Reboot",    cmd: ["systemctl", "reboot"] },
-                    { label: "  Shutdown",  cmd: ["systemctl", "poweroff"] },
+                    {
+                        label: "  Lock",
+                        cmd: ["hyprlock"]
+                    },
+                    {
+                        label: "  Suspend",
+                        cmd: ["systemctl", "suspend"]
+                    },
+                    {
+                        label: "  Logout",
+                        cmd: ["uwsm", "stop"]
+                    },
+                    {
+                        label: "  Reboot",
+                        cmd: ["systemctl", "reboot"]
+                    },
+                    {
+                        label: "  Shutdown",
+                        cmd: ["systemctl", "poweroff"]
+                    },
                 ]
 
                 delegate: Rectangle {
@@ -91,9 +107,9 @@ Pill {
                         anchors.fill: parent
                         hoverEnabled: true
                         onClicked: {
-                            root.menuOpen = false
-                            execProc.command = modelData.cmd
-                            execProc.running = true
+                            root.menuOpen = false;
+                            execProc.command = modelData.cmd;
+                            execProc.running = true;
                         }
                     }
                 }

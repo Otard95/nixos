@@ -38,7 +38,7 @@ OuterPill {
                             text: modelData.id < 0 ? "·" : modelData.id
                             color: Theme.crust
                             font.family: Theme.font
-                            font.pixelSize: Theme.fontXs
+                            font.pixelSize: Theme.fontSm
                             font.bold: true
                         }
                     }

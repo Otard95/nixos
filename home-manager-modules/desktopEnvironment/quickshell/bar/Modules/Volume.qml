@@ -7,7 +7,7 @@ Pill {
     readonly property real step: 0.02
 
     Item {
-        implicitWidth:  row.implicitWidth + Theme.innerPadH * 2
+        implicitWidth: row.implicitWidth + Theme.innerPadH * 2
         implicitHeight: Theme.barHeight - 10
 
         Row {
@@ -17,7 +17,7 @@ Pill {
 
             // ── Speaker ───────────────────────────────────────
             Item {
-                implicitWidth:  sinkRow.implicitWidth
+                implicitWidth: sinkRow.implicitWidth
                 implicitHeight: Theme.barHeight - 10
 
                 Row {
@@ -28,16 +28,20 @@ Pill {
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
                         font.family: Theme.font
-                        font.pixelSize: Theme.fontLg
+                        font.pixelSize: Theme.fontMd
                         color: VolumeSource.sinkMuted ? Theme.surface2 : Theme.text
 
                         text: {
-                            if (!VolumeSource.sinkAvailable) return "󰕿"
-                            if (VolumeSource.sinkMuted) return "󰝟"
-                            const vol = VolumeSource.sinkVolume
-                            if (vol < 0.33) return "󰕿"
-                            if (vol < 0.66) return "󰖀"
-                            return "󰕾"
+                            if (!VolumeSource.sinkAvailable)
+                                return "󰕿";
+                            if (VolumeSource.sinkMuted)
+                                return "󰝟";
+                            const vol = VolumeSource.sinkVolume;
+                            if (vol < 0.33)
+                                return "󰕿";
+                            if (vol < 0.66)
+                                return "󰖀";
+                            return "󰕾";
                         }
                     }
 
@@ -53,8 +57,8 @@ Pill {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: VolumeSource.toggleSinkMute()
-                    onWheel: (event) => {
-                        VolumeSource.stepSinkVolume(event.angleDelta.y > 0 ? root.step : -root.step)
+                    onWheel: event => {
+                        VolumeSource.stepSinkVolume(event.angleDelta.y > 0 ? root.step : -root.step);
                     }
                 }
             }
@@ -62,7 +66,7 @@ Pill {
             // ── Mic ───────────────────────────────────────────
             Item {
                 visible: VolumeSource.sourceAvailable
-                implicitWidth:  visible ? sourceRow.implicitWidth : 0
+                implicitWidth: visible ? sourceRow.implicitWidth : 0
                 implicitHeight: Theme.barHeight - 10
 
                 Row {
@@ -73,7 +77,7 @@ Pill {
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
                         font.family: Theme.font
-                        font.pixelSize: Theme.fontLg
+                        font.pixelSize: Theme.fontMd
                         color: VolumeSource.sourceMuted ? Theme.surface2 : Theme.text
                         text: VolumeSource.sourceMuted ? "󰍭" : "󰍬"
                     }
@@ -90,8 +94,8 @@ Pill {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: VolumeSource.toggleSourceMute()
-                    onWheel: (event) => {
-                        VolumeSource.stepSourceVolume(event.angleDelta.y > 0 ? root.step : -root.step)
+                    onWheel: event => {
+                        VolumeSource.stepSourceVolume(event.angleDelta.y > 0 ? root.step : -root.step);
                     }
                 }
             }
