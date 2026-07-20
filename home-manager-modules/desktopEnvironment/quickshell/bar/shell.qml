@@ -27,6 +27,11 @@ Scope {
             exclusiveZone: Theme.barHeight + Theme.barMarginTop
             color: "transparent"
 
+            Component.onCompleted: {
+                if (IdleInhibit.window === null)
+                    IdleInhibit.window = panel
+            }
+
             RowLayout {
                 anchors {
                     fill: parent
@@ -76,9 +81,7 @@ Scope {
                             Brightness {}
                             KeyboardLayout {}
                             Battery {}
-                            Misc {
-                                panelWindow: panel
-                            }
+                            Misc {}
                             Clock {
                                 panelWindow: panel
                             }

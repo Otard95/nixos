@@ -1,14 +1,10 @@
 import qs
 import QtQuick
-import Quickshell.Services.Pipewire
 
 Pill {
     id: root
 
-    readonly property PwNode sink:   Pipewire.defaultAudioSink
-    readonly property PwNode source: Pipewire.defaultAudioSource
-
-    PwObjectTracker { objects: [sink, source] }
+    readonly property real step: 0.02
 
     Item {
         implicitWidth:  row.implicitWidth + Theme.innerPadH * 2
@@ -33,12 +29,12 @@ Pill {
                         anchors.verticalCenter: parent.verticalCenter
                         font.family: Theme.font
                         font.pixelSize: Theme.fontLg
-                        color: sink?.audio?.muted ? Theme.surface2 : Theme.text
+                        color: VolumeSource.sinkMuted ? Theme.surface2 : Theme.text
 
                         text: {
-                            if (!sink?.audio) return "󰕿"
-                            if (sink.audio.muted) return "󰝟"
-                            const vol = sink.audio.volume
+                            if (!VolumeSource.sinkAvailable) return "󰕿"
+                            if (VolumeSource.sinkMuted) return "󰝟"
+                            const vol = VolumeSource.sinkVolume
                             if (vol < 0.33) return "󰕿"
                             if (vol < 0.66) return "󰖀"
                             return "󰕾"
@@ -49,28 +45,23 @@ Pill {
                         anchors.verticalCenter: parent.verticalCenter
                         font.family: Theme.font
                         font.pixelSize: Theme.fontSm
-                        color: sink?.audio?.muted ? Theme.surface2 : Theme.text
-                        text: sink?.audio ? Math.round(sink.audio.volume * 100) + "%" : ""
+                        color: VolumeSource.sinkMuted ? Theme.surface2 : Theme.text
+                        text: VolumeSource.sinkAvailable ? VolumeSource.sinkPercent + "%" : ""
                     }
                 }
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: { if (sink?.audio) sink.audio.muted = !sink.audio.muted }
+                    onClicked: VolumeSource.toggleSinkMute()
                     onWheel: (event) => {
-                        if (!sink?.audio) return
-                        const step = 0.02
-                        if (event.angleDelta.y > 0)
-                            sink.audio.volume = Math.min(1.0, sink.audio.volume + step)
-                        else
-                            sink.audio.volume = Math.max(0.0, sink.audio.volume - step)
+                        VolumeSource.stepSinkVolume(event.angleDelta.y > 0 ? root.step : -root.step)
                     }
                 }
             }
 
             // ── Mic ───────────────────────────────────────────
             Item {
-                visible: source?.audio !== undefined && source?.audio !== null
+                visible: VolumeSource.sourceAvailable
                 implicitWidth:  visible ? sourceRow.implicitWidth : 0
                 implicitHeight: Theme.barHeight - 10
 
@@ -83,29 +74,24 @@ Pill {
                         anchors.verticalCenter: parent.verticalCenter
                         font.family: Theme.font
                         font.pixelSize: Theme.fontLg
-                        color: source?.audio?.muted ? Theme.surface2 : Theme.text
-                        text: source?.audio?.muted ? "󰍭" : "󰍬"
+                        color: VolumeSource.sourceMuted ? Theme.surface2 : Theme.text
+                        text: VolumeSource.sourceMuted ? "󰍭" : "󰍬"
                     }
 
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
                         font.family: Theme.font
                         font.pixelSize: Theme.fontSm
-                        color: source?.audio?.muted ? Theme.surface2 : Theme.text
-                        text: source?.audio ? Math.round(source.audio.volume * 100) + "%" : ""
+                        color: VolumeSource.sourceMuted ? Theme.surface2 : Theme.text
+                        text: VolumeSource.sourceAvailable ? VolumeSource.sourcePercent + "%" : ""
                     }
                 }
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: { if (source?.audio) source.audio.muted = !source.audio.muted }
+                    onClicked: VolumeSource.toggleSourceMute()
                     onWheel: (event) => {
-                        if (!source?.audio) return
-                        const step = 0.02
-                        if (event.angleDelta.y > 0)
-                            source.audio.volume = Math.min(1.0, source.audio.volume + step)
-                        else
-                            source.audio.volume = Math.max(0.0, source.audio.volume - step)
+                        VolumeSource.stepSourceVolume(event.angleDelta.y > 0 ? root.step : -root.step)
                     }
                 }
             }

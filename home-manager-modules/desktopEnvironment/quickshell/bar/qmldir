@@ -5,6 +5,10 @@ singleton BatterySource 1.0 Sources/Battery.qml
 singleton Keyboard 1.0 Sources/Keyboard.qml
 singleton Notifications 1.0 Sources/Notifications.qml
 singleton NetworkSource 1.0 Sources/Network.qml
+singleton IdleInhibit 1.0 Sources/IdleInhibit.qml
+singleton Mic 1.0 Sources/Mic.qml
+singleton VolumeSource 1.0 Sources/Volume.qml
+singleton BrightnessSource 1.0 Sources/Brightness.qml
 singleton Theme 1.0 Theme.qml
 Container 1.0 Components/Container.qml
 Pill 1.0 Components/Pill.qml
