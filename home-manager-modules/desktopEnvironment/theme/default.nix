@@ -25,6 +25,7 @@ in {
       cursors.enable = false;
     };
     home.pointerCursor = {
+      enable = true;
       name = "rose-pine-hyprcursor";
       package = pkgs.rose-pine-hyprcursor;
       size = 24;

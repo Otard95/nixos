@@ -27,6 +27,11 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
+      # [Hyprland Wiki - Using the Home-Manager module with NixOS](https://wiki.hypr.land/Nix/Hyprland-on-Home-Manager/#using-the-home-manager-module-with-nixos)
+      package = null;
+      portalPackage = null;
+
+      # Home-Manager systemd conflicts wtith NixOS uwsm
       systemd.enable = false;
 
       configType = "lua";
