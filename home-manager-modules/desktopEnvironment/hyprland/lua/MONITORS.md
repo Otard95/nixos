@@ -120,9 +120,24 @@ with AMD 7040 series (Phoenix) hardware.
 At boot, aquamarine tries to modeset all detected outputs concurrently
 with `ATOMIC_NONBLOCK` commits. This causes `"Device or resource busy"`
 and `"Cannot commit when a page-flip is awaiting"` errors in the
-Hyprland log. The errors are transient and resolve within a few seconds
-as the display pipeline settles. They do not cause permanent issues with
-the PSR workaround in place.
+Hyprland log. Usually transient, but occasionally a monitor gets stuck
+at `0x0@60Hz` resolution when its modeset permanently fails. This
+affects any output (HDMI-A-1, DP-7, etc.) and cannot be fixed by
+`hyprctl reload` or re-applying monitor rules — the DRM CRTC state is
+corrupted. The only recovery is restarting the Hyprland session
+(`uwsm stop && uwsm start hyprland` from a TTY).
+
+The PSR workaround (`amdgpu.dcdebugmask=0x10`) reduces the frequency
+of this issue but does not eliminate it entirely.
+
+Upstream issues:
+- [#14522](https://github.com/hyprwm/Hyprland/discussions/14522) —
+  eDP-1 stuck disabled after dock disconnect (exact match)
+- [#13224](https://github.com/hyprwm/Hyprland/discussions/13224) —
+  HDMI stuck in page-flip loop after hotplug
+- [#14547](https://github.com/hyprwm/Hyprland/pull/14547) — merged
+  refactor of monitor state/fallback (in 0.55.4, partial fix)
+- The full fix for the page-flip race is expected in Hyprland 0.56.
 
 ### Wayland client crashes on USB-C disconnect
 
@@ -140,8 +155,27 @@ quickshell, etc.) may need manual restart after a USB-C hot-unplug.
 
 - Does not return disabled monitors
 - Does not return mirrored monitors
+- Returns `FALLBACK` pseudo-monitor when all real outputs are gone
+  (e.g. during suspend). This must be filtered out.
 - PR #14693 adds `hl.get_monitors({ all = true })` but is not merged
   as of Hyprland v0.55.4
+
+### HDMI-A-1 disappearing after full dock replug
+
+After a full dock unplug/replug cycle, HDMI-A-1 sometimes reconnects
+in a broken state where Hyprland doesn't report it via
+`hl.get_monitors()` even though it's physically connected. The DP
+monitors (which go through MST) appear fine.
+
+When `apply()` detects dock DP ports without HDMI-A-1, it triggers
+`hyprctl reload` which forces Hyprland to re-evaluate all connectors
+and recover HDMI-A-1. This is a workaround for an aquamarine bug.
+
+### FALLBACK monitor
+
+When all real monitors disconnect (suspend, full dock unplug), Hyprland
+creates an internal `FALLBACK` monitor. `get_monitor_names()` filters
+it out so it doesn't pollute profile detection or get mirrored.
 
 ## Debugging
 
