@@ -88,7 +88,7 @@ in {
     })
 
     (lib.mkIf (builtins.elem "amdgpu" gpuTypes) {
-      boot.kernelParams = [ "amdgpu.dc=1" "amdgpu.dpm=1" ];
+      boot.kernelParams = [ "amdgpu.dc=1" "amdgpu.dpm=1" "amdgpu.dcdebugmask=0x10" ];
     })
 
     (lib.mkIf (lib.length gpuTypes == 2 && builtins.elem "nvidia" gpuTypes) {
