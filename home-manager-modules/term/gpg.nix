@@ -15,7 +15,7 @@ in {
         };
       };
       wayprompt = {
-        enable = true;
+        enable = false; # Temprary until fixed
         settings = {
           general = {
             # Font used for description, buttons and error message. Defaults to "sans:size=14".
@@ -83,8 +83,8 @@ in {
       enable = true;
       enableSshSupport = true;
       pinentry = {
-        package = pkgs.wayprompt;
-        program = "pinentry-wayprompt";
+        package = pkgs.pinentry-gnome3;
+        program = "pinentry-gnome3";
       };
     };
 
