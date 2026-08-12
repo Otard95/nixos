@@ -165,6 +165,11 @@ in {
 
         bind C-l send-keys C-l
 
+        # Override catppuccin's align=centre on message styles — it centers the
+        # text visually but tmux places the cursor at position 0, causing the
+        # command prompt cursor to appear far left of the actual input.
+        set -g message-style         "fg=#82c8be,bg=#303446,fill=#303446"
+        set -g message-command-style "fg=#81c8be,bg=#303446,fill=#303446"
       '';
     };
     xdg.configFile."tmux/tmux.conf".text = lib.mkOrder 600 ''
