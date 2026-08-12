@@ -172,6 +172,11 @@ in {
         #  plugin settings #
         ####################
 
+        # vim-tmux-navigator: walk pane_pid's process tree so nvim is detected even
+        # inside subshells that create new sessions (devenv, pipenv, nix-shell, etc.)
+        # See: https://github.com/christoomey/vim-tmux-navigator/issues/295
+        set -g @vim_navigator_check "ps -eo pid=,ppid=,stat=,comm= | awk -v pid=\#{pane_pid} '(\$3 !~ /^T/) { a[\$1]=\$2; n[\$1]=\$4 } END { for (p in a) { c=p; while (c && c!=\"0\") { if (c==pid && n[p]~/([gn]?vim?x?)(diff)?$/) { exit 0 }; c=a[c] } }; exit 1 }'"
+
         set -g @sessionx-bind 'j'
         set -g @sessionx-zoxide-mode 'on'
         # set -g @t-fzf-prompt '  '
