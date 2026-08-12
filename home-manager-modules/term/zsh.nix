@@ -15,7 +15,7 @@ in {
 
       shellAliases = {
         ls = "${pkgs.eza}/bin/eza";
-        ll = "${pkgs.eza}/bin/eza -laah --git --icons";
+        ll = "${pkgs.eza}/bin/eza -laah --git --icons auto";
         ".." = "cd ..";
       };
 

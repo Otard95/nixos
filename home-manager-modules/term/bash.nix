@@ -28,7 +28,7 @@ in {
 
       shellAliases = {
         ls = "${pkgs.eza}/bin/eza";
-        ll = "${pkgs.eza}/bin/eza -laah --git --icons";
+        ll = "${pkgs.eza}/bin/eza -laah --git --icons auto";
         ".." = "cd ..";
       } // lib.mapAttrs (command: envs: let
           envStr = lib.concatStringsSep " " (lib.mapAttrsToList helpers.toShellVarRaw envs);
