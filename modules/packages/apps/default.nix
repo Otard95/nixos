@@ -37,6 +37,7 @@ in {
     ./signal.nix
     ./slack.nix
     ./thunar.nix
+    ./tldraw.nix
     ./vivaldi.nix
     ./wooting.nix
     ./yubikey.nix

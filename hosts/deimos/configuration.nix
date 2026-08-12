@@ -75,6 +75,7 @@
         };
         obsidian.enable = true;
         slack.enable = true;
+        tldraw.enable = true;
         vivaldi.enable = true;
       };
     };
