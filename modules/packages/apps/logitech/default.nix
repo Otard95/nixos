@@ -6,11 +6,12 @@ in {
   options.modules.packages.apps.logitech = {
     enable = lib.mkEnableOption "logitech apps";
 
-    solaar.enable = lib.mkEnableOption "solaar" // { default = true; };
+    solaar.enable = lib.mkEnableOption "solaar";
   };
 
   imports = [
     ./logiops.nix
+    ./openlogi.nix
   ];
 
   config = lib.mkIf enable {
