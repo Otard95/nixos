@@ -26,14 +26,14 @@ let
 
   pi-extensions = mkPiPackage rec {
     pname = "pi-extensions";
-    version = "0.15.0";
+    version = "0.16.0";
     src = pkgs.fetchFromGitHub {
       owner = "Otard95";
       repo = "pi-extensions";
       tag = "v${version}";
-      hash = "sha256-dYiBm59jZ8WQOz+U65ZMfWDQXgWEmkmqeTZzMLRMALs=";
+      hash = "sha256-XxDPV0P2AbKiOVOaf6JhPiGjva4QQwx4DuREANnjqJc=";
     };
-    npmDepsHash = "sha256-jdvNATxmh48fRHHSeLzEjloEEXK9s0z7LIpdtNq4KoY=";
+    npmDepsHash = "sha256-UKeod/4JkOT/W5lXlQ8WdcatMyL/epCqyrUOdsyyi4w=";
   };
 in {
 
@@ -52,13 +52,32 @@ in {
     xdg.configFile = {
       "pi/settings.json".source = jsonFormat.generate "pi-settings.json" {
         theme = "catppuccin-frappe";
-        lastChangelogVersion = "0.71.0";
+        collapseChangelog = false;
+        lastChangelogVersion = "0.84.1";
         defaultProvider = "anthropic";
         defaultModel = "claude-sonnet-4-6";
         defaultThinkingLevel = "medium";
         enableInstallTelemetry = false;
         packages = [
-          "${pi-extensions}/lib"
+          {
+            source = "${pi-extensions}/lib";
+            extensions = [
+              "extensions/context-inspector/*"
+              "extensions/continue/*"
+              "extensions/guards/*"
+              "extensions/load-skill/*"
+              "extensions/pi-cloak/*"
+              "extensions/protected-files/*"
+              "extensions/read-line-numbers/*"
+              "extensions/save-md/*"
+              "extensions/screenshot/*"
+              "extensions/searxng/*"
+              "extensions/web-read/*"
+              "extensions/semantic-compaction/*"
+              "extensions/session-namer/*"
+              "extensions/voice-input/*"
+            ];
+          }
         ];
         searxng = {
           url = "https://searxng.core-lab.net";
