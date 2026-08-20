@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-26.05";
 
     # Home Manager
     home-manager = {
@@ -43,6 +43,9 @@
       url = "github:Otard95/ed-expedition";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Tmp fix until nixpkgs are updated
+    firezone.url = "github:firezone/firezone/gui-client-1.5.16";
   };
 
   outputs = { nixpkgs, nixpkgs-stable, home-manager, nixvim, catppuccin, nix-index-database, ... } @ inputs:
