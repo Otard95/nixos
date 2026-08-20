@@ -26,12 +26,12 @@ let
 
   pi-extensions = mkPiPackage rec {
     pname = "pi-extensions";
-    version = "0.16.0";
+    version = "0.17.0";
     src = pkgs.fetchFromGitHub {
       owner = "Otard95";
       repo = "pi-extensions";
       tag = "v${version}";
-      hash = "sha256-XxDPV0P2AbKiOVOaf6JhPiGjva4QQwx4DuREANnjqJc=";
+      hash = "sha256-zwHZ1ZQbQeEMeh7lbXRDSlim+U/6eX98s114WOC9pJM=";
     };
     npmDepsHash = "sha256-UKeod/4JkOT/W5lXlQ8WdcatMyL/epCqyrUOdsyyi4w=";
   };
@@ -85,14 +85,10 @@ in {
         };
         protected-files = {
           patterns = [
-            "*.env*"
             ".secret*"
             "secrets/**"
             "*.pem"
             "*.key"
-            "FrameWork/settings.json"
-            "FrameWork/settings.*.json"
-            "services.json"
           ];
         };
         pass = {
