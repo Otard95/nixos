@@ -21,6 +21,14 @@ in {
       };
     };
 
+    systemd.user.services.docker = {
+      path = [ pkgs.passt ];
+      environment = {
+        DOCKERD_ROOTLESS_ROOTLESSKIT_NET = "pasta";
+        DOCKERD_ROOTLESS_ROOTLESSKIT_DISABLE_HOST_LOOPBACK = "false";
+      };
+    };
+
     security.wrappers = {
       docker-rootlesskit = {
         owner = "root";

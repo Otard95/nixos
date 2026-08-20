@@ -92,11 +92,9 @@ in {
       };
     })
     (lib.mkIf cfg.preset.smb-backend.enable {
-      networking.firewall = {
-        allowedTCPPortRanges = [ { from = 9000; to = 9020; } ];
-      };
+      networking.firewall.trustedInterfaces = [ "docker0" ];
       networking.extraHosts = ''
-        127.0.0.1 tenderms.dart ma2.dart melvis.dart ticketms.dart chat.dart
+        127.0.0.1 tenderms.dart ma2.dart melvis.dart ticketms.dart chat.dart review.dart
       '';
     })
     (lib.mkIf cfg.preset.smb-frontend.enable {
