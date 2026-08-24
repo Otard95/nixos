@@ -48,7 +48,7 @@
     firezone.url = "github:firezone/firezone/gui-client-1.5.16";
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, home-manager, nixvim, catppuccin, nix-index-database, ... } @ inputs:
+  outputs = { nixpkgs, nixpkgs-stable, home-manager, nixvim, catppuccin, nix-index-database, firezone, ... } @ inputs:
   let
     system = "x86_64-linux";
 
@@ -89,6 +89,7 @@
       modules = [
         catppuccin.nixosModules.catppuccin
         nixvim.nixosModules.nixvim
+        firezone.nixosModules.default
         ./nixvim
         ./modules
         (nixpkgs.lib.path.append ./hosts "${hostname}/configuration.nix")

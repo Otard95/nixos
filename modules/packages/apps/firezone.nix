@@ -1,4 +1,4 @@
-{ config, lib, inputs, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.modules.packages.apps.firezone;
   enable = cfg.enable;
@@ -11,8 +11,8 @@ in {
     services.firezone = {
       gui-client = {
         enable = true;
-        package = inputs.firezone.packages.${pkgs.stdenv.hostPlatform.system}.firezone-gui-client;
-        name = "Stian - Deimos";
+        # package = inputs.firezone.packages.${pkgs.stdenv.hostPlatform.system}.firezone-gui-client;
+        # name = "Stian - Deimos";
         allowedUsers = [ "otard" ];
       };
       # headless-client = {
