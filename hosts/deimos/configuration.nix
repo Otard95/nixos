@@ -55,7 +55,6 @@
         _1password.enable = true;
         clickup.enable = true;
         clocks.enable = true;
-        digiKam.enable = true;
         firezone.enable = true;
         kdeconnect.enable = true;
         logitech = {
@@ -74,10 +73,8 @@
           #   preset.sensibleMXMaster4 = true;
           # };
         };
-        obsidian.enable = true;
         slack.enable = true;
         tldraw.enable = true;
-        vivaldi.enable = true;
       };
     };
   };
