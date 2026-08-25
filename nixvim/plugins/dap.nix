@@ -91,6 +91,26 @@ in {
             };
           };
 
+
+          configurations.go = [
+            {
+              type = "delve";
+              name = "Debug package";
+              request = "launch";
+              mode = "debug";
+              program = "\${workspaceFolder}";
+              cwd = "\${workspaceFolder}";
+            }
+            {
+              type = "delve";
+              name = "Debug test";
+              request = "launch";
+              mode = "test";
+              program = "\${workspaceFolder}";
+              cwd = "\${workspaceFolder}";
+            }
+          ];
+
           adapters = {
             servers = {
               pwa-node = {
@@ -103,6 +123,20 @@ in {
                 };
                 options = {
                   maxRetries = 40;
+                };
+              };
+              delve = {
+                port = "\${port}";
+                executable = {
+                  command = toString (pkgs.writeShellScript "delve-dap" ''
+                    export CGO_CFLAGS=-O2
+                    exec ${pkgs.delve}/bin/dlv "$@"
+                  '');
+                  args = [
+                    "dap"
+                    "-l"
+                    "127.0.0.1:\${port}"
+                  ];
                 };
               };
             };
