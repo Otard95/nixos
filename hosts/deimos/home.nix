@@ -29,10 +29,7 @@
       quickshell.enable = true;
     };
     packages = {
-      obsidian = {
-        enable = true;
-        vaults = [ { name = "work"; path = "dev/smb/vaults/work"; } ];
-      };
+      voxtype.enable = true;
     };
     term = {
       defaultTerminal = "ghostty";

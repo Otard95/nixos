@@ -13,6 +13,7 @@ in {
     ./gromit.nix
     ./hdrop.nix
     ./obsidian.nix
+    ./voxtype.nix
   ];
 
   config = lib.mkIf enable {

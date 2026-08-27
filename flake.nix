@@ -44,11 +44,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    voxtype = {
+      url = "github:peteonrails/voxtype";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Tmp fix until nixpkgs are updated
     firezone.url = "github:firezone/firezone/gui-client-1.5.16";
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, home-manager, nixvim, catppuccin, nix-index-database, firezone, ... } @ inputs:
+  outputs = { nixpkgs, nixpkgs-stable, home-manager, nixvim, catppuccin, nix-index-database, voxtype, firezone, ... } @ inputs:
   let
     system = "x86_64-linux";
 
@@ -105,6 +110,7 @@
               catppuccin.homeModules.catppuccin
               nixvim.homeModules.nixvim
               nix-index-database.homeModules.default
+              voxtype.homeManagerModules.default
               ./home-manager-modules
               ./nixvim
               (nixpkgs.lib.path.append ./hosts "${hostname}/home.nix")
