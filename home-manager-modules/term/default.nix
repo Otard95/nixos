@@ -32,6 +32,7 @@ in {
     ./fd.nix
     ./fzf.nix
     ./gh.nix
+    ./gh-dash.nix
     ./ghostty.nix
     ./git.nix
     ./gpg.nix

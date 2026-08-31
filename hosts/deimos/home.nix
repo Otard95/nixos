@@ -36,6 +36,7 @@
       kitty.enable = true;
       devenv.enable = true;
       gh.enable = true;
+      gh-dash.enable = true;
       git = {
         user = {
           name = "Stian Myklebostad";
