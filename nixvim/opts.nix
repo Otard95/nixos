@@ -58,7 +58,7 @@ in {
     modules.nixvim.ft-opts = {
       c = { commentstring = "//%s"; };
       cpp = { commentstring = "//%s"; };
-      php = { shiftwidth = 4; tabstop = 4; autoindent = true; };
+      php = { commentstring = "//%s"; shiftwidth = 4; tabstop = 4; autoindent = true; };
       json = { formatprg = "jq"; };
       go = { expandtab = false; };
     };
