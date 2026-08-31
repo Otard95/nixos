@@ -24,8 +24,11 @@ in {
     systemd.user.services.docker = {
       path = [ pkgs.passt ];
       environment = {
-        DOCKERD_ROOTLESS_ROOTLESSKIT_NET = "pasta";
+        DOCKERD_ROOTLESS_ROOTLESSKIT_NET = "slirp4netns";
+        DOCKERD_ROOTLESS_ROOTLESSKIT_PORT_DRIVER = "builtin";
         DOCKERD_ROOTLESS_ROOTLESSKIT_DISABLE_HOST_LOOPBACK = "false";
+        # DOCKERD_ROOTLESS_ROOTLESSKIT_NET = "pasta";
+        # DOCKERD_ROOTLESS_ROOTLESSKIT_DISABLE_HOST_LOOPBACK = "false";
       };
     };
 
@@ -35,6 +38,12 @@ in {
         group = "root";
         capabilities = "cap_net_bind_service+ep";
         source = "${pkgs.rootlesskit}/bin/rootlesskit";
+      };
+      pasta = {
+        owner = "root";
+        group = "root";
+        capabilities = "cap_net_bind_service+ep";
+        source = "${pkgs.passt}/bin/pasta";
       };
     };
 

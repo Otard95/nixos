@@ -95,6 +95,7 @@ in {
       networking.firewall.trustedInterfaces = [ "docker0" ];
       networking.extraHosts = ''
         127.0.0.1 tenderms.dart ma2.dart melvis.dart ticketms.dart chat.dart review.dart
+        127.0.0.1 chat-ms.dart customer-intel-ms.dart email-ms.dart geo-ms.dart mittanbud-ms.dart review-ms.dart search-ms.dart sms-ms.dart tender-ms.dart ticket-ms.dart wiki-ms.dart
       '';
     })
     (lib.mkIf cfg.preset.smb-frontend.enable {
