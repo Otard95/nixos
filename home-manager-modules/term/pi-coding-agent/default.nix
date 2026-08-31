@@ -1,40 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let
   cfg = config.modules.term.pi-coding-agent;
   enable = cfg.enable;
 
   jsonFormat = pkgs.formats.json { };
 
-  mkPiPackage = attrs: pkgs.buildNpmPackage ({
-    npmPackFlags = [ "--ignore-scripts" ];
-    npmInstallFlags = [ "--ignore-scripts" "--omit=dev" "--omit=peer" "--omit=optional" ];
-    buildPhase = ''
-      runHook preBuild
-      mkdir -p $out/lib/
-      runHook postBuild
-    '';
-    installPhase = ''
-      runHook preBuild
-      cp -r node_modules $out/lib/
-      cp -r extensions $out/lib/
-      cp -r utils $out/lib/
-      cp package.json $out/lib/
-      runHook postBuild
-    '';
-    meta.description = "A pi-coding-agent package";
-  } // attrs);
-
-  pi-extensions = mkPiPackage rec {
-    pname = "pi-extensions";
-    version = "0.17.0";
-    src = pkgs.fetchFromGitHub {
-      owner = "Otard95";
-      repo = "pi-extensions";
-      tag = "v${version}";
-      hash = "sha256-zwHZ1ZQbQeEMeh7lbXRDSlim+U/6eX98s114WOC9pJM=";
-    };
-    npmDepsHash = "sha256-UKeod/4JkOT/W5lXlQ8WdcatMyL/epCqyrUOdsyyi4w=";
-  };
+  pi-extensions = inputs.pi-extensions.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in {
 
   options.modules.term.pi-coding-agent.enable = lib.mkEnableOption "pi-coding-agent configuration";
@@ -71,7 +42,7 @@ in {
               "extensions/read-line-numbers/*"
               "extensions/save-md/*"
               "extensions/screenshot/*"
-              "extensions/searxng/*"
+              "extensions/web-search/*"
               "extensions/web-read/*"
               "extensions/semantic-compaction/*"
               "extensions/session-namer/*"
@@ -79,10 +50,6 @@ in {
             ];
           }
         ];
-        searxng = {
-          url = "https://searxng.core-lab.net";
-          authorization = "pass:searxng/auth";
-        };
         protected-files = {
           patterns = [
             ".secret*"
@@ -100,6 +67,13 @@ in {
             { class = "yubioath"; }
             { class = "1password"; }
           ];
+        };
+        web-search = {
+          providers = ["duckduckgo" "searxng"];
+          searxng = {
+            url = "https://searxng.core-lab.net";
+            authorization = "pass:searxng/auth";
+          };
         };
         web-read = {
           browserPath = lib.getExe pkgs.chromium;
