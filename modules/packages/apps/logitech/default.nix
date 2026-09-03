@@ -17,6 +17,6 @@ in {
   config = lib.mkIf enable {
     modules.system.hardware.logitech.enable = true;
 
-    hardware.logitech.wireless.enableGraphical = cfg.solaar.enable;
+    programs.solaar.enable = cfg.solaar.enable;
   };
 }
