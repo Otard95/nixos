@@ -55,7 +55,6 @@
       ollama.enable = true;
       apps = {
         _1password.enable = true;
-        clickup.enable = true;
         clocks.enable = true;
         dbeaver.enable = true;
         kdeconnect.enable = true;

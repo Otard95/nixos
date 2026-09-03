@@ -11,7 +11,6 @@ in {
     ./bitwarden.nix
     ./blueman.nix
     ./calibre.nix
-    ./clickup.nix
     ./clocks.nix
     ./dbeaver.nix
     ./digiKam.nix
