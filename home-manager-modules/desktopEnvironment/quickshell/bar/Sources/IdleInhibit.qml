@@ -1,6 +1,7 @@
 pragma Singleton
 import QtQuick
 import Quickshell
+import Quickshell.Io
 import Quickshell.Wayland
 
 Singleton {
@@ -10,9 +11,16 @@ Singleton {
     property var window: null
 
     IdleInhibitor {
-        window:  root.window
+        window: root.window
         enabled: root.active && root.window !== null
     }
 
-    function toggle() { active = !active }
+    Process {
+        command: ["systemd-inhibit", "--what=idle", "--who=Quickshell", "--why=Idle inhibitor enabled", "--mode=block", "sleep", "infinity",]
+        running: root.active
+    }
+
+    function toggle() {
+        active = !active;
+    }
 }
