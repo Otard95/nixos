@@ -43,6 +43,7 @@ in {
     ./starship.nix
     ./television.nix
     ./tmux.nix
+    ./tuicr.nix
     ./useful-commands.nix
     ./zoxide.nix
     ./zsh.nix

@@ -8,6 +8,8 @@ in {
 
   config = lib.mkIf enable {
 
+    modules.term.gh.enable = lib.mkDefault true;
+
     programs.gh-dash = {
       enable = true;
 
@@ -19,7 +21,11 @@ in {
               name = "edit";
               command = "gh pr edit --repo {{.RepoName}} {{.PrNumber}}";
             }
-          ];
+          ] ++ lib.lists.optional config.modules.term.tuicr.enable {
+              key = "D";
+              name = "review";
+              command = "tuicr pr {{.RepoName}}#{{.PrNumber}}";
+            };
         };
       };
     };

@@ -37,6 +37,7 @@
       devenv.enable = true;
       gh.enable = true;
       gh-dash.enable = true;
+      tuicr.enable = true;
       git = {
         user = {
           name = "Stian Myklebostad";
