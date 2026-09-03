@@ -145,18 +145,18 @@ in {
               php = {
                 command = "node";
                 args = [ "${pkgs.vscode-extensions.xdebug.php-debug}/share/vscode/extensions/xdebug.php-debug/out/phpDebug.js" ];
-                # TODO: Test this
                 enrichConfig = nixvim.mkRaw ''
                   function(conf, on_config)
-                    if not conf.localSourceRoot then
-                      local config = vim.deepcopy(conf)
-                      config.pathMappings = {
-                        ["/var/www/html/"] = vim.fn.getcwd().."/",
-                      }
-                      on_config(config)
-                    else
+                    if conf.pathMappings then
                       on_config(conf)
+                      return
                     end
+
+                    local config = vim.deepcopy(conf)
+                    config.pathMappings = {
+                      ["/var/www/html/"] = vim.fn.getcwd() .. "/",
+                    }
+                    on_config(config)
                   end
                 '';
               };
