@@ -1,0 +1,35 @@
+module Bar
+PrimaryBar 1.0 Modules/PrimaryBar.qml
+singleton Time 1.0 Sources/Time.qml
+singleton WM 1.0 Sources/WM.qml
+singleton BatterySource 1.0 Sources/Battery.qml
+singleton Keyboard 1.0 Sources/Keyboard.qml
+singleton Notifications 1.0 Sources/Notifications.qml
+singleton NetworkSource 1.0 Sources/Network.qml
+singleton IdleInhibit 1.0 Sources/IdleInhibit.qml
+singleton Mic 1.0 Sources/Mic.qml
+singleton VolumeSource 1.0 Sources/Volume.qml
+singleton BrightnessSource 1.0 Sources/Brightness.qml
+singleton BluetoothSource 1.0 Sources/Bluetooth.qml
+singleton ResourceUsage 1.0 Sources/ResourceUsage.qml
+singleton MediaSource 1.0 Sources/Media.qml
+singleton TimerSource 1.0 Sources/Timer.qml
+singleton StatusPanelState 1.0 Sources/StatusPanelState.qml
+singleton Theme 1.0 Theme.qml
+DocumentStore 1.0 Sources/DocumentDb/DocumentStore.qml
+Container 1.0 Components/Container.qml
+StyledText 1.0 Components/StyledText.qml
+Pill 1.0 Components/Pill.qml
+OuterPill 1.0 Components/OuterPill.qml
+ActiveWindow 1.0 Modules/Left/ActiveWindow.qml
+Clock 1.0 Modules/Center/Clock.qml
+Volume 1.0 Modules/Legacy/Volume.qml
+Network 1.0 Modules/Legacy/Network.qml
+Battery 1.0 Modules/Center/Battery.qml
+Brightness 1.0 Modules/Legacy/Brightness.qml
+PowerMenu 1.0 Modules/Legacy/PowerMenu.qml
+StatusPill 1.0 Modules/Right/StatusPill.qml
+Misc 1.0 Modules/Legacy/Misc.qml
+Mode 1.0 Modules/Left/Mode.qml
+KeyboardLayout 1.0 Modules/Legacy/KeyboardLayout.qml
+Workspaces 1.0 Modules/Center/Workspaces.qml

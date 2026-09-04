@@ -21,12 +21,12 @@ in {
           { # brightness/warn idle
             timeout = 90; # 1.5min
             on-timeout = builtins.concatStringsSep " ; " [
-              "${pkgs.brightnessctl}/bin/brightnessctl -s set 10"
-              "${pkgs.libnotify}/bin/notify-send -pu critical 'You are idle' 'Locking in 1min' > /var/tmp/idle-notification"
+              "${pkgs.brightnessctl}/bin/brightnessctl -s set 30"
+              "${lib.getExe pkgs.libnotify} -pu critical 'You are idle' 'Locking in 1min' > /var/tmp/idle-notification"
             ];
             on-resume = builtins.concatStringsSep " ; " [
               "${pkgs.brightnessctl}/bin/brightnessctl -r"
-              "${pkgs.mako}/bin/makoctl dismiss -n $(cat /var/tmp/idle-notification)"
+              "busctl --user call org.freedesktop.Notifications /org/freedesktop/Notifications org.freedesktop.Notifications CloseNotification u $(cat /var/tmp/idle-notification)"
             ];
           }
 

@@ -1,0 +1,47 @@
+[
+  {
+    "appName": "Build Service",
+    "icon": "applications-development",
+    "summary": "Build queued",
+    "body": "default is waiting for an available runner.",
+    "urgency": "normal"
+  },
+  {
+    "appName": "Calendar",
+    "icon": "x-office-calendar",
+    "category": "appointment",
+    "summary": "Design review in 10 minutes",
+    "body": "Conference room: Fjord",
+    "urgency": "normal"
+  },
+  {
+    "appName": "Build Service",
+    "icon": "applications-development",
+    "summary": "Tests passed",
+    "body": "128 checks completed successfully.",
+    "urgency": "normal"
+  },
+  {
+    "appName": "Calendar",
+    "icon": "x-office-calendar",
+    "category": "appointment",
+    "summary": "Design review starts now",
+    "body": "Fjord is ready for the team.",
+    "urgency": "normal"
+  },
+  {
+    "appName": "Build Service",
+    "icon": "applications-development",
+    "summary": "Deployment approval required",
+    "body": "Production release v2.14.0 is ready for approval.",
+    "urgency": "critical"
+  },
+  {
+    "appName": "System Monitor",
+    "icon": "dialog-warning",
+    "category": "device",
+    "summary": "Disk space critically low",
+    "body": "Only <b>4.2 GB</b> remains on the root filesystem.",
+    "urgency": "critical"
+  }
+]

@@ -39,6 +39,10 @@ in {
 
     background-image = helpers.mkOption.monitorBackground sources.images.background.falling-into-infinity;
     splash-image = helpers.mkOption.image "splash" // { default = sources.images.splash.spacegirl; };
+
+    notifications.provider = (helpers.mkOption.enum
+      "Notification provider to use"
+      ["mako" "quickshell"]) // { default = "mako"; };
   };
 
   imports = [
@@ -67,7 +71,6 @@ in {
         };
         # kanshi.enable = lib.mkDefault true;
         theme.enable = lib.mkDefault true;
-        mako.enable = lib.mkDefault true;
       };
     }
     (lib.mkIf (cfg.windowManager == "hyprland") {
@@ -114,6 +117,19 @@ in {
       in lib.concatStringsSep "\n" (
         map mkBind cfg.keybinds
       );
+    })
+    (lib.mkIf (cfg.notifications.provider == "mako") {
+      modules.desktopEnvironment = {
+        mako.enable = lib.mkDefault true;
+        quickshell.notifications.backend = "mako";
+      };
+    })
+    (lib.mkIf (cfg.notifications.provider == "quickshell") {
+      assertions = [{
+        assertion = config.modules.desktopEnvironment.quickshell.enable;
+        message = "quickshell must be enabled to use it as a notifications provider";
+      }];
+      modules.desktopEnvironment.quickshell.notifications.backend = "native";
     })
   ]);
 }

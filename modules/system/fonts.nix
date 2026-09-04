@@ -11,6 +11,7 @@ in {
       enableDefaultPackages = true;
       fontDir.enable = true;
       packages = with pkgs; [
+        open-sans
         meslo-lg
         nerd-fonts.symbols-only
         noto-fonts-cjk-sans

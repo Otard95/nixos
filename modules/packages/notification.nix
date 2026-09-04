@@ -8,7 +8,6 @@ in {
 
   config = lib.mkIf enable {
     environment.systemPackages = with pkgs; [
-      mako
       libnotify
     ];
   };

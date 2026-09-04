@@ -1,4 +1,4 @@
-{ config, lib, theme, ... }:
+{ config, lib, pkgs, theme, ... }:
 let
   cfg = config.modules.desktopEnvironment.mako;
   enable = cfg.enable;
@@ -13,6 +13,8 @@ in {
       flavor = theme.flavor;
       accent = theme.accent;
     };
+
+    home.packages = [ pkgs.mako ];
 
     services.mako = {
       enable = true;

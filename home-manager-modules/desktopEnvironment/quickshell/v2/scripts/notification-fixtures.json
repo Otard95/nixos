@@ -1,0 +1,69 @@
+[
+  {
+    "appName": "Calendar",
+    "icon": "x-office-calendar",
+    "category": "appointment",
+    "summary": "Design review in 10 minutes",
+    "body": "Notification interface review\nConference room: Fjord",
+    "urgency": "normal"
+  },
+  {
+    "appName": "Build Service",
+    "icon": "applications-development",
+    "summary": "Build succeeded",
+    "body": "default · 128 tests passed\nCompleted in 42 seconds",
+    "urgency": "normal"
+  },
+  {
+    "appName": "Build Service",
+    "icon": "applications-development",
+    "summary": "Deployment approval required",
+    "body": "Production release v2.14.0 is ready for approval.",
+    "urgency": "critical"
+  },
+  {
+    "appName": "Zen",
+    "icon": "zen",
+    "desktopEntry": "zen",
+    "category": "im.received",
+    "summary": "Pull request review requested",
+    "body": "schibsted-smb/graphql-monorepo",
+    "urgency": "normal",
+    "actions": [
+      { "id": "default", "label": "Activate" }
+    ]
+  },
+  {
+    "appName": "Slack",
+    "icon": "slack",
+    "category": "im.received",
+    "summary": "Alex Morgan",
+    "body": "Can you review the notification interface?",
+    "urgency": "normal",
+    "actions": [
+      { "id": "reply", "label": "Reply" },
+      { "id": "read", "label": "Mark as read" }
+    ]
+  },
+  {
+    "appName": "System Monitor",
+    "icon": "dialog-warning",
+    "category": "device",
+    "summary": "Disk space critically low",
+    "body": "Only <b>4.2 GB</b> remains on the root filesystem.",
+    "urgency": "critical"
+  },
+  {
+    "appName": "Music",
+    "icon": "multimedia-player",
+    "summary": "Now playing",
+    "body": "Ghost of You — My Chemical Romance",
+    "urgency": "low"
+  },
+  {
+    "appName": "Long Content Test",
+    "summary": "A deliberately long notification summary used to verify truncation and compact previews",
+    "body": "This deliberately long body verifies ellipsis, wrapping, copying, and the spacing reserved for controls.",
+    "urgency": "normal"
+  }
+]

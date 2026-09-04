@@ -1,0 +1,260 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+fixture_source="$script_dir/notification-fixtures.json"
+count=1
+interval="0"
+expire="0"
+order="sequential"
+seed=""
+
+action_pids=()
+
+usage() {
+    cat <<'EOF'
+Usage: notification-fixtures [options]
+
+Send notification fixtures through the active Freedesktop notification daemon.
+
+Options:
+  --count N                 Number of notifications to send (default: 1).
+  --interval SPEC           Delay between notifications (default: 0).
+  --expire SPEC             Notification expiry (default: 0, never expire).
+  --order MODE              Fixture order: sequential or random (default: sequential).
+  --file PATH|-             Fixture JSON array; - reads from standard input.
+  --seed N                  Seed Bash's random generator for reproducible random runs.
+  -h, --help                Show this help.
+
+Duration SPEC accepts a duration, range, or cycle:
+  500ms                    A fixed duration.
+  2s-8s                    A random duration selected for each notification.
+  500ms,2s,5s              Durations cycled for each notification.
+
+Bare duration numbers are seconds. Supported units are ms, s, and m.
+Action-bearing fixtures keep the script alive after sending so their actions can
+be invoked. Press Ctrl-C to stop waiting and terminate those fixture senders.
+EOF
+}
+
+die() {
+    printf 'notification-fixtures: %s\n' "$*" >&2
+    exit 2
+}
+
+require_positive_integer() {
+    [[ "$1" =~ ^[1-9][0-9]*$ ]] || die "expected a positive integer, got '$1'"
+}
+
+duration_ms() {
+    local value="$1"
+    local amount unit multiplier
+
+    if [[ ! "$value" =~ ^([0-9]+)(ms|s|m)?$ ]]; then
+        die "invalid duration '$value'"
+    fi
+
+    amount="${BASH_REMATCH[1]}"
+    unit="${BASH_REMATCH[2]:-s}"
+    case "$unit" in
+        ms) multiplier=1 ;;
+        s) multiplier=1000 ;;
+        m) multiplier=60000 ;;
+    esac
+    printf '%d\n' "$((10#$amount * multiplier))"
+}
+
+validate_duration_spec() {
+    local spec="$1"
+    local -a values
+
+    if [[ "$spec" == *,* ]]; then
+        IFS=',' read -r -a values <<< "$spec"
+        ((${#values[@]} > 0)) || die "empty duration cycle"
+        local value
+        for value in "${values[@]}"; do
+            duration_ms "$value" >/dev/null
+        done
+        return
+    fi
+
+    if [[ "$spec" =~ ^(.+)-(.+)$ ]]; then
+        local minimum maximum
+        minimum="$(duration_ms "${BASH_REMATCH[1]}")"
+        maximum="$(duration_ms "${BASH_REMATCH[2]}")"
+        ((minimum <= maximum)) || die "duration range minimum exceeds maximum: '$spec'"
+        return
+    fi
+
+    duration_ms "$spec" >/dev/null
+}
+
+select_duration_ms() {
+    local spec="$1"
+    local index="$2"
+    local minimum maximum span
+    local -a values
+
+    if [[ "$spec" == *,* ]]; then
+        IFS=',' read -r -a values <<< "$spec"
+        ((${#values[@]} > 0)) || die "empty duration cycle"
+        duration_ms "${values[index % ${#values[@]}]}"
+        return
+    fi
+
+    if [[ "$spec" =~ ^(.+)-(.+)$ ]]; then
+        minimum="$(duration_ms "${BASH_REMATCH[1]}")"
+        maximum="$(duration_ms "${BASH_REMATCH[2]}")"
+        ((minimum <= maximum)) || die "duration range minimum exceeds maximum: '$spec'"
+        span=$((maximum - minimum + 1))
+        printf '%d\n' "$((minimum + RANDOM * span / 32768))"
+        return
+    fi
+
+    duration_ms "$spec"
+}
+
+sleep_ms() {
+    local milliseconds="$1"
+    ((milliseconds > 0)) || return
+    printf -v seconds '%d.%03d' "$((milliseconds / 1000))" "$((milliseconds % 1000))"
+    sleep "$seconds"
+}
+
+cleanup() {
+    local pid
+    for pid in "${action_pids[@]}"; do
+        if kill -0 "$pid"; then
+            kill "$pid"
+        fi
+    done
+}
+trap cleanup INT TERM
+
+while (($# > 0)); do
+    case "$1" in
+        --count)
+            (($# >= 2)) || die "--count requires a value"
+            count="$2"
+            shift 2
+            ;;
+        --interval)
+            (($# >= 2)) || die "--interval requires a value"
+            interval="$2"
+            shift 2
+            ;;
+        --expire)
+            (($# >= 2)) || die "--expire requires a value"
+            expire="$2"
+            shift 2
+            ;;
+        --order)
+            (($# >= 2)) || die "--order requires a value"
+            order="$2"
+            shift 2
+            ;;
+        --file)
+            (($# >= 2)) || die "--file requires a value"
+            fixture_source="$2"
+            shift 2
+            ;;
+        --seed)
+            (($# >= 2)) || die "--seed requires a value"
+            seed="$2"
+            shift 2
+            ;;
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        *)
+            die "unknown option '$1'"
+            ;;
+    esac
+done
+
+require_positive_integer "$count"
+validate_duration_spec "$interval"
+validate_duration_spec "$expire"
+[[ "$order" == "sequential" || "$order" == "random" ]] \
+    || die "--order must be sequential or random"
+if [[ -n "$seed" ]]; then
+    [[ "$seed" =~ ^[0-9]+$ ]] || die "--seed must be a non-negative integer"
+    RANDOM="$seed"
+fi
+
+if [[ "$fixture_source" == "-" ]]; then
+    fixture_json="$(< /dev/stdin)"
+else
+    [[ -r "$fixture_source" ]] || die "cannot read fixture file '$fixture_source'"
+    fixture_json="$(< "$fixture_source")"
+fi
+
+jq -e 'type == "array" and length > 0' >/dev/null <<< "$fixture_json" \
+    || die "fixture input must be a non-empty JSON array"
+
+mapfile -t fixtures < <(jq -c '.[]' <<< "$fixture_json")
+fixture_count="${#fixtures[@]}"
+
+send_fixture() {
+    local fixture="$1"
+    local expiry_ms="$2"
+    local app_name icon desktop_entry category summary body urgency
+    local -a command action_args
+
+    app_name="$(jq -er '.appName' <<< "$fixture")"
+    icon="$(jq -r '.icon // empty' <<< "$fixture")"
+    desktop_entry="$(jq -r '.desktopEntry // empty' <<< "$fixture")"
+    category="$(jq -r '.category // empty' <<< "$fixture")"
+    summary="$(jq -er '.summary' <<< "$fixture")"
+    body="$(jq -r '.body // empty' <<< "$fixture")"
+    urgency="$(jq -r '.urgency // "normal"' <<< "$fixture")"
+
+    command=(notify-send -t "$expiry_ms" -a "$app_name" -u "$urgency")
+    [[ -z "$icon" ]] || command+=(-i "$icon")
+    [[ -z "$desktop_entry" ]] || command+=(-h "string:desktop-entry:$desktop_entry")
+    [[ -z "$category" ]] || command+=(-c "$category")
+
+    mapfile -t action_args < <(
+        jq -r '.actions // [] | .[] | "\(.id)=\(.label)"' <<< "$fixture"
+    )
+    local action
+    for action in "${action_args[@]}"; do
+        command+=(-A "$action")
+    done
+    command+=("$summary" "$body")
+
+    printf 'Sending: %s — %s\n' "$app_name" "$summary"
+    if ((${#action_args[@]} == 0)); then
+        "${command[@]}"
+        return
+    fi
+
+    (
+        selected_action="$("${command[@]}")"
+        if [[ -n "$selected_action" ]]; then
+            printf 'Action invoked: %s — %s (%s)\n' \
+                "$app_name" "$summary" "$selected_action"
+        fi
+    ) &
+    action_pids+=("$!")
+}
+
+for ((index = 0; index < count; index++)); do
+    if [[ "$order" == "random" ]]; then
+        fixture_index=$((RANDOM % fixture_count))
+    else
+        fixture_index=$((index % fixture_count))
+    fi
+
+    send_fixture "${fixtures[fixture_index]}" "$(select_duration_ms "$expire" "$index")"
+    if ((index + 1 < count)); then
+        sleep_ms "$(select_duration_ms "$interval" "$index")"
+    fi
+done
+
+if ((${#action_pids[@]} > 0)); then
+    printf 'Waiting for %d action-bearing fixture(s); press Ctrl-C to stop.\n' \
+        "${#action_pids[@]}"
+    wait "${action_pids[@]}"
+fi

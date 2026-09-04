@@ -26,6 +26,7 @@
       };
       splash-image = sources.images.splash.black-hole;
       power-menu.rofi.splash-image.scale = "width";
+      notifications.provider = "quickshell";
       quickshell.enable = true;
     };
     packages = {
