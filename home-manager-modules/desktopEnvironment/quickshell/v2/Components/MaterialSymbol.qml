@@ -12,6 +12,6 @@ Text {
 
     FontLoader {
         id: materialFont
-        source: "../assets/fonts/MaterialIconsRound-Regular.otf"
+        source: "../assets/fonts/MaterialSymbolsRounded.ttf"
     }
 }
