@@ -81,20 +81,6 @@ in {
           vertical = lib.mkDefault cfg.background-image.vertical;
         };
       };
-      # wayland.windowManager.hyprland.settings = let
-      #   compileMods = mods: builtins.concatStringsSep "+" (
-      #     builtins.map
-      #     (mod: if mod == "main" then "$mod" else lib.toUpper mod)
-      #     mods
-      #   );
-      # in {
-      #   bind = builtins.map
-      #     (bind: (compileMods bind.mods) + ", ${lib.toUpper bind.key}, exec, ${bind.exec}")
-      #     (builtins.filter (bind: !bind.inLock) cfg.keybinds);
-      #   bindl = builtins.map
-      #     (bind: (compileMods bind.mods) + ", ${lib.toUpper bind.key}, exec, ${bind.exec}")
-      #     (builtins.filter (bind: bind.inLock) cfg.keybinds);
-      # };
       wayland.windowManager.hyprland.extraConfig = let
         compileMods = mods: lib.concatStringsSep " + " (
           map
