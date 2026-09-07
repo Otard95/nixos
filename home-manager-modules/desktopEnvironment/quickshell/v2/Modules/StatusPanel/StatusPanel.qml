@@ -38,7 +38,8 @@ Scope {
     PanelWindow {
         id: panel
         screen: root.screen
-        visible: root.open
+        // Stay visible until the close animation finishes
+        visible: root.open || panelContent.opacity > 0
         implicitWidth: Theme.statusPanelWidth + Theme.statusPanelMargin
         exclusiveZone: 0
         color: "transparent"
@@ -52,7 +53,20 @@ Scope {
         }
 
         StatusPanelContent {
+            id: panelContent
             onCloseRequested: root.open = false
+
+            property real yOffset: root.open ? 0 : -20
+
+            opacity: root.open ? 1.0 : 0.0
+            transform: Translate { y: panelContent.yOffset }
+
+            Behavior on opacity {
+                NumberAnimation { duration: 300; easing.type: Easing.OutCubic }
+            }
+            Behavior on yOffset {
+                NumberAnimation { duration: 300; easing.type: Easing.OutCubic }
+            }
 
             anchors {
                 fill: parent
