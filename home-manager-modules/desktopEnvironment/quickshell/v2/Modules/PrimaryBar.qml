@@ -92,6 +92,7 @@ Item {
             }
 
             Battery {
+                panelWindow: root.panelWindow
                 Layout.alignment: Qt.AlignVCenter
             }
         }

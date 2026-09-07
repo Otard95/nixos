@@ -18,6 +18,24 @@ services.power-profiles-daemon.enable = true;
 
 The feature does not require the main UPower daemon.
 
+## Quickshell.Services.UPower module
+
+`Quickshell.Services.UPower` groups two D-Bus interfaces under one module. They share the `org.freedesktop.UPower.*` D-Bus namespace but talk to different daemons:
+
+| Quickshell type | D-Bus service | Provider daemon |
+|---|---|---|
+| `UPower`, `UPowerDevice` | `org.freedesktop.UPower` | UPower |
+| `PowerProfiles` | `org.freedesktop.UPower.PowerProfiles` | power-profiles-daemon |
+
+`PowerProfiles::PowerProfiles()` in Quickshell source opens a `QDBusInterface` to `org.freedesktop.UPower.PowerProfiles` on the system bus. Either daemon can be absent while the other runs.
+
+## References
+
+- [`powerprofiles.cpp`](https://git.outfoxxed.me/quickshell/quickshell/src/branch/master/src/services/upower/powerprofiles.cpp): D-Bus interface binding in Quickshell source.
+- [`Quickshell.Services.UPower` module](https://quickshell.org/docs/v0.3.1/types/Quickshell.Services.UPower/): full type list for the module.
+- [`UPower` type](https://quickshell.org/docs/v0.3.1/types/Quickshell.Services.UPower/UPower/): documents the UPower daemon requirement.
+- [`PowerProfiles` type](https://quickshell.org/docs/v0.3.1/types/Quickshell.Services.UPower/PowerProfiles/): documents the power-profiles interface.
+
 ## Source API
 
 `PowerProfileSource` is a singleton from `Sources/PowerProfile.qml`.
