@@ -97,13 +97,23 @@ Item {
         }
     }
 
-    StatusPill {
-        onToggleRequested: root.toggleStatusPanel()
-
+    BarGroup {
         anchors {
             right: parent.right
             rightMargin: Theme.innerPadH
             verticalCenter: barBackground.verticalCenter
+        }
+        padding: 10
+
+        StatusPill {
+            onToggleRequested: root.toggleStatusPanel()
+
+            VolumeMutedIndicator {}
+            MicIndicator {}
+            KeyboardIndicator {}
+            NotificationStatus { indicatorType: NotificationStatus.Dot }
+            NetworkIndicator {}
+            BluetoothIndicator {}
         }
     }
 }

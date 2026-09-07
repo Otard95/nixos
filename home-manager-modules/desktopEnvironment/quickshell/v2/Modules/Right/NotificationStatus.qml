@@ -5,6 +5,12 @@ import "../../Components"
 Item {
     id: root
 
+    enum IndicatorType {
+        Number,
+        Dot
+    }
+
+    property int indicatorType: NotificationStatus.Number
     readonly property int unreadCount: Notifications.unreadCount
 
     visible: Notifications.dnd || unreadCount > 0
@@ -27,7 +33,9 @@ Item {
             top: parent.top
             right: parent.right
         }
-        width: Math.max(height, countText.implicitWidth + 4)
+        width: root.indicatorType === NotificationStatus.Dot
+            ? height
+            : Math.max(height, countText.implicitWidth + 4)
         height: 12
         radius: height / 2
         color: Theme.accentText
@@ -35,6 +43,7 @@ Item {
         StyledText {
             id: countText
 
+            visible: root.indicatorType === NotificationStatus.Number
             anchors.centerIn: parent
             text: root.unreadCount > 99 ? "99+" : root.unreadCount
             color: Theme.crust
