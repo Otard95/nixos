@@ -105,10 +105,9 @@ Item {
             verticalCenter: barBackground.verticalCenter
         }
         padding: 15
+        onClicked: root.toggleStatusPanel()
 
         StatusPill {
-            onToggleRequested: root.toggleStatusPanel()
-
             VolumeMutedIndicator {}
             MicIndicator {}
             KeyboardIndicator {}

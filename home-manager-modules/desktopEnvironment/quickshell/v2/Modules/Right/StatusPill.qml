@@ -6,8 +6,6 @@ import "../../Components"
 Item {
     id: root
 
-    signal toggleRequested
-
     default property alias indicators: layout.data
 
     implicitWidth: layout.implicitWidth
@@ -19,10 +17,7 @@ Item {
         spacing: 10
     }
 
-    MouseArea {
-        anchors.fill: parent
-        acceptedButtons: Qt.LeftButton
-        onClicked: root.toggleRequested()
+    WheelHandler {
         onWheel: event => VolumeSource.stepSinkVolume(event.angleDelta.y > 0 ? 0.02 : -0.02)
     }
 }

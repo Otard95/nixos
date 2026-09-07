@@ -12,9 +12,43 @@ The three sections are:
 - `centerSection` — `SystemMedia`, `Workspaces`, `Clock`, `Battery`
 - right — a `BarGroup` containing `StatusPill`
 
+## BarGroup click handling
+
+`BarGroup` owns the click target for a group. It exposes a `clicked` signal
+backed by a `TapHandler` that fills the whole padded group:
+
+```qml
+signal clicked
+
+TapHandler {
+    acceptedButtons: Qt.LeftButton
+    onTapped: root.clicked()
+}
+```
+
+The handler covers the full `BarGroup` rectangle, including its `padding`. A
+click anywhere in the group — on an icon or on empty padding — triggers it.
+
+Use `TapHandler`, not `MouseArea`. `MouseArea` keeps an active pointer grab
+after a click; on Wayland the grab is not re-evaluated until the cursor moves,
+so a second click at the same spot is dropped. `TapHandler` releases cleanly.
+
+Put the click target in one place only. A `TapHandler` on both `BarGroup` and
+a child fires twice for one tap and cancels a toggle. `PrimaryBar` wires the
+right group directly:
+
+```qml
+BarGroup {
+    onClicked: root.toggleStatusPanel()
+    StatusPill { ... }
+}
+```
+
 ## StatusPill composition
 
-`StatusPill` is a layout container, not a self-contained widget. It exposes:
+`StatusPill` is a layout container, not a self-contained widget. It holds the
+indicators and a `WheelHandler` for volume. It does not handle clicks — the
+parent `BarGroup` does. It exposes:
 
 ```qml
 default property alias indicators: layout.data
@@ -24,8 +58,6 @@ default property alias indicators: layout.data
 
 ```qml
 StatusPill {
-    onToggleRequested: root.toggleStatusPanel()
-
     VolumeMutedIndicator {}
     MicIndicator {}
     KeyboardIndicator {}
@@ -105,3 +137,27 @@ monitor name string directly from `focusedMonitorName`.
 
 The `PanelWindow` stays visible until `opacity` reaches 0, so the close
 animation completes before the window is removed.
+
+## Status panel dismiss
+
+`StatusPanel` uses `HyprlandFocusGrab` (from `Quickshell.Hyprland`) to dismiss:
+
+```qml
+HyprlandFocusGrab {
+    windows: [panel]
+    active: root.open
+    onCleared: root.open = false
+}
+```
+
+The grab keeps pointer input routed to the bar and the panel while open, and
+closes the panel when the user clicks anywhere outside it.
+
+Without the grab, opening the panel gives it keyboard focus and the bar loses
+its pointer focus. A second click on the bar to close then needs a cursor move
+before Wayland re-routes the click. The grab fixes this: the compositor owns
+pointer input while active, so the close click lands without a move.
+
+The grab also consumes the dismiss click. Clicking the bar group to close
+fires `onCleared`, not the group's `TapHandler`, so the panel does not
+re-open on the same click.

@@ -2,6 +2,7 @@ import qs
 import QtQuick
 import Quickshell
 import Quickshell.Wayland
+import Quickshell.Hyprland
 
 Scope {
     id: root
@@ -33,6 +34,15 @@ Scope {
     Component.onDestruction: {
         StatusPanelState.setPanelOpen(panelId, false)
         Notifications.setPopupInhibitor("status-panel", StatusPanelState.anyOpen)
+    }
+
+    // Dismiss on outside click and keep pointer input routed while open.
+    // Without this the bar keeps pointer focus and a second click to close
+    // needs a cursor move before it registers.
+    HyprlandFocusGrab {
+        windows: [panel]
+        active: root.open
+        onCleared: root.open = false
     }
 
     PanelWindow {

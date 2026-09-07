@@ -8,6 +8,8 @@ Item {
     property real padding: 5
     default property alias content: layout.children
 
+    signal clicked
+
     implicitWidth: layout.implicitWidth + padding * 2
     implicitHeight: Theme.barHeight
 
@@ -33,6 +35,11 @@ Item {
                 color: Theme.alpha(Theme.mantle, Theme.bgAlpha)
             }
         }
+    }
+
+    TapHandler {
+        acceptedButtons: Qt.LeftButton
+        onTapped: root.clicked()
     }
 
     RowLayout {
