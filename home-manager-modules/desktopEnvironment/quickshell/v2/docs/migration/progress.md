@@ -73,7 +73,7 @@ LEFT                    CENTER                          RIGHT
 - `Clock` + `Battery` — time/date with calendar popup, battery fill bar
 
 #### Right section
-- `StatusPill` — single pill containing all status indicators (see below)
+- `StatusPill` — single pill containing all status indicators, including unread notifications (see below)
 
 ### StatusPill indicators (right to left visual order)
 
@@ -83,7 +83,7 @@ LEFT                    CENTER                          RIGHT
 | Mic recording | `Mic.active && !sourceMuted` | `mic` | red |
 | Mic muted | `VolumeSource.sourceMuted` | `mic_off` | text |
 | Keyboard layout | `Keyboard.available` | short text e.g. `US` | text |
-| DND | `Notifications.dnd` | `notifications_paused` | yellow |
+| Notifications | DND or `Notifications.unreadCount > 0` | paused icon, or bell with unread-count badge | yellow in DND, accent when unread |
 | Network | always | signal icon | teal/peach/red by signal |
 | Bluetooth | `BluetoothSource.available` | `bluetooth_connected` / `bluetooth` / `bluetooth_disabled` | text |
 
@@ -129,6 +129,7 @@ The bottom status-panel section is implemented as one collapsible tool group:
 - `Left/` — `Mode`, `ActiveWindow`
 - `Center/` — `SystemMedia`, `ResourceMeter`, `Media`, `Workspaces`, `Clock`, `Battery`
 - `Right/StatusPill.qml` — right indicator pill and status-panel trigger
+- `Right/NotificationStatus.qml` — DND icon or unread-notification bell with a count badge
 - `StatusPanel/StatusPanel.qml` — per-monitor right-edge overlay host; defaults closed after being temporarily forced open for layout development
 - `StatusPanel/StatusPanelContent.qml` — panel surface and content layout
 - `StatusPanel/QuickToggles.qml` — four-column Android-style grid: two-cell Wi-Fi/Ethernet/Bluetooth/audio controls and one-cell idle-inhibit/mic controls

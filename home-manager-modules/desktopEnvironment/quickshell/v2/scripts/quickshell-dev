@@ -1,0 +1,124 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+config_dir="$(cd -- "$script_dir/.." && pwd)"
+managed_unit="quickshell.service"
+dev_unit="quickshell-dev.service"
+
+usage() {
+    cat <<'EOF'
+Usage: quickshell-dev COMMAND
+
+Run the Quickshell source configuration in a transient user service.
+
+Commands:
+  start     Stop the managed service and start the development service.
+  restart   Restart the development service.
+  stop      Stop the development service and start the managed service.
+  logs      Show recent development service logs.
+  logs -f   Follow development service logs live. Press Ctrl-C to stop.
+  status    Show development and managed service status.
+EOF
+}
+
+dev_unit_active() {
+    systemctl --user is-active --quiet "$dev_unit"
+}
+
+notification_backend() {
+    local environment backend
+
+    environment="$(systemctl --user show "$managed_unit" --property=Environment --value)"
+    backend="$(tr ' ' '\n' <<< "$environment" | sed -n 's/^QS_NOTIFICATION_BACKEND=//p' | head -n 1)"
+    printf '%s\n' "${backend:-native}"
+}
+
+start() {
+    local backend
+
+    if dev_unit_active; then
+        printf '%s is already active.\n' "$dev_unit"
+        return
+    fi
+
+    backend="$(notification_backend)"
+    systemctl --user stop "$managed_unit"
+    systemd-run --user --unit="$dev_unit" \
+        --description="Quickshell development config" \
+        --working-directory="$config_dir" \
+        --property="Environment=QS_NOTIFICATION_BACKEND=$backend" \
+        quickshell --path "$config_dir" --log-times -v
+}
+
+restart() {
+    if dev_unit_active; then
+        systemctl --user restart "$dev_unit"
+    else
+        start
+    fi
+}
+
+stop() {
+    if dev_unit_active; then
+        systemctl --user stop "$dev_unit"
+    fi
+
+    systemctl --user start "$managed_unit"
+}
+
+logs() {
+    local follow=false
+
+    while (($# > 0)); do
+        case "$1" in
+            -f|--follow) follow=true; shift ;;
+            *) usage >&2; exit 2 ;;
+        esac
+    done
+
+    if $follow; then
+        journalctl --user --unit="$dev_unit" --follow --no-pager
+    else
+        journalctl --user --unit="$dev_unit" --no-pager
+    fi
+}
+
+status() {
+    if ! systemctl --user status "$dev_unit" --no-pager; then
+        :
+    fi
+
+    if ! systemctl --user status "$managed_unit" --no-pager; then
+        :
+    fi
+}
+
+case "${1:-}" in
+    start)
+        (($# == 1)) || { usage >&2; exit 2; }
+        start
+        ;;
+    restart)
+        (($# == 1)) || { usage >&2; exit 2; }
+        restart
+        ;;
+    stop)
+        (($# == 1)) || { usage >&2; exit 2; }
+        stop
+        ;;
+    logs)
+        logs "${@:2}"
+        ;;
+    status)
+        (($# == 1)) || { usage >&2; exit 2; }
+        status
+        ;;
+    -h|--help)
+        usage
+        ;;
+    *)
+        usage >&2
+        exit 2
+        ;;
+esac

@@ -5,6 +5,7 @@
 - [`notifications.md`](notifications.md): current notification behavior, backend selection, limits, and handover work.
 - [`timers.md`](timers.md): countdown timers and their notification contract.
 - [`slider.md`](slider.md): shared slider controls.
+- [`bar-architecture.md`](bar-architecture.md): layout ownership, StatusPill composition, and status panel transition.
 
 ## Notification records
 
@@ -23,6 +24,7 @@
 
 ## Development and migration records
 
+- [`development/quickshell-dev.md`](development/quickshell-dev.md): source service commands and logs.
 - [`development/debugging-helpers.md`](development/debugging-helpers.md): development helpers and debug output notes.
 - [`migration/progress.md`](migration/progress.md): primary-bar migration handoff.
 - [`migration/end-4-quickshell.md`](migration/end-4-quickshell.md): End 4 Quickshell inventory.
