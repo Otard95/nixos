@@ -71,6 +71,12 @@ Scope {
     }
 
     function refreshClients() {
+        // Rebuild from the live model so stale IDs after wake don't break lookup.
+        const map = {}
+        for (const m of Hyprland.monitors.values)
+            map[m.id] = m.name
+        root.monitorIdToName = map
+
         clientProc.running = true
     }
 
