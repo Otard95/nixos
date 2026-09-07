@@ -12,9 +12,9 @@ function M.setup()
       rounding = 10,
 
       shadow = {
-        enabled      = true,
-        range        = 8,
-        render_power = 3,
+        enabled        = true,
+        range          = 3,
+        render_power   = 1,
         -- TODO: replace with catppuccin lua vars once the module exposes them
         color          = 0xff81c8be, -- frappe teal
         color_inactive = 0xff292c3c, -- frappe mantle

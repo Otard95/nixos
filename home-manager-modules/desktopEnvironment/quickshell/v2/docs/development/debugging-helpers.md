@@ -4,7 +4,7 @@ I found the following development/debugging material:
 
 - `Modules/StatusPanel/StatusPanel.qml:10`
   - `property bool open: false`
-  - The panel now starts closed. `progress.md` retains that it was temporarily forced open for active layout development.
+  - The panel now starts closed. [`migration/progress.md`](../migration/progress.md) retains that it was temporarily forced open for active layout development.
 
 - `Sources/Notifications/MakoStrategy.qml:8`
   - `debugTimeFixtures: false`
@@ -20,13 +20,13 @@ I found the following development/debugging material:
 
 ### Development documentation
 
-- `progress.md`
+- [`migration/progress.md`](../migration/progress.md)
   - Active handoff/development notes.
   - Contains workflow rules, known pitfalls, implementation inventory, and unfinished work.
 
-- `upstream-notifications.md`
-- `upstream-bottom-tools.md`
-- `upstream-media-controls.md`
+- [`research/upstream-notifications.md`](../research/upstream-notifications.md)
+- [`research/upstream-bottom-tools.md`](../research/upstream-bottom-tools.md)
+- [`research/upstream-media-controls.md`](../research/upstream-media-controls.md)
   - Detailed implementation studies and porting notes.
   - These are development/reference documents, not runtime documentation.
 
@@ -36,8 +36,8 @@ I found the following development/debugging material:
 - `Sources/DocumentDb/README.md`
   - These appear to be maintained implementation documentation rather than temporary notes.
 
-- `end_4-quickshell.md`
-- `end_4-changes-peliminary.md`
+- [`migration/end-4-quickshell.md`](../migration/end-4-quickshell.md)
+- [`migration/end-4-changes.md`](../migration/end-4-changes.md)
   - Older planning/inventory notes. They may now be partially stale.
 
 ### Upstream reference tree

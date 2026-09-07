@@ -4,9 +4,11 @@ The notification-center UI and typed Mako backend are complete. The next phase i
 
 Start with:
 
-- [`notification-deamon-plan.md`](notification-deamon-plan.md) — authoritative implementation plan, decisions, risks, sequence, and test matrix.
+- [`notification-daemon-plan.md`](../notification-daemon-plan.md) — authoritative implementation plan, decisions, risks, sequence, and test matrix.
 - [`docs/notifications.md`](docs/notifications.md) — current architecture and completed behavior.
 - [`upstream-notifications.md`](upstream-notifications.md) — upstream comparison and source locations.
+
+> The plan document is now a historical record. Use [`notifications.md`](../notifications.md) for the current state.
 - [`Sources/DocumentDb/README.md`](Sources/DocumentDb/README.md) — persistence infrastructure.
 - [`docs/timers.md`](docs/timers.md) — timer notification coupling.
 

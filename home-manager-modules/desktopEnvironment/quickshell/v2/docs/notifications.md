@@ -1,9 +1,8 @@
 # Notification implementation — current state
 
-This document supersedes the earlier animation handover. The top-level
-positioning defect described there is resolved. The document now records what
-is complete, what is partial, and what remains, for any future agent picking
-up notification work.
+This document gives the current notification state. Use
+[`notification-daemon-plan.md`](notification-daemon-plan.md) for the complete
+implementation and test record.
 
 ## Commits since the initial baseline (`6a5b558`)
 
@@ -30,15 +29,31 @@ NotificationList / NotificationPopupHost
     → NotificationListView → NotificationGroup → NotificationItem
 ```
 
-The UI imports only the `Notifications` singleton. The backend boundary is
-enforced: no UI file reads Mako JSON, runs `makoctl`, or accesses native
-Quickshell notification objects directly. Backend construction is conditional;
-Mako remains the default, and the native `NotificationServer` is not constructed
-unless native mode is explicitly selected.
+The UI imports only the `Notifications` singleton. No UI file reads Mako JSON,
+runs `makoctl`, or accesses a native Quickshell notification object directly.
+A conditional loader constructs only the selected backend.
 
 Source types (`Sources/Notifications/`):
 `NotificationBackend`, `NotificationRecord`, `NotificationAction`,
 `NotificationEntry`, `NotificationActionEntry`, `NotificationGroup`
+
+## Backend selection
+
+`QS_NOTIFICATION_BACKEND` selects the backend at Quickshell process start.
+
+| Value | Backend | D-Bus behavior |
+|---|---|---|
+| `native` | `QuickshellStrategy` | Owns `org.freedesktop.Notifications`. |
+| `mako` | `MakoStrategy` | Reads Mako state. Mako must own the name. |
+| `fixture` | `NotificationFixtureStrategy` | Does not create a notification server. |
+
+An unset or invalid value selects `native`. The native backend is the current
+default.
+
+Set the variable in the systemd service environment from the Nix option that
+selects the notification provider. When `mako` is not selected, do not install
+Mako or its D-Bus activation file. Otherwise D-Bus can start Mako when no daemon
+owns the notification name.
 
 ## How positioning works (the solved problem)
 
@@ -114,7 +129,8 @@ readonly property real chainDistanceFactor: 0.15
 - Expanded items: wrapped rich text, external links, sender action buttons.
   A sole default/open-style action becomes the item's left-click target.
   Copy-to-clipboard with plain-text normalisation.
-- Application icon with desktop-entry fallback, then Material symbol fallback.
+- App icon resolution: sender image, existing app icon, existing app name,
+  category Material icon, then a bell fallback.
 - Friendly time labels: Now / Nm / Nh / Yesterday / Month D / Month D, YYYY.
 - Top-level reorder/insert/remove: animates cleanly, always settles at correct
   geometry, confirmed by user.
@@ -130,8 +146,9 @@ readonly property real chainDistanceFactor: 0.15
   fallback. Declaring the inactive native loader does not claim D-Bus.
 - IPC-driven fixture backend for controlled receipt, replacement, actions,
   urgency, transient/resident flags, DND, expiry, and hover behavior.
-- Initial focused-monitor overlay popup host using the shared notification
-  delegates and a rendered-content input mask.
+- Focused-monitor overlay popup host using shared notification delegates and a
+  rendered-content input mask. The host has a 400px list width, 6px top inset,
+  and no right inset.
 - Native live binding and strategy code for tracking, typed field/action mapping,
   coalesced replacement observation, close handling, native dismissal/action
   dispatch, unread state, reload-generation suppression, and protocol IDs.
@@ -143,80 +160,53 @@ readonly property real chainDistanceFactor: 0.15
 - Central multi-monitor status-panel tracking and reason-based popup inhibition.
   Native and fixture backends hide active popups and block new popups until all
   status panels close.
-- Initial urgency/read policy: critical notifications bypass DND, low urgency is
+- Urgency/read policy: critical notifications bypass DND, low urgency is
   center-only and unread, and transient entries remain in memory until panel
   close marks them read and removes them.
+- Popup borders: accent for normal and low groups. Red for any group that
+  contains a critical notification.
+- Notification images: a single-item group uses its image as the group icon.
+  An expanded multi-item group shows images on individual items only.
 
-The default remains Mako. An initial controlled native ownership test passed,
-and Mako ownership was restored after the test.
+The native backend is the current default. It owns the notification D-Bus name
+when the system configuration does not install or start Mako.
 
-## What is partial or backend-limited
+## Native test results
 
-- **Timestamps** are first-observed Mako poll times, not sender arrival times.
-- **Images** are typed and have a UI slot but Mako's `list -j` does not expose
-  image data. Application icons work; notification images need a native backend.
-- **Unread count** resets when a status panel closes. Per-entry read tracking is
-  deferred.
-- **Actions** rely on Mako's semantics and only work for live entries.
+The controlled tests covered D-Bus ownership, receipt, sender close, user
+dismissal, replacement, default and zero timeouts, DND, urgency, panel
+inhibition, hover pause, transient retention, resident actions, markup,
+`image-data`, persistent `image-path`, grouped dismissal, timer IDs, hot reload,
+full restart, and malformed history recovery.
 
-## Native test findings
+The tests found and fixed a `DocumentStore` readiness race, a cross-reload
+history-write race, and null model reads during delegate teardown.
 
-The second native ownership test confirmed sender close, hidden replacement,
-default timeout, transient-under-DND, resident actions, markup, `image-path`,
-`image-data`, grouped dismissal, timer IDs, and malformed-history recovery. It
-fixed a cross-reload persistence write race and null-delegate teardown warnings.
+## Limits and deferred work
 
-Open native items:
+- **Satty images:** Satty deletes its temporary `image-path` file as `Notify`
+  returns. QML cannot copy the file before deletion. The UI falls back to the
+  app icon. An upstream Quickshell change must read `image-path` during `Notify`.
+- **Action labels:** Quickshell 0.3.0 drops a replacement that changes only an
+  action label. Its native `NotificationAction::setText` guard is inverted.
+- **Link cursor:** Rich-text links open, but they do not show a pointer cursor.
+- **Lock behavior:** Hyprlock covers the popup layer. Popup timers continue
+  while locked. Lock-state tracking remains optional.
+- **Read state:** Closing a status panel marks all notifications read. Per-item
+  read state is deferred.
+- **Postpone gesture:** Swipe left can later postpone a native notification.
 
-- **Sender images.** `NotificationImageCache` copies the sender file on
-  receipt, downscales it with `ffmpeg`, persists the thumbnail, and deletes it
-  on dismissal. This adds an `ffmpeg` handover dependency. It cannot capture
-  apps that delete their temporary file before the QML receipt handler runs
-  (for example Satty), because Quickshell reads `image-path` lazily. A failed
-  capture falls back to the app icon. `image-data` and persistent files work.
-- **Group images.** Single-notification groups show the image as the group
-  icon; multi-notification groups show per-item thumbnails when expanded.
-- **Upstream action-text bug.** Quickshell 0.3.0 drops action-label-only
-  replacement changes through an inverted `setText` guard.
-- **Link cursor.** Rich-text links activate but lack a pointer cursor.
-- **Idle-notification handover.** hypridle resume must use `CloseNotification`,
-  not `makoctl`. This belongs in the user's Nix configuration.
+## Handover work
 
-## What is not implemented
+1. Set `QS_NOTIFICATION_BACKEND` from the Nix notification-provider option.
+2. Do not install Mako when the provider is `native`.
+3. Make `ffmpeg` available to Quickshell for image-cache downscaling.
+4. Change the hypridle resume command to call `CloseNotification`.
 
-- Advanced icon treatment: urgency shapes, image masking, app-icon badges,
-  summary-derived Material icon guessing.
-- Lock-screen popup inhibition. Validated that the Hyprland lock surface covers
-  the popup layer, so content is hidden while locked. An explicit inhibitor is
-  optional; popup timers still run while locked.
-- Remaining native edge cases in the required test matrix.
-- Permanent native selection and removal of the Nix-managed Mako service.
-- **Directional swipe actions (native-daemon dependent):** swipe right dismisses;
-  swipe left postpones the notification. A postponed notification is retained by
-  Quickshell and reintroduced after a configurable delay as though newly
-  received, including normal ordering, unread, and popup behavior.
-
-## Next substantial priority
-
-Run the remaining ownership cases before permanent handover. Priorities are
-sender close, hidden replacement, default timeout, transient under DND,
-resident actions, image and markup handling, grouped dismissal, malformed
-history, and timer notification IDs. Lock detection remains deferred.
-
-The initial controlled test passed for ownership transfer, urgency, DND, panel
-inhibition, replacement, timeout, hover, transient retention, actions, reload,
-and restart persistence. Editing `shell.qml` caused an in-process reload with a
-stable PID and `lastGeneration` replay. A service restart restored actionless
-history under a new daemon-session ID without unread or popup state.
-
-The restart test also found a shared `DocumentStore` readiness bug. The store
-published `ready` before assigning its loaded document. It now assigns document
-and error state first, so consumers cannot finalize from stale defaults.
-
-The full checklist is in
-[`notification-presistence-reconsiliation.md`](../notification-presistence-reconsiliation.md).
-Directional dismiss/postpone gestures can follow after native state passes the
-ownership and restart tests.
+The detailed persistence design is in
+[`notification-persistence.md`](notification-persistence.md). The complete
+implementation record is in
+[`notification-daemon-plan.md`](notification-daemon-plan.md).
 
 ## Deferred
 

@@ -1,6 +1,12 @@
-# Quickshell-native notification daemon plan
+# Quickshell native notification daemon record
 
-> **Status:** the native backend passed an initial controlled ownership test. The default remains Mako while the remaining edge cases are tested.
+> **Current state:** `native` is the default backend. `QS_NOTIFICATION_BACKEND`
+> selects `native`, `mako`, or `fixture`. The Nix notification-provider option
+> must remove Mako when it selects `native`.
+>
+> This document retains implementation checkpoints and research decisions. Use
+> [`notifications.md`](notifications.md) for the current behavior and handover
+> work.
 >
 > **Runtime researched:** Quickshell 0.3.0 from Nixpkgs. Re-check version-specific findings before upgrading Quickshell.
 
@@ -133,7 +139,8 @@ Live and restored records use separate lookups and operations. Live records keep
 
 The inactive native loader first parsed the complete implementation. The later native ownership test verified history restoration and hot-reload reconciliation.
 
-The full implementation checklist is [`notification-presistence-reconsiliation.md`](notification-presistence-reconsiliation.md).
+The original persistence checklist is
+[`notification-persistence.md`](notification-persistence.md).
 
 ### Status-panel popup inhibition checkpoint
 
@@ -223,8 +230,8 @@ After the remaining parity items, disable the Nix-managed Mako service and chang
 Read these local documents first:
 
 - [`docs/notifications.md`](docs/notifications.md) — current notification implementation and completed UI behavior.
-- [`upstream-notifications.md`](upstream-notifications.md) — detailed comparison with the checked-out upstream shell.
-- [`_tmp-notification-deamon-upstream-overview.md`](_tmp-notification-deamon-upstream-overview.md) — concise upstream daemon overview.
+- [`research/upstream-notifications.md`](research/upstream-notifications.md) — detailed comparison with the checked-out upstream shell.
+- [`research/notification-overview.md`](research/notification-overview.md) — concise upstream daemon overview.
 - [`Sources/DocumentDb/README.md`](Sources/DocumentDb/README.md) — local validated persistence API.
 - [`docs/timers.md`](docs/timers.md) — timer integration and notification acknowledgement constraints.
 

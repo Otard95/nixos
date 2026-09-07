@@ -222,8 +222,7 @@ Theme.accentText                // desaturated, light-tinted accent for labels
 
 ### Likely next work
 
-1. Continue status panel: notification exit/swipe animations, Wi-Fi/Bluetooth detail dialogs, and volume mixer.
-2. `StatusPanel.open` now defaults to `false`; it was temporarily forced open for active layout development.
+1. Continue status panel: Wi-Fi/Bluetooth detail dialogs, and volume mixer.
 3. System tray (`Quickshell.Services.SystemTray`).
 4. Refactor `ActiveWindow`, `Workspaces`, `Clock`, `Network` away from structural `Pill`/`OuterPill` inheritance.
 5. Consider switching workspace/active-window icon resolution to `IconImage` from `Quickshell.Widgets`

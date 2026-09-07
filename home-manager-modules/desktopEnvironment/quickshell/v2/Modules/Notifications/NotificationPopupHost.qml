@@ -10,10 +10,8 @@ Scope {
         id: window
 
         visible: Notifications.popupGroups.length > 0
-        screen: Quickshell.screens.find(candidate =>
-            candidate.name === Hyprland.focusedMonitor?.name)
-            ?? Quickshell.screens[0] ?? null
-        implicitWidth: Theme.statusPanelWidth + 12
+        screen: Quickshell.screens.find(candidate => candidate.name === Hyprland.focusedMonitor?.name) ?? Quickshell.screens[0] ?? null
+        implicitWidth: 412
         exclusiveZone: 0
         color: "transparent"
 
@@ -36,8 +34,8 @@ Scope {
             anchors {
                 top: parent.top
                 right: parent.right
-                topMargin: Theme.barHeight + 8
-                rightMargin: 6
+                topMargin: 8
+                rightMargin: 0
             }
             width: parent.width - 12
             height: Math.min(contentHeight, window.height - anchors.topMargin - 6)

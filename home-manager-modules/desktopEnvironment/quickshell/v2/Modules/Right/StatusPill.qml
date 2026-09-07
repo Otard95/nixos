@@ -56,13 +56,7 @@ Item {
                 text: Keyboard.shortName
             }
 
-            // DND — only when notifications are silenced
-            MaterialSymbol {
-                visible: Notifications.dnd
-                text: "notifications_paused"
-                iconSize: Theme.fontL
-                color: Theme.yellow
-            }
+            NotificationStatus {}
 
             // Network — always visible
             MaterialSymbol {
