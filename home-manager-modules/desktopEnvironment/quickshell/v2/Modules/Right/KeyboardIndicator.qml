@@ -2,9 +2,21 @@ import qs
 import QtQuick
 import "../../Components"
 
-StyledText {
+Row {
     visible: Keyboard.available
-    color: Theme.withLightness(Theme.accent, 0.9)
-    font.pixelSize: Theme.fontM
-    text: Keyboard.shortName
+
+    StyledText {
+        anchors.verticalCenter: parent.verticalCenter
+        color: Theme.withLightness(Theme.accent, 0.9)
+        font.pixelSize: Theme.fontM
+        text: Keyboard.shortName
+    }
+
+    MaterialSymbol {
+        visible: Keyboard.capsLock
+        anchors.verticalCenter: parent.verticalCenter
+        iconSize: Theme.fontM
+        color: Theme.yellow
+        text: "keyboard_capslock"
+    }
 }
