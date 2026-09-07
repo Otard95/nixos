@@ -69,11 +69,7 @@ in {
           ];
         };
         web-search = {
-          providers = ["duckduckgo" "searxng"];
-          searxng = {
-            url = "https://searxng.core-lab.net";
-            authorization = "pass:searxng/auth";
-          };
+          providers = ["duckduckgo" "brave"];
         };
         web-read = {
           browserPath = lib.getExe pkgs.chromium;
