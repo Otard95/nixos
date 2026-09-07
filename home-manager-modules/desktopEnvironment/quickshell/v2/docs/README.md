@@ -5,6 +5,7 @@
 - [`notifications.md`](notifications.md): current notification behavior, backend selection, limits, and handover work.
 - [`timers.md`](timers.md): countdown timers and their notification contract.
 - [`slider.md`](slider.md): shared slider controls.
+- [`power-profiles.md`](power-profiles.md): power profile source, D-Bus probe, and panel toggle.
 - [`bar-architecture.md`](bar-architecture.md): layout ownership, StatusPill composition, and status panel transition.
 
 ## Notification records

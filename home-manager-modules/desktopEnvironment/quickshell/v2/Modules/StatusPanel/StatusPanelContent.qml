@@ -60,11 +60,14 @@ Rectangle {
             Layout.fillWidth: true
 
             WifiToggle {}
-            EthernetToggle {}
+            EthernetToggle {
+                span: 1
+            }
+            MicrophoneToggle {}
             BluetoothToggle {}
             AudioToggle {}
             IdleInhibitToggle {}
-            MicrophoneToggle {}
+            PowerProfileToggle {}
         }
 
         NotificationList {

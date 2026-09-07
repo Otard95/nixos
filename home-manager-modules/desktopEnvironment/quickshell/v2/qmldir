@@ -3,6 +3,7 @@ PrimaryBar 1.0 Modules/PrimaryBar.qml
 singleton Time 1.0 Sources/Time.qml
 singleton WM 1.0 Sources/WM.qml
 singleton BatterySource 1.0 Sources/Battery.qml
+singleton PowerProfileSource 1.0 Sources/PowerProfile.qml
 singleton Keyboard 1.0 Sources/Keyboard.qml
 singleton Notifications 1.0 Sources/Notifications.qml
 singleton NetworkSource 1.0 Sources/Network.qml
