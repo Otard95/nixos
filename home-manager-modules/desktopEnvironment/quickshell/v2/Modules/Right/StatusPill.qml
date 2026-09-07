@@ -16,7 +16,7 @@ Item {
     RowLayout {
         id: layout
         anchors.fill: parent
-        spacing: 14
+        spacing: 10
     }
 
     MouseArea {

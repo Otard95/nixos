@@ -103,7 +103,7 @@ Item {
             rightMargin: Theme.innerPadH
             verticalCenter: barBackground.verticalCenter
         }
-        padding: 10
+        padding: 15
 
         StatusPill {
             onToggleRequested: root.toggleStatusPanel()
@@ -111,7 +111,9 @@ Item {
             VolumeMutedIndicator {}
             MicIndicator {}
             KeyboardIndicator {}
-            NotificationStatus { indicatorType: NotificationStatus.Number }
+            NotificationStatus {
+                indicatorType: NotificationStatus.Number
+            }
             NetworkIndicator {}
             BluetoothIndicator {}
         }
