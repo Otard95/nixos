@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.modules.term.gh-dash;
   enable = cfg.enable;
@@ -10,6 +10,8 @@ in {
 
     modules.term.gh.enable = lib.mkDefault true;
 
+    home.packages = [ pkgs.gh-enhance ];
+
     programs.gh-dash = {
       enable = true;
 
@@ -18,12 +20,17 @@ in {
           prs = [
             {
               key = "e";
-              name = "edit";
+              name = "Edit PR";
               command = "gh pr edit --repo {{.RepoName}} {{.PrNumber}}";
+            }
+            {
+              key = "T";
+              name = "View PR actions";
+              command = "gh-enhance -R {{.RepoName}} {{.PrNumber}}";
             }
           ] ++ lib.lists.optional config.modules.term.tuicr.enable {
               key = "D";
-              name = "review";
+              name = "Review PR";
               command = "tuicr pr {{.RepoName}}#{{.PrNumber}}";
             };
         };
@@ -31,6 +38,7 @@ in {
     };
 
     modules.term.bash.bindToSecret.gh-dash.GITHUB_TOKEN = "github/token/cli";
+    modules.term.bash.bindToSecret.gh-enhance.GITHUB_TOKEN = "github/token/cli";
 
   };
 }
