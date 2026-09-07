@@ -67,7 +67,7 @@ freely since `clip` defaults to `false`.
 `assets/fonts/MaterialSymbolsRounded.ttf` — the variable Material Symbols
 Rounded font from the Google material-design-icons repository. The older
 `MaterialIconsRound-Regular.otf` did not include newer glyphs such as
-`notifications_unread`.
+`notifications_unread`. The font has a filled icon variant. Set `filled: true` on a `MaterialSymbol` to use it. The default, `false`, selects the hollow icon variant.
 
 ## WM singleton (`Sources/WM.qml`)
 

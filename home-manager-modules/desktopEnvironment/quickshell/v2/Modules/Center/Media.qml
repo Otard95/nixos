@@ -63,6 +63,7 @@ WrapperMouseArea {
                 anchors.fill: parent
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+                filled: root.player?.isPlaying
                 text: root.player?.isPlaying ? "pause" : "play_arrow"
                 iconSize: 13
                 color: Theme.text
