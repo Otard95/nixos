@@ -13,29 +13,28 @@ Item {
     property int indicatorType: NotificationStatus.Number
     readonly property int unreadCount: Notifications.unreadCount
 
-    visible: Notifications.dnd || unreadCount > 0
-    implicitWidth: visible ? 24 : 0
-    implicitHeight: Theme.fontL + 4
+    visible: Notifications.dnd || Notifications.count > 0
+    implicitWidth: Theme.fontL
+    implicitHeight: Theme.fontL
 
     MaterialSymbol {
-        anchors {
-            left: parent.left
-            bottom: parent.bottom
-        }
-        text: Notifications.dnd ? "notifications_paused" : "notifications"
+        id: icon
+        anchors.centerIn: parent
+        text: Notifications.dnd ? "notifications_paused" : (root.unreadCount > 0 && root.indicatorType === NotificationStatus.Dot ? "notifications_unread" : "notifications")
         iconSize: Theme.fontL
         color: Notifications.dnd ? Theme.yellow : Theme.accentText
     }
 
     Rectangle {
-        visible: !Notifications.dnd && root.unreadCount > 0
+        id: badge
+        visible: root.indicatorType === NotificationStatus.Number && !Notifications.dnd && root.unreadCount > 0
         anchors {
             top: parent.top
             right: parent.right
+            topMargin: 7
+            rightMargin: -7
         }
-        width: root.indicatorType === NotificationStatus.Dot
-            ? height
-            : Math.max(height, countText.implicitWidth + 4)
+        width: Math.max(height, countText.implicitWidth + 4)
         height: 12
         radius: height / 2
         color: Theme.accentText
@@ -43,7 +42,6 @@ Item {
         StyledText {
             id: countText
 
-            visible: root.indicatorType === NotificationStatus.Number
             anchors.centerIn: parent
             text: root.unreadCount > 99 ? "99+" : root.unreadCount
             color: Theme.crust

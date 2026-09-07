@@ -111,7 +111,7 @@ Item {
             VolumeMutedIndicator {}
             MicIndicator {}
             KeyboardIndicator {}
-            NotificationStatus { indicatorType: NotificationStatus.Dot }
+            NotificationStatus { indicatorType: NotificationStatus.Number }
             NetworkIndicator {}
             BluetoothIndicator {}
         }
