@@ -1,0 +1,44 @@
+{
+  "catppuccin": {
+    "baseUrl": "https://raw.githubusercontent.com/orangci/walls-catppuccin-mocha/master/",
+    "ext": "jpg",
+    "images": [
+      {
+        "file": "dragon",
+        "sha256": "sha256:0js4pc4a8dg1vgf3qyw40pcqydh28pl357ggd2qvrnawj7c5h5l8"
+      },
+      {
+        "file": "flower",
+        "sha256": "sha256:0h59zdgraxa20rn296mq6mmnf1zm5ymijgdpdvaf3gcknr1vpk2y"
+      },
+      {
+        "file": "greenbus",
+        "sha256": "sha256:07k2p9r6vmplx87g5n8di2sk54i5ymg6620a39pzv1n0w9nhnbir"
+      },
+      {
+        "file": "koi",
+        "sha256": "sha256:0gr3hcpgxpixxhsjzvl5x4pr30wmrhvim365vrl2kc035bz1kilm"
+      },
+      {
+        "file": "nature-valley-1",
+        "sha256": "sha256:0kwb0sc3hbrxvnpcl88wgsnvb2cy3wy714a4m8xyahawmbm7jfwp"
+      },
+      {
+        "file": "nature-valley-2",
+        "sha256": "sha256:0rm065ag2mqaqlxdf78b94dhqw24xpq2ica8kvf7jd821p6aa7kx"
+      },
+      {
+        "file": "paint",
+        "sha256": "sha256:1ibrzwxr35rvs3lkdnrig9cxbgla8gpaf75n42m3zgakafshzzpp"
+      },
+      {
+        "file": "samurai",
+        "sha256": "sha256:1kdsgg00a6vhw44mmzyz6lj0lydw6mh9p0ccjva03w9y512hzv3x"
+      },
+      {
+        "file": "voyager-15",
+        "sha256": "sha256:13wrzqs6ywna2p93bchp7zgkap80xs78mi0cmcphid3wr1lalqzq"
+      }
+    ]
+  }
+}

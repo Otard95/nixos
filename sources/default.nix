@@ -1,6 +1,16 @@
 {
-  images = {
+  images = let
+    data    = builtins.fromJSON (builtins.readFile ./images.json);
+    mkGroup = group: builtins.listToAttrs (map (img: {
+      name  = img.file;
+      value = builtins.fetchurl {
+        url    = group.baseUrl + img.file + "." + (img.ext or group.ext);
+        sha256 = img.sha256;
+      };
+    }) group.images);
+  in {
     background = {
+      catppuccin = mkGroup data.catppuccin;
       cloud-mountain-snow   = ./background-images/cloud-mountain-snow.png;
       falling-into-infinity = ./background-images/falling-into-infinity.png;
       forrest-lake-train    = ./background-images/forrest-lake-train.png;

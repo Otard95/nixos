@@ -21,8 +21,7 @@
       enable = true;
       app-launcher.launcher = "vicinae";
       background-image = {
-        horizontal = sources.images.background.astronaut;
-        vertical = sources.images.background.astronaut-vertical;
+        horizontal = sources.images.background.catppuccin.koi;
       };
       splash-image = sources.images.splash.black-hole;
       power-menu.rofi.splash-image.scale = "width";
