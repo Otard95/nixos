@@ -1,7 +1,6 @@
 import qs
 import QtQuick
 import QtQuick.Layouts
-import "../../Components"
 import "Notifications"
 import "QuickToggles"
 import "Widgets"
@@ -11,14 +10,34 @@ Rectangle {
 
     signal closeRequested
 
+    property bool panelOpen: false
+
     onCloseRequested: powerOptions.pendingPowerAction = null
+
+    // When the panel closes (Escape, outside click, focus loss), close any
+    // open overlay dialogs so they are not left open on the next open.
+    onPanelOpenChanged: {
+        if (!panelOpen) {
+            wifiDialog.closePasswordPrompt()
+            wifiDialog.open = false
+        }
+    }
 
     focus: true
 
+    // Escape prioritises the top layer: password prompt, then the wifi dialog,
+    // then the whole panel.
     Shortcut {
         sequence: "Escape"
         context: Qt.WindowShortcut
-        onActivated: root.closeRequested()
+        onActivated: {
+            if (wifiDialog.askingPasswordFor !== null)
+                wifiDialog.closePasswordPrompt()
+            else if (wifiDialog.open)
+                wifiDialog.close()
+            else
+                root.closeRequested()
+        }
     }
 
     color: Theme.crust
@@ -59,7 +78,9 @@ Rectangle {
         QuickToggleGrid {
             Layout.fillWidth: true
 
-            WifiToggle {}
+            WifiToggle {
+                onOverlayRequested: wifiDialog.open = !wifiDialog.open
+            }
             EthernetToggle {
                 span: 1
             }
@@ -79,6 +100,19 @@ Rectangle {
         WidgetGroup {
             Layout.fillWidth: true
             Layout.preferredHeight: implicitHeight
+        }
+    }
+
+    WifiDialog {
+        id: wifiDialog
+    }
+
+    WifiPasswordDialog {
+        network: wifiDialog.askingPasswordFor
+        open: wifiDialog.askingPasswordFor !== null
+        onDismissed: {
+            wifiDialog.closePasswordPrompt()
+            close()
         }
     }
 }

@@ -80,12 +80,38 @@ Rectangle {
         text: toggle.icon
     }
 
+    // One-cell toggles are a single hit target.
     MouseArea {
         anchors.fill: parent
-        enabled: toggle.interactive
+        enabled: toggle.span === 1 && toggle.interactive
+        visible: toggle.span === 1
+        cursorShape: Qt.PointingHandCursor
+        onClicked: toggle.triggered()
+    }
+
+    // Two-cell toggles split: the right body opens the overlay. Declared before
+    // the icon hit target so the icon sits on top of this region.
+    MouseArea {
+        anchors.fill: parent
+        enabled: toggle.span === 2 && toggle.interactive
+        visible: toggle.span === 2
+        cursorShape: Qt.PointingHandCursor
+        onClicked: toggle.overlayRequested()
+    }
+
+    // The icon region keeps the toggle action. Geometry mirrors the icon
+    // container inside the Row above (leftMargin 8, 40x40, vertically centered).
+    MouseArea {
+        x: 8
+        width: 40
+        height: 40
+        anchors.verticalCenter: parent.verticalCenter
+        enabled: toggle.span === 2 && toggle.interactive
+        visible: toggle.span === 2
         cursorShape: Qt.PointingHandCursor
         onClicked: toggle.triggered()
     }
 
     signal triggered
+    signal overlayRequested
 }

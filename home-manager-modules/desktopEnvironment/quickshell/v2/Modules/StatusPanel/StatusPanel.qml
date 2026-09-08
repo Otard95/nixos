@@ -64,6 +64,7 @@ Scope {
 
         StatusPanelContent {
             id: panelContent
+            panelOpen: root.open
             onCloseRequested: root.open = false
 
             property real yOffset: root.open ? 0 : -20
