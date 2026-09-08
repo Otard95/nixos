@@ -10,6 +10,8 @@ OverlayDialog {
 
     cardColor: Theme.crust
 
+    property bool showPassword: false
+
     property bool connecting: false
     property bool wrongPassword: false
 
@@ -18,6 +20,7 @@ OverlayDialog {
             pskField.text = ""
             root.wrongPassword = false
             root.connecting = false
+            root.showPassword = false
         }
     }
 
@@ -82,9 +85,9 @@ OverlayDialog {
 
             TextInput {
                 id: pskField
-                anchors { fill: parent; leftMargin: 12; rightMargin: 12 }
+                anchors { fill: parent; leftMargin: 12; rightMargin: 40 }
                 verticalAlignment: Text.AlignVCenter
-                echoMode: TextInput.Password
+                echoMode: root.showPassword ? TextInput.Normal : TextInput.Password
                 passwordCharacter: "●"
                 color: Theme.text
                 font.family: Theme.font
@@ -101,6 +104,21 @@ OverlayDialog {
                 visible: pskField.text.length === 0 && !root.connecting
                 color: Theme.subtext0
                 text: "Password"
+            }
+
+            // Show/hide toggle
+            MaterialSymbol {
+                anchors { right: parent.right; rightMargin: 10; verticalCenter: parent.verticalCenter }
+                visible: pskField.text.length > 0 && !root.connecting
+                iconSize: 18
+                color: root.showPassword ? Theme.accent : Theme.subtext0
+                text: root.showPassword ? "visibility" : "visibility_off"
+
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: root.showPassword = !root.showPassword
+                }
             }
 
             StyledText {

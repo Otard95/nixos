@@ -20,13 +20,19 @@ Item {
         }
     }
 
+    // A snapshot entry can briefly hold a stale/invalid network object (e.g.
+    // NM re-creates the WifiNetwork on connect). Collapse the row rather than
+    // render a broken ghost; the rescan-on-connect then replaces it.
+    readonly property bool valid: !!network && (network.name ?? "") !== ""
+
     width: parent?.width ?? 0
-    height: 55
+    height: valid ? 55 : 0
+    visible: valid
 
     Rectangle {
         anchors.fill: parent
         radius: 12
-        color: root.network.connected ? Theme.alpha(Theme.accent, 0.18) : Theme.alpha(Theme.surface0, 0)
+        color: root.network?.connected ? Theme.alpha(Theme.accent, 0.18) : Theme.alpha(Theme.surface0, 0)
 
         Behavior on color {
             ColorAnimation {
@@ -44,7 +50,7 @@ Item {
             right: parent.right
             top: parent.top
         }
-        opacity: root.network.stateChanging ? 0.55 : 1.0
+        opacity: root.network?.stateChanging ? 0.55 : 1.0
 
         Behavior on opacity {
             NumberAnimation {
@@ -60,8 +66,8 @@ Item {
                 verticalCenter: parent.verticalCenter
             }
             iconSize: 20
-            color: root.network.connected ? Theme.accent : Theme.subtext0
-            text: NetworkSource.strengthIcon(root.network.signalStrength)
+            color: root.network?.connected ? Theme.accent : Theme.subtext0
+            text: NetworkSource.strengthIcon(root.network?.signalStrength ?? 0)
         }
 
         MaterialSymbol {
@@ -73,7 +79,7 @@ Item {
             }
             // With forget-on-cancel, `known` now only marks networks we
             // actually completed a connection to.
-            visible: root.network.known && !root.network.connected
+            visible: (root.network?.known ?? false) && !root.network?.connected
             iconSize: 16
             color: Theme.overlay1
             text: "bookmark"
@@ -86,10 +92,10 @@ Item {
                 rightMargin: 12
                 verticalCenter: parent.verticalCenter
             }
-            visible: root.network.connected || NetworkSource.isSecure(root.network)
+            visible: (root.network?.connected ?? false) || NetworkSource.isSecure(root.network)
             iconSize: 18
-            color: root.network.connected ? Theme.accent : Theme.subtext0
-            text: root.network.connected ? "check" : "lock"
+            color: root.network?.connected ? Theme.accent : Theme.subtext0
+            text: root.network?.connected ? "check" : "lock"
         }
 
         StyledText {
@@ -100,17 +106,17 @@ Item {
                 rightMargin: (savedIcon.visible || secIcon.visible) ? 8 : 12
                 verticalCenter: parent.verticalCenter
             }
-            color: root.network.connected ? Theme.text : Theme.subtext1
-            font.weight: root.network.connected ? Theme.weightBold : Theme.weightNormal
+            color: root.network?.connected ? Theme.text : Theme.subtext1
+            font.weight: root.network?.connected ? Theme.weightBold : Theme.weightNormal
             elide: Text.ElideRight
-            text: root.network.name
+            text: root.network?.name ?? ""
         }
     }
 
     MouseArea {
         anchors.fill: mainRow
         cursorShape: Qt.PointingHandCursor
-        enabled: !root.network.stateChanging && !root.network.connected
+        enabled: root.valid && !root.network?.stateChanging && !root.network?.connected
         onClicked: NetworkSource.connectNetwork(root.network)
     }
 }

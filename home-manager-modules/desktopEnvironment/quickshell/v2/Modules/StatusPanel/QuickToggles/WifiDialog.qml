@@ -1,5 +1,6 @@
 import qs
 import QtQuick
+import Quickshell
 
 OverlayDialog {
     id: root
@@ -23,7 +24,7 @@ OverlayDialog {
         interval: 3000
         onTriggered: {
             root.scanWindowActive = false;
-            root.resortSnapshot();
+            root.sortSnapshot();
             NetworkSource.setScanning(false);
         }
     }
@@ -36,6 +37,13 @@ OverlayDialog {
             if (root.open && root.scanWindowActive && root.askingPasswordFor === null)
                 root.mergeSnapshot();
         }
+        // Reconcile only once we are actually connected (ssid becomes
+        // non-empty). Switching networks changes ssid twice — "" on drop, then
+        // the new name — and the drop should not trigger its own scan cycle.
+        function onSsidChanged() {
+            if (root.open && root.askingPasswordFor === null && NetworkSource.ssid !== "")
+                root.beginScanWindow();
+        }
     }
 
     function mergeSnapshot(): void {
@@ -45,10 +53,15 @@ OverlayDialog {
         root.networkSnapshot = kept.concat(added);
     }
 
-    // Sort the frozen list to current signal/connected order (one-time, at the
-    // end of the scan window).
-    function resortSnapshot(): void {
-        root.networkSnapshot = NetworkSource.friendlyWifiNetworks.slice();
+    // Sort the existing snapshot in place: connected first, then by signal.
+    // Reorders only — keeps the same set of objects, so it is safe after the
+    // scan window when the source list has collapsed to known-only.
+    function sortSnapshot(): void {
+        root.networkSnapshot = root.networkSnapshot.slice().sort((a, b) => {
+            if (a.connected !== b.connected)
+                return a.connected ? -1 : 1;
+            return b.signalStrength - a.signalStrength;
+        });
     }
 
     // Close the password prompt. If the network never actually connected, drop
@@ -71,13 +84,18 @@ OverlayDialog {
         }
     }
 
+    // Clear, scan, append as results arrive; the timer sorts and stops at 3s.
+    function beginScanWindow(): void {
+        root.networkSnapshot = [];   // invalidate the previous scan
+        root.scanWindowActive = true;
+        NetworkSource.setScanning(true);
+        root.mergeSnapshot();        // show known/cached networks immediately
+        scanWindow.restart();
+    }
+
     onOpenChanged: {
         if (open) {
-            root.networkSnapshot = [];   // invalidate the previous scan
-            root.scanWindowActive = true;
-            NetworkSource.setScanning(true);
-            root.mergeSnapshot();        // show known/cached networks immediately
-            scanWindow.restart();
+            root.beginScanWindow();
         } else {
             scanWindow.stop();
             root.scanWindowActive = false;
@@ -153,7 +171,13 @@ OverlayDialog {
             topMargin: 8
             bottomMargin: 8
 
-            model: root.networkSnapshot
+            // ScriptModel launders the JS-array-of-QObjects safely (a raw
+            // array crashes delegate incubation when a network object is freed
+            // mid-update) and diffs incrementally, so reassigning the snapshot
+            // does not recreate every delegate or reset scroll.
+            model: ScriptModel {
+                values: root.networkSnapshot
+            }
 
             delegate: WifiNetworkRow {
                 required property var modelData

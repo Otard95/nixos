@@ -43,12 +43,27 @@ Design decisions made during the build:
   networks appearing after the window are missed until reopen (fine — the ones
   you care about show in the first scan). No refresh button.
 - **Append-only merge, then one sort.** `mergeSnapshot()` (append-only) runs
-  only while the 3s window is active; `resortSnapshot()` sorts once when it
-  ends. Per-row properties still update live since rows are the same QObjects.
-  Note: when the scanner stops the native service may destroy discovered
-  (non-known) network objects; if frozen rows go blank or crash, keeping the
-  scanner on (or re-scanning on connect to reconcile the target) is the
-  fallback. Safer on v0.3.1.
+  only while the 3s window is active; `sortSnapshot()` sorts the existing set
+  in place when the window ends. In-place sort keeps the same objects, so it is
+  safe after the source list collapses to known-only.
+- **Rescan-on-connect.** On connect NM re-creates the `WifiNetwork` objects for
+  the SSID, leaving stale references in the frozen snapshot (they render as a
+  blank ghost row — white card, lone bookmark). `beginScanWindow()` re-runs the
+  scan window on `ssidChanged` to reconcile with fresh valid objects and move
+  the connected network to the top. Guarded on a non-empty ssid so switching
+  networks (drop → "" → new name) triggers one cycle, not two, and skipped while
+  a password prompt is open.
+- **Row null-guards.** `WifiNetworkRow` has a `valid` gate (`network` present
+  and named) that collapses the row to height 0 instead of rendering a ghost;
+  all `network.` reads use optional chaining. Belt-and-braces with the rescan.
+- **ScriptModel, not a raw array.** The ListView model is a `ScriptModel`
+  wrapping the snapshot. A raw JS-array-of-QObjects model crashes delegate
+  incubation (`VDMListDelegateDataType::createMissingProperties`) when a
+  network object is freed mid-update; `ScriptModel` launders object lifetimes
+  (v0.3.1: "Fixed crashes from accessing freed objects laundered through a
+  ScriptModel") and diffs incrementally.
+- **Show/hide password.** `WifiPasswordDialog` has an eye toggle
+  (`visibility` / `visibility_off`) that flips `echoMode`; resets on close.
 - **Separate password dialog.** `WifiPasswordDialog` is its own `OverlayDialog`
   stacked above the list (`crust` card vs the list's `mantle`). It owns the
   wrong-password / connecting state, stays open on `NoSecrets`, auto-closes on
@@ -62,12 +77,17 @@ Design decisions made during the build:
   first, then the wifi dialog, then the whole panel. `OverlayDialog` no longer
   grabs focus itself (avoids two dialogs fighting over focus).
 
-Known crash (not our code): Quickshell v0.3.0 has a use-after-free in the
-NetworkManager backend (`NMWirelessNetwork::updateReferenceAp` on
-`AccessPointRemoved`) that fires when an AP disappears mid-association.
-Fixed upstream in v0.3.1 ("Fixed crashes when a wifi network disappear").
-Resolution is a version bump. Continuous scanning raises the odds; pausing the
-scanner on connect-attempt start is a possible mitigation until the bump.
+Crashes hit during the build, both resolved:
+
+- v0.3.0 use-after-free in the NM backend (`NMWirelessNetwork::updateReferenceAp`
+  on `AccessPointRemoved`) when an AP disappears mid-association. Fixed upstream
+  in v0.3.1 ("Fixed crashes when a wifi network disappear") — requires the
+  version bump.
+- Delegate-incubation crash (`VDMListDelegateDataType::createMissingProperties`)
+  from a raw JS-array model holding a freed object. Fixed by wrapping the model
+  in `ScriptModel` (see above).
+
+**Requires Quickshell ≥ v0.3.1.**
 
 TODO (deferred — interaction design undecided):
 
