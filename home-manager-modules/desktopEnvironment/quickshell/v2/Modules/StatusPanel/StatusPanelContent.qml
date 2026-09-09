@@ -3,6 +3,7 @@ import QtQuick
 import QtQuick.Layouts
 import "Notifications"
 import "QuickToggles"
+import "QuickToggles/Wifi"
 import "Widgets"
 
 Rectangle {

@@ -1,6 +1,6 @@
 import qs
 import QtQuick
-import "../../../Components"
+import "../../../../Components"
 import Quickshell.Networking
 
 Item {

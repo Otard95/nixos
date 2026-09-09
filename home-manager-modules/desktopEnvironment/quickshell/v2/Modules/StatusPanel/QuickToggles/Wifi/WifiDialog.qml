@@ -1,6 +1,7 @@
 import qs
 import QtQuick
 import Quickshell
+import ".."
 
 OverlayDialog {
     id: root
