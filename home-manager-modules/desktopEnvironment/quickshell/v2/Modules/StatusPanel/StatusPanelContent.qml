@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import "Notifications"
 import "QuickToggles"
 import "QuickToggles/Wifi"
+import "QuickToggles/Bluetooth"
 import "Widgets"
 
 Rectangle {
@@ -21,6 +22,7 @@ Rectangle {
         if (!panelOpen) {
             wifiDialog.closePasswordPrompt()
             wifiDialog.open = false
+            bluetoothDialog.open = false
         }
     }
 
@@ -36,6 +38,8 @@ Rectangle {
                 wifiDialog.closePasswordPrompt()
             else if (wifiDialog.open)
                 wifiDialog.close()
+            else if (bluetoothDialog.open)
+                bluetoothDialog.close()
             else
                 root.closeRequested()
         }
@@ -86,7 +90,9 @@ Rectangle {
                 span: 1
             }
             MicrophoneToggle {}
-            BluetoothToggle {}
+            BluetoothToggle {
+                onOverlayRequested: bluetoothDialog.open = !bluetoothDialog.open
+            }
             AudioToggle {}
             IdleInhibitToggle {}
             PowerProfileToggle {}
@@ -115,5 +121,9 @@ Rectangle {
             wifiDialog.closePasswordPrompt()
             close()
         }
+    }
+
+    BluetoothDialog {
+        id: bluetoothDialog
     }
 }

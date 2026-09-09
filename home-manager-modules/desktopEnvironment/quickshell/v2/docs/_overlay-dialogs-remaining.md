@@ -9,8 +9,19 @@ the real dialog content and the source/service backing do not.
   (scrim, centering, content-derived sizing, in/out animation).
 - `Modules/StatusPanel/QuickToggles/QuickToggle.qml` — two-cell toggles split:
   icon = `triggered`, body = `overlayRequested`.
-- Demo hook: `Modules/StatusPanel/StatusPanelContent.qml` wires `WifiToggle`
-  `onOverlayRequested` to a placeholder dialog. Still in place, remove later.
+- `StatusPanelContent.qml` wires `WifiToggle` and `BluetoothToggle`
+  `onOverlayRequested` to their real dialogs, and owns the Escape chain (wifi
+  password → wifi → bluetooth → panel).
+- Layout: toggles are flat in `QuickToggles/`; each dialog lives in a per-toggle
+  subdir (`QuickToggles/Wifi/`, `QuickToggles/Bluetooth/`). `OverlayDialog.qml`
+  stays top-level — shared infra, not tied to one toggle. Directory imports do
+  not recurse, so `StatusPanelContent` imports each subdir explicitly.
+- `Sources/Bluetooth.qml` — extended from toggle-only to back the dialog. Added
+  `devices`, `friendlyDevices` (connected → paired → discovered, then by name),
+  `discovering` + guarded `setDiscovering()`, per-device
+  `connect/disconnect/pair/cancelPair/forget/setTrusted`, and presentation
+  helpers `deviceLabel`, `deviceSymbol`, `stateLabel`, `batteryIcon`,
+  `deviceBusy`. Native `Quickshell.Bluetooth` only, no `bluetoothctl`.
 - `Sources/Network.qml` — rewritten to use `Quickshell.Networking` natively.
   Removed all `nmcli` / `ip` process machinery (polling, `Process`, `Timer`).
   `wifiEnabled` now reads/writes `Networking.wifiEnabled` directly. `wiredEnabled`
@@ -99,12 +110,53 @@ TODO (deferred — interaction design undecided):
 
 Ref: upstream `modules/ii/sidebarRight/wifiNetworks/WifiDialog.qml`.
 
-### BluetoothDialog
+### BluetoothDialog — done
 
-- Source: `Sources/Bluetooth.qml` (adapter enabled + connected count only).
-- Needs: device list (paired + discovered), discovery start/stop + discovering
-  state, pair/connect/disconnect/trust per device.
-- Ref: upstream `modules/ii/sidebarRight/bluetoothDevices/BluetoothDialog.qml`.
+Files: `Modules/StatusPanel/QuickToggles/Bluetooth/BluetoothDialog.qml`,
+`BluetoothDeviceRow.qml`. Source: `Sources/Bluetooth.qml` (extended).
+
+Design decisions made during the build:
+
+- **Live list, no frozen scan window.** Unlike WifiDialog (which freezes a 3s
+  snapshot), the device list is a `ScriptModel` straight over the source's
+  `friendlyDevices` and stays live. Bluetooth pairing is interactive — the user
+  waits for a device to appear, then acts on it — so a live list is right. The
+  re-sort moves a device to the top as it connects; accepted, matches upstream.
+- **ScriptModel, same as wifi.** Discovery adds and removes device objects
+  live; a raw JS-array-of-QObjects model crashes delegate incubation when one
+  is freed mid-update. `ScriptModel` launders the lifetimes and diffs.
+- **Discovery on only while open.** `onOpenChanged` sets
+  `BluetoothSource.setDiscovering(true/false)`; panel-close also closes the
+  dialog. `setDiscovering` guards redundant writes (BlueZ warns when stopping
+  discovery that never started, hit via the double close paths).
+- **Expandable rows, one at a time.** The dialog owns `expandedDevice`; a row
+  click toggles it. Collapsed shows icon, name, status, battery. Expanded
+  reveals Connect/Disconnect and Pair/Forget (Forget in red). Mirrors upstream
+  `BluetoothDeviceItem` interaction, restyled to our theme.
+- **Busy gate.** `deviceBusy()` (pairing / connecting / disconnecting) dims the
+  row and disables its action buttons, avoiding double-trigger during a
+  transition.
+- **Battery as an icon.** `batteryIcon(level)` maps 0–1 to the Material barred
+  battery set (`battery_alert` under 10%, red tint). Shown only when
+  `dev.batteryAvailable`; many mice/keyboards do not report it. The status line
+  then reads just `Connected` / `Paired`.
+- **Presentation in the singleton.** `deviceLabel`, `deviceSymbol` (BlueZ icon
+  name → Material symbol), `stateLabel`, `batteryIcon`, `deviceBusy` all live in
+  `Sources/Bluetooth.qml`, keeping the rows dumb (same split as the wifi work).
+- **Escape priority.** `StatusPanelContent` Escape chain: wifi password → wifi
+  dialog → bluetooth dialog → panel.
+
+No secret/password flow — Bluetooth pairing has no PSK equivalent in the API.
+
+Not available (deliberately skipped):
+
+- **Signal strength / RSSI.** No property on `BluetoothDevice` in v0.3.1. BlueZ
+  exposes RSSI over DBus but Quickshell does not surface it; the only route is
+  parsing `bluetoothctl`, which breaks the native-only source. Skipped — not
+  critical.
+
+Ref: upstream `modules/ii/sidebarRight/bluetoothDevices/BluetoothDialog.qml` +
+`BluetoothDeviceItem.qml`.
 
 ### VolumeDialog ×2 (output, input)
 
@@ -180,6 +232,60 @@ prompt, then call `net.connectWithPsk(psk)`.
 Options: enable only while the dialog is open (cleanest), or pulse on open then
 disable after the first scan completes. Not yet decided.
 
+## Bluetooth source research
+
+### Quickshell.Bluetooth v0.3.1 API coverage
+
+All BluetoothDialog needs are available natively. No `bluetoothctl` / `Process`
+required — same story as the Network rewrite.
+
+| Need | API |
+|---|---|
+| Device list (paired + discovered) | `adapter.devices.values` — each a `BluetoothDevice` (or `Bluetooth.devices.values` across adapters) |
+| Discovery on/off | `adapter.discovering` — writable (no `readonly` in docs); read for the spinner |
+| Device identity | `dev.name`, `dev.deviceName`, `dev.address`, `dev.icon` (system icon → `Quickshell.iconPath()`) |
+| State | `dev.state` (`BluetoothDeviceState`), `dev.connected` |
+| Paired / bonded / trusted | `dev.paired`, `dev.bonded`, `dev.trusted` (trusted writable) |
+| Battery | `dev.batteryAvailable`, `dev.battery` (0–1) |
+| Connect / disconnect | `dev.connect()` / `dev.disconnect()` (or `dev.connected = x`) |
+| Pair / cancel / unpair | `dev.pair()`, `dev.pairing`, `dev.cancelPair()`, `dev.forget()` (forget = unpair) |
+| `BluetoothDeviceState` values | `Disconnected`, `Connecting`, `Connected`, `Disconnecting` |
+
+### Bluetooth source consumer audit
+
+| Property / function | Consumer |
+|---|---|
+| `connected`, `connectedDeviceCount`, `enabled`, `available`, `icon`, `toggle()` | `BluetoothToggle.qml` |
+| `available`, `icon` | `BluetoothIndicator.qml` |
+
+Toggle-level state only. Nothing feeds a dialog.
+
+### No failure signal
+
+Wifi had `connectionFailed(reason)`. Bluetooth has none — pairing / connect
+errors are not signalled. The dialog can only infer failure from `dev.pairing`
+dropping to false while `paired` / `bonded` stay false, plus a timeout. Known
+limit, not a source gap.
+
+### Device model lifetime
+
+Discovery adds and removes device objects live. Wrap the dialog's ListView
+model in `ScriptModel` (same as wifi) to launder freed-object lifetimes and
+diff incrementally — the crash class the wifi list hit
+(`VDMListDelegateDataType::createMissingProperties`).
+
+### Discovery lifetime (decided)
+
+`adapter.discovering = true` scans continuously (battery + radio cost). Enable
+only while the dialog is open; disable on close. No wifi-style one-shot freeze
+window — Bluetooth pairing is interactive, a live list is better. `setEnabled`
+of discovery is guarded on adapter presence.
+
+### `adapter.devices` vs `Bluetooth.devices`
+
+Single-adapter → equivalent. Scope to the default adapter (`adapter.devices`)
+to avoid cross-adapter noise; fall back to empty when no adapter.
+
 ## Open questions
 
 - Content selection: one shared `OverlayDialog` host with swapped content, or
@@ -206,3 +312,8 @@ disable after the first scan completes. Not yet decided.
   - [WiredDevice](https://quickshell.org/docs/v0.3.0/types/Quickshell.Networking/WiredDevice/)
   - [WifiSecurityType](https://quickshell.org/docs/v0.3.0/types/Quickshell.Networking/WifiSecurityType/)
   - [ConnectionState](https://quickshell.org/docs/v0.3.0/types/Quickshell.Networking/ConnectionState/)
+- Quickshell.Bluetooth v0.3.1 API:
+  - [Bluetooth](https://quickshell.org/docs/v0.3.1/types/Quickshell.Bluetooth/Bluetooth/)
+  - [BluetoothAdapter](https://quickshell.org/docs/v0.3.1/types/Quickshell.Bluetooth/BluetoothAdapter/)
+  - [BluetoothDevice](https://quickshell.org/docs/v0.3.1/types/Quickshell.Bluetooth/BluetoothDevice/)
+  - [BluetoothDeviceState](https://quickshell.org/docs/v0.3.1/types/Quickshell.Bluetooth/BluetoothDeviceState/)
