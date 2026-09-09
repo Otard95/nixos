@@ -34,23 +34,8 @@ in {
       systemd.enable = true;
 
       settings = {
-        theme = {
-          dark = {
-            name = "catppuccin-frappe";
-          };
-        };
-        providers = {
-          "@tinkerbells/vicinae-extension-pass-0" = {
-            preferences = {
-              passwordStorePath = "~/.local/share/password-store";
-            };
-          };
-          "@Ninetonine/vicinae-extension-searxng-0" = {
-            preferences = {
-              instance_domain = "";
-            };
-          };
-        };
+        global_shortcuts.toggle = "";
+        theme.dark.name = "catppuccin-frappe";
       };
 
       extensions = with inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system}; [
