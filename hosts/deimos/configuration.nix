@@ -59,24 +59,14 @@
         logitech = {
           enable = true;
           openlogi.enable = true;
-          # logiops = {
-          #   enable = true;
-          #   settings = {
-          #     devices."MX Master 4".buttons = [
-          #       {
-          #         cid = "0xc3";
-          #         action = { type = "Keypress"; keys = [ "KEY_LEFTALT" "BTN_LEFT" ]; };
-          #       }
-          #     ];
-          #   };
-          #   preset.sensibleMXMaster4 = true;
-          # };
         };
         slack.enable = true;
         tldraw.enable = true;
       };
     };
   };
+  # Make a module? Or move to an existing?
+  services.power-profiles-daemon.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
