@@ -70,6 +70,21 @@ in {
         };
         web-search = {
           providers = ["duckduckgo" "brave"];
+          rate-limit = let
+            no-burst = {
+              count = 2;
+              window = { s = 5; };
+              message = "Over use causes upstream rate-limits. Investigate searches before doing another";
+            };
+            prefer-traverse = {
+              count = 5;
+              window = { s = 30; };
+              message = "Prefer traversing links found on the sites you already know";
+            };
+          in {
+            duckduckgo = [ no-burst prefer-traverse ];
+            brave = [ no-burst prefer-traverse ];
+          };
         };
         web-read = {
           browserPath = lib.getExe pkgs.chromium;
