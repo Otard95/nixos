@@ -32,10 +32,22 @@ in {
           phpactor = {
             enable = true;
             config = {
-              root_markers = [
-                "index.php"
-                "compile.php"
-              ];
+              root_dir = nixvim.mkRaw ''
+                function(bufnr, on_dir)
+                  local fname = vim.api.nvim_buf_get_name(bufnr)
+                  local cwd = vim.uv.cwd()
+
+                  -- Launched in a dir with .phpactor.json, and this file lives under it → single root.
+                  if fname:sub(1, #cwd + 1) == cwd .. '/'
+                     and vim.uv.fs_stat(cwd .. '/.phpactor.json') then
+                    return on_dir(cwd)
+                  end
+
+                  -- Fallback: nearest standard marker (today's behavior).
+                  return on_dir(vim.fs.root(fname, { 'composer.json', '.phpactor.json' })
+                    or vim.fs.dirname(fname))
+                end
+              '';
             };
           };
           # eslint.enable = true;
