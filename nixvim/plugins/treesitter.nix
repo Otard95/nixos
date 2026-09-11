@@ -2,45 +2,43 @@
 let
   cfg = config.modules.nixvim.plugins.treesitter;
   enable = cfg.enable;
+
+  # [Issue #4152 · nix-community/nixvim](https://github.com/nix-community/nixvim/issues/4152)
+  # nvim-treesitter puts queries under runtime/queries/ which is not on the rtp.
+  # This copies them into the nvim config dir so they are found at queries/{grammar}/*.scm.
+  mkGrammarFix = grammars:
+    lib.concatMapAttrs (grammar: features:
+      lib.listToAttrs (map (feature: {
+        name = "queries/${grammar}/${feature}.scm";
+        value.source = "${pkgs.vimPlugins.nvim-treesitter}/runtime/queries/${grammar}/${feature}.scm";
+      }) features)
+    ) grammars;
+
 in {
   options.modules.nixvim.plugins.treesitter.enable =
     lib.mkEnableOption "treesitter plugin";
 
   config = lib.mkIf enable {
     programs.nixvim = {
-      # [[BUG] Colorschema off since my last flake update · Issue #4152 · nix-community/nixvim](https://github.com/nix-community/nixvim/issues/4152)
       extraFiles = {
         "queries/ecma/highlights.scm".source = pkgs.fetchurl {
           url = "https://raw.githubusercontent.com/nvim-treesitter/nvim-treesitter/master/queries/ecma/highlights.scm";
           sha256 = "sha256-N4NFR+uqnBYMrYfqvTg4fUcisbQNRLq1TY5x0f7/m54=";
         };
-        "queries/typescript/highlights.scm".source =
-          "${pkgs.vimPlugins.nvim-treesitter}/runtime/queries/typescript/highlights.scm";
-        "queries/typescript/folds.scm".source =
-          "${pkgs.vimPlugins.nvim-treesitter}/runtime/queries/typescript/folds.scm";
-        "queries/typescript/indents.scm".source =
-          "${pkgs.vimPlugins.nvim-treesitter}/runtime/queries/typescript/indents.scm";
-        "queries/typescript/injections.scm".source =
-          "${pkgs.vimPlugins.nvim-treesitter}/runtime/queries/typescript/injections.scm";
-        "queries/typescript/locals.scm".source =
-          "${pkgs.vimPlugins.nvim-treesitter}/runtime/queries/typescript/locals.scm";
-        "queries/tsx/highlights.scm".source =
-          "${pkgs.vimPlugins.nvim-treesitter}/runtime/queries/tsx/highlights.scm";
-        "queries/tsx/folds.scm".source =
-          "${pkgs.vimPlugins.nvim-treesitter}/runtime/queries/tsx/folds.scm";
-        "queries/tsx/indents.scm".source =
-          "${pkgs.vimPlugins.nvim-treesitter}/runtime/queries/tsx/indents.scm";
-        "queries/tsx/injections.scm".source =
-          "${pkgs.vimPlugins.nvim-treesitter}/runtime/queries/tsx/injections.scm";
-        "queries/tsx/locals.scm".source =
-          "${pkgs.vimPlugins.nvim-treesitter}/runtime/queries/tsx/locals.scm";
+      } // mkGrammarFix {
+        typescript = [ "highlights" "folds" "indents" "injections" "locals" ];
+        tsx        = [ "highlights" "folds" "indents" "injections" "locals" ];
+        php        = [ "highlights" "folds" "indents" "injections" "locals" ];
+        php_only   = [ "highlights" "folds" "indents" "injections" "locals" ];
+        phpdoc     = [ "highlights" ];
+        terraform  = [ "highlights" "folds" "indents" "injections" ];
       };
+
       extraConfigLua = ''
         -- nvim-treesitter-grammars uses is-not? in js/jsx queries but the
         -- installed nvim-treesitter plugin version doesn't register that predicate.
         vim.treesitter.query.add_predicate('is-not?', function() return true end, { force = true })
       '';
-
 
       plugins.treesitter = {
         enable = true;
@@ -94,3 +92,4 @@ in {
     };
   };
 }
+
