@@ -65,6 +65,16 @@ Singleton {
         return Qt.rgba(color.r, color.g, color.b, a);
     }
 
+    // Linear RGB blend: t=0 is a, t=1 is b.
+    function mix(a, b, t) {
+        return Qt.rgba(
+            a.r + (b.r - a.r) * t,
+            a.g + (b.g - a.g) * t,
+            a.b + (b.b - a.b) * t,
+            a.a + (b.a - a.a) * t
+        );
+    }
+
     function withLightness(color, l) {
         return Qt.hsla(color.hslHue, color.hslSaturation, l, color.a);
     }

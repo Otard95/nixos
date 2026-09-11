@@ -15,7 +15,7 @@ Item {
     property real dialogHeight: 0
     property real contentPadding: 18
     property real slideDistance: 40
-    property color cardColor: Theme.mantle
+    property color cardColor: Theme.mix(Theme.mantle, Theme.accent, 0.03)
 
     signal dismissed
 
