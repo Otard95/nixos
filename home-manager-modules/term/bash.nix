@@ -37,6 +37,7 @@ in {
 
       historyControl = [
         "ignoreboth"
+        "erasedups"
       ];
     };
   };
