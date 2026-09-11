@@ -45,7 +45,7 @@ in {
         keybindings = {
           prs = [
             {
-              key = "e";
+              key = "ctrl+e";
               name = "Edit PR";
               command = "gh pr edit --repo {{.RepoName}} {{.PrNumber}}";
             }
