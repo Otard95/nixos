@@ -10,6 +10,8 @@ singleton NetworkSource 1.0 Sources/Network.qml
 singleton IdleInhibit 1.0 Sources/IdleInhibit.qml
 singleton Mic 1.0 Sources/Mic.qml
 singleton VolumeSource 1.0 Sources/Volume.qml
+singleton Audio 1.0 Sources/Audio.qml
+singleton AudioProfileSource 1.0 Sources/AudioProfile.qml
 singleton BrightnessSource 1.0 Sources/Brightness.qml
 singleton BluetoothSource 1.0 Sources/Bluetooth.qml
 singleton ResourceUsage 1.0 Sources/ResourceUsage.qml

@@ -39,25 +39,5 @@ Rectangle {
             ]
         }
 
-        StyledSlider {
-            Layout.fillWidth: true
-            visible: VolumeSource.sinkAvailable
-            trackSize: StyledSlider.Wide
-            trackColor: Theme.base
-            value: VolumeSource.sinkVolume
-            onMoved: VolumeSource.setSinkVolume(value)
-
-            markers: [
-                SliderMarker {
-                    value: 0.75
-                    divider: true
-                    icon: "hearing"
-                },
-                SliderMarker {
-                    value: 1
-                    icon: VolumeSource.sinkMuted ? "volume_off" : "volume_up"
-                }
-            ]
-        }
     }
 }

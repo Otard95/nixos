@@ -5,6 +5,7 @@ import "Notifications"
 import "QuickToggles"
 import "QuickToggles/Wifi"
 import "QuickToggles/Bluetooth"
+import "QuickToggles/Audio"
 import "Widgets"
 
 Rectangle {
@@ -20,9 +21,10 @@ Rectangle {
     // open overlay dialogs so they are not left open on the next open.
     onPanelOpenChanged: {
         if (!panelOpen) {
-            wifiDialog.closePasswordPrompt()
-            wifiDialog.open = false
-            bluetoothDialog.open = false
+            wifiDialog.closePasswordPrompt();
+            wifiDialog.open = false;
+            bluetoothDialog.open = false;
+            audioDialog.open = false;
         }
     }
 
@@ -35,13 +37,15 @@ Rectangle {
         context: Qt.WindowShortcut
         onActivated: {
             if (wifiDialog.askingPasswordFor !== null)
-                wifiDialog.closePasswordPrompt()
+                wifiDialog.closePasswordPrompt();
             else if (wifiDialog.open)
-                wifiDialog.close()
+                wifiDialog.close();
             else if (bluetoothDialog.open)
-                bluetoothDialog.close()
+                bluetoothDialog.close();
+            else if (audioDialog.open)
+                audioDialog.close();
             else
-                root.closeRequested()
+                root.closeRequested();
         }
     }
 
@@ -89,11 +93,15 @@ Rectangle {
             EthernetToggle {
                 span: 1
             }
-            MicrophoneToggle {}
+            MicrophoneToggle {
+                onOverlayRequested: audioDialog.open ? audioDialog.close() : audioDialog.openTab("input")
+            }
             BluetoothToggle {
                 onOverlayRequested: bluetoothDialog.open = !bluetoothDialog.open
             }
-            AudioToggle {}
+            AudioToggle {
+                onOverlayRequested: audioDialog.open ? audioDialog.close() : audioDialog.openTab("output")
+            }
             IdleInhibitToggle {}
             PowerProfileToggle {}
         }
@@ -118,12 +126,16 @@ Rectangle {
         network: wifiDialog.askingPasswordFor
         open: wifiDialog.askingPasswordFor !== null
         onDismissed: {
-            wifiDialog.closePasswordPrompt()
-            close()
+            wifiDialog.closePasswordPrompt();
+            close();
         }
     }
 
     BluetoothDialog {
         id: bluetoothDialog
+    }
+
+    AudioDialog {
+        id: audioDialog
     }
 }

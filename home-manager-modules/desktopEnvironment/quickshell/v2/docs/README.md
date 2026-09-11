@@ -7,7 +7,7 @@
 - [`slider.md`](slider.md): shared slider controls.
 - [`power-profiles.md`](power-profiles.md): power profile source, D-Bus probe, and panel toggle.
 - [`bar-architecture.md`](bar-architecture.md): layout ownership, StatusPill composition, and status panel transition.
-- [`quick-toggle-overlays.md`](quick-toggle-overlays.md): OverlayDialog component and the toggle split-interaction model.
+- [`quick-toggle-overlays.md`](quick-toggle-overlays.md): OverlayDialog component, toggle split-interaction, the built dialogs (Wifi, Bluetooth, Audio), and the native service APIs behind them.
 
 ## Notification records
 
