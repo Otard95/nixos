@@ -27,6 +27,33 @@ Flickable {
     readonly property int spacing: 6
     readonly property int animationDuration: 200
 
+    // groupId is stable per app, so a dismissed group leaves its expanded and
+    // height state behind. Drop state for groups that no longer exist so a new
+    // group reusing that id starts collapsed at its default height.
+    onGroupsChanged: pruneVanishedGroups()
+
+    function pruneVanishedGroups(): void {
+        const liveIds = {}
+        for (const group of groups)
+            liveIds[group.groupId] = true
+
+        const nextExpanded = {}
+        for (const groupId in expandedGroups) {
+            if (liveIds[groupId])
+                nextExpanded[groupId] = expandedGroups[groupId]
+        }
+        if (Object.keys(nextExpanded).length !== Object.keys(expandedGroups).length)
+            expandedGroups = nextExpanded
+
+        const nextHeights = {}
+        for (const groupId in groupHeights) {
+            if (liveIds[groupId])
+                nextHeights[groupId] = groupHeights[groupId]
+        }
+        if (Object.keys(nextHeights).length !== Object.keys(groupHeights).length)
+            groupHeights = nextHeights
+    }
+
     function groupExpanded(groupId: string): bool {
         return expandedGroups[groupId] === true
     }
