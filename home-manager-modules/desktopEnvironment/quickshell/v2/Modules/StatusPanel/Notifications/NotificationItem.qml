@@ -198,9 +198,13 @@ Rectangle {
             StyledText {
                 visible: root.showSummary
                 Layout.fillWidth: !root.compact
+                // Bind the compact cap to the item's own width, not
+                // summaryRow.width. summaryRow is the layout being arranged, so
+                // reading its width here makes the rearrange recursive; Qt then
+                // aborts it mid-pass and leaves the row's items overlapping.
                 Layout.maximumWidth: root.compact
-                    ? summaryRow.width * 0.6
-                    : -1
+                    ? root.width * 0.6
+                    : Number.POSITIVE_INFINITY
                 color: Theme.text
                 font.weight: Theme.weightBold
                 elide: Text.ElideRight
