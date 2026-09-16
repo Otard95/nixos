@@ -73,12 +73,12 @@ in {
           rate-limit = let
             no-burst = {
               count = 2;
-              window = { s = 5; };
+              window = { s = 10; };
               message = "Over use causes upstream rate-limits. Investigate searches before doing another";
             };
             prefer-traverse = {
               count = 5;
-              window = { s = 30; };
+              window = { s = 60; };
               message = "Prefer traversing links found on the sites you already know";
             };
           in {
