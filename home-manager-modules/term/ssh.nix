@@ -61,6 +61,19 @@ in {
           identityFile = personal_identity_files;
           forwardAgent = true;
         };
+        luna-proxy = {
+          host = "luna-proxy";
+          hostname = "luna-ssh.internal";
+          user = "otard";
+          port = 22;
+          identityFile = personal_identity_files;
+          forwardAgent = false;
+          dynamicForward = "127.0.0.1:1080";
+          exitOnForwardFailure = true;
+          serverAliveInterval = 30;
+          serverAliveCountMax = 3;
+          sessionType = "none";
+        };
       };
 
     };
