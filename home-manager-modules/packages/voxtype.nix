@@ -19,10 +19,12 @@ in {
     };
 
     modules.desktopEnvironment.keybinds = [
-      { key = "f8";
+      { key = "v";
+        mods = ["main"];
         exec = "uwsm app -- voxtype record start";
       }
-      { key = "f8";
+      { key = "v";
+        mods = ["main"];
         release = true;
         exec = "uwsm app -- voxtype record stop";
       }
