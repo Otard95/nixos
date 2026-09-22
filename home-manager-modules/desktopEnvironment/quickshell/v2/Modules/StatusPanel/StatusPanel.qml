@@ -2,7 +2,6 @@ import qs
 import QtQuick
 import Quickshell
 import Quickshell.Wayland
-import Quickshell.Hyprland
 
 Scope {
     id: root
@@ -36,10 +35,9 @@ Scope {
         Notifications.setPopupInhibitor("status-panel", StatusPanelState.anyOpen)
     }
 
-    // Dismiss on outside click and keep pointer input routed while open.
-    // Without this the bar keeps pointer focus and a second click to close
-    // needs a cursor move before it registers.
-    HyprlandFocusGrab {
+    // Dismiss on outside click. On a native backend this also keeps pointer
+    // input routed while open; the generic fallback only catches the click.
+    FocusGrab {
         windows: [panel]
         active: root.open
         onCleared: root.open = false
@@ -55,6 +53,8 @@ Scope {
         color: "transparent"
         WlrLayershell.namespace: "quickshell:statusPanel"
         WlrLayershell.keyboardFocus: root.open ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
+        // On the fallback backend the panel must sit above the grab catcher.
+        WlrLayershell.layer: WM.hasFocusGrab ? WlrLayer.Top : WlrLayer.Overlay
 
         anchors {
             top: true

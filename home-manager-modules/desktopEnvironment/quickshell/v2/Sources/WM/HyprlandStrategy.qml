@@ -11,6 +11,8 @@ Scope {
     property var activeWindowByMonitor: ({})
     property var workspaceAppsById:      ({})
     property string activeMode: ""
+    readonly property string backend: "hyprland"
+    readonly property bool hasFocusGrab: true
 
     function buildWorkspaces() {
         const result = {}

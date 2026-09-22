@@ -21,6 +21,7 @@ singleton StatusPanelState 1.0 Sources/StatusPanelState.qml
 singleton Theme 1.0 Theme.qml
 DocumentStore 1.0 Sources/DocumentDb/DocumentStore.qml
 Container 1.0 Components/Container.qml
+FocusGrab 1.0 Components/FocusGrab.qml
 StyledText 1.0 Components/StyledText.qml
 Pill 1.0 Components/Pill.qml
 OuterPill 1.0 Components/OuterPill.qml

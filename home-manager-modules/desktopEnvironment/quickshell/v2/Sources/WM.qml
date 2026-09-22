@@ -26,6 +26,12 @@ import "./WM" as Strategies
 //
 //   activeMode: string    // empty when default, non-empty for submaps/modes
 //
+//   backend: string       // identifier, e.g. "hyprland" | "wlr"
+//
+//   hasFocusGrab: bool    // true when the backend can hold input focus on a
+//                         // window natively (see Components/FocusGrab.qml).
+//                         // false → consumers fall back to a click-catcher.
+//
 // ─────────────────────────────────────────────────────────────────────────────
 Singleton {
     id: root
@@ -35,6 +41,8 @@ Singleton {
     readonly property var workspacesByMonitor:   impl.workspacesByMonitor
     readonly property var activeWindowByMonitor: impl.activeWindowByMonitor
     readonly property string activeMode:         impl.activeMode
+    readonly property string backend:            impl.backend
+    readonly property bool hasFocusGrab:         impl.hasFocusGrab
 
     Strategies.HyprlandStrategy { id: hyprland }
     // Strategies.WlrStrategy { id: wlr }   // swap impl above to use this

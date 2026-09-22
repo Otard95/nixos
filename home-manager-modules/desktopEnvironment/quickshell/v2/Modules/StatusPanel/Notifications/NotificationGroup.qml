@@ -181,10 +181,11 @@ Rectangle {
     }
 
     function itemAt(groupLocalY: real): Item {
-        for (let i = 0; i < notificationsList.count; i++) {
-            const item = notificationsList.itemAtIndex(i)
+        for (let i = 0; i < notificationsRepeater.count; i++) {
+            const item = notificationsRepeater.itemAt(i)
             if (!item) continue
-            if (groupLocalY >= item.y && groupLocalY < item.y + item.height)
+            const top = item.mapToItem(root, 0, 0).y
+            if (groupLocalY >= top && groupLocalY < top + item.height)
                 return item
         }
         return null
@@ -301,73 +302,63 @@ Rectangle {
                     }
                 }
 
-                ListView {
+                // A layout-driven Repeater, not a ListView. Item height depends
+                // on wrapped body text, whose height settles after the delegate
+                // width is known. A ListView positions delegates from a height
+                // read too early and does not reliably push the item below down
+                // when the text grows, so expanded items overlap. A ColumnLayout
+                // recomputes every position synchronously on any height change.
+                ColumnLayout {
                     id: notificationsList
 
                     Layout.fillWidth: true
-                    Layout.preferredHeight: contentHeight
                     spacing: root.expanded ? 5 : 3
-                    interactive: false
 
-                    model: ScriptModel {
-                        values: root.expanded
-                            ? root.group.notifications.slice()
-                            : root.group.notifications.slice(0, 2)
-                    }
+                    Repeater {
+                        id: notificationsRepeater
 
-                    delegate: NotificationItem {
-                        required property int index
-                        required property NotificationTypes.NotificationEntry modelData
+                        model: ScriptModel {
+                            values: root.expanded
+                                ? root.group.notifications.slice()
+                                : root.group.notifications.slice(0, 2)
+                        }
 
-                        width: ListView.view.width
-                        height: implicitHeight
-                        notification: modelData
-                        expanded: root.expanded
-                        compact: !root.expanded
-                        chainOffset: modelData === null
-                            ? 0
-                            : root.itemChainOffset(modelData.notificationId, index)
-                        showSummary: true
-                        showImage: root.group.notifications.length > 1
-                        preview: !root.expanded && index === 1
-                        opacity: preview && root.group.notifications.length > 2 ? 0.5 : 1
+                        delegate: NotificationItem {
+                            required property int index
+                            required property NotificationTypes.NotificationEntry modelData
 
-                        onDraggingChanged: {
-                            if (modelData !== null) {
-                                root.reportItemDrag(modelData.notificationId,
-                                    index, dragging, dragOffset,
-                                    passedThreshold)
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: implicitHeight
+                            notification: modelData
+                            expanded: root.expanded
+                            compact: !root.expanded
+                            chainOffset: modelData === null
+                                ? 0
+                                : root.itemChainOffset(modelData.notificationId, index)
+                            showSummary: true
+                            showImage: root.group.notifications.length > 1
+                            preview: !root.expanded && index === 1
+                            opacity: preview && root.group.notifications.length > 2 ? 0.5 : 1
+
+                            onDraggingChanged: {
+                                if (modelData !== null) {
+                                    root.reportItemDrag(modelData.notificationId,
+                                        index, dragging, dragOffset,
+                                        passedThreshold)
+                                }
                             }
-                        }
-                        onDragOffsetChanged: {
-                            if (dragging && modelData !== null) {
-                                root.reportItemDrag(modelData.notificationId,
-                                    index, true, dragOffset, passedThreshold)
+                            onDragOffsetChanged: {
+                                if (dragging && modelData !== null) {
+                                    root.reportItemDrag(modelData.notificationId,
+                                        index, true, dragOffset, passedThreshold)
+                                }
                             }
-                        }
-                        onPassedThresholdChanged: {
-                            if (dragging && modelData !== null) {
-                                root.reportItemDrag(modelData.notificationId,
-                                    index, true, dragOffset, passedThreshold)
+                            onPassedThresholdChanged: {
+                                if (dragging && modelData !== null) {
+                                    root.reportItemDrag(modelData.notificationId,
+                                        index, true, dragOffset, passedThreshold)
+                                }
                             }
-                        }
-                    }
-
-                    add: Transition {
-                        NumberAnimation {
-                            property: "opacity"
-                            from: 0
-                            to: 1
-                            duration: 180
-                            easing.type: Easing.OutCubic
-                        }
-                    }
-
-                    displaced: Transition {
-                        NumberAnimation {
-                            property: "y"
-                            duration: 200
-                            easing.type: Easing.OutCubic
                         }
                     }
                 }

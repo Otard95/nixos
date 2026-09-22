@@ -15,6 +15,8 @@ Scope {
     property var workspacesByMonitor:   ({})
     property var activeWindowByMonitor: ({})
     property string activeMode: ""
+    readonly property string backend: "wlr"
+    readonly property bool hasFocusGrab: false
 
     function buildWorkspaces() {
         const result = {}
