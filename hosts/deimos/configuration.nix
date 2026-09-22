@@ -56,6 +56,7 @@
         clocks.enable = true;
         firezone.enable = true;
         kdeconnect.enable = true;
+        localsend.enable = true;
         logitech = {
           enable = true;
           openlogi.enable = true;

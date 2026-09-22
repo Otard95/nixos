@@ -23,6 +23,7 @@ in {
     ./kdeconnect.nix
     ./kwallet.nix
     ./libre-office.nix
+    ./localsend.nix
     ./logitech
     ./loupe.nix
     ./matrix.nix
