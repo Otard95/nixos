@@ -1,7 +1,6 @@
 import qs
 import QtQuick
 import Quickshell
-import Quickshell.Hyprland
 import Quickshell.Wayland
 import "../StatusPanel/Notifications"
 
@@ -10,7 +9,7 @@ Scope {
         id: window
 
         visible: Notifications.popupGroups.length > 0
-        screen: Quickshell.screens.find(candidate => candidate.name === Hyprland.focusedMonitor?.name) ?? Quickshell.screens[0] ?? null
+        screen: Quickshell.screens.find(candidate => candidate.name === WM.focusedMonitorName) ?? Quickshell.screens[0] ?? null
         implicitWidth: 412
         exclusiveZone: 0
         color: "transparent"

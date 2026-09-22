@@ -26,6 +26,11 @@ import "./WM" as Strategies
 //
 //   activeMode: string    // empty when default, non-empty for submaps/modes
 //
+//   focusedMonitorName: string  // name of the globally focused monitor.
+//                               // "" when the backend can't report it — consumers
+//                               // should fall back to the first screen
+//                               // (Quickshell.screens[0]; not a guaranteed primary).
+//
 //   backend: string       // identifier, e.g. "hyprland" | "wlr"
 //
 //   hasFocusGrab: bool    // true when the backend can hold input focus on a
@@ -41,6 +46,7 @@ Singleton {
     readonly property var workspacesByMonitor:   impl.workspacesByMonitor
     readonly property var activeWindowByMonitor: impl.activeWindowByMonitor
     readonly property string activeMode:         impl.activeMode
+    readonly property string focusedMonitorName: impl.focusedMonitorName
     readonly property string backend:            impl.backend
     readonly property bool hasFocusGrab:         impl.hasFocusGrab
 

@@ -15,6 +15,12 @@ Scope {
     property var workspacesByMonitor:   ({})
     property var activeWindowByMonitor: ({})
     property string activeMode: ""
+    // No generic Wayland protocol reports the focused output directly, so this
+    // is best-effort: the screen of the active toplevel (foreign-toplevel-
+    // management). Empty when nothing is active (e.g. an empty workspace);
+    // consumers then fall back to the first screen.
+    readonly property string focusedMonitorName:
+        ToplevelManager.activeToplevel?.screens?.[0]?.name ?? ""
     readonly property string backend: "wlr"
     readonly property bool hasFocusGrab: false
 
