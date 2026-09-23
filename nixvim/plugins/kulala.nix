@@ -9,36 +9,43 @@ in {
     lib.mkEnableOption "kulala plugin";
 
   config = let
-    kulala_src = pkgs.fetchFromGitHub {
-      owner = "mistweaverco";
-      repo = "kulala.nvim";
-      rev = "5fe5c671b7c579fdc0556d4bf3e117a1c3229393";
-      hash = "sha256-BZjGh+8V1vALotrLVM2aiCESZghAvfE2/Yjqhpc75x8=";
-      fetchSubmodules = true;
-    };
+    # kulala_src = pkgs.fetchFromGitHub {
+    #   owner = "mistweaverco";
+    #   repo = "kulala.nvim";
+    #   rev = "5fe5c671b7c579fdc0556d4bf3e117a1c3229393";
+    #   hash = "sha256-BZjGh+8V1vALotrLVM2aiCESZghAvfE2/Yjqhpc75x8=";
+    #   fetchSubmodules = true;
+    # };
 
-    treesitter-kulala-http-grammar = pkgs.tree-sitter.buildGrammar {
-      language = "kulala_http";
-      version = "5.3.1";
-      src = kulala_src;
-      location = "lua/tree-sitter";
-    };
+    # treesitter-kulala-http-grammar = pkgs.tree-sitter.buildGrammar {
+    #   language = "kulala_http";
+    #   version = "5.3.1";
+    #   src = kulala_src;
+    #   location = "lua/tree-sitter";
+    # };
+
+    # treesitter-kulala-http-grammar = pkgs.tree-sitter.buildGrammar {
+    #   language = "kulala_http";
+    #   version = "5.3.1";
+    #   src = pkgs.vimPlugins.kulala-nvim;
+    #   location = "lua/tree-sitter";
+    # };
   in lib.mkIf enable {
 
     programs.nixvim = {
 
-      extraPackages = [ pkgs.prettier ];
+      extraPackages = [ pkgs.prettier pkgs.websocat ];
 
-      plugins.treesitter.grammarPackages = [ treesitter-kulala-http-grammar ];
+      # plugins.treesitter.grammarPackages = [ treesitter-kulala-http-grammar ];
 
       plugins.kulala = {
         enable = true;
 
-        package = pkgs.vimUtils.buildVimPlugin {
-          name = "kulala.nvim";
-          src = kulala_src;
-          nvimSkipModule = [ "cli.kulala_cli" ];
-        };
+        # package = pkgs.vimUtils.buildVimPlugin {
+        #   name = "kulala.nvim";
+        #   src = kulala_src;
+        #   nvimSkipModule = [ "cli.kulala_cli" ];
+        # };
 
         settings = {
           environment_scope = "g";
