@@ -30,6 +30,7 @@
     };
     packages = {
       voxtype.enable = true;
+      sonora.enable = true;
     };
     term = {
       defaultTerminal = "ghostty";

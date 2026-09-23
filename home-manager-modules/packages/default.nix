@@ -13,6 +13,7 @@ in {
     ./gromit.nix
     ./hdrop.nix
     ./obsidian.nix
+    ./sonora.nix
     ./voxtype.nix
   ];
 

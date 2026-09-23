@@ -53,9 +53,13 @@
 
     # Tmp fix until nixpkgs are updated
     firezone.url = "github:firezone/firezone/gui-client-1.5.16";
+
+    sonora = {
+      url = "github:sonorahq/sonora";
+    };
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, home-manager, nixvim, catppuccin, nix-index-database, voxtype, firezone, ... } @ inputs:
+  outputs = { nixpkgs, nixpkgs-stable, home-manager, nixvim, catppuccin, nix-index-database, voxtype, sonora, firezone, ... } @ inputs:
   let
     system = "x86_64-linux";
 
@@ -113,6 +117,7 @@
               nixvim.homeModules.nixvim
               nix-index-database.homeModules.default
               voxtype.homeManagerModules.default
+              sonora.homeManagerModules.default
               ./home-manager-modules
               ./nixvim
               (nixpkgs.lib.path.append ./hosts "${hostname}/home.nix")
