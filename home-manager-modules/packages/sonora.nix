@@ -14,12 +14,12 @@ in {
           base = inputs.sonora.packages.${pkgs.stdenv.hostPlatform.system}.default;
         in
         pkgs.symlinkJoin {
-          name = "sonora-dmabuf";
+          name = "sonora-schemas";
           paths = [ base ];
           nativeBuildInputs = [ pkgs.makeWrapper ];
           postBuild = ''
             wrapProgram $out/bin/sonora \
-            --set-default WEBKIT_DISABLE_DMABUF_RENDERER 0
+              --prefix XDG_DATA_DIRS : "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
           '';
           meta.mainProgram = "sonora";
         };
