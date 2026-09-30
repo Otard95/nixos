@@ -17,6 +17,7 @@ Flickable {
 
     required property list<NotificationTypes.NotificationGroup> groups
     property bool popup: false
+    property real leftInset: 0
     property var expandedGroups: ({})
     property var groupHeights: ({})
     property string activeGroupDragId: ""
@@ -135,7 +136,8 @@ Flickable {
 
             property bool positionReady: false
 
-            width: root.width - (scrollBar.visible ? 8 : 0)
+            x: root.leftInset
+            width: root.width - root.leftInset - (scrollBar.visible ? 8 : 0)
             group: modelData
             popup: root.popup
             chainOffset: root.chainOffsetFor(modelData.groupId, index)
