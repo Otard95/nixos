@@ -37,6 +37,7 @@ in {
               "extensions/continue/*"
               "extensions/guards/*"
               "extensions/load-skill/*"
+              "extensions/modes/*"
               "extensions/pi-cloak/*"
               "extensions/protected-files/*"
               "extensions/read-line-numbers/*"
@@ -46,7 +47,6 @@ in {
               "extensions/web-read/*"
               "extensions/semantic-compaction/*"
               "extensions/session-namer/*"
-              "extensions/voice-input/*"
             ];
           }
         ];
@@ -58,6 +58,7 @@ in {
             "*.key"
           ];
         };
+        guards.typesafe.token = "pass:typesafe/api-key";
         pass = {
           timeout = 30000;
         };
