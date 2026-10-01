@@ -83,7 +83,7 @@ Rectangle {
         target: root
         property: "dragOffset"
         duration: 200
-        easing.type: Easing.OutCubic
+        easing.type: Easing.InCubic
         onFinished: Notifications.dismissMany(
             root.group.notifications.map(entry => entry.notificationId))
     }
@@ -388,7 +388,9 @@ Rectangle {
     function commitDismiss(): void {
         gestureEndTimer.stop()
         const dir = root.swipeOffset < 0 ? -1 : 1
-        dismissAnimation.to = dir * (root.width + root.dismissOvershoot)
+        dismissAnimation.to = dir < 0
+            ? -(root.x + root.width + root.dismissOvershoot)
+            : root.width + root.dismissOvershoot
         dismissAnimation.start()
     }
 

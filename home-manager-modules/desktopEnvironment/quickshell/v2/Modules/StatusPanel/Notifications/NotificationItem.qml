@@ -66,7 +66,7 @@ Rectangle {
         target: root
         property: "dragOffset"
         duration: 200
-        easing.type: Easing.OutCubic
+        easing.type: Easing.InCubic
         onFinished: {
             if (root.notification !== null)
                 Notifications.dismiss(root.notification.notificationId)
