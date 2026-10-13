@@ -23,11 +23,10 @@ in {
     xdg.configFile = {
       "pi/settings.json".source = jsonFormat.generate "pi-settings.json" {
         theme = "catppuccin-frappe";
-        collapseChangelog = false;
-        lastChangelogVersion = "0.84.1";
-        defaultProvider = "anthropic";
-        defaultModel = "claude-sonnet-4-6";
-        defaultThinkingLevel = "medium";
+        collapseChangelog = true;
+        defaultProvider = "openai-codex";
+        defaultModel = "gpt-5.6-terra";
+        defaultThinkingLevel = "low";
         enableInstallTelemetry = false;
         packages = [
           {
@@ -43,6 +42,7 @@ in {
               "extensions/read-line-numbers/*"
               "extensions/save-md/*"
               "extensions/screenshot/*"
+              "extensions/self-improvement/*"
               "extensions/web-search/*"
               "extensions/web-read/*"
               "extensions/semantic-compaction/*"
@@ -94,6 +94,7 @@ in {
       "pi/keybindings.json".source = jsonFormat.generate "pi-keybindings.json" {
         "tui.input.submit" =  "ctrl+enter";
         "tui.input.newLine" = "enter";
+        "tui.editor.undo" = "alt+u";
       };
       "pi/agents" = { source = ./agents; recursive = true; };
       "pi/modes" = { source = ./modes; recursive = true; };
