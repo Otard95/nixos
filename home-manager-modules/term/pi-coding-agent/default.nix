@@ -28,6 +28,7 @@ in {
         defaultModel = "gpt-5.6-terra";
         defaultThinkingLevel = "low";
         enableInstallTelemetry = false;
+        defaultTools = [ "+codemode" ];
         packages = [
           {
             source = "${pi-extensions}/lib";
@@ -95,6 +96,31 @@ in {
         "tui.input.submit" =  "ctrl+enter";
         "tui.input.newLine" = "enter";
         "tui.editor.undo" = "alt+u";
+        "tui.altScreen.halfPageUp" = "alt+u";
+        "tui.altScreen.halfPageDown" = "alt+d";
+        "tui.altScreen.lineUp" = "alt+k";
+        "tui.altScreen.lineDown" = "alt+j";
+      };
+      "pi/mcp.json".source = jsonFormat.generate "pi-mcp.json" {
+        mcpServers = {
+          github = {
+            url = "https://api.githubcopilot.com/mcp/";
+            headers = {
+              Authorization = "!echo Bearer $(pass show github/token/cli)";
+              "X-MCP-Toolsets" = "context,repos,issues,pull_requests,users,actions,labels,notifications,copilot,orgs";
+            };
+            description = "GitHub repositories, issues, pull requests, Actions, labels, notifications, Copilot, and organizations";
+          };
+          clickup = {
+            url = "https://mcp.clickup.com/mcp";
+            description = "ClickUp tasks, docs, comments, time tracking";
+          };
+          graphos = {
+            url = "https://mcp.apollographql.com";
+            headers."x-api-key" = "!pass show apollo/token/user";
+            description = "Apollo GraphOS Studio: graphs, variants, operation and subgraph metrics, docs";
+          };
+        };
       };
       "pi/agents" = { source = ./agents; recursive = true; };
       "pi/modes" = { source = ./modes; recursive = true; };
