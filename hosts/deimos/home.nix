@@ -29,7 +29,7 @@
       quickshell.enable = true;
     };
     packages = {
-      voxtype.enable = true;
+      voxtype.enable = false;
       sonora.enable = true;
     };
     term = {
