@@ -35,6 +35,7 @@
     term = {
       defaultTerminal = "ghostty";
       atuin.enable = true;
+      aven.enable = true;
       kitty.enable = true;
       devenv.enable = true;
       gh.enable = true;

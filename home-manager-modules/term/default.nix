@@ -25,6 +25,7 @@ in {
     ./wezterm
     ./aws.nix
     ./atuin.nix
+    ./aven.nix
     ./bash.nix
     ./bat.nix
     ./btop.nix

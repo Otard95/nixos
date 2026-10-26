@@ -50,6 +50,9 @@
     };
 
     pi-extensions.url = "github:Otard95/pi-extensions/v0.22.1";
+    aven = {
+      url = "github:raine/aven";
+    };
 
     # Tmp fix until nixpkgs are updated
     firezone.url = "github:firezone/firezone/gui-client-1.5.16";
