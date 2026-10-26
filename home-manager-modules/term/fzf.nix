@@ -20,7 +20,11 @@ in {
 
     programs.fzf = {
       enable = true;
+      enableBashIntegration = false;
       tmux.enableShellIntegration = true;
+      historyWidget.command = "";
+      historyWidget.zsh.command = "";
+
       # Until `catppuccin.fzf` supports `accent` again
       colors = {
         bg         = "#303446";

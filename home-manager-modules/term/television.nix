@@ -11,6 +11,7 @@ in {
 
     programs.television = {
       enable = true;
+      enableBashIntegration = false;
 
       channels = {
         tldr = {
