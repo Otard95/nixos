@@ -25,8 +25,8 @@ in {
         theme = "catppuccin-frappe";
         collapseChangelog = true;
         defaultProvider = "openai-codex";
-        defaultModel = "gpt-5.6-terra";
-        defaultThinkingLevel = "low";
+        defaultModel = "gpt-6.1-sol";
+        defaultThinkingLevel = "medium";
         enableInstallTelemetry = false;
         defaultTools = [ "+codemode" ];
         packages = [
