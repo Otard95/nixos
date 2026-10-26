@@ -49,7 +49,6 @@ in {
           "ctrl+shift+t=unbind"
           "ctrl+shift+w=unbind"
           "ctrl+shift+j=unbind"
-          "ctrl+shift+,=unbind"
         ];
       };
 

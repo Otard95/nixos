@@ -106,8 +106,8 @@ in {
 
         set-option -g renumber-windows on
 
-        bind -n C-S-t new-window
-        bind -n C-S-w kill-window
+        bind -n C-S-T new-window
+        bind -n C-S-W kill-window
 
         bind -n C-S-1 select-window -t 1
         bind -n C-S-2 select-window -t 2
@@ -132,10 +132,10 @@ in {
 
         bind 0 next-layout
 
-        bind -n C-S-h resize-pane -L 5
-        bind -n C-S-j resize-pane -D 5
-        bind -n C-S-k resize-pane -U 5
-        bind -n C-S-l resize-pane -R 5
+        bind -n C-S-H resize-pane -L 5
+        bind -n C-S-J resize-pane -D 5
+        bind -n C-S-K resize-pane -U 5
+        bind -n C-S-L resize-pane -R 5
 
         # Toggle maximized pane
 
@@ -143,7 +143,7 @@ in {
 
         # Copy mode with vim bindings
 
-        bind -n C-S-x copy-mode
+        bind -n C-S-X copy-mode
         bind-key -T copy-mode-vi Escape if-shell -F '#{selection_present}' {
           send -X clear-selection
         } {
