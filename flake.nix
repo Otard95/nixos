@@ -53,6 +53,9 @@
     aven = {
       url = "github:raine/aven";
     };
+    workmux = {
+      url = "github:raine/workmux";
+    };
 
     # Tmp fix until nixpkgs are updated
     firezone.url = "github:firezone/firezone/gui-client-1.5.16";

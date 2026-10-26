@@ -47,6 +47,7 @@ in {
     ./tmux.nix
     ./tuicr.nix
     ./useful-commands.nix
+    ./workmux.nix
     ./zoxide.nix
     ./zsh.nix
   ];
