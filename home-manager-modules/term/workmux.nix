@@ -13,6 +13,8 @@ in {
 
     xdg.configFile = {
       "workmux/config.yaml".source = yamlFormat.generate "workmux-config.yaml" {
+        nerdfont = true;
+
         mode = "session";
         agent = "pi";
         merge_strategy = "squash";
@@ -20,17 +22,9 @@ in {
         worktree_naming = "full";
 
         windows = [
-          {
-            name = "editor";
-            panes = [ { command = "nvim"; focus = true; } ];
-          }
-          {
-            name = "agent";
-            panes = [ { command = "<agent>"; } ]; }
-          {
-            name = "shell";
-            panes = [ { command = "if test -f .workmux-shell.sh; then sh .workmux-shell.sh; fi"; } ];
-          }
+          { name = "editor"; }
+          { name = "agent"; }
+          { name = "shell"; }
         ];
       };
     };
