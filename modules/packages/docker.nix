@@ -8,6 +8,8 @@ in {
 
   config = lib.mkIf enable {
 
+    users.users.otard.extraGroups = [ "docker" ];
+
     virtualisation.docker = {
       enable = true;
 
