@@ -21,7 +21,7 @@ in {
           { # brightness/warn idle
             timeout = 90; # 1.5min
             on-timeout = builtins.concatStringsSep " ; " [
-              "${pkgs.brightnessctl}/bin/brightnessctl -s set 30"
+              "${pkgs.brightnessctl}/bin/brightnessctl -s set 30%"
               "${lib.getExe pkgs.libnotify} -pu critical 'You are idle' 'Locking in 1min' > /var/tmp/idle-notification"
             ];
             on-resume = builtins.concatStringsSep " ; " [
