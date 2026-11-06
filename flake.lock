@@ -442,16 +442,16 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1792650246,
-        "narHash": "sha256-XOQOxunxsrxigPHR+dD/GqJoLPYsIzZANNZ+06GD138=",
+        "lastModified": 1793192050,
+        "narHash": "sha256-b9HCAIn+hEMsRcC80iwuW+EkwVQj6T42/QPKn1e884o=",
         "owner": "Otard95",
         "repo": "pi-extensions",
-        "rev": "34868cfefdde347f1a91d53d8e5d3e752783f5f0",
+        "rev": "258ecca14d84bff308abb79143adebfd107ea1d3",
         "type": "github"
       },
       "original": {
         "owner": "Otard95",
-        "ref": "v0.23.0",
+        "ref": "v0.24.0",
         "repo": "pi-extensions",
         "type": "github"
       }

@@ -44,6 +44,7 @@ in {
               "extensions/save-md/*"
               "extensions/screenshot/*"
               "extensions/self-improvement/*"
+              "extensions/todo/*"
               "extensions/web-search/*"
               "extensions/web-read/*"
               "extensions/semantic-compaction/*"
@@ -96,10 +97,10 @@ in {
         "tui.input.submit" =  "ctrl+enter";
         "tui.input.newLine" = "enter";
         "tui.editor.undo" = "alt+u";
-        "tui.altScreen.halfPageUp" = "alt+u";
-        "tui.altScreen.halfPageDown" = "alt+d";
         "tui.altScreen.lineUp" = "alt+k";
         "tui.altScreen.lineDown" = "alt+j";
+        "ext.modes.cycle" = "ctrl+shift+}";
+        "ext.modes.cycleReverse" = "ctrl+shift+{";
       };
       "pi/mcp.json".source = jsonFormat.generate "pi-mcp.json" {
         mcpServers = {
